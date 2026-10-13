@@ -1,0 +1,15 @@
+{
+  "indexes": [],
+  "fieldOverrides": [
+    {
+      "collectionGroup": "afflictionLogs",
+      "fieldPath": "trigger",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "journal",
+      "fieldPath": "values",
+      "indexes": []
+    }
+  ]
+}
