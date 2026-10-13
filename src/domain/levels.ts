@@ -1,0 +1,69 @@
+/**
+ * Nivel de dificultad y prerrequisitos de cada práctica (A5).
+ * Evita que alguien empiece por las prácticas más exigentes o con más riesgo de
+ * desestabilizar (p. ej. conciencia no dual, tonglen) sin la base atencional o afectiva.
+ */
+
+export type Level = 'iniciacion' | 'intermedio' | 'avanzado';
+
+export const LEVEL_LABEL: Record<Level, string> = {
+  iniciacion: 'Iniciación',
+  intermedio: 'Intermedio',
+  avanzado: 'Avanzado',
+};
+
+export interface LevelInfo {
+  level: Level;
+  /** Prácticas recomendadas antes (al menos una sesión completa de cada una). */
+  prerequisites?: string[];
+}
+
+export const PRACTICE_LEVELS: Record<string, LevelInfo> = {
+  // Herramientas rápidas
+  'espacio-tres-minutos': { level: 'iniciacion' },
+  'pausa-stop': { level: 'iniciacion' },
+  'mano-en-el-pecho': { level: 'iniciacion' },
+  'plantas-de-los-pies': { level: 'iniciacion' },
+  'tipp': { level: 'iniciacion' },
+  // Atencionales
+  'atencion-respiracion': { level: 'iniciacion' },
+  'escaneo-corporal': { level: 'iniciacion' },
+  'respiracion-resonante': { level: 'iniciacion' },
+  'suspiro-ciclico': { level: 'iniciacion' },
+  'atencion-sonidos': { level: 'iniciacion' },
+  'caminar-atencion': { level: 'iniciacion' },
+  'relajacion-progresiva': { level: 'iniciacion' },
+  // Constructivas
+  'saboreo': { level: 'iniciacion' },
+  'tres-cosas-buenas': { level: 'iniciacion' },
+  'gratitud-contemplativa': { level: 'iniciacion' },
+  'pausa-autocompasion': { level: 'iniciacion' },
+  'brujula-valores': { level: 'iniciacion' },
+  'mejor-yo-posible': { level: 'iniciacion' },
+  'fortalezas': { level: 'iniciacion' },
+  'activacion-conductual': { level: 'iniciacion' },
+  'resolucion-problemas': { level: 'iniciacion' },
+  'dear-man': { level: 'iniciacion' },
+  'accion-opuesta': { level: 'intermedio' },
+  'amor-altruista': { level: 'intermedio' },
+  'regocijo-empatico': { level: 'intermedio', prerequisites: ['amor-altruista'] },
+  'ecuanimidad': { level: 'intermedio', prerequisites: ['amor-altruista'] },
+  'perdon-reach': { level: 'intermedio', prerequisites: ['pausa-autocompasion'] },
+  'tonglen': { level: 'avanzado', prerequisites: ['amor-altruista', 'pausa-autocompasion'] },
+  // Deconstructivas
+  'pajaros-en-el-cielo': { level: 'intermedio', prerequisites: ['atencion-respiracion'] },
+  'anotacion-mental': { level: 'intermedio', prerequisites: ['atencion-respiracion'] },
+  'surfear-impulso': { level: 'intermedio', prerequisites: ['atencion-respiracion'] },
+  'hacer-espacio': { level: 'intermedio', prerequisites: ['escaneo-corporal'] },
+  'observador': { level: 'avanzado', prerequisites: ['pajaros-en-el-cielo'] },
+  'conciencia-pura': { level: 'avanzado', prerequisites: ['atencion-respiracion', 'pajaros-en-el-cielo'] },
+};
+
+export function levelOf(practiceId: string): LevelInfo {
+  return PRACTICE_LEVELS[practiceId] ?? { level: 'iniciacion' };
+}
+
+/** Prerrequisitos aún no practicados (lista vacía = listo). */
+export function missingPrerequisites(practiceId: string, completed: Set<string>): string[] {
+  return (levelOf(practiceId).prerequisites ?? []).filter((id) => !completed.has(id));
+}

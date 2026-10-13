@@ -1,0 +1,251 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Tema de color. Los componentes usan las clases de Tailwind (stone-*, sage-*, white)
+ * y aquí se decide su valor. Modo oscuro: automático según el sistema, o forzado con
+ * data-theme="light|dark" en <html> (Ajustes › Apariencia). Las escalas oscuras se
+ * invierten conservando los pares de contraste; todos verificados con WCAG AA.
+ * --chart-line: validado (banda de luminosidad, croma y contraste) para cada superficie.
+ */
+:root {
+  color-scheme: light;
+  --white: 255 255 255;
+  --stone-50: 250 250 249;
+  --stone-100: 245 245 244;
+  --stone-200: 231 229 228;
+  --stone-300: 214 211 209;
+  --stone-400: 168 162 158;
+  --stone-500: 120 113 108;
+  --stone-600: 87 83 78;
+  --stone-700: 68 64 60;
+  --stone-800: 41 37 36;
+  --stone-900: 28 25 23;
+  --stone-950: 12 10 9;
+  --sage-50: 244 246 243;
+  --sage-100: 230 235 227;
+  --sage-200: 205 216 200;
+  --sage-300: 173 191 165;
+  --sage-400: 143 165 133;
+  --sage-500: 115 138 105;
+  --sage-600: 93 115 86;
+  --sage-700: 74 92 69;
+  --sage-800: 60 74 57;
+  --chart-line: 74 122 63;
+  --accent-from: 74 92 69;
+  --accent-to: 60 74 57;
+  --accent-fg: 255 255 255;
+  --accent-muted: 230 235 227;
+  --accent-soft: 205 216 200;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --shadow-a: 0.3;
+  --shadow-b: 0.45;
+  --shadow-c: 0.6;
+  --white: 36 33 30;
+  --stone-50: 22 20 18;
+  --stone-100: 30 28 25;
+  --stone-200: 56 52 48;
+  --stone-300: 82 77 72;
+  --stone-400: 112 106 100;
+  --stone-500: 158 151 145;
+  --stone-600: 186 180 174;
+  --stone-700: 212 207 201;
+  --stone-800: 232 228 224;
+  --stone-900: 244 241 238;
+  --stone-950: 250 249 247;
+  --sage-50: 28 36 27;
+  --sage-100: 37 48 35;
+  --sage-200: 54 70 50;
+  --sage-300: 78 99 72;
+  --sage-400: 108 134 99;
+  --sage-500: 132 160 122;
+  --sage-600: 152 181 141;
+  --sage-700: 175 201 165;
+  --sage-800: 200 220 192;
+  --chart-line: 106 163 90;
+  --accent-from: 46 62 43;
+  --accent-to: 36 49 34;
+  --accent-fg: 244 241 238;
+  --accent-muted: 205 220 197;
+  --accent-soft: 170 192 160;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --shadow-a: 0.3;
+    --shadow-b: 0.45;
+    --shadow-c: 0.6;
+    --white: 36 33 30;
+    --stone-50: 22 20 18;
+    --stone-100: 30 28 25;
+    --stone-200: 56 52 48;
+    --stone-300: 82 77 72;
+    --stone-400: 112 106 100;
+    --stone-500: 158 151 145;
+    --stone-600: 186 180 174;
+    --stone-700: 212 207 201;
+    --stone-800: 232 228 224;
+    --stone-900: 244 241 238;
+    --stone-950: 250 249 247;
+    --sage-50: 28 36 27;
+    --sage-100: 37 48 35;
+    --sage-200: 54 70 50;
+    --sage-300: 78 99 72;
+    --sage-400: 108 134 99;
+    --sage-500: 132 160 122;
+    --sage-600: 152 181 141;
+    --sage-700: 175 201 165;
+    --sage-800: 200 220 192;
+    --chart-line: 106 163 90;
+    --accent-from: 46 62 43;
+    --accent-to: 36 49 34;
+    --accent-fg: 244 241 238;
+    --accent-muted: 205 220 197;
+    --accent-soft: 170 192 160;
+  }
+}
+
+/* El informe impreso siempre en claro, aunque la pantalla esté en modo oscuro. */
+@media print {
+  :root:not([data-print]) {
+    color-scheme: light;
+    --white: 255 255 255;
+    --stone-50: 250 250 249;
+    --stone-100: 245 245 244;
+    --stone-200: 231 229 228;
+    --stone-300: 214 211 209;
+    --stone-400: 168 162 158;
+    --stone-500: 120 113 108;
+    --stone-600: 87 83 78;
+    --stone-700: 68 64 60;
+    --stone-800: 41 37 36;
+    --stone-900: 28 25 23;
+    --stone-950: 12 10 9;
+    --sage-50: 244 246 243;
+    --sage-100: 230 235 227;
+    --sage-200: 205 216 200;
+    --sage-300: 173 191 165;
+    --sage-400: 143 165 133;
+    --sage-500: 115 138 105;
+    --sage-600: 93 115 86;
+    --sage-700: 74 92 69;
+    --sage-800: 60 74 57;
+    --chart-line: 74 122 63;
+    --accent-from: 74 92 69;
+    --accent-to: 60 74 57;
+    --accent-fg: 255 255 255;
+    --accent-muted: 230 235 227;
+    --accent-soft: 205 216 200;
+  }
+}
+
+@layer base {
+  html {
+    @apply bg-stone-50 text-stone-800 antialiased;
+    -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+  h1,
+  h2 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  ::selection {
+    @apply bg-sage-200 text-stone-900;
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-sage-400 ring-offset-2 ring-offset-stone-50;
+  }
+  input[type='range'] {
+    @apply h-1.5 cursor-pointer appearance-none rounded-full bg-stone-200;
+  }
+  input[type='range']::-webkit-slider-thumb {
+    @apply h-5 w-5 appearance-none rounded-full border border-stone-300 bg-white shadow-sm transition-transform duration-200;
+  }
+  input[type='range']:active::-webkit-slider-thumb {
+    @apply scale-110 border-sage-500;
+  }
+  input[type='range']::-moz-range-thumb {
+    @apply h-5 w-5 rounded-full border border-stone-300 bg-white shadow-sm;
+  }
+}
+
+@layer utilities {
+  /* Volteo 3D de las cartas filosóficas */
+  .perspective {
+    perspective: 1400px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+  .pb-safe {
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+  }
+  /* Sombra en capas, más suave que las de Tailwind por defecto */
+  .shadow-soft {
+    box-shadow:
+      0 1px 2px rgb(0 0 0 / var(--shadow-a, 0.04)),
+      0 8px 24px -12px rgb(0 0 0 / var(--shadow-b, 0.12));
+  }
+  .shadow-lift {
+    box-shadow:
+      0 1px 2px rgb(0 0 0 / var(--shadow-a, 0.04)),
+      0 18px 40px -18px rgb(0 0 0 / var(--shadow-c, 0.22));
+  }
+}
+
+/* Impresión (informe para el terapeuta) */
+@media print {
+  html,
+  body {
+    background: #fff !important;
+  }
+  @page {
+    margin: 16mm;
+  }
+}
+
+/* Esqueleto de carga */
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+.skeleton {
+  @apply relative overflow-hidden rounded-lg bg-stone-100;
+}
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgb(var(--white) / 0.7), transparent);
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+/* Accesibilidad: sin movimiento para quien lo solicita. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

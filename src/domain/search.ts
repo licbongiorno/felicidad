@@ -1,0 +1,135 @@
+import { ANTIDOTES } from './antidotes';
+import { CARDS, DECKS } from './cards';
+import { FREE_TIMER_TITLE } from './freeTimer';
+import { JOURNAL_TEMPLATES } from './journal';
+import { ARTICLES } from './library';
+import { PRACTICES } from './practices';
+import { PROGRAMS } from './programs';
+import { FAMILY_LABEL } from './evidence';
+import { GLOSSARY } from './glossary';
+import { THINKING_TRAPS } from './thinkingTraps';
+import { isPublished } from './governance';
+
+/**
+ * Buscador global (⌘K). Índice en memoria sobre todo el contenido, sin dependencias:
+ * insensible a mayúsculas y tildes, todas las palabras deben aparecer (AND) y el
+ * título pesa más que el cuerpo.
+ */
+
+export type ResultKind = 'Sección' | 'Práctica' | 'Antídoto' | 'Diario' | 'Programa' | 'Artículo' | 'Glosario' | 'Carta';
+
+export interface SearchDoc {
+  id: string;
+  kind: ResultKind;
+  title: string;
+  subtitle: string;
+  href: string;
+  /** Texto normalizado del título y del cuerpo. */
+  titleN: string;
+  bodyN: string;
+}
+
+export const normalize = (s: string) =>
+  s
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+
+const doc = (d: Omit<SearchDoc, 'titleN' | 'bodyN'>, body: string[]): SearchDoc => ({
+  ...d,
+  titleN: normalize(d.title),
+  bodyN: normalize([d.subtitle, ...body].join(' ')),
+});
+
+const SECTIONS: [string, string, string, string[]][] = [
+  ['/dashboard', 'Panel', 'Racha, ánimo, sugerencias y qué te funciona', ['inicio', 'progreso', 'estadisticas']],
+  ['/gimnasio', 'Gimnasio mental', 'Catálogo de prácticas guiadas', ['meditacion', 'meditar', 'ejercicios']],
+  ['/gimnasio/temporizador', FREE_TIMER_TITLE, 'Práctica sin guía con campanas de intervalo', ['meditacion', 'silencio', 'campana', 'timer']],
+  ['/antidotos', 'Antídotos', 'Trabajar ahora una emoción difícil', ['emocion', 'crisis', 'malestar']],
+  ['/diario', 'Diario', 'Registros escritos estructurados', ['escribir', 'journal', 'notas']],
+  ['/evaluaciones', 'Evaluaciones WHO-5', 'Mide tu bienestar cada dos semanas', ['cuestionario', 'test', 'bienestar']],
+  ['/informe', 'Informe para tu terapeuta', 'Resumen imprimible o en PDF', ['pdf', 'imprimir', 'psicologo', 'sesion']],
+  ['/programas', 'Programas', 'Recorridos guiados de varias semanas', ['curso', 'plan']],
+  ['/biblioteca', 'Biblioteca', 'Fundamentos científicos', ['articulos', 'ciencia', 'evidencia']],
+  ['/cartas', 'Cartas filosóficas', 'Perspectivas para romper la rumiación', ['frases', 'citas', 'estoicismo']],
+  ['/ajustes', 'Ajustes', 'Voz guía, recordatorios, exportar o borrar datos', ['configuracion', 'cuenta', 'privacidad', 'recordatorio']],
+];
+
+export function buildIndex(): SearchDoc[] {
+  return [
+    ...SECTIONS.map(([href, title, subtitle, extra]) => doc({ id: `s:${href}`, kind: 'Sección', title, subtitle, href }, extra)),
+    ...PRACTICES.filter((p) => isPublished('practica', p.id)).map((p) =>
+      doc(
+        { id: `p:${p.id}`, kind: 'Práctica', title: p.title, subtitle: `${FAMILY_LABEL[p.family]} · ${p.summary}`, href: `/gimnasio/${p.id}` },
+        [p.mechanism, ...p.tips],
+      ),
+    ),
+    ...ANTIDOTES.map((a) =>
+      doc(
+        { id: `a:${a.emotionId}`, kind: 'Antídoto', title: a.emotionLabel, subtitle: `${a.antidoteName} · ${a.markers}`, href: `/antidotos?emocion=${a.emotionId}` },
+        [a.incompatibility],
+      ),
+    ),
+    ...JOURNAL_TEMPLATES.filter((t) => !t.hidden && isPublished('diario', t.type)).map((t) =>
+      doc({ id: `j:${t.type}`, kind: 'Diario', title: t.title, subtitle: t.summary, href: `/diario?nuevo=${t.type}` }, [t.when]),
+    ),
+    ...PROGRAMS.map((p) =>
+      doc({ id: `g:${p.id}`, kind: 'Programa', title: p.title, subtitle: p.subtitle, href: `/programas/${p.id}` }, [p.description, ...p.weeks.map((w) => w.title)]),
+    ),
+    ...ARTICLES.filter((a) => isPublished('articulo', a.id)).map((a) =>
+      doc({ id: `b:${a.id}`, kind: 'Artículo', title: a.title, subtitle: a.subtitle, href: `/biblioteca/${a.id}` }, [a.category, ...a.keyPoints]),
+    ),
+    ...GLOSSARY.map((g) =>
+      doc({ id: `t:${g.id}`, kind: 'Glosario', title: g.term, subtitle: g.definition, href: `/biblioteca/glosario#${g.id}` }, []),
+    ),
+    doc({ id: 's:/biblioteca/trampas-del-pensamiento', kind: 'Sección', title: 'Trampas del pensamiento', subtitle: 'Distorsiones cognitivas y cómo desmontarlas', href: '/biblioteca/trampas-del-pensamiento' }, ['distorsiones', 'pensamientos', 'tcc']),
+    ...THINKING_TRAPS.map((t) =>
+      doc({ id: `d:${t.id}`, kind: 'Glosario', title: t.name, subtitle: t.description, href: `/biblioteca/trampas-del-pensamiento#${t.id}` }, [t.example]),
+    ),
+    ...(isPublished('herramienta', 'plan-seguridad')
+      ? [doc({ id: 's:/plan-de-seguridad', kind: 'Sección', title: 'Plan de seguridad', subtitle: 'Tu plan personal para los momentos de crisis', href: '/plan-de-seguridad' }, ['crisis', 'suicidio', 'emergencia', 'ayuda'])]
+      : []),
+    ...CARDS.map((c) =>
+      doc({ id: `c:${c.id}`, kind: 'Carta', title: c.author, subtitle: c.text, href: `/cartas?carta=${c.id}` }, [DECKS[c.deck].title, c.source]),
+    ),
+  ];
+}
+
+/** Atajos que se muestran con la búsqueda vacía. */
+export const QUICK_ACTIONS = ['s:/antidotos', 's:/gimnasio/temporizador', 'j:tres-cosas', 's:/evaluaciones', 's:/informe'];
+
+const KIND_BOOST: Record<ResultKind, number> = {
+  Sección: 3,
+  Antídoto: 2,
+  Práctica: 2,
+  Diario: 1,
+  Programa: 1,
+  Artículo: 0,
+  Glosario: 0,
+  Carta: 0,
+};
+
+export function search(index: SearchDoc[], query: string, limit = 12): SearchDoc[] {
+  const terms = normalize(query).split(/\s+/).filter(Boolean);
+  if (terms.length === 0) return [];
+  const scored: { d: SearchDoc; score: number }[] = [];
+  for (const d of index) {
+    let score = 0;
+    let all = true;
+    for (const t of terms) {
+      if (d.titleN.startsWith(t)) score += 12;
+      else if (new RegExp(`\\b${t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`).test(d.titleN)) score += 8;
+      else if (d.titleN.includes(t)) score += 5;
+      else if (d.bodyN.includes(t)) score += 1;
+      else {
+        all = false;
+        break;
+      }
+    }
+    if (all) scored.push({ d, score: score + KIND_BOOST[d.kind] });
+  }
+  return scored
+    .sort((a, b) => b.score - a.score || a.d.title.localeCompare(b.d.title))
+    .slice(0, limit)
+    .map((s) => s.d);
+}

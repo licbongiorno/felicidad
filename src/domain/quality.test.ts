@@ -1,0 +1,179 @@
+import { describe, expect, it } from 'vitest';
+import { ANTIDOTES } from './antidotes';
+import { CARDS } from './cards';
+import { GLOSSARY } from './glossary';
+import { EVIDENCE_LAST_CHECKED, isPublished, REVIEW_OVERRIDES, reviewOf, SHOW_DRAFTS } from './governance';
+import { INSTRUMENTS } from './instruments';
+import { JOURNAL_TEMPLATES } from './journal';
+import { PRACTICE_LEVELS, levelOf } from './levels';
+import { ARTICLES, ARTICLE_BY_ID } from './library';
+import { PRACTICES, PRACTICE_BY_ID, totalDurationSec } from './practices';
+import { inflesz, longestSentenceWords } from './readability';
+
+/**
+ * Calidad del contenido (plan de mejora de contenido):
+ *  A3 legibilidad · A4 guía de estilo · A5 niveles · E1–E3 gobernanza clínica.
+ */
+
+const allTexts = (): { where: string; text: string }[] => [
+  ...PRACTICES.flatMap((p) => [
+    { where: `práctica ${p.id}: resumen`, text: p.summary },
+    ...p.steps.map((s) => ({ where: `práctica ${p.id}: paso «${s.title}»`, text: s.instruction })),
+    ...p.howItWorks.map((t) => ({ where: `práctica ${p.id}: cómo funciona`, text: t })),
+    ...p.tips.map((t) => ({ where: `práctica ${p.id}: consejo`, text: t })),
+  ]),
+  ...ANTIDOTES.flatMap((a) => [
+    { where: `antídoto ${a.emotionId}: cuándo no`, text: a.whenNot },
+    ...a.steps.map((s) => ({ where: `antídoto ${a.emotionId}: paso «${s.title}»`, text: s.instruction })),
+    ...a.science.map((t) => ({ where: `antídoto ${a.emotionId}: ciencia`, text: t })),
+  ]),
+  ...ARTICLES.flatMap((a) => a.sections.flatMap((s) => s.paragraphs.map((t) => ({ where: `artículo ${a.id}`, text: t })))),
+  ...CARDS.map((c) => ({ where: `carta ${c.id}`, text: `${c.text} ${c.reflection} ${c.microPractice}` })),
+  ...GLOSSARY.map((g) => ({ where: `glosario ${g.id}`, text: g.definition })),
+];
+
+// ---------------------------------------------------------------- A3 · legibilidad
+describe('legibilidad (INFLESZ)', () => {
+  it.each(ANTIDOTES.map((a) => [a.emotionId, a] as const))('«cuándo no usarlo» de %s es fácil de leer en un mal momento', (_id, a) => {
+    expect(Math.round(inflesz(a.whenNot)), a.whenNot).toBeGreaterThanOrEqual(55);
+    expect(longestSentenceWords(a.whenNot)).toBeLessThanOrEqual(26);
+  });
+
+  it.each(PRACTICES.map((p) => [p.id, p] as const))('los pasos de %s tienen legibilidad al menos normal', (_id, p) => {
+    expect(Math.round(inflesz(p.steps.map((s) => s.instruction).join(' ')))).toBeGreaterThanOrEqual(55);
+  });
+
+  it.each(ANTIDOTES.map((a) => [a.emotionId, a] as const))('los pasos del antídoto %s tienen legibilidad al menos normal', (_id, a) => {
+    expect(Math.round(inflesz(a.steps.map((s) => s.instruction).join(' ')))).toBeGreaterThanOrEqual(55);
+  });
+});
+
+// ---------------------------------------------------------------- A4 · guía de estilo
+describe('guía de estilo', () => {
+  it('las instrucciones de los pasos son breves y terminan en puntuación', () => {
+    for (const p of [...PRACTICES, ...ANTIDOTES]) {
+      for (const s of p.steps) {
+        const words = s.instruction.split(/\s+/).length;
+        expect(words, s.instruction).toBeLessThanOrEqual(45);
+        expect(longestSentenceWords(s.instruction), s.instruction).toBeLessThanOrEqual(30);
+        expect(s.instruction.trim(), s.instruction).toMatch(/[.?!»…)]$/);
+      }
+    }
+  });
+
+  it('sin dobles espacios ni formas de género no recomendadas (x, @, /os)', () => {
+    for (const { where, text } of allTexts()) {
+      expect(text, where).not.toMatch(/ {2}/);
+      // La guía usa «o/a» (p. ej. «cansado/a»); no se usan @, x ni «/os».
+      expect(text, where).not.toMatch(/[a-záéíóú]@[a-z]|\btod[xe]s\b|\w+\/os\b/i);
+    }
+  });
+
+  it('no aparecen citas apócrifas conocidas', () => {
+    const APOCRYPHAL = [
+      /entre el est[ií]mulo y la respuesta hay un espacio/i,
+      /lo que niegas te somete/i,
+      /s[eé] el cambio que quieres ver/i,
+      /hasta que no hagas consciente lo inconsciente/i,
+    ];
+    for (const c of CARDS) for (const re of APOCRYPHAL) expect(`${c.text}`, c.id).not.toMatch(re);
+  });
+
+  it('toda referencia citada incluye el año', () => {
+    const refs = [
+      ...PRACTICES.flatMap((p) => p.evidence),
+      ...ANTIDOTES.flatMap((a) => a.evidence),
+      ...ARTICLES.flatMap((a) => a.references),
+      ...JOURNAL_TEMPLATES.flatMap((t) => t.evidence),
+      ...INSTRUMENTS.flatMap((i) => i.references),
+    ];
+    for (const r of refs) expect(r.citation, r.citation).toMatch(/\((\d{4}(\/\d{4})?|s\.f\.)\)/);
+  });
+
+  it('los avisos de seguridad remiten a ayuda profesional o a la seguridad', () => {
+    for (const a of ANTIDOTES) expect(a.whenNot, a.emotionId).toMatch(/profesional|terapeuta|médico|ayuda|seguridad|especializado|equipo|actuar|cambiar|calma/i);
+  });
+});
+
+// ---------------------------------------------------------------- A5 · niveles y prerrequisitos
+describe('niveles y prerrequisitos', () => {
+  it('cada práctica tiene nivel asignado y no sobran entradas', () => {
+    for (const p of PRACTICES) expect(PRACTICE_LEVELS[p.id], p.id).toBeDefined();
+    for (const id of Object.keys(PRACTICE_LEVELS)) expect(PRACTICE_BY_ID[id], id).toBeDefined();
+  });
+
+  it('los prerrequisitos existen y son de un nivel igual o inferior', () => {
+    const rank = { iniciacion: 0, intermedio: 1, avanzado: 2 };
+    for (const [id, info] of Object.entries(PRACTICE_LEVELS)) {
+      for (const pre of info.prerequisites ?? []) {
+        expect(PRACTICE_BY_ID[pre], `${id} → ${pre}`).toBeDefined();
+        expect(rank[levelOf(pre).level], `${id} → ${pre}`).toBeLessThanOrEqual(rank[info.level]);
+        expect(pre).not.toBe(id);
+      }
+    }
+  });
+
+  it('las prácticas con precauciones clínicas no son de iniciación', () => {
+    for (const p of PRACTICES.filter((x) => x.cautions && x.family === 'deconstructive')) expect(levelOf(p.id).level, p.id).not.toBe('iniciacion');
+  });
+
+  it('las herramientas rápidas duran como máximo 3 minutos', () => {
+    for (const p of PRACTICES.filter((x) => x.micro)) expect(totalDurationSec(p.steps), p.id).toBeLessThanOrEqual(180);
+  });
+});
+
+// ---------------------------------------------------------------- E1–E3 · gobernanza
+describe('gobernanza clínica', () => {
+  it('las excepciones de revisión apuntan a contenido existente', () => {
+    const exists: Record<string, (id: string) => boolean> = {
+      practica: (id) => !!PRACTICE_BY_ID[id],
+      antidoto: (id) => ANTIDOTES.some((a) => a.emotionId === id),
+      diario: (id) => JOURNAL_TEMPLATES.some((t) => t.type === id),
+      articulo: (id) => !!ARTICLE_BY_ID[id],
+      instrumento: (id) => INSTRUMENTS.some((i) => i.id === id),
+      herramienta: (id) => id === 'plan-seguridad',
+      programa: () => true,
+    };
+    for (const key of Object.keys(REVIEW_OVERRIDES)) {
+      const [kind, id] = key.split(':');
+      expect(exists[kind]?.(id), key).toBe(true);
+    }
+  });
+
+  it('el contenido sensible está en borrador hasta la aprobación clínica', () => {
+    expect(reviewOf('herramienta', 'plan-seguridad').status).not.toBe('pendiente');
+    expect(reviewOf('instrumento', 'phq9').status).not.toBe('pendiente');
+  });
+
+  it('fuera del modo demo, los borradores no se publican', () => {
+    expect(SHOW_DRAFTS).toBe(false); // los tests corren sin modo demo
+    expect(isPublished('instrumento', 'phq9')).toBe(reviewOf('instrumento', 'phq9').status !== 'borrador');
+    expect(isPublished('instrumento', 'gad7')).toBe(true);
+  });
+
+  it('las referencias se verificaron hace menos de 12 meses (revisión anual obligatoria)', () => {
+    const days = (Date.now() - new Date(`${EVIDENCE_LAST_CHECKED}T00:00:00`).getTime()) / 86_400_000;
+    expect(days, `Última verificación: ${EVIDENCE_LAST_CHECKED}. Ejecuta npm run verify:refs y actualiza EVIDENCE_LAST_CHECKED.`).toBeLessThanOrEqual(365);
+  });
+
+  it('los enlaces del glosario existen', () => {
+    for (const g of GLOSSARY) {
+      if (g.articleId) expect(ARTICLE_BY_ID[g.articleId], g.id).toBeDefined();
+      if (g.practiceId) expect(PRACTICE_BY_ID[g.practiceId], g.id).toBeDefined();
+    }
+  });
+});
+
+// ---------------------------------------------------------------- trampas del pensamiento
+describe('trampas del pensamiento', () => {
+  it('cada trampa está completa, con ejemplo entre comillas españolas y una pregunta', async () => {
+    const { THINKING_TRAPS } = await import('./thinkingTraps');
+    expect(new Set(THINKING_TRAPS.map((t) => t.id)).size).toBe(THINKING_TRAPS.length);
+    for (const t of THINKING_TRAPS) {
+      expect(t.example, t.id).toMatch(/^«.+»$/);
+      expect(t.alternative, t.id).toMatch(/^«.+»$/);
+      expect(t.question.trim(), t.id).toMatch(/\?$/);
+      expect(Math.round(inflesz(`${t.description} ${t.question}`)), t.id).toBeGreaterThanOrEqual(55);
+    }
+  });
+});
