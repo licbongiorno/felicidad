@@ -164,6 +164,23 @@ describe('gobernanza clínica', () => {
   });
 });
 
+// ---------------------------------------------------------------- rueda de emociones
+describe('rueda de emociones', () => {
+  it('cada familia está completa, es legible y enlaza a un antídoto existente', async () => {
+    const { EMOTION_FAMILIES } = await import('./emotions');
+    expect(new Set(EMOTION_FAMILIES.map((e) => e.id)).size).toBe(EMOTION_FAMILIES.length);
+    for (const e of EMOTION_FAMILIES) {
+      expect(e.shades.length, e.id).toBe(5);
+      for (const t of [e.body, e.urge, e.fits, e.opposite]) {
+        expect(t.trim(), e.id).toMatch(/\.$/);
+        expect(t, e.id).not.toMatch(/ {2}/);
+      }
+      expect(Math.round(inflesz(`${e.body} ${e.urge} ${e.fits} ${e.opposite}`)), e.id).toBeGreaterThanOrEqual(55);
+      if (e.antidoteId) expect(ANTIDOTES.some((a) => a.emotionId === e.antidoteId), e.id).toBe(true);
+    }
+  });
+});
+
 // ---------------------------------------------------------------- trampas del pensamiento
 describe('trampas del pensamiento', () => {
   it('cada trampa está completa, con ejemplo entre comillas españolas y una pregunta', async () => {

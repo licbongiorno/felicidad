@@ -353,6 +353,7 @@ export const PROGRAMS: Program[] = [
         description: 'La base de los demás módulos. Aprenderás a notar la emoción y los hechos a la vez, y a hacer una pausa antes de reaccionar.',
         practiceIds: ['mente-sabia', 'pausa-stop'],
         articleIds: ['habilidades-dbt'],
+        journalType: 'tarjeta-diaria',
       },
       {
         title: 'Semana 2 · Tolerancia al malestar',
@@ -367,6 +368,7 @@ export const PROGRAMS: Program[] = [
         description: 'Revisarás si tus emociones encajan con los hechos, practicarás la acción opuesta y cuidarás el cuerpo para estar menos vulnerable.',
         practiceIds: ['comprobar-hechos', 'accion-opuesta', 'please'],
         articleIds: ['antidotos-y-regulacion'],
+        journalType: 'analisis-cadena',
       },
       {
         title: 'Semana 4 · Efectividad interpersonal',

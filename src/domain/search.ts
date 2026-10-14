@@ -8,6 +8,7 @@ import { PROGRAMS } from './programs';
 import { FAMILY_LABEL } from './evidence';
 import { GLOSSARY } from './glossary';
 import { THINKING_TRAPS } from './thinkingTraps';
+import { EMOTION_FAMILIES } from './emotions';
 import { isPublished } from './governance';
 
 /**
@@ -85,6 +86,10 @@ export function buildIndex(): SearchDoc[] {
     doc({ id: 's:/biblioteca/trampas-del-pensamiento', kind: 'Sección', title: 'Trampas del pensamiento', subtitle: 'Distorsiones cognitivas y cómo desmontarlas', href: '/biblioteca/trampas-del-pensamiento' }, ['distorsiones', 'pensamientos', 'tcc']),
     ...THINKING_TRAPS.map((t) =>
       doc({ id: `d:${t.id}`, kind: 'Glosario', title: t.name, subtitle: t.description, href: `/biblioteca/trampas-del-pensamiento#${t.id}` }, [t.example]),
+    ),
+    doc({ id: 's:/biblioteca/rueda-de-emociones', kind: 'Sección', title: 'Rueda de emociones', subtitle: 'Ponerle nombre a lo que sientes y qué hacer con ello', href: '/biblioteca/rueda-de-emociones' }, ['emociones', 'sentimientos', 'dbt', 'granularidad']),
+    ...EMOTION_FAMILIES.map((e) =>
+      doc({ id: `e:${e.id}`, kind: 'Glosario', title: e.name, subtitle: e.shades.join(', '), href: `/biblioteca/rueda-de-emociones#${e.id}` }, [e.urge]),
     ),
     ...(isPublished('herramienta', 'plan-seguridad')
       ? [doc({ id: 's:/plan-de-seguridad', kind: 'Sección', title: 'Plan de seguridad', subtitle: 'Tu plan personal para los momentos de crisis', href: '/plan-de-seguridad' }, ['crisis', 'suicidio', 'emergencia', 'ayuda'])]

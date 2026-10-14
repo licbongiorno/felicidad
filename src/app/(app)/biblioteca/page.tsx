@@ -3,6 +3,7 @@ import { ARTICLES, type ArticleCategory } from '@/domain/library';
 import { Stagger, StaggerItem } from '@/components/motion/Reveal';
 import { isPublished } from '@/domain/governance';
 import { GLOSSARY } from '@/domain/glossary';
+import { EMOTION_FAMILIES } from '@/domain/emotions';
 
 const VISIBLE = ARTICLES.filter((a) => isPublished('articulo', a.id));
 
@@ -54,6 +55,21 @@ export default function LibraryPage() {
           <span>
             <span className="block font-serif text-lg text-stone-800">Trampas del pensamiento</span>
             <span className="block text-sm text-stone-600">12 distorsiones habituales, con ejemplos y cómo desmontarlas</span>
+          </span>
+          <span className="text-stone-500 transition-transform group-hover:translate-x-0.5" aria-hidden>
+            →
+          </span>
+        </Link>
+      </StaggerItem>
+
+      <StaggerItem className="mt-3">
+        <Link
+          href="/biblioteca/rueda-de-emociones"
+          className="group flex items-center justify-between gap-6 rounded-2xl border border-stone-200 bg-white px-6 py-4 transition-[border-color,box-shadow] hover:border-sage-300 hover:shadow-soft"
+        >
+          <span>
+            <span className="block font-serif text-lg text-stone-800">Rueda de emociones</span>
+            <span className="block text-sm text-stone-600">{EMOTION_FAMILIES.length} familias de emociones, con sus matices y qué hacer con cada una</span>
           </span>
           <span className="text-stone-500 transition-transform group-hover:translate-x-0.5" aria-hidden>
             →
