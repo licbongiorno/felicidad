@@ -72,7 +72,13 @@ export type AfflictiveEmotionId =
   | 'duelo'
   | 'agobio'
   | 'bloqueo'
-  | 'panico';
+  | 'panico'
+  | 'verguenza'
+  | 'miedo'
+  | 'celos'
+  | 'frustracion'
+  | 'vacio'
+  | 'inseguridad';
 
 export interface Antidote {
   emotionId: AfflictiveEmotionId;
@@ -172,7 +178,7 @@ export interface JournalEntry {
   tz?: string | null;
 }
 
-export type InstrumentId = 'who5' | 'gad7' | 'phq9';
+export type InstrumentId = 'who5' | 'gad7' | 'phq9' | 'ders16' | 'isi' | 'pss10';
 
 export interface Assessment {
   id: string;

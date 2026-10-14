@@ -164,6 +164,31 @@ describe('gobernanza clínica', () => {
   });
 });
 
+// ---------------------------------------------------------------- instrumentos
+describe('instrumentos', () => {
+  it.each(INSTRUMENTS.map((i) => [i.id, i] as const))('%s puntúa dentro de su rango', (_id, ins) => {
+    const opts = (k: number) => (ins.itemOptions?.[k] ?? ins.options).map((o) => o.value);
+    if (ins.itemOptions) expect(ins.itemOptions.length).toBe(ins.items.length);
+    const lows = ins.items.map((_, k) => Math.min(...opts(k)));
+    const highs = ins.items.map((_, k) => Math.max(...opts(k)));
+    const scores = [ins.score(lows), ins.score(highs)];
+    expect(Math.min(...scores)).toBeGreaterThanOrEqual(ins.minScore ?? 0);
+    expect(Math.max(...scores)).toBeLessThanOrEqual(ins.maxScore);
+  });
+
+  it('la PSS-10 invierte los ítems 4, 5, 7 y 8', () => {
+    const pss = INSTRUMENTS.find((i) => i.id === 'pss10')!;
+    // Máximo estrés: 4 en los ítems directos y 0 en los invertidos.
+    expect(pss.score([4, 4, 4, 0, 0, 4, 0, 0, 4, 4])).toBe(40);
+    expect(pss.score([0, 0, 0, 4, 4, 0, 4, 4, 0, 0])).toBe(0);
+  });
+
+  it('el ISI sigue los puntos de corte de Morin et al. (2011)', () => {
+    const isi = INSTRUMENTS.find((i) => i.id === 'isi')!;
+    expect([7, 8, 14, 15, 21, 22].map((s) => isi.interpret(s).band)).toEqual(['sin-insomnio', 'subumbral', 'subumbral', 'moderado', 'moderado', 'grave']);
+  });
+});
+
 // ---------------------------------------------------------------- rueda de emociones
 describe('rueda de emociones', () => {
   it('cada familia está completa, es legible y enlaza a un antídoto existente', async () => {

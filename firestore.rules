@@ -28,6 +28,8 @@ service cloud.firestore {
     function score(v, k) { return !(k in v) || (v[k] is int && v[k] >= 0 && v[k] <= 10); }
 
     function i(d, k, max) { return inRange(d.items[k], 0, max); }
+    // DERS-16: respuestas de 1 a 5.
+    function d1(d, k) { return inRange(d.items[k], 1, 5); }
     function validAssessment(d) {
       return (d.instrument == 'who5' && d.items.size() == 5
           && i(d, 0, 5) && i(d, 1, 5) && i(d, 2, 5) && i(d, 3, 5) && i(d, 4, 5)
@@ -37,7 +39,20 @@ service cloud.firestore {
           && d.score == d.items[0] + d.items[1] + d.items[2] + d.items[3] + d.items[4] + d.items[5] + d.items[6])
         || (d.instrument == 'phq9' && d.items.size() == 9
           && i(d, 0, 3) && i(d, 1, 3) && i(d, 2, 3) && i(d, 3, 3) && i(d, 4, 3) && i(d, 5, 3) && i(d, 6, 3) && i(d, 7, 3) && i(d, 8, 3)
-          && d.score == d.items[0] + d.items[1] + d.items[2] + d.items[3] + d.items[4] + d.items[5] + d.items[6] + d.items[7] + d.items[8]);
+          && d.score == d.items[0] + d.items[1] + d.items[2] + d.items[3] + d.items[4] + d.items[5] + d.items[6] + d.items[7] + d.items[8])
+        || (d.instrument == 'ders16' && d.items.size() == 16
+          && d1(d, 0) && d1(d, 1) && d1(d, 2) && d1(d, 3) && d1(d, 4) && d1(d, 5) && d1(d, 6) && d1(d, 7)
+          && d1(d, 8) && d1(d, 9) && d1(d, 10) && d1(d, 11) && d1(d, 12) && d1(d, 13) && d1(d, 14) && d1(d, 15)
+          && d.score == d.items[0] + d.items[1] + d.items[2] + d.items[3] + d.items[4] + d.items[5] + d.items[6] + d.items[7]
+             + d.items[8] + d.items[9] + d.items[10] + d.items[11] + d.items[12] + d.items[13] + d.items[14] + d.items[15])
+        || (d.instrument == 'isi' && d.items.size() == 7
+          && i(d, 0, 4) && i(d, 1, 4) && i(d, 2, 4) && i(d, 3, 4) && i(d, 4, 4) && i(d, 5, 4) && i(d, 6, 4)
+          && d.score == d.items[0] + d.items[1] + d.items[2] + d.items[3] + d.items[4] + d.items[5] + d.items[6])
+        // PSS-10: los ítems 4, 5, 7 y 8 (índices 3, 4, 6 y 7) se puntúan al revés (4 − respuesta).
+        || (d.instrument == 'pss10' && d.items.size() == 10
+          && i(d, 0, 4) && i(d, 1, 4) && i(d, 2, 4) && i(d, 3, 4) && i(d, 4, 4) && i(d, 5, 4) && i(d, 6, 4) && i(d, 7, 4) && i(d, 8, 4) && i(d, 9, 4)
+          && d.score == d.items[0] + d.items[1] + d.items[2] + (4 - d.items[3]) + (4 - d.items[4]) + d.items[5]
+             + (4 - d.items[6]) + (4 - d.items[7]) + d.items[8] + d.items[9]);
     }
 
     function validJournalValues(type, v) {
@@ -173,7 +188,8 @@ service cloud.firestore {
           && validTz(request.resource.data)
           && validVersion(request.resource.data)
           && request.resource.data.emotionId in ['ira', 'envidia', 'apego', 'autocritica', 'ansiedad', 'rumiacion', 'resentimiento', 'desanimo',
-               'tristeza', 'culpa', 'soledad', 'preocupacion', 'duelo', 'agobio', 'bloqueo', 'panico']
+               'tristeza', 'culpa', 'soledad', 'preocupacion', 'duelo', 'agobio', 'bloqueo', 'panico',
+               'verguenza', 'miedo', 'celos', 'frustracion', 'vacio', 'inseguridad']
           && inRange(request.resource.data.intensityPre, 0, 10)
           && optionalScore(request.resource.data.intensityPost)
           && (request.resource.data.trigger == null
@@ -222,6 +238,9 @@ service cloud.firestore {
       //   WHO-5: 5 ítems 0–5, puntuación = suma × 4 (0–100)
       //   GAD-7: 7 ítems 0–3, puntuación = suma (0–21)
       //   PHQ-9: 9 ítems 0–3, puntuación = suma (0–27)
+      //   DERS-16: 16 ítems 1–5, puntuación = suma (16–80)
+      //   ISI: 7 ítems 0–4, puntuación = suma (0–28)
+      //   PSS-10: 10 ítems 0–4, puntuación = suma con 4 ítems invertidos (0–40)
       match /assessments/{id} {
         allow read: if canRead(uid);
         allow create: if isOwner(uid)

@@ -213,7 +213,7 @@ export function TherapistReport() {
                 {data.instruments.map(({ ins, inPeriod, before }) => (
                   <div key={ins.id}>
                     <p className="mb-2 text-sm font-medium text-stone-800">
-                      {ins.title} <span className="font-normal text-stone-500">(0–{ins.maxScore}, {ins.higherIsBetter ? 'más es mejor' : 'más indica más síntomas'})</span>
+                      {ins.title} <span className="font-normal text-stone-500">({ins.minScore ?? 0}–{ins.maxScore}, {ins.higherIsBetter ? 'más es mejor' : 'más indica más síntomas'})</span>
                     </p>
                     <table className="w-full text-sm">
                       <thead className="text-left text-xs text-stone-500">

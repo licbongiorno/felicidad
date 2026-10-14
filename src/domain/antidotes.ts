@@ -1,5 +1,6 @@
 import type { AfflictiveEmotionId, Antidote, GuidedStep, Reference } from './types';
 import { EXTRA_ANTIDOTES } from './antidotes-extra';
+import { MORE_ANTIDOTES } from './antidotes-more';
 
 /**
  * Módulo de Antídotos Cognitivos.
@@ -332,7 +333,7 @@ const BASE_ANTIDOTES: Antidote[] = [
   },
 ];
 
-export const ANTIDOTES: Antidote[] = [...BASE_ANTIDOTES, ...EXTRA_ANTIDOTES];
+export const ANTIDOTES: Antidote[] = [...BASE_ANTIDOTES, ...EXTRA_ANTIDOTES, ...MORE_ANTIDOTES];
 
 export const ANTIDOTE_BY_EMOTION: Record<AfflictiveEmotionId, Antidote> = Object.fromEntries(
   ANTIDOTES.map((a) => [a.emotionId, a]),

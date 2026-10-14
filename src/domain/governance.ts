@@ -41,6 +41,7 @@ export const REVIEW_OVERRIDES: Record<string, Partial<ReviewRecord>> = {
   'diario:escalera-exposicion': { status: 'borrador', note: 'Exposición autoguiada: definir salvaguardas y criterios de derivación.' },
   'articulo:exposicion-gradual': { status: 'borrador', note: 'Acompaña a la escalera de exposición.' },
   'instrumento:phq9': { status: 'borrador', note: 'PHQ-9: el ítem 9 (ideación suicida) exige un protocolo de respuesta aprobado.' },
+  'instrumento:isi': { status: 'borrador', note: 'ISI: tiene derechos de autor (Morin) y su uso en una app requiere licencia de Mapi Research Trust. Verificar también la redacción con la versión española validada.' },
 };
 
 export function reviewOf(kind: ContentKind, id: string): ReviewRecord {
