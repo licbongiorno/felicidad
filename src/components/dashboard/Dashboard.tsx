@@ -31,6 +31,9 @@ import { daysThisMonth } from '@/domain/growth';
 import { applicationStats, USEFULNESS_LABEL } from '@/domain/application';
 import { PRACTICE_BY_ID } from '@/domain/practices';
 import { PendingReviews } from '@/components/application/PendingReviews';
+import { GoalsCard } from '@/components/personal/GoalsCard';
+import { WeeklyPlan } from '@/components/personal/WeeklyPlan';
+import { SessionQuestions } from '@/components/personal/SessionQuestions';
 
 const WEEKDAY = new Intl.DateTimeFormat('es', { weekday: 'short', day: 'numeric', month: 'short' });
 
@@ -100,6 +103,10 @@ export function Dashboard() {
 
       {!isNew && <PendingReviews className="lg:col-span-3" />}
 
+      {/* Personalización: objetivos y plan de la semana ------------------------------- */}
+      <GoalsCard className="lg:col-span-2" />
+      <WeeklyPlan />
+
       {/* Jardín y desafío -------------------------------------------------------------- */}
       {!isNew && <GrowthCard className="lg:col-span-2" />}
       {!isNew && (
@@ -111,7 +118,7 @@ export function Dashboard() {
       {/* Constancia ---------------------------------------------------------------- */}
       <Panel title="Constancia" className="lg:col-span-2">
         <div className="flex flex-wrap items-baseline gap-x-10 gap-y-4">
-          <Figure value={month.days} unit={`${month.days === 1 ? 'día' : 'días'} practicados en ${month.monthLabel}`} />
+          <Figure value={month.days} unit={`${month.days === 1 ? 'día practicado' : 'días practicados'} en ${month.monthLabel}`} />
           <Figure value={practiced.size} unit="días con práctica (90 d)" muted />
         </div>
         <div className="mt-8" aria-label="Minutos de práctica en los últimos 28 días">
@@ -320,8 +327,20 @@ export function Dashboard() {
       </Panel>
 
       {/* Check-in ------------------------------------------------------------------- */}
-      <Panel title="Registro de hoy" className="lg:col-span-3">
+      <Panel title="Registro de hoy" className="lg:col-span-2">
         <CheckinForm existing={todayCheckin} />
+      </Panel>
+
+      {/* Preguntas para la próxima sesión (aparecen en el informe) ----------------------- */}
+      <Panel title="Para tu próxima sesión">
+        <SessionQuestions />
+        <p className="mt-4 text-xs leading-relaxed text-stone-500">
+          Aparecen en el{' '}
+          <Link href="/informe" className="text-sage-700 underline decoration-sage-300 underline-offset-2">
+            informe para tu terapeuta
+          </Link>
+          .
+        </p>
       </Panel>
     </m.div>
   );

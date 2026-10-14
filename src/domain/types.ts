@@ -146,6 +146,23 @@ export interface Application {
   tz?: string | null;
 }
 
+/**
+ * Preferencias personales que se sincronizan entre dispositivos (users/{uid}/settings/personal).
+ * Las de accesibilidad y apariencia son por dispositivo y viven en localStorage.
+ */
+export interface PersonalSettings {
+  /** Módulos de habilidades que la persona eligió trabajar (máximo 3). */
+  goals: string[];
+  /** Prácticas favoritas (máximo 60). */
+  favorites: string[];
+  /** Plan de la semana: 1 a 3 prácticas elegidas para la semana que empieza el lunes `week`. */
+  plan: { week: string; practiceIds: string[] } | null;
+  /** Preguntas o temas para llevar a la próxima sesión (máximo 10). */
+  questions: string[];
+}
+
+export const EMPTY_PERSONAL: PersonalSettings = { goals: [], favorites: [], plan: null, questions: [] };
+
 export interface AfflictionLog {
   id: string;
   emotionId: AfflictiveEmotionId;

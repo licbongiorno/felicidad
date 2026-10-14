@@ -9,6 +9,8 @@ interface Options {
   /** Recibe los segundos realmente practicados (excluye pausas). */
   onComplete?: (practicedSec: number) => void;
   chime?: boolean;
+  /** Paso desde el que empezar (para retomar una práctica interrumpida). */
+  initialIndex?: number;
 }
 
 /**
@@ -17,10 +19,11 @@ interface Options {
  */
 export function useGuidedTimer<T extends { durationSec: number }>(
   steps: T[],
-  { onComplete, chime = true }: Options = {},
+  { onComplete, chime = true, initialIndex = 0 }: Options = {},
 ) {
-  const [index, setIndex] = useState(0);
-  const [remaining, setRemaining] = useState(steps[0]?.durationSec ?? 0);
+  const first = Math.min(Math.max(0, initialIndex), Math.max(0, steps.length - 1));
+  const [index, setIndex] = useState(first);
+  const [remaining, setRemaining] = useState(steps[first]?.durationSec ?? 0);
   const [status, setStatus] = useState<TimerStatus>('idle');
 
   const remainingRef = useRef(remaining);

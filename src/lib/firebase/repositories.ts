@@ -23,13 +23,13 @@ import {
 import type { User } from 'firebase/auth';
 import { getDb } from './db';
 import { CONSENT_VERSION } from '@/lib/consent';
-import type { AfflictionLog, Application, Assessment, DailyCheckin, JournalEntry, Profile, SessionRecord } from '@/domain/types';
+import type { AfflictionLog, Application, Assessment, DailyCheckin, JournalEntry, PersonalSettings, Profile, SessionRecord } from '@/domain/types';
 import { currentTimeZone } from '@/domain/metrics';
 import type { LifetimeCounts } from '@/domain/growth';
 
 export { CONSENT_VERSION };
 
-export const USER_COLLECTIONS = ['sessions', 'checkins', 'afflictionLogs', 'journal', 'assessments', 'applications'] as const;
+export const USER_COLLECTIONS = ['sessions', 'checkins', 'afflictionLogs', 'journal', 'assessments', 'applications', 'settings'] as const;
 type UserCollection = (typeof USER_COLLECTIONS)[number];
 
 const userCollection = (uid: string, name: UserCollection) =>
@@ -316,6 +316,38 @@ export async function fetchLatestJournal(uid: string, type: JournalEntry['type']
     return { id: d.id, type: v.type, values: v.values ?? {}, createdAt: toDate(v.createdAt), tz: v.tz ?? null } as JournalEntry;
   });
   return rows.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())[0] ?? null;
+}
+
+// ---------------------------------------------------------------- preferencias personales
+
+const personalRef = (uid: string) => doc(getDb(), 'users', uid, 'settings', 'personal');
+
+/** Límites también impuestos en las reglas de Firestore. */
+const clampPersonal = (p: Partial<PersonalSettings>): Partial<PersonalSettings> => ({
+  ...(p.goals && { goals: p.goals.slice(0, 3) }),
+  ...(p.favorites && { favorites: p.favorites.slice(0, 60) }),
+  ...('plan' in p && { plan: p.plan ? { week: p.plan.week, practiceIds: p.plan.practiceIds.slice(0, 3) } : null }),
+  ...(p.questions && { questions: p.questions.slice(0, 10).map((q) => q.slice(0, 280)) }),
+});
+
+export function subscribePersonal(uid: string, onData: (p: PersonalSettings) => void, onError: (e: FirestoreError) => void): Unsubscribe {
+  return onSnapshot(
+    personalRef(uid),
+    (snap) => {
+      const v = snap.data() ?? {};
+      onData({
+        goals: Array.isArray(v.goals) ? v.goals : [],
+        favorites: Array.isArray(v.favorites) ? v.favorites : [],
+        plan: v.plan && Array.isArray(v.plan.practiceIds) ? { week: String(v.plan.week), practiceIds: v.plan.practiceIds } : null,
+        questions: Array.isArray(v.questions) ? v.questions : [],
+      });
+    },
+    onError,
+  );
+}
+
+export function savePersonal(uid: string, patch: Partial<PersonalSettings>) {
+  return setDoc(personalRef(uid), { ...clampPersonal(patch), updatedAt: serverTimestamp() }, { merge: true });
 }
 
 // ---------------------------------------------------------------- aplicaciones en la vida cotidiana

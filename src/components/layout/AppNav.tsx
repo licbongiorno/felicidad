@@ -97,7 +97,7 @@ export function AppNav() {
             <kbd className="hidden rounded border border-stone-300 px-1 text-[10px] text-stone-500 lg:inline">⌘K</kbd>
           </button>
 
-          <nav className="hidden items-center gap-0.5 text-sm xl:flex">
+          <nav className="hidden min-w-0 items-center gap-0.5 overflow-x-auto text-sm [scrollbar-width:none] xl:flex">
             {ALL.map(({ href, label }) => {
               const active = isActive(href);
               return (

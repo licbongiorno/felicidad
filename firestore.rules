@@ -240,6 +240,23 @@ service cloud.firestore {
         allow delete: if isOwner(uid);
       }
 
+      // ------------------------------------------------------------ preferencias personales
+      // Un solo documento («personal»): objetivos, favoritas, plan semanal y preguntas para la sesión.
+      match /settings/{docId} {
+        allow read: if canRead(uid);
+        allow write: if isOwner(uid) && docId == 'personal'
+          && request.resource.data.keys().hasOnly(['goals', 'favorites', 'plan', 'questions', 'updatedAt'])
+          && (!('goals' in request.resource.data) || (request.resource.data.goals is list && request.resource.data.goals.size() <= 3))
+          && (!('favorites' in request.resource.data) || (request.resource.data.favorites is list && request.resource.data.favorites.size() <= 60))
+          && (!('questions' in request.resource.data) || (request.resource.data.questions is list && request.resource.data.questions.size() <= 10))
+          && (!('plan' in request.resource.data) || request.resource.data.plan == null
+              || (request.resource.data.plan is map && request.resource.data.plan.keys().hasOnly(['week', 'practiceIds'])
+                  && request.resource.data.plan.week is string && request.resource.data.plan.week.size() <= 10
+                  && request.resource.data.plan.practiceIds is list && request.resource.data.plan.practiceIds.size() <= 3))
+          && request.resource.data.updatedAt == request.time;
+        allow delete: if isOwner(uid);
+      }
+
       // ------------------------------------------------------------ aplicaciones (append-only)
       // Intento de usar una habilidad en la vida cotidiana y su utilidad percibida.
       match /applications/{id} {

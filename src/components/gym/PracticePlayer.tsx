@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { AnimatePresence, m } from 'motion/react';
-import { useMemo, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import type { Practice } from '@/domain/types';
 import { FAMILY_LABEL, SKILL_LABEL } from '@/domain/evidence';
 import { totalDurationSec } from '@/domain/practices';
@@ -25,6 +25,8 @@ import { APPROACH_DESCRIPTION, APPROACH_LABEL, PRACTICE_RISK, practiceApproaches
 import { TRANSFER_SUGGESTIONS } from '@/domain/application';
 import { ApplicationForm } from '@/components/application/ApplicationForm';
 import { Sheet } from '@/components/ui/Sheet';
+import { FavoriteButton } from '@/components/personal/FavoriteButton';
+import { clearResume, loadResume, saveResume, type ResumePoint } from '@/lib/resume';
 import { useGrowth } from '@/hooks/useGrowth';
 import { GrowthNote } from '@/components/growth/GrowthNote';
 
@@ -53,6 +55,10 @@ export function PracticePlayer({ practice }: { practice: Practice }) {
   // Paso «Llevarlo a tu vida»: cuándo y dónde se probará fuera de la pantalla (opcional).
   const [transfer, setTransfer] = useState('');
   const [applyOpen, setApplyOpen] = useState(false);
+  // Retomar una práctica interrumpida en este dispositivo (se lee tras montar: localStorage).
+  const [resume, setResume] = useState<ResumePoint | null>(null);
+  const [startAt, setStartAt] = useState(0);
+  useEffect(() => setResume(loadResume(practice.id)), [practice.id]);
   const missing = useMemo(() => missingPrerequisites(practice.id, completedPracticeIds(sessions)), [practice.id, sessions]);
   const level = levelOf(practice.id).level;
   // Estable durante la práctica: GuidedSequence requiere pasos memoizados.
@@ -99,9 +105,10 @@ export function PracticePlayer({ practice }: { practice: Practice }) {
           Familia {FAMILY_LABEL[practice.family].toLowerCase()} · {Math.round(totalDurationSec(steps) / 60)} min ·{' '}
           {practice.skills.map((s) => SKILL_LABEL[s]).join(', ')} · {LEVEL_LABEL[level]}
         </m.p>
-        <m.h1 variants={fadeUp} className="mt-2 font-serif text-4xl text-stone-800 sm:text-5xl">
-          {practice.title}
-        </m.h1>
+        <m.div variants={fadeUp} className="mt-2 flex items-start justify-between gap-4">
+          <h1 className="font-serif text-4xl text-stone-800 sm:text-5xl">{practice.title}</h1>
+          <FavoriteButton practiceId={practice.id} title={practice.title} className="mt-1 shrink-0" />
+        </m.div>
         <m.ul variants={fadeUp} className="mt-3 flex flex-wrap gap-1.5" aria-label="Enfoque">
           {practiceApproaches(practice.id).map((a) => (
             <li key={a} title={APPROACH_DESCRIPTION[a]} className="rounded-full border border-stone-200 bg-white px-2.5 py-0.5 text-xs text-stone-600">
@@ -194,15 +201,35 @@ export function PracticePlayer({ practice }: { practice: Practice }) {
             highAnchor="10 · excelente"
           />
         </m.div>
+        {resume && resume.index < scaleSteps(practice.steps, resume.variant as DurationVariant).length && (
+          <m.div variants={fadeUp} className="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-sage-200 bg-sage-50/70 p-5">
+            <p className="text-sm leading-relaxed text-stone-700">
+              La dejaste en el paso {resume.index + 1}: <span className="font-medium">{practice.steps[resume.index]?.title}</span>.
+            </p>
+            <Button
+              variant="secondary"
+              disabled={Boolean(risk) && !acknowledged}
+              onClick={() => {
+                setVariant(resume.variant as DurationVariant);
+                setStartAt(resume.index);
+                startedAtRef.current = new Date();
+                go('practice');
+              }}
+            >
+              Retomar desde ahí
+            </Button>
+          </m.div>
+        )}
         <m.div variants={fadeUp} className="mt-8 flex justify-end">
           <Button
             disabled={Boolean(risk) && !acknowledged}
             onClick={() => {
+              setStartAt(0);
               startedAtRef.current = new Date();
               go('practice');
             }}
           >
-            Preparado
+            {resume ? 'Empezar de nuevo' : 'Preparado'}
           </Button>
         </m.div>
         <m.div variants={fadeUp} className="mt-4 flex justify-end">
@@ -278,11 +305,18 @@ export function PracticePlayer({ practice }: { practice: Practice }) {
         <p className="mb-8 text-center font-serif text-lg text-stone-600">{practice.title}</p>
         <GuidedSequence
           steps={steps}
+          startAt={startAt}
+          onStep={(index) => saveResume({ practiceId: practice.id, variant, index })}
           onComplete={(sec) => {
+            clearResume();
+            setResume(null);
             setPracticedSec(sec);
             go('close');
           }}
-          onCancel={() => go('intro')}
+          onCancel={() => {
+            setResume(loadResume(practice.id));
+            go('intro');
+          }}
         />
       </div>
     );
