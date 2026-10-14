@@ -5,7 +5,7 @@ import type { FirestoreError, Unsubscribe } from 'firebase/firestore';
 import type * as FirestoreRepo from '@/lib/firebase/repositories';
 import { DEMO_MODE } from '@/lib/demo';
 import { daysAgo, toDateKey } from '@/domain/metrics';
-import type { AfflictionLog, Application, Assessment, DailyCheckin, JournalEntry, SessionRecord } from '@/domain/types';
+import { EMPTY_PERSONAL, type AfflictionLog, type Application, type Assessment, type DailyCheckin, type JournalEntry, type PersonalSettings, type SessionRecord } from '@/domain/types';
 import { DBT_JOURNAL_TYPES, DBT_PRACTICE_IDS, type LifetimeCounts } from '@/domain/growth';
 
 /**
@@ -38,6 +38,8 @@ export type DataRepo = Pick<
   | 'fetchLifetimeCounts'
   | 'addApplication'
   | 'fetchLatestJournal'
+  | 'subscribePersonal'
+  | 'savePersonal'
   | 'subscribeApplications'
   | 'deleteUserData'
 > & { exportUserData: (uid: string) => Promise<unknown> };
@@ -52,7 +54,7 @@ export function loadRepo(): Promise<DataRepo> {
 }
 
 const WINDOW_DAYS = 90;
-const SOURCES = 6;
+const SOURCES = 7;
 
 type SyncStatus = 'idle' | 'loading' | 'ready' | 'error';
 
@@ -67,6 +69,8 @@ interface ProgressState {
   assessments: Assessment[];
   /** Aplicaciones de habilidades en la vida cotidiana (sin ventana temporal). */
   applications: Application[];
+  /** Objetivos, favoritas, plan semanal y preguntas para la sesión (sincronizados). */
+  personal: PersonalSettings;
   /** Recuentos de toda la vida para el jardín (null hasta que llegan o sin conexión). */
   lifetime: LifetimeCounts | null;
 
@@ -78,6 +82,7 @@ interface ProgressState {
   logJournal: (entry: FirestoreRepo.NewJournalEntry) => void;
   logAssessment: (a: FirestoreRepo.NewAssessment) => void;
   logApplication: (a: FirestoreRepo.NewApplication) => void;
+  updatePersonal: (patch: Partial<PersonalSettings>) => void;
   clearError: () => void;
 }
 
@@ -91,6 +96,7 @@ const initialData = {
   journal: [],
   assessments: [],
   applications: [],
+  personal: EMPTY_PERSONAL,
   lifetime: null,
 };
 
@@ -165,6 +171,7 @@ export const useProgressStore = create<ProgressState>()((set, get) => {
             // Las evaluaciones se comparan a largo plazo: ventana de un año.
             repo.subscribeAssessments(uid, daysAgo(365), (assessments) => { set({ assessments }); markLoaded('assessments'); }, onError),
             repo.subscribeApplications(uid, (applications) => { set({ applications }); markLoaded('applications'); }, onError),
+            repo.subscribePersonal(uid, (personal) => { set({ personal }); markLoaded('personal'); }, onError),
           ];
           refreshLifetime();
         })
@@ -191,6 +198,12 @@ export const useProgressStore = create<ProgressState>()((set, get) => {
     logAssessment: (a) => write((repo, uid) => repo.addAssessment(uid, a)),
 
     logApplication: (a) => write((repo, uid) => repo.addApplication(uid, a)),
+
+    // Optimista: la interfaz responde al instante y el listener confirma.
+    updatePersonal: (patch) => {
+      set({ personal: { ...get().personal, ...patch } });
+      write((repo, uid) => repo.savePersonal(uid, patch));
+    },
 
     clearError: () => set({ syncError: null }),
   };

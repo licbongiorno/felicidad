@@ -13,6 +13,7 @@ import { buildReminderIcs, downloadFile, type Weekday } from '@/lib/ics';
 import { voiceSupported, speak } from '@/lib/voice';
 import { fadeUp, gentleSpring, stagger } from '@/lib/motion';
 import { applyThemePref, readThemePref, type ThemePref } from '@/lib/theme';
+import { applyMotionPref, applyTextSize, readMotionPref, readTextSize, type MotionPref, type TextSize } from '@/lib/a11y';
 import { currentTimeZone, toDateKey } from '@/domain/metrics';
 import { SAFETY_DISCLAIMER } from '@/config/safety';
 import { Button } from '@/components/ui/Button';
@@ -49,6 +50,10 @@ export function Settings() {
 
       <Section title="Apariencia">
         <ThemeChoice />
+      </Section>
+
+      <Section title="Accesibilidad">
+        <AccessibilityChoices />
       </Section>
 
       <Section title="Práctica">
@@ -121,6 +126,84 @@ function ThemeChoice() {
         })}
       </div>
     </div>
+  );
+}
+
+function Segmented<T extends string>({ label, description, options, value, onChange, id }: {
+  label: string;
+  description: string;
+  options: { id: T; label: string }[];
+  value: T;
+  onChange: (v: T) => void;
+  id: string;
+}) {
+  return (
+    <div className="flex flex-wrap items-center justify-between gap-4">
+      <div>
+        <p className="text-[15px] text-stone-800">{label}</p>
+        <p className="mt-0.5 text-sm text-stone-500">{description}</p>
+      </div>
+      <div role="radiogroup" aria-label={label} className="inline-flex rounded-full bg-stone-100 p-1">
+        {options.map((o) => {
+          const active = value === o.id;
+          return (
+            <button
+              key={o.id}
+              type="button"
+              role="radio"
+              aria-checked={active}
+              onClick={() => onChange(o.id)}
+              className={`relative rounded-full px-4 py-1.5 text-sm ${active ? 'text-stone-900' : 'text-stone-600 hover:text-stone-800'}`}
+            >
+              {active && <m.span layoutId={`${id}-pill`} transition={gentleSpring} className="absolute inset-0 rounded-full bg-white shadow-soft" />}
+              <span className="relative">{o.label}</span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function AccessibilityChoices() {
+  const [text, setText] = useState<TextSize>('normal');
+  const [motion, setMotion] = useState<MotionPref>('system');
+  useEffect(() => {
+    setText(readTextSize());
+    setMotion(readMotionPref());
+  }, []);
+  return (
+    <>
+      <Segmented
+        id="text"
+        label="Tamaño de letra"
+        description="Agranda todo el texto de la app en este dispositivo."
+        options={[
+          { id: 'normal', label: 'Normal' },
+          { id: 'grande', label: 'Grande' },
+          { id: 'muy-grande', label: 'Muy grande' },
+        ]}
+        value={text}
+        onChange={(v) => {
+          setText(v);
+          applyTextSize(v);
+        }}
+      />
+      <Segmented
+        id="motion"
+        label="Movimiento"
+        description="«Reducido» quita las animaciones, aunque tu dispositivo no lo pida."
+        options={[
+          { id: 'system', label: 'Según el sistema' },
+          { id: 'reduce', label: 'Reducido' },
+        ]}
+        value={motion}
+        onChange={(v) => {
+          setMotion(v);
+          applyMotionPref(v);
+        }}
+      />
+    </>
   );
 }
 

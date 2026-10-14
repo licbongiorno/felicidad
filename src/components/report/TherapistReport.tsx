@@ -15,10 +15,12 @@ import { fadeUp, gentleSpring, stagger } from '@/lib/motion';
 import { SAFETY_DISCLAIMER } from '@/config/safety';
 import { Button } from '@/components/ui/Button';
 import { MoodTrend } from '@/components/dashboard/MoodTrend';
+import { SessionQuestions } from '@/components/personal/SessionQuestions';
 
 const PERIODS = [14, 28, 56] as const;
-type SectionId = 'resumen' | 'animo' | 'who5' | 'practicas' | 'aplicacion' | 'antidotos' | 'diario';
+type SectionId = 'preguntas' | 'resumen' | 'animo' | 'who5' | 'practicas' | 'aplicacion' | 'antidotos' | 'diario';
 const SECTIONS: { id: SectionId; label: string }[] = [
+  { id: 'preguntas', label: 'Preguntas para la sesión' },
   { id: 'resumen', label: 'Resumen' },
   { id: 'animo', label: 'Ánimo diario' },
   { id: 'who5', label: 'Evaluaciones' },
@@ -60,7 +62,7 @@ export function TherapistReport() {
     }
     return [...rows.entries()].sort((x, y) => y[1].applied - x[1].applied);
   }, [applications, days]);
-  const [enabled, setEnabled] = useState<Set<SectionId>>(new Set(['resumen', 'animo', 'who5', 'practicas', 'aplicacion', 'antidotos']));
+  const [enabled, setEnabled] = useState<Set<SectionId>>(new Set(['preguntas', 'resumen', 'animo', 'who5', 'practicas', 'aplicacion', 'antidotos']));
   const [included, setIncluded] = useState<Set<string>>(new Set());
   const [note, setNote] = useState('');
 
@@ -186,6 +188,12 @@ export function TherapistReport() {
             Del {DATE.format(since)} al {DATE.format(new Date())} · generado el {DATE.format(new Date())}
           </p>
         </header>
+
+        {show('preguntas') && (
+          <Block title="Preguntas y temas para la sesión">
+            <SessionQuestions printable />
+          </Block>
+        )}
 
         {note.trim() && (
           <Block title="Para comentar en sesión">

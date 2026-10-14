@@ -19,7 +19,7 @@ export function GrowthCard({ className = '' }: { className?: string }) {
           <div>
             <h2 className="text-xs uppercase tracking-[0.2em] text-stone-500">Tu jardín</h2>
             <p className="mt-2 font-serif text-2xl text-stone-800">
-              {garden.total === 0 ? 'Listo para la primera semilla' : `${month.days} ${month.days === 1 ? 'día' : 'días'} practicados en ${month.monthLabel}`}
+              {garden.total === 0 ? 'Listo para la primera semilla' : `${month.days} ${month.days === 1 ? 'día practicado' : 'días practicados'} en ${month.monthLabel}`}
             </p>
             <p className="mt-1 text-sm text-stone-600">
               {garden.next

@@ -3,6 +3,7 @@ import { Inter, Newsreader } from 'next/font/google';
 import { AuthProvider } from '@/providers/AuthProvider';
 import { MotionProvider } from '@/providers/MotionProvider';
 import { THEME_BOOT_SCRIPT } from '@/lib/theme';
+import { A11Y_BOOT_SCRIPT } from '@/lib/a11y';
 import { ServiceWorkerRegister } from '@/components/layout/ServiceWorkerRegister';
 import './globals.css';
 
@@ -28,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     // data-theme lo fija el script antes de hidratar: se ignora esa diferencia en <html>.
     <html lang="es" className={`${sans.variable} ${serif.variable}`} suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT }} />
+        <script dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT + A11Y_BOOT_SCRIPT }} />
       </head>
       <body className="min-h-screen font-sans">
         <MotionProvider>

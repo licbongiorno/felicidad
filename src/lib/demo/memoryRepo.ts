@@ -1,4 +1,4 @@
-import type { AfflictionLog, Application, Assessment, DailyCheckin, JournalEntry, SessionRecord } from '@/domain/types';
+import { EMPTY_PERSONAL, type AfflictionLog, type Application, type Assessment, type DailyCheckin, type JournalEntry, type PersonalSettings, type SessionRecord } from '@/domain/types';
 import type { NewAfflictionLog, NewApplication, NewAssessment, NewJournalEntry, NewSession } from '@/lib/firebase/repositories';
 import { currentTimeZone } from '@/domain/metrics';
 import type { LifetimeCounts } from '@/domain/growth';
@@ -16,13 +16,14 @@ interface DemoData {
   journal: JournalEntry[];
   assessments: Assessment[];
   applications: Application[];
+  personal: PersonalSettings;
 }
 
 const KEY = 'eudaimonia-demo';
 type Kind = keyof DemoData;
 
 function revive(raw: string | null): DemoData {
-  const empty: DemoData = { sessions: [], afflictions: [], checkins: [], journal: [], assessments: [], applications: [] };
+  const empty: DemoData = { sessions: [], afflictions: [], checkins: [], journal: [], assessments: [], applications: [], personal: EMPTY_PERSONAL };
   if (!raw) return empty;
   try {
     const d = JSON.parse(raw) as DemoData;
@@ -33,6 +34,7 @@ function revive(raw: string | null): DemoData {
       journal: (d.journal ?? []).map((j) => ({ ...j, createdAt: new Date(j.createdAt) })),
       assessments: (d.assessments ?? []).map((a) => ({ ...a, createdAt: new Date(a.createdAt) })),
       applications: (d.applications ?? []).map((a) => ({ ...a, createdAt: new Date(a.createdAt) })),
+      personal: { ...EMPTY_PERSONAL, ...(d.personal ?? {}) },
     };
   } catch {
     return empty;
@@ -47,6 +49,7 @@ const listeners: { [K in Kind]: Set<() => void> } = {
   journal: new Set(),
   assessments: new Set(),
   applications: new Set(),
+  personal: new Set(),
 };
 
 function store(): DemoData {
@@ -128,6 +131,18 @@ export function subscribeJournal(_uid: string, since: Date, onData: (rows: Journ
   return subscribe('journal', () => store().journal.filter((j) => j.createdAt >= since), onData);
 }
 
+export function subscribePersonal(_uid: string, onData: (p: PersonalSettings) => void, _onError?: unknown) {
+  const emit = () => onData(store().personal);
+  listeners.personal.add(emit);
+  queueMicrotask(emit);
+  return () => void listeners.personal.delete(emit);
+}
+
+export async function savePersonal(_uid: string, patch: Partial<PersonalSettings>) {
+  store().personal = { ...store().personal, ...patch };
+  commit('personal');
+}
+
 export async function fetchLatestJournal(_uid: string, type: JournalEntry['type']): Promise<JournalEntry | null> {
   return store().journal.filter((j) => j.type === type).sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())[0] ?? null;
 }
@@ -151,12 +166,12 @@ export function subscribeAssessments(_uid: string, since: Date, onData: (rows: A
 }
 
 export async function exportUserData(_uid: string) {
-  const { sessions, afflictions, checkins, journal, assessments, applications } = store();
-  return { exportedAt: new Date().toISOString(), profile: { demo: true }, sessions, checkins, afflictionLogs: afflictions, journal, assessments, applications };
+  const { sessions, afflictions, checkins, journal, assessments, applications, personal } = store();
+  return { exportedAt: new Date().toISOString(), profile: { demo: true }, sessions, checkins, afflictionLogs: afflictions, journal, assessments, applications, settings: [{ id: 'personal', ...personal }] };
 }
 
 export async function deleteUserData(_uid: string) {
-  data = { sessions: [], afflictions: [], checkins: [], journal: [], assessments: [], applications: [] };
+  data = { sessions: [], afflictions: [], checkins: [], journal: [], assessments: [], applications: [], personal: EMPTY_PERSONAL };
   try {
     localStorage.removeItem(KEY);
   } catch {

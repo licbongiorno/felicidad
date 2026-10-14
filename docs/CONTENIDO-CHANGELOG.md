@@ -19,6 +19,31 @@ entrada en este registro.
 
 ---
 
+## 2026-10-14 · Fase 5: personalización (versión 1)
+
+**Preferencias sincronizadas** (`users/{uid}/settings/personal`, `src/domain/personal.ts`):
+- **Objetivos.** Hasta 3 módulos que la persona quiere trabajar. El Panel pregunta la primera vez y después sugiere la
+  próxima práctica de cada objetivo, empezando por lo no probado.
+- **Favoritas.** Se marcan con un corazón en cada práctica y en el catálogo, y aparecen arriba en Habilidades.
+- **Plan de la semana.** Entre 1 y 3 prácticas elegidas entre las favoritas y las de los objetivos. Se ve lo hecho
+  desde el lunes. Cada lunes empieza en blanco: lo no hecho no se arrastra.
+- **Preguntas para la sesión.** Hasta 10 preguntas o temas que se anotan desde el Panel y salen en el informe para
+  el terapeuta.
+
+**Retomar.** Si una práctica se interrumpe, la próxima vez ofrece «Retomar desde ahí» en el paso donde quedó. Se
+guarda en este dispositivo y caduca a las 24 horas.
+
+**Accesibilidad** (Ajustes, por dispositivo):
+- Tamaño de letra: normal, grande o muy grande.
+- Movimiento: «Reducido» quita las animaciones aunque el sistema no lo pida.
+- Se aplican antes de pintar la página.
+
+**Reglas de Firestore.** Nuevo documento `settings/personal`: sólo el dueño escribe, con campos y tamaños limitados.
+Exportar y borrar los datos lo incluyen. Probado en el emulador: 27/27. **Hay que volver a publicar
+`firestore.rules`.**
+
+---
+
 ## 2026-10-14 · Fase 4: Laboratorio (versión 1)
 
 Sección nueva, `/laboratorio`, con ejercicios interactivos para ensayar sin riesgo. Los datos están en

@@ -303,6 +303,22 @@
 }
 
 /* Accesibilidad: sin movimiento para quien lo solicita. */
+/* Accesibilidad (Ajustes): tamaño de letra y movimiento reducido elegidos en la app. */
+:root[data-text='grande'] {
+  font-size: 112.5%;
+}
+:root[data-text='muy-grande'] {
+  font-size: 125%;
+}
+:root[data-motion='reduce'] *,
+:root[data-motion='reduce'] *::before,
+:root[data-motion='reduce'] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

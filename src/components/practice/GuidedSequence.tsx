@@ -17,6 +17,9 @@ interface Props {
   onCancel?: () => void;
   /** Sin guía por voz (temporizador libre: el silencio es la práctica). */
   silent?: boolean;
+  /** Paso inicial (retomar) y aviso de cada cambio de paso (para poder retomar después). */
+  startAt?: number;
+  onStep?: (index: number) => void;
 }
 
 const SWIPE_THRESHOLD = 70;
@@ -35,7 +38,7 @@ function useCoarsePointer() {
  * Teclado: Espacio (pausa/reanuda), → (siguiente paso).
  * Mientras corre, activa el modo inmersivo: la navegación se retira.
  */
-export function GuidedSequence({ steps, onComplete, onCancel, silent = false }: Props) {
+export function GuidedSequence({ steps, onComplete, onCancel, silent = false, startAt = 0, onStep }: Props) {
   const voice = useUiStore((s) => s.voice);
   const chime = useUiStore((s) => s.chime);
   const setPref = useUiStore((s) => s.setPref);
@@ -46,8 +49,13 @@ export function GuidedSequence({ steps, onComplete, onCancel, silent = false }: 
     setCanSpeak(voiceSupported());
   }, [hydrate]);
 
-  const timer = useGuidedTimer(steps, { onComplete, chime });
+  const timer = useGuidedTimer(steps, { onComplete, chime, initialIndex: startAt });
   const { step, status, index } = timer;
+  const onStepRef = useRef(onStep);
+  onStepRef.current = onStep;
+  useEffect(() => {
+    if (status === 'running' || status === 'paused') onStepRef.current?.(index);
+  }, [index, status]);
 
   // Guía por voz: lee cada paso al empezar (y al reanudar, para reorientar).
   useEffect(() => {

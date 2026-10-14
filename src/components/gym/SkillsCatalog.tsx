@@ -11,6 +11,9 @@ import { APPROACH_DESCRIPTION, APPROACH_LABEL, MODULES, practiceApproaches, prac
 import { EvidenceBadge } from '@/components/ui/EvidencePanel';
 import { fadeUp, gentleSpring, stagger } from '@/lib/motion';
 import { ModuleIcon } from './ModuleIcons';
+import { FavoriteButton } from '@/components/personal/FavoriteButton';
+import { useProgressStore } from '@/store/useProgressStore';
+import type { Practice } from '@/domain/types';
 
 const FILTERS: (Approach | 'todas')[] = ['todas', 'dbt', 'tcc', 'act', 'cft', 'mindfulness', 'positiva', 'contemplativa', 'relajacion'];
 
@@ -20,6 +23,8 @@ const FILTERS: (Approach | 'todas')[] = ['todas', 'dbt', 'tcc', 'act', 'cft', 'm
  */
 export function SkillsCatalog() {
   const [filter, setFilter] = useState<Approach | 'todas'>('todas');
+  const favorites = useProgressStore((s) => s.personal.favorites);
+  const favoritePractices = favorites.map((id) => PRACTICE_BY_ID[id]).filter((p): p is Practice => Boolean(p) && isPublished('practica', p.id));
 
   const modules = useMemo(
     () =>
@@ -82,6 +87,26 @@ export function SkillsCatalog() {
         {filter !== 'todas' && <p className="mt-2 text-xs leading-relaxed text-stone-500">{APPROACH_DESCRIPTION[filter]}</p>}
       </div>
 
+      {favoritePractices.length > 0 && filter === 'todas' && (
+        <section className="mt-10" aria-labelledby="favoritas">
+          <h2 id="favoritas" className="text-xs uppercase tracking-[0.2em] text-stone-600">
+            Tus favoritas
+          </h2>
+          <ul className="mt-4 flex flex-wrap gap-2">
+            {favoritePractices.map((p) => (
+              <li key={p.id}>
+                <Link href={`/gimnasio/${p.id}`} className="inline-flex items-center gap-2 rounded-full border border-sage-200 bg-sage-50 px-3.5 py-1.5 text-sm text-stone-800 hover:border-sage-300">
+                  <span className="text-sage-700" aria-hidden>
+                    ♥
+                  </span>
+                  {p.title.split(':')[0]}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
       <AnimatePresence mode="popLayout" initial={false}>
         <m.div key={filter} variants={stagger(0.05)} initial="hidden" animate="show">
           {modules.map((mod) => (
@@ -101,17 +126,13 @@ export function SkillsCatalog() {
               {mod.items.length > 0 && (
                 <ul className="mt-5 grid gap-4 sm:grid-cols-2">
                   {mod.items.map((p) => (
-                    <li key={p.id}>
+                    <li key={p.id} className="relative">
+                      <FavoriteButton practiceId={p.id} title={p.title} className="absolute right-3 top-3 z-[1]" />
                       <Link
                         href={`/gimnasio/${p.id}`}
                         className="group flex h-full flex-col rounded-2xl border border-stone-200 bg-white p-5 transition-[transform,border-color,box-shadow] duration-300 ease-out hover:-translate-y-0.5 hover:border-sage-300 hover:shadow-lift active:scale-[0.99]"
                       >
-                        <span className="flex items-start justify-between gap-4">
-                          <span className="font-serif text-lg text-stone-800">{p.title}</span>
-                          <span className="mt-1 shrink-0 text-stone-500 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-sage-600" aria-hidden>
-                            →
-                          </span>
-                        </span>
+                        <span className="pr-10 font-serif text-lg text-stone-800">{p.title}</span>
                         <span className="mt-2 flex-1 text-sm leading-relaxed text-stone-600">{p.summary}</span>
                         <span className="mt-4 flex flex-wrap gap-1.5">
                           {practiceApproaches(p.id).map((a) => (

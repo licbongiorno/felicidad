@@ -107,6 +107,23 @@ describe('diario', () => {
   });
 });
 
+describe('preferencias personales', () => {
+  const personal = (data: Record<string, unknown>) => ({ ...data, updatedAt: serverTimestamp() });
+
+  it('el usuario guarda sus objetivos, favoritas, plan y preguntas', async () => {
+    const ref = doc(alice(), 'users/alice/settings/personal');
+    await assertSucceeds(setDoc(ref, personal({ goals: ['emociones'], favorites: ['tipp'], plan: { week: '2026-10-12', practiceIds: ['tipp'] }, questions: ['¿Cómo pongo límites?'] })));
+    await assertSucceeds(setDoc(ref, personal({ favorites: [] }), { merge: true }));
+  });
+
+  it('rechaza otros documentos, listas largas y campos ajenos', async () => {
+    await assertFails(setDoc(doc(alice(), 'users/alice/settings/otro'), personal({ goals: [] })));
+    await assertFails(setDoc(doc(alice(), 'users/alice/settings/personal'), personal({ goals: ['a', 'b', 'c', 'd'] })));
+    await assertFails(setDoc(doc(alice(), 'users/alice/settings/personal'), personal({ extra: true })));
+    await assertFails(setDoc(doc(alice(), 'users/bob/settings/personal'), personal({ goals: [] })));
+  });
+});
+
 describe('aplicaciones en la vida cotidiana', () => {
   const a = (extra: Record<string, unknown> = {}) => ({ practiceId: 'pausa-stop', sessionId: null, applied: true, usefulness: 'util', note: null, createdAt: serverTimestamp(), ...extra });
 
