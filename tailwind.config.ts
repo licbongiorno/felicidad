@@ -18,6 +18,10 @@ const config: Config = {
         stone: scale('stone', [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]),
         // Acento salvia: baja saturación, sin rojos ni naranjas de "alerta".
         sage: scale('sage', [50, 100, 200, 300, 400, 500, 600, 700, 800]),
+        // Jardín (Tu crecimiento): tokens --garden-* de globals.css.
+        garden: Object.fromEntries(
+          ['sky-top', 'sky-bottom', 'sun', 'hill-far', 'hill-mid', 'hill-near', 'leaf', 'leaf-deep', 'stem', 'trunk', 'petal-a', 'petal-b', 'petal-c', 'water', 'glow'].map((k) => [k, v(`garden-${k}`)]),
+        ),
         // Superficie de acento (tarjeta destacada): oscura en ambos modos, para no encender
         // un bloque claro de gran tamaño en modo oscuro.
         accent: { from: v('accent-from'), to: v('accent-to'), fg: v('accent-fg'), muted: v('accent-muted'), soft: v('accent-soft') },

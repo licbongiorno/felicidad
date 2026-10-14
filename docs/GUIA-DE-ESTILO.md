@@ -7,7 +7,21 @@ automáticamente en `src/domain/quality.test.ts` y `src/domain/content.test.ts`:
 - Segunda persona, cercana y respetuosa. Se usa **tú**; la elección entre tú y vos está pendiente de decisión.
 - Calma, sin urgencia ni dramatismo, sin promesas ("vas a sentirte mejor").
 - Validar antes de proponer: "es normal", "le pasa a mucha gente".
-- Sin gamificación: nada de "¡bien hecho!", puntos ni logros.
+- Sin gamificación clásica: nada de "¡bien hecho!", puntos, rankings ni rachas que se rompan. La motivación sigue las
+  reglas de la sección *Motivación*.
+
+## Motivación (gamificación terapéutica)
+La app motiva con un jardín que crece y una colección de habilidades DBT (`src/domain/growth.ts`, página *Tu jardín*).
+Reglas, porque en depresión o en DBT perder lo logrado puede generar culpa:
+- **Nada se pierde.** El jardín sólo crece y los niveles de las habilidades no bajan. No hay rachas que se rompan: la
+  constancia se muestra como «días practicados este mes».
+- **Se reconoce la práctica, no el resultado.** Cuenta haber practicado, no sentirse mejor. Los días difíciles también
+  cuentan.
+- **Sin puntos, rankings ni comparación** con otras personas.
+- **Todo es opcional.** El desafío semanal se puede ocultar. Si no se completa, llega otro el lunes, sin registro de lo
+  que no se hizo.
+- **Mensajes descriptivos y sobrios**: «brotó una flor nueva», nunca «¡bien hecho!» ni «¡no pierdas tu racha!».
+- **Sin presión para volver**: nada de avisos del tipo «tu jardín te extraña».
 
 ## Legibilidad
 - ✓ Instrucciones de los pasos: con legibilidad INFLESZ "normal" como mínimo (≥ 55), de 45 palabras como máximo y con

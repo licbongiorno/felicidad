@@ -38,6 +38,22 @@
   --accent-fg: 255 255 255;
   --accent-muted: 230 235 227;
   --accent-soft: 205 216 200;
+  /* Jardín (Tu crecimiento): tonos apagados, sin rojos de alerta. */
+  --garden-sky-top: 236 241 233;
+  --garden-sky-bottom: 250 248 243;
+  --garden-sun: 240 212 158;
+  --garden-hill-far: 214 224 207;
+  --garden-hill-mid: 190 206 180;
+  --garden-hill-near: 163 185 151;
+  --garden-leaf: 118 149 106;
+  --garden-leaf-deep: 82 110 74;
+  --garden-stem: 102 131 90;
+  --garden-trunk: 126 103 84;
+  --garden-petal-a: 212 158 160;
+  --garden-petal-b: 224 192 128;
+  --garden-petal-c: 174 162 205;
+  --garden-water: 168 198 205;
+  --garden-glow: 236 208 128;
 }
 
 :root[data-theme='dark'] {
@@ -72,6 +88,22 @@
   --accent-fg: 244 241 238;
   --accent-muted: 205 220 197;
   --accent-soft: 170 192 160;
+  /* Jardín (Tu crecimiento): tonos apagados, sin rojos de alerta. */
+  --garden-sky-top: 22 30 28;
+  --garden-sky-bottom: 32 40 36;
+  --garden-sun: 214 198 156;
+  --garden-hill-far: 38 50 42;
+  --garden-hill-mid: 48 64 52;
+  --garden-hill-near: 58 78 60;
+  --garden-leaf: 112 144 100;
+  --garden-leaf-deep: 82 110 72;
+  --garden-stem: 98 126 88;
+  --garden-trunk: 112 92 74;
+  --garden-petal-a: 192 142 148;
+  --garden-petal-b: 206 178 118;
+  --garden-petal-c: 158 148 192;
+  --garden-water: 72 102 110;
+  --garden-glow: 242 222 150;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -107,6 +139,22 @@
     --accent-fg: 244 241 238;
     --accent-muted: 205 220 197;
     --accent-soft: 170 192 160;
+    /* Jardín (Tu crecimiento): tonos apagados, sin rojos de alerta. */
+    --garden-sky-top: 22 30 28;
+    --garden-sky-bottom: 32 40 36;
+    --garden-sun: 214 198 156;
+    --garden-hill-far: 38 50 42;
+    --garden-hill-mid: 48 64 52;
+    --garden-hill-near: 58 78 60;
+    --garden-leaf: 112 144 100;
+    --garden-leaf-deep: 82 110 72;
+    --garden-stem: 98 126 88;
+    --garden-trunk: 112 92 74;
+    --garden-petal-a: 192 142 148;
+    --garden-petal-b: 206 178 118;
+    --garden-petal-c: 158 148 192;
+    --garden-water: 72 102 110;
+    --garden-glow: 242 222 150;
   }
 }
 
@@ -141,6 +189,22 @@
     --accent-fg: 255 255 255;
     --accent-muted: 230 235 227;
     --accent-soft: 205 216 200;
+    /* Jardín (Tu crecimiento): tonos apagados, sin rojos de alerta. */
+    --garden-sky-top: 236 241 233;
+    --garden-sky-bottom: 250 248 243;
+    --garden-sun: 240 212 158;
+    --garden-hill-far: 214 224 207;
+    --garden-hill-mid: 190 206 180;
+    --garden-hill-near: 163 185 151;
+    --garden-leaf: 118 149 106;
+    --garden-leaf-deep: 82 110 74;
+    --garden-stem: 102 131 90;
+    --garden-trunk: 126 103 84;
+    --garden-petal-a: 212 158 160;
+    --garden-petal-b: 224 192 128;
+    --garden-petal-c: 174 162 205;
+    --garden-water: 168 198 205;
+    --garden-glow: 236 208 128;
   }
 }
 

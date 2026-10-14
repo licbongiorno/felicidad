@@ -6,6 +6,7 @@ import type * as FirestoreRepo from '@/lib/firebase/repositories';
 import { DEMO_MODE } from '@/lib/demo';
 import { daysAgo, toDateKey } from '@/domain/metrics';
 import type { AfflictionLog, Assessment, DailyCheckin, JournalEntry, SessionRecord } from '@/domain/types';
+import { DBT_JOURNAL_TYPES, DBT_PRACTICE_IDS, type LifetimeCounts } from '@/domain/growth';
 
 /**
  * Estado global del progreso del usuario.
@@ -34,6 +35,7 @@ export type DataRepo = Pick<
   | 'subscribeJournal'
   | 'addAssessment'
   | 'subscribeAssessments'
+  | 'fetchLifetimeCounts'
   | 'deleteUserData'
 > & { exportUserData: (uid: string) => Promise<unknown> };
 
@@ -60,6 +62,8 @@ interface ProgressState {
   checkins: DailyCheckin[];
   journal: JournalEntry[];
   assessments: Assessment[];
+  /** Recuentos de toda la vida para el jardín (null hasta que llegan o sin conexión). */
+  lifetime: LifetimeCounts | null;
 
   connect: (uid: string) => void;
   disconnect: () => void;
@@ -80,6 +84,7 @@ const initialData = {
   checkins: [],
   journal: [],
   assessments: [],
+  lifetime: null,
 };
 
 // Los handles de suscripción no son estado de UI: viven fuera del store.
@@ -106,6 +111,24 @@ export const useProgressStore = create<ProgressState>()((set, get) => {
       .then((repo) => op(repo, uid))
       .catch((e) => set({ syncError: describe(e) }));
   };
+
+  /** Pide los recuentos de toda la vida. Si falla (sin red), el jardín usa la ventana local. */
+  const refreshLifetime = () => {
+    const { uid } = get();
+    if (!uid) return;
+    loadRepo()
+      .then((repo) => repo.fetchLifetimeCounts(uid, DBT_PRACTICE_IDS, DBT_JOURNAL_TYPES))
+      .then((lifetime) => {
+        if (get().uid === uid) set({ lifetime });
+      })
+      .catch(() => {
+        /* sin recuentos: growthCounts usa los 90 días locales */
+      });
+  };
+
+  /** Escritura que, al confirmarse, actualiza los recuentos del jardín. */
+  const writeAndGrow = (op: (repo: DataRepo, uid: string) => Promise<unknown>) =>
+    write((repo, uid) => op(repo, uid).then((r) => (refreshLifetime(), r)));
 
   return {
     ...initialData,
@@ -135,6 +158,7 @@ export const useProgressStore = create<ProgressState>()((set, get) => {
             // Las evaluaciones se comparan a largo plazo: ventana de un año.
             repo.subscribeAssessments(uid, daysAgo(365), (assessments) => { set({ assessments }); markLoaded('assessments'); }, onError),
           ];
+          refreshLifetime();
         })
         .catch(() => set({ status: 'error', syncError: 'No se pudo conectar con tus datos. Revisa tu conexión y recarga.' }));
     },
@@ -146,15 +170,15 @@ export const useProgressStore = create<ProgressState>()((set, get) => {
       set(initialData);
     },
 
-    logSession: (session) => write((repo, uid) => repo.addSession(uid, session)),
+    logSession: (session) => writeAndGrow((repo, uid) => repo.addSession(uid, session)),
 
     // Un antídoto completado cuenta también como sesión de práctica (racha y dosis).
     logAntidote: (log, session) =>
-      write((repo, uid) => Promise.all([repo.addAfflictionLog(uid, log), repo.addSession(uid, session)])),
+      writeAndGrow((repo, uid) => Promise.all([repo.addAfflictionLog(uid, log), repo.addSession(uid, session)])),
 
     saveCheckin: (checkin) => write((repo, uid) => repo.saveCheckin(uid, checkin)),
 
-    logJournal: (entry) => write((repo, uid) => repo.addJournalEntry(uid, entry)),
+    logJournal: (entry) => writeAndGrow((repo, uid) => repo.addJournalEntry(uid, entry)),
 
     logAssessment: (a) => write((repo, uid) => repo.addAssessment(uid, a)),
 

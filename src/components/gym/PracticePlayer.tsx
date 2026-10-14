@@ -20,6 +20,9 @@ import { EvidencePanel } from '@/components/ui/EvidencePanel';
 import { Tabs } from '@/components/ui/Tabs';
 import { GuidedSequence } from '@/components/practice/GuidedSequence';
 import { CountUp, DrawnCheck } from '@/components/motion/Reveal';
+import { growthNote } from '@/domain/growth';
+import { useGrowth } from '@/hooks/useGrowth';
+import { GrowthNote } from '@/components/growth/GrowthNote';
 
 type Phase = 'intro' | 'practice' | 'close' | 'done';
 const ORDER: Record<Phase, number> = { intro: 0, practice: 1, close: 2, done: 3 };
@@ -37,6 +40,9 @@ export function PracticePlayer({ practice }: { practice: Practice }) {
   // Las herramientas rápidas tienen una sola duración.
   const variants = useMemo<DurationVariant[]>(() => (practice.micro ? ['estandar'] : availableVariants(practice.steps)), [practice]);
   const sessions = useProgressStore((s) => s.sessions);
+  const growth = useGrowth();
+  // Qué creció en el jardín con esta práctica (se fija al registrarla).
+  const [note, setNote] = useState<string | null>(null);
   const missing = useMemo(() => missingPrerequisites(practice.id, completedPracticeIds(sessions)), [practice.id, sessions]);
   const level = levelOf(practice.id).level;
   // Estable durante la práctica: GuidedSequence requiere pasos memoizados.
@@ -50,6 +56,8 @@ export function PracticePlayer({ practice }: { practice: Practice }) {
   }
 
   function save() {
+    const completed = practicedSec >= (practice.micro ? 30 : MIN_PRACTICE_SEC);
+    setNote(completed ? growthNote(practice.family, growth.counts.families[practice.family], growth.garden.total) : null);
     logSession({
       practiceId: practice.id,
       family: practice.family,
@@ -57,7 +65,7 @@ export function PracticePlayer({ practice }: { practice: Practice }) {
       source: 'gym',
       startedAt: startedAtRef.current,
       durationSec: practicedSec,
-      completed: practicedSec >= (practice.micro ? 30 : MIN_PRACTICE_SEC),
+      completed,
       contentVersion: reviewOf('practica', practice.id).version,
       moodPre,
       moodPost,
@@ -260,6 +268,7 @@ export function PracticePlayer({ practice }: { practice: Practice }) {
         <m.p variants={fadeUp} className="mt-4 text-stone-600">
           La constancia importa más que la duración.
         </m.p>
+        {note && <GrowthNote note={note} className="mt-8" />}
         <m.div variants={fadeUp} className="mt-10 flex justify-center gap-3">
           <Link href="/dashboard" className={buttonStyles('secondary')}>
             Ver panel
