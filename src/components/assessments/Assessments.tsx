@@ -101,7 +101,7 @@ function InstrumentCard({ instrument, history, onStart }: { instrument: Instrume
                     className="h-full rounded-full bg-sage-500"
                     style={{ originX: 0 }}
                     initial={{ scaleX: 0 }}
-                    animate={{ scaleX: a.score / instrument.maxScore }}
+                    animate={{ scaleX: (a.score - (instrument.minScore ?? 0)) / (instrument.maxScore - (instrument.minScore ?? 0)) }}
                     transition={{ duration: 0.8, ease: EASE_OUT, delay: 0.2 + i * 0.05 }}
                   />
                 </div>
@@ -116,7 +116,7 @@ function InstrumentCard({ instrument, history, onStart }: { instrument: Instrume
       )}
 
       <p className="mt-4 text-xs leading-relaxed text-stone-500">
-        Escala 0–{instrument.maxScore}, {instrument.higherIsBetter ? 'más es mejor' : 'más indica más síntomas'}. Cambio relevante: {instrument.relevantChange} puntos (•).
+        Escala {instrument.minScore ?? 0}–{instrument.maxScore}, {instrument.higherIsBetter ? 'más es mejor' : 'más indica más síntomas'}. Cambio relevante: {instrument.relevantChange} puntos (•).
       </p>
 
       <div className="mt-6 flex flex-wrap items-center gap-4">
@@ -161,7 +161,7 @@ function Form({ instrument, onBack, onSubmit }: { instrument: Instrument; onBack
                 {item}
               </legend>
               <div role="radiogroup" aria-label={item} className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3">
-                {instrument.options.map((o) => {
+                {(instrument.itemOptions?.[i] ?? instrument.options).map((o) => {
                   const selected = answers[i] === o.value;
                   return (
                     <button

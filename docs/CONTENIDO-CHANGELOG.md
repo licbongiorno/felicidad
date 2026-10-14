@@ -19,6 +19,61 @@ entrada en este registro.
 
 ---
 
+## 2026-10-14 · Antídotos, evaluaciones y programas nuevos (versión 1)
+
+Todo el contenido nuevo queda en estado `pendiente`, salvo el ISI, que queda en `borrador`.
+
+**Seis antídotos nuevos** (`src/domain/antidotes-more.ts`).
+- *Vergüenza*: mostrarse con compasión (Gilbert y Procter, 2006; Rizvi y Linehan, 2005). Nivel preliminar.
+- *Miedo*: acercarse con seguridad (Craske et al., 2014; Carpenter et al., 2018). Nivel moderado.
+- *Celos*: comprobar los hechos y soltar el control. Nivel preliminar; la evidencia específica es escasa. Su «Cuándo
+  no usarlo» remite a ayuda especializada si hay miedo a la pareja.
+- *Frustración o irritabilidad*: pausa y paciencia activa (Bushman, 2002). Nivel moderado.
+- *Vacío o aburrimiento*: contacto y sentido (activación conductual). Nivel preliminar. Remite al plan de seguridad.
+- *Inseguridad o autoestima baja*: trato amable y logros reales (Neff, 2003; Kirby et al., 2017). Nivel moderado.
+- Las reglas de Firestore aceptan las seis emociones nuevas en los registros de antídotos.
+- La rueda de emociones enlaza ahora vergüenza, miedo y celos con sus antídotos propios.
+
+**Tres evaluaciones nuevas** (`src/domain/instruments.ts`).
+- *DERS-16* (dificultades de regulación emocional, 16–80; Bjureberg et al., 2016).
+- *ISI* (gravedad del insomnio, 0–28; Bastien et al., 2001), con los puntos de corte y el cambio relevante de
+  8 puntos de Morin et al. (2011). **Queda en borrador:** tiene derechos de autor y su uso en una app requiere
+  licencia de Mapi Research Trust.
+- *PSS-10* (estrés percibido, 0–40; Cohen et al., 1983; versión española de Remor, 2006), con los ítems 4, 5, 7 y 8
+  invertidos.
+- DERS-16 y PSS-10 no tienen puntos de corte clínicos oficiales. La app divide el rango en tercios y usa un cambio
+  relevante orientativo de alrededor del 10 % del rango (7 y 4 puntos).
+- Las reglas de Firestore validan el número de ítems, los rangos y el cálculo de la puntuación, invertidos incluidos.
+- La pantalla de evaluaciones admite opciones distintas por ítem (ISI) y escalas que no empiezan en 0 (DERS-16).
+
+**Cuatro programas nuevos y tres artículos.**
+- *Dormir mejor* (4 semanas, TCC-I), con el artículo *Dormir mejor: la terapia del insomnio* (Trauer et al., 2015;
+  Edinger et al., 2021). Advierte que no conviene reducir horas de cama por cuenta propia con trastorno bipolar,
+  epilepsia, apnea o trabajos con riesgo por somnolencia.
+- *Autoestima y autocrítica* (4 semanas), con el artículo *Autoestima y autocrítica* (Fennell, 1997; Kolubinski et
+  al., 2018).
+- *Atravesar un duelo* (4 semanas), basado en el modelo de proceso dual. Usa el artículo *Atravesar un duelo*, que ya
+  existía.
+- *Ansiedad social* (4 semanas), con el artículo *Ansiedad social* (Clark y Wells, 1995; Mayo-Wilson et al., 2014).
+  No usa la escalera de exposición, que sigue en borrador.
+
+**Verificación.**
+- Tests: 269 pasan. Nuevos tests de rango de puntuación para cada instrumento, de los ítems invertidos de la PSS-10 y
+  de los puntos de corte del ISI. Reglas de Firestore en el emulador: 22/22.
+- DOI nuevos sin verificar contra Crossref: Gilbert y Procter (2006), Craske et al. (2014), Bushman (2002),
+  Bjureberg et al. (2016), Gratz y Roemer (2004), Bastien et al. (2001), Morin et al. (2011), Cohen et al. (1983),
+  Remor (2006), Edinger et al. (2021), Fennell (1997), Kolubinski et al. (2018) y Mayo-Wilson et al. (2014).
+  Ejecutar `npm run verify:refs`.
+
+**Para la revisión clínica:**
+- La redacción de los ítems de DERS-16, ISI y PSS-10 es una adaptación propia: comparar con las versiones españolas
+  validadas antes de usarlas con pacientes.
+- Las franjas y los cambios relevantes orientativos de DERS-16 y PSS-10.
+- La licencia del ISI.
+- Duelo reciente: si el programa debe recomendar esperar o hacerse con acompañamiento profesional.
+
+---
+
 ## 2026-10-14 · Tarjeta diaria, análisis en cadena y rueda de emociones (versión 1)
 
 Todo el contenido nuevo queda en estado `pendiente` (publicado, revisión clínica formal pendiente).

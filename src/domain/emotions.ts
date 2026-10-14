@@ -61,7 +61,7 @@ export const EMOTION_FAMILIES: EmotionFamily[] = [
     urge: 'Huir, evitar, quedarte paralizado/a.',
     fits: 'Hay una amenaza real para tu vida, tu salud o tu bienestar.',
     opposite: 'Acércate, poco a poco, a lo que temes sin peligro real. Hazlo una y otra vez.',
-    antidoteId: 'ansiedad',
+    antidoteId: 'miedo',
   },
   {
     id: 'ira',
@@ -81,7 +81,7 @@ export const EMOTION_FAMILIES: EmotionFamily[] = [
     urge: 'Esconderte, callar, desaparecer.',
     fits: 'Si algo de ti se supiera, te rechazarían personas que te importan.',
     opposite: 'Si no hay riesgo real de rechazo, muéstrate: levanta la cabeza, mira a los ojos y no te escondas.',
-    antidoteId: 'autocritica',
+    antidoteId: 'verguenza',
   },
   {
     id: 'culpa',
@@ -111,6 +111,7 @@ export const EMOTION_FAMILIES: EmotionFamily[] = [
     urge: 'Controlar, vigilar, preguntar sin parar, acusar.',
     fits: 'Una relación importante corre un riesgo real de perderse por otra persona.',
     opposite: 'Suelta el control: deja de vigilar y de preguntar, y comparte lo que sientes sin acusar.',
+    antidoteId: 'celos',
   },
   {
     id: 'asco',

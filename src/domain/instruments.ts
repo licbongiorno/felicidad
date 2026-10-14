@@ -2,12 +2,16 @@ import type { InstrumentId, Reference } from './types';
 
 /**
  * Instrumentos validados de autoinforme. Ninguno es diagnóstico: orientan y permiten
- * seguir la evolución. Todos son de uso libre.
+ * seguir la evolución. WHO-5, GAD-7, PHQ-9, DERS-16 y PSS-10 son de uso libre; el ISI
+ * requiere licencia (ver governance.ts).
  *
  * - WHO-5 (bienestar, 0–100, más es mejor). Topp et al. (2015).
  * - GAD-7 (ansiedad, 0–21, más es peor). Spitzer et al. (2006).
  * - PHQ-9 (depresión, 0–27, más es peor). Kroenke et al. (2001). El ítem 9 pregunta por
  *   ideación suicida: cualquier respuesta > 0 activa el aviso de seguridad (riskItemIndex).
+ * - DERS-16 (dificultades de regulación emocional, 16–80, más es peor). Bjureberg et al. (2016).
+ * - ISI (insomnio, 0–28, más es peor). Bastien et al. (2001); Morin et al. (2011).
+ * - PSS-10 (estrés percibido, 0–40, más es peor; 4 ítems invertidos). Cohen et al. (1983).
  */
 
 export interface Interpretation {
@@ -26,7 +30,11 @@ export interface Instrument {
   stem: string;
   items: string[];
   options: { value: number; label: string }[];
+  /** Opciones distintas por ítem (p. ej. ISI); si falta, todos usan `options`. */
+  itemOptions?: { value: number; label: string }[][];
   intervalDays: number;
+  /** Puntuación mínima posible (0 si falta; DERS-16 empieza en 16). */
+  minScore?: number;
   maxScore: number;
   higherIsBetter: boolean;
   /** Cambio mínimo considerado clínicamente relevante. */
@@ -228,7 +236,189 @@ export const PHQ9: Instrument = {
   ],
 };
 
-export const INSTRUMENTS: Instrument[] = [WHO5, GAD7, PHQ9];
+// ---------------------------------------------------------------- DERS-16
+
+const DERS_OPTIONS = [
+  { value: 1, label: 'Casi nunca' },
+  { value: 2, label: 'A veces' },
+  { value: 3, label: 'La mitad de las veces' },
+  { value: 4, label: 'La mayoría de las veces' },
+  { value: 5, label: 'Casi siempre' },
+];
+
+export const DERS16: Instrument = {
+  id: 'ders16',
+  title: 'Escala de dificultades en la regulación emocional DERS-16',
+  short: 'Regulación emocional',
+  purpose: 'Dificultades para manejar las emociones · 16 preguntas · 3 minutos',
+  stem: '¿Con qué frecuencia te pasan estas cosas?',
+  items: [
+    'Me cuesta entender lo que siento',
+    'Estoy confundido/a sobre cómo me siento',
+    'Cuando estoy mal, me cuesta hacer mis tareas',
+    'Cuando estoy mal, pierdo el control',
+    'Cuando estoy mal, creo que voy a seguir así mucho tiempo',
+    'Cuando estoy mal, creo que voy a terminar muy deprimido/a',
+    'Cuando estoy mal, me cuesta concentrarme en otras cosas',
+    'Cuando estoy mal, siento que estoy fuera de control',
+    'Cuando estoy mal, me avergüenzo de sentirme así',
+    'Cuando estoy mal, me siento débil',
+    'Cuando estoy mal, me cuesta controlar lo que hago',
+    'Cuando estoy mal, creo que no hay nada que pueda hacer para sentirme mejor',
+    'Cuando estoy mal, me enfado conmigo mismo/a por sentirme así',
+    'Cuando estoy mal, empiezo a sentirme muy mal conmigo mismo/a',
+    'Cuando estoy mal, me cuesta pensar en otra cosa',
+    'Cuando estoy mal, mis emociones me desbordan',
+  ],
+  options: DERS_OPTIONS,
+  intervalDays: 14,
+  minScore: 16,
+  maxScore: 80,
+  higherIsBetter: false,
+  // No hay un cambio mínimo clínicamente relevante publicado: valor orientativo (≈ 10 % del rango).
+  relevantChange: 7,
+  score: sum,
+  interpret: (score) => {
+    if (score >= 59)
+      return { band: 'alta', severity: 'alto', title: 'Muchas dificultades para regular las emociones', body: 'Tu puntuación está en el tercio alto de la escala. Las emociones parecen desbordarte a menudo. No es un diagnóstico, pero vale la pena hablarlo con un/a profesional: la terapia dialéctico-conductual trabaja justo esto.' };
+    if (score >= 38)
+      return { band: 'media', severity: 'atencion', title: 'Algunas dificultades para regular las emociones', body: 'Tu puntuación está en el tercio medio de la escala. Las habilidades DBT de la app pueden ayudarte. Observa cómo evoluciona en las próximas evaluaciones.' };
+    return { band: 'baja', severity: 'ok', title: 'Pocas dificultades para regular las emociones', body: 'Tu puntuación está en el tercio bajo de la escala. Lo más útil ahora es observar la tendencia a lo largo del tiempo.' };
+  },
+  references: [
+    {
+      citation:
+        'Bjureberg, J., Ljótsson, B., Tull, M. T., Hedman, E., Sahlin, H., Lundh, L.-G., Bjärehed, J., DiLillo, D., Messman-Moore, T., Gumpert, C. H., & Gratz, K. L. (2016). Development and validation of a brief version of the Difficulties in Emotion Regulation Scale: The DERS-16. Journal of Psychopathology and Behavioral Assessment, 38(2), 284–296.',
+      doi: '10.1007/s10862-015-9514-x',
+    },
+    {
+      citation:
+        'Gratz, K. L., & Roemer, L. (2004). Multidimensional assessment of emotion regulation and dysregulation: Development, factor structure, and initial validation of the Difficulties in Emotion Regulation Scale. Journal of Psychopathology and Behavioral Assessment, 26(1), 41–54.',
+      doi: '10.1023/B:JOBA.0000007455.08539.94',
+      note: 'Escala original de 36 ítems. Las franjas de la app dividen el rango en tercios: no hay puntos de corte clínicos establecidos.',
+    },
+  ],
+};
+
+// ---------------------------------------------------------------- ISI
+
+const SEVERITY_0_4 = [
+  { value: 0, label: 'Nada' },
+  { value: 1, label: 'Leve' },
+  { value: 2, label: 'Moderado' },
+  { value: 3, label: 'Grave' },
+  { value: 4, label: 'Muy grave' },
+];
+const MUCH_0_4 = [
+  { value: 0, label: 'Nada' },
+  { value: 1, label: 'Un poco' },
+  { value: 2, label: 'Algo' },
+  { value: 3, label: 'Bastante' },
+  { value: 4, label: 'Mucho' },
+];
+
+export const ISI: Instrument = {
+  id: 'isi',
+  title: 'Índice de gravedad del insomnio ISI',
+  short: 'Sueño',
+  purpose: 'Gravedad del insomnio · 7 preguntas · 2 minutos',
+  stem: 'Piensa en tu sueño de las últimas dos semanas.',
+  items: [
+    '¿Cuánta dificultad tienes para quedarte dormido/a?',
+    '¿Cuánta dificultad tienes para seguir dormido/a durante la noche?',
+    '¿Cuánto te molesta despertarte demasiado temprano?',
+    '¿Cuánta insatisfacción te produce tu forma de dormir actual?',
+    '¿Cuánto notan los demás que tu problema de sueño afecta tu calidad de vida?',
+    '¿Cuánto te preocupa o te angustia tu problema de sueño?',
+    '¿Cuánto interfiere tu problema de sueño con tu día a día (cansancio, ánimo, concentración, memoria)?',
+  ],
+  options: MUCH_0_4,
+  itemOptions: [SEVERITY_0_4, SEVERITY_0_4, SEVERITY_0_4, MUCH_0_4, MUCH_0_4, MUCH_0_4, MUCH_0_4],
+  intervalDays: 14,
+  maxScore: 28,
+  higherIsBetter: false,
+  relevantChange: 8,
+  score: sum,
+  interpret: (score) => {
+    if (score >= 22)
+      return { band: 'grave', severity: 'alto', title: 'Insomnio grave', body: 'Esta puntuación indica un insomnio clínico grave. No es un diagnóstico, pero te recomendamos consultar con un/a profesional: la terapia cognitivo-conductual para el insomnio es el tratamiento de primera elección.' };
+    if (score >= 15)
+      return { band: 'moderado', severity: 'atencion', title: 'Insomnio moderado', body: 'Esta puntuación indica un insomnio clínico moderado. Conviene consultarlo con un/a profesional. El programa «Dormir mejor» puede ser un buen complemento.' };
+    if (score >= 8)
+      return { band: 'subumbral', severity: 'ok', title: 'Insomnio leve (subclínico)', body: 'Hay algunas dificultades de sueño, por debajo del umbral clínico. El diario de sueño y el programa «Dormir mejor» pueden ayudarte.' };
+    return { band: 'sin-insomnio', severity: 'ok', title: 'Sin insomnio clínicamente significativo', body: 'Tu sueño de las últimas dos semanas no muestra un insomnio relevante.' };
+  },
+  references: [
+    {
+      citation: 'Bastien, C. H., Vallières, A., & Morin, C. M. (2001). Validation of the Insomnia Severity Index as an outcome measure for insomnia research. Sleep Medicine, 2(4), 297–307.',
+      doi: '10.1016/S1389-9457(00)00065-4',
+    },
+    {
+      citation:
+        'Morin, C. M., Belleville, G., Bélanger, L., & Ivers, H. (2011). The Insomnia Severity Index: Psychometric indicators to detect insomnia cases and evaluate treatment response. Sleep, 34(5), 601–608.',
+      doi: '10.1093/sleep/34.5.601',
+      note: 'Fuente del cambio relevante (una reducción de 8 puntos equivale a una mejoría moderada).',
+    },
+  ],
+};
+
+// ---------------------------------------------------------------- PSS-10
+
+/** Ítems de la PSS-10 que se puntúan al revés (0-based): 4, 5, 7 y 8 en la numeración original. */
+export const PSS10_REVERSED = [3, 4, 6, 7];
+
+export const PSS10: Instrument = {
+  id: 'pss10',
+  title: 'Escala de estrés percibido PSS-10',
+  short: 'Estrés',
+  purpose: 'Estrés percibido · 10 preguntas · 2 minutos',
+  stem: 'En el último mes, ¿con qué frecuencia…',
+  items: [
+    '…te has sentido afectado/a por algo que pasó de forma inesperada?',
+    '…has sentido que no podías controlar las cosas importantes de tu vida?',
+    '…te has sentido nervioso/a o estresado/a?',
+    '…has sentido confianza en tu capacidad para manejar tus problemas personales?',
+    '…has sentido que las cosas te iban bien?',
+    '…has sentido que no podías con todo lo que tenías que hacer?',
+    '…has podido controlar lo que te irrita en la vida?',
+    '…has sentido que tenías todo bajo control?',
+    '…te has enfadado por cosas que no podías controlar?',
+    '…has sentido que las dificultades se acumulaban tanto que no podías superarlas?',
+  ],
+  options: [
+    { value: 0, label: 'Nunca' },
+    { value: 1, label: 'Casi nunca' },
+    { value: 2, label: 'A veces' },
+    { value: 3, label: 'Bastante a menudo' },
+    { value: 4, label: 'Muy a menudo' },
+  ],
+  intervalDays: 30,
+  maxScore: 40,
+  higherIsBetter: false,
+  // No hay un cambio mínimo clínicamente relevante publicado: valor orientativo (≈ 10 % del rango).
+  relevantChange: 4,
+  score: (items) => sum(items.map((v, i) => (PSS10_REVERSED.includes(i) ? 4 - v : v))),
+  interpret: (score) => {
+    if (score >= 27)
+      return { band: 'alto', severity: 'alto', title: 'Estrés percibido alto', body: 'Tu puntuación está en el tercio alto de la escala. Sientes que las exigencias superan tus recursos. Si se mantiene, conviene hablarlo con un/a profesional. El programa «Estrés y agotamiento» puede ayudarte.' };
+    if (score >= 14)
+      return { band: 'moderado', severity: 'atencion', title: 'Estrés percibido moderado', body: 'Tu puntuación está en el tercio medio de la escala. Las pausas breves y la resolución de problemas pueden ayudarte a recuperar margen.' };
+    return { band: 'bajo', severity: 'ok', title: 'Estrés percibido bajo', body: 'Tu puntuación está en el tercio bajo de la escala. Sientes, en general, que puedes con lo que te pide la vida.' };
+  },
+  references: [
+    {
+      citation: 'Cohen, S., Kamarck, T., & Mermelstein, R. (1983). A global measure of perceived stress. Journal of Health and Social Behavior, 24(4), 385–396.',
+      doi: '10.2307/2136404',
+    },
+    {
+      citation: 'Remor, E. (2006). Psychometric properties of a European Spanish version of the Perceived Stress Scale (PSS). The Spanish Journal of Psychology, 9(1), 86–93.',
+      doi: '10.1017/S1138741600006004',
+      note: 'Versión española. Las franjas de la app dividen el rango en tercios: la escala no tiene puntos de corte oficiales.',
+    },
+  ],
+};
+
+export const INSTRUMENTS: Instrument[] = [WHO5, GAD7, PHQ9, DERS16, ISI, PSS10];
 export const INSTRUMENT_BY_ID = Object.fromEntries(INSTRUMENTS.map((i) => [i.id, i])) as Record<InstrumentId, Instrument>;
 
 /** ¿Las respuestas activan el aviso de seguridad (ítem de riesgo > 0)? */

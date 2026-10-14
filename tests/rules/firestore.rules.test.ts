@@ -101,6 +101,24 @@ describe('diario', () => {
   });
 });
 
+describe('evaluaciones DERS-16, ISI y PSS-10', () => {
+  const a = (instrument: string, items: number[], score: number) => ({ instrument, items, score, createdAt: serverTimestamp() });
+
+  it('acepta puntuaciones coherentes', async () => {
+    const col = collection(alice(), 'users/alice/assessments');
+    await assertSucceeds(addDoc(col, a('ders16', Array(16).fill(1), 16)));
+    await assertSucceeds(addDoc(col, a('isi', [4, 4, 4, 4, 4, 4, 4], 28)));
+    await assertSucceeds(addDoc(col, a('pss10', [4, 4, 4, 0, 0, 4, 0, 0, 4, 4], 40)));
+  });
+
+  it('rechaza rangos y puntuaciones inválidos', async () => {
+    const col = collection(alice(), 'users/alice/assessments');
+    await assertFails(addDoc(col, a('ders16', Array(16).fill(0), 0)));
+    await assertFails(addDoc(col, a('isi', [5, 4, 4, 4, 4, 4, 4], 29)));
+    await assertFails(addDoc(col, a('pss10', [4, 4, 4, 4, 4, 4, 4, 4, 4, 4], 40)));
+  });
+});
+
 describe('evaluaciones WHO-5', () => {
   const who5 = (items: number[], score: number) => ({ instrument: 'who5', items, score, createdAt: serverTimestamp() });
 

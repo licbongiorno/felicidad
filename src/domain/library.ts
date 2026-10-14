@@ -2,6 +2,7 @@ import type { Reference } from './types';
 import { EXTRA_ARTICLES } from './library-extra';
 import { MORE_ARTICLES } from './library-more';
 import { SKILL_ARTICLES } from './library-skills';
+import { PROGRAM_ARTICLES } from './library-programs';
 
 /**
  * Biblioteca: fundamentos teóricos en lenguaje claro.
@@ -495,6 +496,6 @@ const BASE_ARTICLES: Article[] = [
   },
 ];
 
-export const ARTICLES: Article[] = [...BASE_ARTICLES, ...EXTRA_ARTICLES, ...MORE_ARTICLES, ...SKILL_ARTICLES];
+export const ARTICLES: Article[] = [...BASE_ARTICLES, ...EXTRA_ARTICLES, ...MORE_ARTICLES, ...SKILL_ARTICLES, ...PROGRAM_ARTICLES];
 
 export const ARTICLE_BY_ID: Record<string, Article> = Object.fromEntries(ARTICLES.map((a) => [a.id, a]));
