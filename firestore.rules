@@ -160,7 +160,8 @@ service cloud.firestore {
         allow create: if isOwner(uid)
           && request.resource.data.keys().hasOnly([
                'practiceId', 'family', 'skills', 'source', 'startedAt',
-               'durationSec', 'completed', 'moodPre', 'moodPost', 'tz', 'contentVersion', 'createdAt'])
+               'durationSec', 'completed', 'moodPre', 'moodPost', 'tz', 'contentVersion', 'transfer', 'createdAt'])
+          && shortText(request.resource.data, 'transfer')
           && validTz(request.resource.data)
           && validVersion(request.resource.data)
           && request.resource.data.practiceId is string
@@ -228,6 +229,23 @@ service cloud.firestore {
                'analisis-cadena', 'reflexion-carta']
           && request.resource.data.values is map
           && validJournalValues(request.resource.data.type, request.resource.data.values)
+          && request.resource.data.createdAt == request.time;
+        allow update: if false;
+        allow delete: if isOwner(uid);
+      }
+
+      // ------------------------------------------------------------ aplicaciones (append-only)
+      // Intento de usar una habilidad en la vida cotidiana y su utilidad percibida.
+      match /applications/{id} {
+        allow read: if canRead(uid);
+        allow create: if isOwner(uid)
+          && request.resource.data.keys().hasOnly(['practiceId', 'sessionId', 'applied', 'usefulness', 'note', 'tz', 'createdAt'])
+          && validTz(request.resource.data)
+          && request.resource.data.practiceId is string && request.resource.data.practiceId.size() <= 64
+          && (request.resource.data.sessionId == null || (request.resource.data.sessionId is string && request.resource.data.sessionId.size() <= 64))
+          && request.resource.data.applied is bool
+          && (request.resource.data.usefulness == null || request.resource.data.usefulness in ['util', 'indiferente', 'no-apropiada'])
+          && (request.resource.data.note == null || (request.resource.data.note is string && request.resource.data.note.size() <= 280))
           && request.resource.data.createdAt == request.time;
         allow update: if false;
         allow delete: if isOwner(uid);

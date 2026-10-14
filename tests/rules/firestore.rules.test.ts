@@ -101,6 +101,25 @@ describe('diario', () => {
   });
 });
 
+describe('aplicaciones en la vida cotidiana', () => {
+  const a = (extra: Record<string, unknown> = {}) => ({ practiceId: 'pausa-stop', sessionId: null, applied: true, usefulness: 'util', note: null, createdAt: serverTimestamp(), ...extra });
+
+  it('acepta una aplicación válida y un plan en la sesión', async () => {
+    await assertSucceeds(addDoc(collection(alice(), 'users/alice/applications'), a()));
+    await assertSucceeds(addDoc(collection(alice(), 'users/alice/applications'), a({ applied: false, usefulness: null, note: 'No me acordé' })));
+    await assertSucceeds(addDoc(collection(alice(), 'users/alice/sessions'), { ...validSession(), transfer: 'Mañana antes de la reunión' }));
+  });
+
+  it('rechaza valores inválidos, notas largas y escrituras ajenas', async () => {
+    const col = collection(alice(), 'users/alice/applications');
+    await assertFails(addDoc(col, a({ usefulness: 'genial' })));
+    await assertFails(addDoc(col, a({ note: 'x'.repeat(281) })));
+    await assertFails(addDoc(col, a({ extra: 1 })));
+    await assertFails(addDoc(collection(alice(), 'users/bob/applications'), a()));
+    await assertFails(addDoc(collection(alice(), 'users/alice/sessions'), { ...validSession(), transfer: 'x'.repeat(281) }));
+  });
+});
+
 describe('evaluaciones DERS-16, ISI y PSS-10', () => {
   const a = (instrument: string, items: number[], score: number) => ({ instrument, items, score, createdAt: serverTimestamp() });
 

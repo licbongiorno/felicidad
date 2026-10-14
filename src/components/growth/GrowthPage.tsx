@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { m } from 'motion/react';
-import { DBT_MODULE_LABEL, GARDEN_MILESTONES, MASTERY_LABEL, MASTERY_THRESHOLDS, SPECIES, skillHref, STAGES_PER_PLANT, type DbtModule } from '@/domain/growth';
+import { DBT_MODULE_LABEL, GARDEN_MILESTONES, MASTERY_HINT, MASTERY_LABEL, SPECIES, skillHref, STAGES_PER_PLANT, type DbtModule } from '@/domain/growth';
 import { fadeUp, stagger } from '@/lib/motion';
 import { useGrowth } from '@/hooks/useGrowth';
 import { CountUp } from '@/components/motion/Reveal';
@@ -103,8 +103,8 @@ export function GrowthPage() {
               Habilidades DBT
             </h2>
             <p className="mt-2 max-w-2xl text-sm leading-relaxed text-stone-600">
-              Cada vez que usas una habilidad, se afianza. El anillo muestra su nivel: {MASTERY_LABEL.slice(1).join(', ').toLowerCase()} (tras{' '}
-              {MASTERY_THRESHOLDS.join(', ')} usos).
+              Una habilidad se aprende en cuatro pasos: descubrirla, practicarla, aplicarla en tu vida e integrarla. El anillo muestra
+              el paso en el que está cada una. Para aplicarla, cuéntalo en «Revisar» después de usarla fuera de la pantalla.
             </p>
           </div>
           <p className="text-sm text-stone-500">
@@ -119,7 +119,7 @@ export function GrowthPage() {
               <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {skills
                   .filter((s) => s.skill.module === mod)
-                  .map(({ skill, level, uses, toNext }) => (
+                  .map(({ skill, level, uses, applied, useful }) => (
                     <li key={skill.id}>
                       <Link
                         href={skillHref(skill)}
@@ -130,11 +130,8 @@ export function GrowthPage() {
                           <span className="block font-serif text-lg text-stone-800">{skill.title}</span>
                           <span className={`block text-xs uppercase tracking-[0.14em] ${level ? 'text-sage-700' : 'text-stone-500'}`}>{MASTERY_LABEL[level]}</span>
                           <span className="mt-1 block text-xs text-stone-500">
-                            {level === 0
-                              ? 'Pruébala una vez para descubrirla'
-                              : toNext === null
-                                ? `${uses} usos · ya es tuya`
-                                : `${uses} ${uses === 1 ? 'uso' : 'usos'} · ${toNext} para «${MASTERY_LABEL[level + 1].toLowerCase()}»`}
+                            {level > 0 && `${uses} ${uses === 1 ? 'práctica' : 'prácticas'}${applied ? ` · ${applied} en tu vida${useful ? ` (${useful} útil${useful === 1 ? '' : 'es'})` : ''}` : ''} · `}
+                            {MASTERY_HINT[level]}
                           </span>
                         </span>
                       </Link>

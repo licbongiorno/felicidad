@@ -111,14 +111,15 @@ describe('colección DBT', () => {
     expect(new Set(DBT_SKILLS.map((s) => s.id)).size).toBe(DBT_SKILLS.length);
   });
 
-  it('el nivel de dominio sube con los usos', () => {
-    const counts = { families: { attentional: 0, constructive: 0, deconstructive: 0 }, practices: { tipp: 6, 'mente-sabia': 15 }, journalTypes: { 'tarjeta-diaria': 1 }, journalTotal: 1 };
-    const by = Object.fromEntries(skillProgress(counts).map((s) => [s.skill.id, s]));
-    expect(by.tipp.level).toBe(3);
-    expect(by.tipp.toNext).toBe(4);
-    expect(by['mente-sabia'].level).toBe(5);
-    expect(by['mente-sabia'].toNext).toBeNull();
-    expect(by.tarjeta.level).toBe(1);
+  it('los niveles van de descubrir a integrar, con la aplicación en la vida', () => {
+    const counts = { families: { attentional: 0, constructive: 0, deconstructive: 0 }, practices: { tipp: 6, 'mente-sabia': 2, please: 1 }, journalTypes: { 'tarjeta-diaria': 6 }, journalTotal: 6 };
+    const applied = { 'mente-sabia': { applied: 4, useful: 3 }, please: { applied: 1, useful: 0 }, 'dear-man': { applied: 1, useful: 1 } };
+    const by = Object.fromEntries(skillProgress(counts, applied).map((s) => [s.skill.id, s]));
+    expect(by.tipp.level).toBe(2); // practicada, aún sin aplicar
+    expect(by['mente-sabia'].level).toBe(4); // integrada: le sirvió 3 veces
+    expect(by.please.level).toBe(3); // aplicada
+    expect(by['dear-man'].level).toBe(3); // aplicada aunque se practicó fuera de la app
+    expect(by.tarjeta.level).toBe(3);
     expect(by['give-fast'].level).toBe(0);
   });
 });

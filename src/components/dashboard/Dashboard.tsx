@@ -28,6 +28,9 @@ import { buttonStyles } from '@/components/ui/Button';
 import { GrowthCard } from '@/components/growth/GrowthCard';
 import { WeeklyChallenge } from '@/components/growth/WeeklyChallenge';
 import { daysThisMonth } from '@/domain/growth';
+import { applicationStats, USEFULNESS_LABEL } from '@/domain/application';
+import { PRACTICE_BY_ID } from '@/domain/practices';
+import { PendingReviews } from '@/components/application/PendingReviews';
 
 const WEEKDAY = new Intl.DateTimeFormat('es', { weekday: 'short', day: 'numeric', month: 'short' });
 
@@ -39,6 +42,8 @@ export function Dashboard() {
   const afflictions = useProgressStore((s) => s.afflictions);
   const journal = useProgressStore((s) => s.journal);
   const assessments = useProgressStore((s) => s.assessments);
+  const applications = useProgressStore((s) => s.applications);
+  const life = useMemo(() => applicationStats(applications, 28), [applications]);
 
   // Constancia sin castigo: días del mes, no rachas que se rompen (ver domain/growth).
   const month = useMemo(() => daysThisMonth(sessions, journal), [sessions, journal]);
@@ -92,6 +97,8 @@ export function Dashboard() {
           ))}
         </m.section>
       )}
+
+      {!isNew && <PendingReviews className="lg:col-span-3" />}
 
       {/* Jardín y desafío -------------------------------------------------------------- */}
       {!isNew && <GrowthCard className="lg:col-span-2" />}
@@ -154,6 +161,50 @@ export function Dashboard() {
         <p className="mt-6 text-xs leading-relaxed text-stone-500">
           La línea base se estabiliza tras 2–3 semanas de registros. Compara tendencias, no días aislados.
         </p>
+      </Panel>
+
+      {/* En tu vida: aplicación y utilidad percibida -------------------------------------- */}
+      <Panel title="En tu vida · 28 días">
+        {life.applied + life.notApplied > 0 ? (
+          <>
+            <Figure value={life.applied} unit={life.applied === 1 ? 'vez que usaste una habilidad' : 'veces que usaste una habilidad'} />
+            <ul className="mt-5 space-y-2 text-sm">
+              {(
+                [
+                  ['util', life.useful],
+                  ['indiferente', life.neutral],
+                  ['no-apropiada', life.notSuitable],
+                ] as const
+              ).map(([k, n]) => (
+                <li key={k} className="flex items-center gap-3">
+                  <span className="w-32 shrink-0 text-stone-600">{USEFULNESS_LABEL[k]}</span>
+                  <span className="relative h-1.5 flex-1 overflow-hidden rounded-full bg-stone-100" aria-hidden>
+                    <m.span
+                      className="absolute inset-y-0 left-0 rounded-full bg-sage-500"
+                      style={{ width: `${life.applied ? (n / life.applied) * 100 : 0}%`, originX: 0 }}
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ duration: 0.8, ease: EASE_OUT, delay: 0.3 }}
+                    />
+                  </span>
+                  <span className="w-6 text-right tabular-nums text-stone-700">{n}</span>
+                </li>
+              ))}
+            </ul>
+            {life.topUseful.length > 0 && (
+              <p className="mt-5 text-sm leading-relaxed text-stone-600">
+                Lo que más te sirvió: {life.topUseful.map((t) => PRACTICE_BY_ID[t.practiceId]?.title ?? t.practiceId).join(', ')}.
+              </p>
+            )}
+            {life.notApplied > 0 && (
+              <p className="mt-2 text-xs leading-relaxed text-stone-500">
+                {life.notApplied} {life.notApplied === 1 ? 'vez no se pudo' : 'veces no se pudo'}. También cuenta: muestra qué se interpone.
+              </p>
+            )}
+          </>
+        ) : (
+          <Empty>Al terminar una práctica, propón cuándo probarla en tu vida. Aquí verás qué te sirve fuera de la pantalla.</Empty>
+        )}
       </Panel>
 
       {/* Tendencia del ánimo -------------------------------------------------------- */}

@@ -22,6 +22,9 @@ import { GuidedSequence } from '@/components/practice/GuidedSequence';
 import { CountUp, DrawnCheck } from '@/components/motion/Reveal';
 import { growthNote } from '@/domain/growth';
 import { APPROACH_DESCRIPTION, APPROACH_LABEL, PRACTICE_RISK, practiceApproaches } from '@/domain/catalog';
+import { TRANSFER_SUGGESTIONS } from '@/domain/application';
+import { ApplicationForm } from '@/components/application/ApplicationForm';
+import { Sheet } from '@/components/ui/Sheet';
 import { useGrowth } from '@/hooks/useGrowth';
 import { GrowthNote } from '@/components/growth/GrowthNote';
 
@@ -47,6 +50,9 @@ export function PracticePlayer({ practice }: { practice: Practice }) {
   // Nivel de riesgo 2: hay que leer las precauciones antes de empezar.
   const risk = PRACTICE_RISK[practice.id];
   const [acknowledged, setAcknowledged] = useState(false);
+  // Paso «Llevarlo a tu vida»: cuándo y dónde se probará fuera de la pantalla (opcional).
+  const [transfer, setTransfer] = useState('');
+  const [applyOpen, setApplyOpen] = useState(false);
   const missing = useMemo(() => missingPrerequisites(practice.id, completedPracticeIds(sessions)), [practice.id, sessions]);
   const level = levelOf(practice.id).level;
   // Estable durante la práctica: GuidedSequence requiere pasos memoizados.
@@ -73,6 +79,7 @@ export function PracticePlayer({ practice }: { practice: Practice }) {
       contentVersion: reviewOf('practica', practice.id).version,
       moodPre,
       moodPost,
+      transfer: transfer.trim() || null,
     });
     haptic('success');
     go('done');
@@ -138,7 +145,7 @@ export function PracticePlayer({ practice }: { practice: Practice }) {
               Esta práctica puede remover emociones intensas. {practice.cautions}
             </p>
             <p className="mt-2 text-sm leading-relaxed text-stone-600">
-              Puedes detenerte en cualquier momento con «Terminar aquí». Si hoy no es un buen día, prueba{' '}
+              Puedes detenerte en cualquier momento: «Pausar» y después «Terminar aquí». Si hoy no es un buen día, prueba{' '}
               <Link href={`/gimnasio/${risk.alternative}`} className="text-sage-700 underline decoration-sage-300 underline-offset-2 hover:decoration-sage-700">
                 {PRACTICE_BY_ID[risk.alternative]?.title ?? risk.alternative}
               </Link>
@@ -198,6 +205,19 @@ export function PracticePlayer({ practice }: { practice: Practice }) {
             Preparado
           </Button>
         </m.div>
+        <m.div variants={fadeUp} className="mt-4 flex justify-end">
+          <button type="button" onClick={() => setApplyOpen(true)} className="text-sm text-sage-700 underline decoration-sage-300 underline-offset-2 hover:decoration-sage-700">
+            ¿Ya la usaste en tu vida? Cuéntalo
+          </button>
+        </m.div>
+        <Sheet open={applyOpen} onClose={() => setApplyOpen(false)} title="La usé en mi vida">
+          <div className="pb-4">
+            <p className="mb-4 text-sm leading-relaxed text-stone-600">
+              Usar una habilidad fuera de la pantalla, aunque sea a medias, es lo que la vuelve tuya. Cuéntalo para ver qué te sirve.
+            </p>
+            <ApplicationForm practiceId={practice.id} />
+          </div>
+        </Sheet>
         <m.div variants={fadeUp} className="mt-14">
           <Tabs
             tabs={[
@@ -280,6 +300,33 @@ export function PracticePlayer({ practice }: { practice: Practice }) {
             highAnchor="10 · excelente"
           />
         </div>
+        <div className="mt-4 rounded-2xl border border-stone-200 bg-white p-6 shadow-soft">
+          <label className="block">
+            <span className="block font-serif text-xl text-stone-800">Llevarlo a tu vida</span>
+            <span className="mt-1 block text-sm leading-relaxed text-stone-600">
+              ¿Cuándo y dónde podrías probar esta habilidad fuera de la pantalla? Una acción pequeña basta. En unos días te
+              preguntaremos cómo fue (opcional).
+            </span>
+            <input
+              value={transfer}
+              onChange={(e) => setTransfer(e.target.value.slice(0, 280))}
+              placeholder="Ej.: Mañana, antes de la reunión"
+              className="mt-3 w-full rounded-xl border border-stone-200 bg-stone-50/60 px-4 py-3 text-[15px] text-stone-800 placeholder:text-stone-500 focus:border-sage-400 focus:bg-white focus:outline-none"
+            />
+          </label>
+          <div className="mt-3 flex flex-wrap gap-2" aria-label="Ideas">
+            {TRANSFER_SUGGESTIONS.map((s) => (
+              <button
+                key={s}
+                type="button"
+                onClick={() => setTransfer(s)}
+                className="rounded-full border border-stone-200 px-3 py-1 text-xs text-stone-600 transition-colors hover:border-sage-300 hover:text-stone-800"
+              >
+                {s}
+              </button>
+            ))}
+          </div>
+        </div>
         <div className="mt-8 flex justify-end">
           <Button onClick={save}>Registrar práctica</Button>
         </div>
@@ -301,6 +348,11 @@ export function PracticePlayer({ practice }: { practice: Practice }) {
           La constancia importa más que la duración.
         </m.p>
         {note && <GrowthNote note={note} className="mt-8" />}
+        {transfer.trim() && (
+          <m.p variants={fadeUp} className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-stone-600">
+            Te propusiste: «{transfer.trim()}». En unos días te preguntaremos en el Panel cómo fue.
+          </m.p>
+        )}
         <m.div variants={fadeUp} className="mt-10 flex justify-center gap-3">
           <Link href="/dashboard" className={buttonStyles('secondary')}>
             Ver panel
