@@ -121,6 +121,29 @@ export interface SessionRecord {
   tz?: string | null;
   /** Versión del contenido (guion de la práctica) usada en esta sesión. */
   contentVersion?: number | null;
+  /** «Llevarlo a tu vida»: cuándo y dónde se propone probar la habilidad (opcional). */
+  transfer?: string | null;
+}
+
+/** Utilidad percibida de una habilidad usada en la vida cotidiana. */
+export type Usefulness = 'util' | 'indiferente' | 'no-apropiada';
+
+/**
+ * Aplicación: un intento de usar una habilidad fuera de la pantalla (paso «Revisar»).
+ * `applied: false` registra que no se pudo, sin juicio: sirve para entender obstáculos.
+ */
+export interface Application {
+  id: string;
+  /** Práctica del gimnasio cuya habilidad se aplicó. */
+  practiceId: string;
+  /** Sesión que propuso el plan, si la aplicación responde a uno. */
+  sessionId: string | null;
+  applied: boolean;
+  usefulness: Usefulness | null;
+  /** Qué aprendí o qué cambiaría (opcional). */
+  note: string | null;
+  createdAt: Date;
+  tz?: string | null;
 }
 
 export interface AfflictionLog {

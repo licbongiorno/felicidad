@@ -5,7 +5,7 @@ import type { FirestoreError, Unsubscribe } from 'firebase/firestore';
 import type * as FirestoreRepo from '@/lib/firebase/repositories';
 import { DEMO_MODE } from '@/lib/demo';
 import { daysAgo, toDateKey } from '@/domain/metrics';
-import type { AfflictionLog, Assessment, DailyCheckin, JournalEntry, SessionRecord } from '@/domain/types';
+import type { AfflictionLog, Application, Assessment, DailyCheckin, JournalEntry, SessionRecord } from '@/domain/types';
 import { DBT_JOURNAL_TYPES, DBT_PRACTICE_IDS, type LifetimeCounts } from '@/domain/growth';
 
 /**
@@ -36,6 +36,8 @@ export type DataRepo = Pick<
   | 'addAssessment'
   | 'subscribeAssessments'
   | 'fetchLifetimeCounts'
+  | 'addApplication'
+  | 'subscribeApplications'
   | 'deleteUserData'
 > & { exportUserData: (uid: string) => Promise<unknown> };
 
@@ -49,7 +51,7 @@ export function loadRepo(): Promise<DataRepo> {
 }
 
 const WINDOW_DAYS = 90;
-const SOURCES = 5;
+const SOURCES = 6;
 
 type SyncStatus = 'idle' | 'loading' | 'ready' | 'error';
 
@@ -62,6 +64,8 @@ interface ProgressState {
   checkins: DailyCheckin[];
   journal: JournalEntry[];
   assessments: Assessment[];
+  /** Aplicaciones de habilidades en la vida cotidiana (sin ventana temporal). */
+  applications: Application[];
   /** Recuentos de toda la vida para el jardín (null hasta que llegan o sin conexión). */
   lifetime: LifetimeCounts | null;
 
@@ -72,6 +76,7 @@ interface ProgressState {
   saveCheckin: (checkin: Omit<DailyCheckin, 'updatedAt'>) => void;
   logJournal: (entry: FirestoreRepo.NewJournalEntry) => void;
   logAssessment: (a: FirestoreRepo.NewAssessment) => void;
+  logApplication: (a: FirestoreRepo.NewApplication) => void;
   clearError: () => void;
 }
 
@@ -84,6 +89,7 @@ const initialData = {
   checkins: [],
   journal: [],
   assessments: [],
+  applications: [],
   lifetime: null,
 };
 
@@ -157,6 +163,7 @@ export const useProgressStore = create<ProgressState>()((set, get) => {
             repo.subscribeJournal(uid, since, (journal) => { set({ journal }); markLoaded('journal'); }, onError),
             // Las evaluaciones se comparan a largo plazo: ventana de un año.
             repo.subscribeAssessments(uid, daysAgo(365), (assessments) => { set({ assessments }); markLoaded('assessments'); }, onError),
+            repo.subscribeApplications(uid, (applications) => { set({ applications }); markLoaded('applications'); }, onError),
           ];
           refreshLifetime();
         })
@@ -181,6 +188,8 @@ export const useProgressStore = create<ProgressState>()((set, get) => {
     logJournal: (entry) => writeAndGrow((repo, uid) => repo.addJournalEntry(uid, entry)),
 
     logAssessment: (a) => write((repo, uid) => repo.addAssessment(uid, a)),
+
+    logApplication: (a) => write((repo, uid) => repo.addApplication(uid, a)),
 
     clearError: () => set({ syncError: null }),
   };

@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
+import { applicationsByPractice } from '@/domain/application';
 import { buildGarden, daysThisMonth, growthCounts, skillProgress } from '@/domain/growth';
 import { useProgressStore } from '@/store/useProgressStore';
 
@@ -10,6 +11,7 @@ export function useGrowth() {
   const journal = useProgressStore((s) => s.journal);
   const lifetime = useProgressStore((s) => s.lifetime);
   const status = useProgressStore((s) => s.status);
+  const applications = useProgressStore((s) => s.applications);
 
   return useMemo(() => {
     const counts = growthCounts(sessions, journal, lifetime);
@@ -18,9 +20,9 @@ export function useGrowth() {
       counts,
       garden: buildGarden(counts),
       month: daysThisMonth(sessions, journal),
-      skills: skillProgress(counts),
+      skills: skillProgress(counts, applicationsByPractice(applications)),
       sessions,
       journal,
     };
-  }, [sessions, journal, lifetime, status]);
+  }, [sessions, journal, lifetime, status, applications]);
 }

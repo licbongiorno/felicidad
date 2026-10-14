@@ -17,12 +17,13 @@ import { Button } from '@/components/ui/Button';
 import { MoodTrend } from '@/components/dashboard/MoodTrend';
 
 const PERIODS = [14, 28, 56] as const;
-type SectionId = 'resumen' | 'animo' | 'who5' | 'practicas' | 'antidotos' | 'diario';
+type SectionId = 'resumen' | 'animo' | 'who5' | 'practicas' | 'aplicacion' | 'antidotos' | 'diario';
 const SECTIONS: { id: SectionId; label: string }[] = [
   { id: 'resumen', label: 'Resumen' },
   { id: 'animo', label: 'Ánimo diario' },
   { id: 'who5', label: 'Evaluaciones' },
   { id: 'practicas', label: 'Prácticas' },
+  { id: 'aplicacion', label: 'En la vida cotidiana' },
   { id: 'antidotos', label: 'Antídotos' },
   { id: 'diario', label: 'Entradas del diario' },
 ];
@@ -44,9 +45,22 @@ export function TherapistReport() {
   const afflictions = useProgressStore((s) => s.afflictions);
   const assessments = useProgressStore((s) => s.assessments);
   const journal = useProgressStore((s) => s.journal);
+  const applications = useProgressStore((s) => s.applications);
 
   const [days, setDays] = useState<(typeof PERIODS)[number]>(28);
-  const [enabled, setEnabled] = useState<Set<SectionId>>(new Set(['resumen', 'animo', 'who5', 'practicas', 'antidotos']));
+  const usedInLife = useMemo(() => {
+    const rows = new Map<string, { applied: number; notApplied: number; util: number; indiferente: number; 'no-apropiada': number }>();
+    for (const a of applications.filter((x) => x.createdAt >= daysAgo(days - 1))) {
+      const r = rows.get(a.practiceId) ?? { applied: 0, notApplied: 0, util: 0, indiferente: 0, 'no-apropiada': 0 };
+      if (a.applied) {
+        r.applied += 1;
+        if (a.usefulness) r[a.usefulness] += 1;
+      } else r.notApplied += 1;
+      rows.set(a.practiceId, r);
+    }
+    return [...rows.entries()].sort((x, y) => y[1].applied - x[1].applied);
+  }, [applications, days]);
+  const [enabled, setEnabled] = useState<Set<SectionId>>(new Set(['resumen', 'animo', 'who5', 'practicas', 'aplicacion', 'antidotos']));
   const [included, setIncluded] = useState<Set<string>>(new Set());
   const [note, setNote] = useState('');
 
@@ -281,6 +295,39 @@ export function TherapistReport() {
               </table>
             ) : (
               <Muted>Sin prácticas completas en el periodo.</Muted>
+            )}
+          </Block>
+        )}
+
+        {show('aplicacion') && (
+          <Block title="Habilidades usadas en la vida cotidiana (autoinforme)">
+            {usedInLife.length ? (
+              <table className="w-full text-sm">
+                <thead className="text-left text-xs text-stone-500">
+                  <tr>
+                    <th className="pb-2 font-normal">Práctica</th>
+                    <th className="pb-2 text-right font-normal">Usada</th>
+                    <th className="pb-2 text-right font-normal">Útil</th>
+                    <th className="pb-2 text-right font-normal">Indiferente</th>
+                    <th className="pb-2 text-right font-normal">No apropiada</th>
+                    <th className="pb-2 text-right font-normal">No se pudo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {usedInLife.map(([id, r]) => (
+                    <tr key={id} className="border-t border-stone-100">
+                      <td className="py-2 text-stone-800">{PRACTICE_BY_ID[id]?.title ?? id}</td>
+                      <td className="py-2 text-right tabular-nums text-stone-700">{r.applied}</td>
+                      <td className="py-2 text-right tabular-nums text-stone-700">{r.util}</td>
+                      <td className="py-2 text-right tabular-nums text-stone-700">{r.indiferente}</td>
+                      <td className="py-2 text-right tabular-nums text-stone-700">{r['no-apropiada']}</td>
+                      <td className="py-2 text-right tabular-nums text-stone-700">{r.notApplied}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <Muted>Sin registros de uso en la vida cotidiana en el periodo.</Muted>
             )}
           </Block>
         )}

@@ -19,6 +19,44 @@ entrada en este registro.
 
 ---
 
+## 2026-10-14 · Fase 2: ciclo completo de cada ejercicio (versión 1)
+
+Cada práctica sigue cinco pasos: Comprender, Practicar, Reflexionar, Llevarlo a tu vida y Revisar. Los dos últimos son
+nuevos (`src/domain/application.ts`).
+
+**Llevarlo a tu vida.**
+- Al cerrar una práctica se puede escribir cuándo y dónde probarla. Es opcional y trae ideas para elegir.
+- El plan se guarda con la sesión (campo `transfer`, de 280 caracteres como máximo).
+
+**Revisar.**
+- Entre 6 horas y 14 días después, el Panel pregunta por cada plan si se pudo usar, si sirvió (me sirvió, me dio igual,
+  no era para esto) y qué se aprendió.
+- «Todavía no» también se guarda, sin juicio: muestra qué se interpone.
+- Desde cualquier práctica se puede registrar un uso sin plan previo («¿Ya la usaste en tu vida? Cuéntalo»).
+- Los registros van a la nueva colección `applications`.
+
+**Indicadores separados**, ninguno usado como medida de mejoría clínica:
+- Práctica.
+- Aplicación en la vida cotidiana.
+- Utilidad percibida.
+
+El Panel suma «En tu vida · 28 días» y el informe para el terapeuta, «Habilidades usadas en la vida cotidiana».
+
+**Niveles de dominio de la colección DBT**: descubrir, practicar (3 prácticas), aplicar (una vez en la vida) e integrar
+(le sirvió 3 veces). Las habilidades del diario se aplican a las 6 entradas y se integran a las 12. No bajan nunca.
+
+**Reglas de Firestore.** Las sesiones aceptan `transfer` y hay una colección nueva, `applications`: sólo agregar,
+valores cerrados y nota de 280 caracteres como máximo. Exportar y borrar los datos la incluyen. Probado en el emulador:
+24/24. **Hay que volver a publicar `firestore.rules` en la consola de Firebase.**
+
+**Seguridad.** El aviso de las prácticas de nivel 2 explica cómo detenerse: «Pausar» y después «Terminar aquí».
+
+**Para la revisión clínica:**
+- Los umbrales de los niveles (3 prácticas; útil 3 veces).
+- Los plazos de la revisión (de 6 horas a 14 días).
+
+---
+
 ## 2026-10-14 · Fase 1: seguridad y catálogo clínico (versión 1)
 
 **Nombre.** La app pasa a llamarse **Habilidades Psicológicas**. Los identificadores internos (claves de

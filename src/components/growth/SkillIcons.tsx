@@ -153,18 +153,18 @@ export const SKILL_ICON: Record<string, Icon> = {
   'give-fast': GiveFast,
 };
 
-/** Medalla de una habilidad: anillo de cinco segmentos (nivel de dominio) e ícono. */
-export function SkillMedal({ skillId, level, size = 64 }: { skillId: string; level: number; size?: number }) {
+/** Medalla de una habilidad: anillo segmentado (nivel de dominio: descubrir, practicar, aplicar, integrar) e ícono. */
+export function SkillMedal({ skillId, level, size = 64, segments = 4 }: { skillId: string; level: number; size?: number; segments?: number }) {
   const Icon = SKILL_ICON[skillId] ?? WiseMind;
   const r = 27;
   const circ = 2 * Math.PI * r;
   const gap = 7;
-  const seg = circ / 5 - gap;
+  const seg = circ / segments - gap;
   const locked = level === 0;
   return (
     <span className="relative inline-flex shrink-0 items-center justify-center" style={{ width: size, height: size }}>
       <svg viewBox="0 0 64 64" className="absolute inset-0 h-full w-full -rotate-90" aria-hidden>
-        {Array.from({ length: 5 }, (_, i) => (
+        {Array.from({ length: segments }, (_, i) => (
           <circle
             key={i}
             cx="32"

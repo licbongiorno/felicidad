@@ -1,5 +1,5 @@
-import type { AfflictionLog, Assessment, DailyCheckin, JournalEntry, SessionRecord } from '@/domain/types';
-import type { NewAfflictionLog, NewAssessment, NewJournalEntry, NewSession } from '@/lib/firebase/repositories';
+import type { AfflictionLog, Application, Assessment, DailyCheckin, JournalEntry, SessionRecord } from '@/domain/types';
+import type { NewAfflictionLog, NewApplication, NewAssessment, NewJournalEntry, NewSession } from '@/lib/firebase/repositories';
 import { currentTimeZone } from '@/domain/metrics';
 import type { LifetimeCounts } from '@/domain/growth';
 
@@ -15,13 +15,14 @@ interface DemoData {
   checkins: DailyCheckin[];
   journal: JournalEntry[];
   assessments: Assessment[];
+  applications: Application[];
 }
 
 const KEY = 'eudaimonia-demo';
 type Kind = keyof DemoData;
 
 function revive(raw: string | null): DemoData {
-  const empty: DemoData = { sessions: [], afflictions: [], checkins: [], journal: [], assessments: [] };
+  const empty: DemoData = { sessions: [], afflictions: [], checkins: [], journal: [], assessments: [], applications: [] };
   if (!raw) return empty;
   try {
     const d = JSON.parse(raw) as DemoData;
@@ -31,6 +32,7 @@ function revive(raw: string | null): DemoData {
       checkins: d.checkins.map((c) => ({ ...c, updatedAt: new Date(c.updatedAt) })),
       journal: (d.journal ?? []).map((j) => ({ ...j, createdAt: new Date(j.createdAt) })),
       assessments: (d.assessments ?? []).map((a) => ({ ...a, createdAt: new Date(a.createdAt) })),
+      applications: (d.applications ?? []).map((a) => ({ ...a, createdAt: new Date(a.createdAt) })),
     };
   } catch {
     return empty;
@@ -44,6 +46,7 @@ const listeners: { [K in Kind]: Set<() => void> } = {
   checkins: new Set(),
   journal: new Set(),
   assessments: new Set(),
+  applications: new Set(),
 };
 
 function store(): DemoData {
@@ -125,6 +128,15 @@ export function subscribeJournal(_uid: string, since: Date, onData: (rows: Journ
   return subscribe('journal', () => store().journal.filter((j) => j.createdAt >= since), onData);
 }
 
+export async function addApplication(_uid: string, a: NewApplication) {
+  store().applications.unshift({ ...a, id: id(), createdAt: new Date(), tz: a.tz ?? currentTimeZone() });
+  commit('applications');
+}
+
+export function subscribeApplications(_uid: string, onData: (rows: Application[]) => void, _onError?: unknown) {
+  return subscribe('applications', () => store().applications, onData);
+}
+
 export async function addAssessment(_uid: string, a: NewAssessment) {
   store().assessments.unshift({ ...a, id: id(), createdAt: new Date(), tz: a.tz ?? currentTimeZone() });
   commit('assessments');
@@ -135,12 +147,12 @@ export function subscribeAssessments(_uid: string, since: Date, onData: (rows: A
 }
 
 export async function exportUserData(_uid: string) {
-  const { sessions, afflictions, checkins, journal, assessments } = store();
-  return { exportedAt: new Date().toISOString(), profile: { demo: true }, sessions, checkins, afflictionLogs: afflictions, journal, assessments };
+  const { sessions, afflictions, checkins, journal, assessments, applications } = store();
+  return { exportedAt: new Date().toISOString(), profile: { demo: true }, sessions, checkins, afflictionLogs: afflictions, journal, assessments, applications };
 }
 
 export async function deleteUserData(_uid: string) {
-  data = { sessions: [], afflictions: [], checkins: [], journal: [], assessments: [] };
+  data = { sessions: [], afflictions: [], checkins: [], journal: [], assessments: [], applications: [] };
   try {
     localStorage.removeItem(KEY);
   } catch {

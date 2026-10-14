@@ -241,24 +241,49 @@ export const DBT_SKILLS: DbtSkill[] = [
 export const DBT_PRACTICE_IDS = DBT_SKILLS.flatMap((s) => (s.source.kind === 'practica' ? [s.source.id] : []));
 export const DBT_JOURNAL_TYPES = DBT_SKILLS.flatMap((s) => (s.source.kind === 'diario' ? [s.source.type] : []));
 
-/** Umbrales de práctica para cada nivel de dominio (1–5). */
-export const MASTERY_THRESHOLDS = [1, 3, 6, 10, 15];
-export const MASTERY_LABEL = ['Por descubrir', 'Descubierta', 'En práctica', 'Afianzada', 'Integrada', 'Propia'] as const;
+/**
+ * Niveles pedagógicos de dominio (de la práctica en pantalla a la vida cotidiana):
+ *   1 Descubrir  · la probaste una vez.
+ *   2 Practicar  · 3 prácticas: ya conoces el procedimiento.
+ *   3 Aplicar    · la usaste al menos una vez en tu vida (paso «Revisar»).
+ *   4 Integrar   · te sirvió en tu vida 3 veces: sabes cuándo y cómo usarla.
+ * Las habilidades del diario (tarjeta diaria, análisis en cadena) ya son aplicación:
+ * cuentan como aplicadas a las 6 entradas e integradas a las 12.
+ * Se usa el nivel más alto alcanzado y, como los recuentos sólo crecen, nunca baja.
+ */
+export const MASTERY_LABEL = ['Por descubrir', 'Descubierta', 'Practicada', 'Aplicada', 'Integrada'] as const;
+export const MASTERY_HINT = [
+  'Pruébala una vez para descubrirla',
+  'Practícala 3 veces para aprender el procedimiento',
+  'Úsala en tu vida y cuéntalo desde la práctica o en «Revisar»',
+  'Cuando te sirva 3 veces en tu vida, queda integrada',
+  'Ya sabes cuándo y cómo usarla',
+] as const;
+export const PRACTICE_FOR_LEVEL_2 = 3;
+export const USEFUL_FOR_LEVEL_4 = 3;
+export const JOURNAL_FOR_LEVEL = [1, 3, 6, 12];
 
 export interface SkillProgress {
   skill: DbtSkill;
+  /** Prácticas en pantalla (o entradas del diario). */
   uses: number;
+  /** Veces que se usó en la vida cotidiana, y cuántas sirvió. */
+  applied: number;
+  useful: number;
   level: number;
-  /** Usos que faltan para el siguiente nivel (null si ya es «Propia»). */
-  toNext: number | null;
 }
 
-export function skillProgress(counts: GrowthCounts): SkillProgress[] {
+export function skillProgress(counts: GrowthCounts, applied: Record<string, { applied: number; useful: number }> = {}): SkillProgress[] {
   return DBT_SKILLS.map((skill) => {
-    const uses = skill.source.kind === 'practica' ? (counts.practices[skill.source.id] ?? 0) : (counts.journalTypes[skill.source.type] ?? 0);
-    const level = MASTERY_THRESHOLDS.filter((t) => uses >= t).length;
-    const toNext = level < MASTERY_THRESHOLDS.length ? MASTERY_THRESHOLDS[level] - uses : null;
-    return { skill, uses, level, toNext };
+    if (skill.source.kind === 'diario') {
+      const uses = counts.journalTypes[skill.source.type] ?? 0;
+      return { skill, uses, applied: 0, useful: 0, level: JOURNAL_FOR_LEVEL.filter((t) => uses >= t).length };
+    }
+    const uses = counts.practices[skill.source.id] ?? 0;
+    const a = applied[skill.source.id] ?? { applied: 0, useful: 0 };
+    const reached = [uses + a.applied >= 1, uses >= PRACTICE_FOR_LEVEL_2, a.applied >= 1, a.useful >= USEFUL_FOR_LEVEL_4];
+    const level = reached.lastIndexOf(true) + 1;
+    return { skill, uses, applied: a.applied, useful: a.useful, level };
   });
 }
 

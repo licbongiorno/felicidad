@@ -23,13 +23,13 @@ import {
 import type { User } from 'firebase/auth';
 import { getDb } from './db';
 import { CONSENT_VERSION } from '@/lib/consent';
-import type { AfflictionLog, Assessment, DailyCheckin, JournalEntry, Profile, SessionRecord } from '@/domain/types';
+import type { AfflictionLog, Application, Assessment, DailyCheckin, JournalEntry, Profile, SessionRecord } from '@/domain/types';
 import { currentTimeZone } from '@/domain/metrics';
 import type { LifetimeCounts } from '@/domain/growth';
 
 export { CONSENT_VERSION };
 
-export const USER_COLLECTIONS = ['sessions', 'checkins', 'afflictionLogs', 'journal', 'assessments'] as const;
+export const USER_COLLECTIONS = ['sessions', 'checkins', 'afflictionLogs', 'journal', 'assessments', 'applications'] as const;
 type UserCollection = (typeof USER_COLLECTIONS)[number];
 
 const userCollection = (uid: string, name: UserCollection) =>
@@ -127,6 +127,7 @@ export function addSession(uid: string, s: NewSession) {
     moodPost: s.moodPost,
     tz: s.tz ?? currentTimeZone(),
     contentVersion: s.contentVersion ?? null,
+    ...(s.transfer ? { transfer: s.transfer.slice(0, 280) } : {}),
     createdAt: serverTimestamp(),
   });
 }
@@ -161,6 +162,7 @@ export function subscribeSessions(
             moodPost: v.moodPost ?? null,
             tz: v.tz ?? null,
             contentVersion: v.contentVersion ?? null,
+            transfer: v.transfer ?? null,
           };
         }),
       ),
@@ -297,6 +299,47 @@ export function subscribeJournal(
         snap.docs.map((d) => {
           const v = read(d);
           return { id: d.id, type: v.type, values: v.values ?? {}, createdAt: toDate(v.createdAt), tz: v.tz ?? null };
+        }),
+      ),
+    onError,
+  );
+}
+
+// ---------------------------------------------------------------- aplicaciones en la vida cotidiana
+
+export type NewApplication = Omit<Application, 'id' | 'createdAt'>;
+
+export function addApplication(uid: string, a: NewApplication) {
+  return addDoc(userCollection(uid, 'applications'), {
+    practiceId: a.practiceId,
+    sessionId: a.sessionId,
+    applied: a.applied,
+    usefulness: a.usefulness,
+    note: a.note ? a.note.slice(0, 280) : null,
+    tz: a.tz ?? currentTimeZone(),
+    createdAt: serverTimestamp(),
+  });
+}
+
+/** Sin ventana temporal: son pocos registros y alimentan los niveles de dominio de toda la vida. */
+export function subscribeApplications(uid: string, onData: (rows: Application[]) => void, onError: (e: FirestoreError) => void): Unsubscribe {
+  const q = query(userCollection(uid, 'applications'), orderBy('createdAt', 'desc'));
+  return onSnapshot(
+    q,
+    (snap) =>
+      onData(
+        snap.docs.map((d) => {
+          const v = read(d);
+          return {
+            id: d.id,
+            practiceId: v.practiceId,
+            sessionId: v.sessionId ?? null,
+            applied: v.applied === true,
+            usefulness: v.usefulness ?? null,
+            note: v.note ?? null,
+            createdAt: toDate(v.createdAt),
+            tz: v.tz ?? null,
+          };
         }),
       ),
     onError,
