@@ -49,7 +49,7 @@ export function FreeTimer() {
           <m.section variants={stagger(0.06)} initial="hidden" animate="show" className="mx-auto max-w-xl">
             <m.div variants={fadeUp}>
               <Link href="/gimnasio" className="group inline-flex items-center gap-1.5 text-sm text-stone-500 transition-colors hover:text-stone-700">
-                <span className="transition-transform duration-300 group-hover:-translate-x-0.5">←</span> Gimnasio
+                <span className="transition-transform duration-300 group-hover:-translate-x-0.5">←</span> Habilidades
               </Link>
             </m.div>
             <m.h1 variants={fadeUp} className="mt-8 font-serif text-4xl text-stone-800 sm:text-5xl">

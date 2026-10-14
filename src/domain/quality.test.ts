@@ -174,6 +174,24 @@ describe('catálogo clínico', () => {
     for (const list of Object.values(PRACTICE_APPROACHES)) for (const a of list) expect(APPROACH_LABEL[a]).toBeDefined();
   });
 
+  it('cada práctica está en un solo módulo y los enlaces de los módulos existen', async () => {
+    const { MODULES } = await import('./catalog');
+    const seen = new Map<string, string>();
+    for (const m of MODULES) {
+      for (const id of m.practices) {
+        expect(PRACTICE_BY_ID[id], `${m.id} → ${id}`).toBeDefined();
+        expect(seen.get(id), `${id} en ${seen.get(id)} y ${m.id}`).toBeUndefined();
+        seen.set(id, m.id);
+      }
+      for (const t of m.journal) expect(JOURNAL_TEMPLATES.some((x) => x.type === t), `${m.id} → ${t}`).toBe(true);
+      for (const r of m.resources) {
+        const article = r.href.match(/^\/biblioteca\/([a-z0-9-]+)$/)?.[1];
+        if (article && !['glosario', 'trampas-del-pensamiento', 'rueda-de-emociones'].includes(article)) expect(ARTICLE_BY_ID[article], r.href).toBeDefined();
+      }
+    }
+    for (const p of PRACTICES) expect(seen.has(p.id), `${p.id} sin módulo`).toBe(true);
+  });
+
   it('el contenido de nivel 2 tiene precauciones y una alternativa de nivel 1', async () => {
     const { PRACTICE_RISK, JOURNAL_RISK, practiceRisk } = await import('./catalog');
     for (const [id, r] of Object.entries(PRACTICE_RISK)) {

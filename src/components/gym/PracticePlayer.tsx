@@ -92,7 +92,7 @@ export function PracticePlayer({ practice }: { practice: Practice }) {
       <m.article variants={stagger(0.07)} initial="hidden" animate="show" className="mx-auto max-w-2xl">
         <m.div variants={fadeUp}>
           <Link href="/gimnasio" className="group inline-flex items-center gap-1.5 text-sm text-stone-500 transition-colors hover:text-stone-700">
-            <span className="transition-transform duration-300 group-hover:-translate-x-0.5">←</span> Gimnasio
+            <span className="transition-transform duration-300 group-hover:-translate-x-0.5">←</span> Habilidades
           </Link>
         </m.div>
         <m.p variants={fadeUp} className="mt-8 text-xs uppercase tracking-[0.2em] text-stone-500">
