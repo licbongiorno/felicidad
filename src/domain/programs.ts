@@ -338,6 +338,46 @@ export const PROGRAMS: Program[] = [
       },
     ],
   },
+  {
+    id: 'habilidades-dbt',
+    title: 'Habilidades DBT',
+    subtitle: 'Cuatro semanas, un módulo de la terapia dialéctico-conductual por semana',
+    description:
+      'Para quien siente las emociones con mucha intensidad o reacciona de formas que luego lamenta. Recorre los cuatro módulos de habilidades de la DBT: conciencia plena, tolerancia al malestar, regulación emocional y relaciones. No sustituye un tratamiento DBT completo.',
+    basis: 'Manual de habilidades DBT (Linehan, 2015); entrenamiento en habilidades como tratamiento independiente (Valentine et al., 2015).',
+    rhythm: '10 minutos al día, 5 días por semana. Ensaya en calma para tener las habilidades listas en una crisis.',
+    weeks: [
+      {
+        title: 'Semana 1 · Conciencia plena',
+        focus: 'Encontrar la mente sabia',
+        description: 'La base de los demás módulos. Aprenderás a notar la emoción y los hechos a la vez, y a hacer una pausa antes de reaccionar.',
+        practiceIds: ['mente-sabia', 'pausa-stop'],
+        articleIds: ['habilidades-dbt'],
+      },
+      {
+        title: 'Semana 2 · Tolerancia al malestar',
+        focus: 'Atravesar una crisis sin empeorarla',
+        description: 'Prepararás tu kit de crisis: herramientas para bajar la activación, calmarte, frenar un impulso y aceptar lo que no puedes cambiar.',
+        practiceIds: ['tipp', 'cinco-sentidos', 'pros-y-contras', 'aceptacion-radical'],
+        articleIds: ['kit-de-crisis'],
+      },
+      {
+        title: 'Semana 3 · Regulación emocional',
+        focus: 'Entender y cambiar las emociones que no ayudan',
+        description: 'Revisarás si tus emociones encajan con los hechos, practicarás la acción opuesta y cuidarás el cuerpo para estar menos vulnerable.',
+        practiceIds: ['comprobar-hechos', 'accion-opuesta', 'please'],
+        articleIds: ['antidotos-y-regulacion'],
+      },
+      {
+        title: 'Semana 4 · Efectividad interpersonal',
+        focus: 'Pedir, poner límites y cuidar el vínculo',
+        description: 'Prepararás conversaciones difíciles equilibrando tres objetivos: lo que pides, la relación y tu respeto propio.',
+        practiceIds: ['dear-man', 'give-fast'],
+        articleIds: ['asertividad-y-limites'],
+        journalType: 'conversacion',
+      },
+    ],
+  },
 ];
 
 export const PROGRAM_BY_ID: Record<string, Program> = Object.fromEntries(PROGRAMS.map((p) => [p.id, p]));
