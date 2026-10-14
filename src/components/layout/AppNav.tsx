@@ -25,6 +25,7 @@ import {
   IconPath,
   IconPulse,
   IconSprout,
+  IconFlask,
   LogoMark,
 } from '@/components/ui/icons';
 
@@ -37,6 +38,7 @@ const PRIMARY = [
 
 const SECONDARY = [
   { href: '/crecimiento', label: 'Tu jardín', Icon: IconSprout, description: 'Lo que cultivaste y tus habilidades DBT' },
+  { href: '/laboratorio', label: 'Laboratorio', Icon: IconFlask, description: 'Simulaciones y ejercicios interactivos' },
   { href: '/programas', label: 'Programas', Icon: IconPath, description: 'Recorridos guiados de varias semanas' },
   { href: '/evaluaciones', label: 'Evaluaciones', Icon: IconPulse, description: 'Cuestionarios validados para seguir tu evolución' },
   { href: '/biblioteca', label: 'Biblioteca', Icon: IconBook, description: 'Fundamentos científicos en lenguaje claro' },

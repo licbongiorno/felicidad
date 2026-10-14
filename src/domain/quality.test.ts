@@ -211,6 +211,40 @@ describe('catálogo clínico', () => {
   });
 });
 
+// ---------------------------------------------------------------- laboratorio
+describe('laboratorio', () => {
+  it('cada paso de cada simulación tiene tres respuestas, una de cada estilo, con explicación', async () => {
+    const { SIMULATIONS } = await import('./lab');
+    expect(new Set(SIMULATIONS.map((s) => s.id)).size).toBe(SIMULATIONS.length);
+    for (const s of SIMULATIONS) {
+      for (const id of s.skills) expect(PRACTICE_BY_ID[id], `${s.id} → ${id}`).toBeDefined();
+      for (const step of s.steps) {
+        expect(step.line, s.id).toMatch(/^«.+»$/);
+        expect(step.options.map((o) => o.style).sort(), s.id).toEqual(['agresivo', 'asertivo', 'pasivo']);
+        for (const o of step.options) expect(o.text, s.id).toMatch(/^«.+»$/);
+      }
+      // Las explicaciones se leen juntas: legibilidad normal del conjunto.
+      const feedback = s.steps.flatMap((st) => st.options.map((o) => o.feedback)).join(' ');
+      expect(Math.round(inflesz(feedback)), s.id).toBeGreaterThanOrEqual(55);
+    }
+  });
+
+  it('hecho o interpretación: equilibrado y con trampas existentes', async () => {
+    const { FACT_ITEMS } = await import('./lab');
+    const { THINKING_TRAPS } = await import('./thinkingTraps');
+    const traps = new Set(THINKING_TRAPS.map((t) => t.id));
+    expect(FACT_ITEMS.filter((f) => f.kind === 'hecho').length).toBe(FACT_ITEMS.filter((f) => f.kind === 'interpretacion').length);
+    for (const f of FACT_ITEMS) if (f.trap) expect(traps.has(f.trap), f.trap).toBe(true);
+  });
+
+  it('el semáforo cubre de 0 a 10 y sugiere prácticas existentes', async () => {
+    const { zoneOf, ZONES } = await import('./lab');
+    for (let i = 0; i <= 10; i++) expect(zoneOf(i).range[0]).toBeLessThanOrEqual(i);
+    expect(zoneOf(9).zone).toBe('rojo');
+    for (const z of ZONES) for (const id of z.practices) expect(PRACTICE_BY_ID[id], id).toBeDefined();
+  });
+});
+
 // ---------------------------------------------------------------- instrumentos
 describe('instrumentos', () => {
   it.each(INSTRUMENTS.map((i) => [i.id, i] as const))('%s puntúa dentro de su rango', (_id, ins) => {

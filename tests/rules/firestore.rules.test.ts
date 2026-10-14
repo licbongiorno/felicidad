@@ -92,6 +92,12 @@ describe('diario', () => {
     await assertFails(addDoc(col, entry('defusion', { credibilidadPre: 12 })));
   });
 
+  it('acepta la caja de herramientas y rechaza campos ajenos', async () => {
+    const col = collection(alice(), 'users/alice/journal');
+    await assertSucceeds(addDoc(col, entry('caja-herramientas', { rojoPracticas: 'tipp,cinco-sentidos', rojoPropias: 'Ducharme', frases: 'Va a pasar' })));
+    await assertFails(addDoc(col, entry('caja-herramientas', { otra: 'x' })));
+  });
+
   it('acepta la tarjeta diaria y el análisis en cadena de la DBT', async () => {
     const col = collection(alice(), 'users/alice/journal');
     await assertSucceeds(addDoc(col, entry('tarjeta-diaria', { resumen: 'Día tranquilo', tristeza: 3, miedo: 2, ira: 0, verguenza: 1, alegria: 6, habilidades: 'mente sabia' })));

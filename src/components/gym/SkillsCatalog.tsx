@@ -148,7 +148,7 @@ export function SkillsCatalog() {
                   ))}
                   {mod.resources.map((r) => (
                     <Link key={r.href} href={r.href} className="rounded-full border border-stone-200 bg-white px-3 py-1.5 text-stone-700 transition-colors hover:border-sage-300">
-                      <span className="text-stone-500">{r.href.startsWith('/biblioteca') ? 'Leer · ' : 'Ir a · '}</span>
+                      <span className="text-stone-500">{r.href.startsWith('/biblioteca') ? 'Leer · ' : r.href.startsWith('/laboratorio') ? 'Ensayar · ' : 'Ir a · '}</span>
                       {r.label}
                     </Link>
                   ))}

@@ -10,6 +10,7 @@ import { GLOSSARY } from './glossary';
 import { THINKING_TRAPS } from './thinkingTraps';
 import { EMOTION_FAMILIES } from './emotions';
 import { MODULES } from './catalog';
+import { SIMULATIONS } from './lab';
 import { isPublished } from './governance';
 
 /**
@@ -89,6 +90,13 @@ export function buildIndex(): SearchDoc[] {
       doc({ id: `d:${t.id}`, kind: 'Glosario', title: t.name, subtitle: t.description, href: `/biblioteca/trampas-del-pensamiento#${t.id}` }, [t.example]),
     ),
     doc({ id: 's:/biblioteca/rueda-de-emociones', kind: 'Sección', title: 'Rueda de emociones', subtitle: 'Ponerle nombre a lo que sientes y qué hacer con ello', href: '/biblioteca/rueda-de-emociones' }, ['emociones', 'sentimientos', 'dbt', 'granularidad']),
+    doc({ id: 's:/laboratorio', kind: 'Sección', title: 'Laboratorio', subtitle: 'Simulaciones y ejercicios interactivos', href: '/laboratorio' }, ['juegos', 'simulador', 'ensayar']),
+    ...SIMULATIONS.map((s) =>
+      doc({ id: `sim:${s.id}`, kind: 'Sección', title: s.title, subtitle: `Simulador de conversación · ${s.goal}`, href: `/laboratorio/conversaciones/${s.id}` }, ['conversacion', 'limites', 'asertividad']),
+    ),
+    doc({ id: 's:/laboratorio/semaforo', kind: 'Sección', title: 'Semáforo emocional', subtitle: 'Qué hacer según la intensidad de la emoción', href: '/laboratorio/semaforo' }, ['crisis', 'intensidad']),
+    doc({ id: 's:/laboratorio/caja', kind: 'Sección', title: 'Mi caja de herramientas', subtitle: 'Lo que te ayuda en cada zona del semáforo', href: '/laboratorio/caja' }, ['kit', 'crisis']),
+    doc({ id: 's:/laboratorio/hecho-o-interpretacion', kind: 'Sección', title: '¿Hecho o interpretación?', subtitle: 'Juego para comprobar los hechos', href: '/laboratorio/hecho-o-interpretacion' }, ['juego', 'pensamientos']),
     ...MODULES.filter((m) => m.practices.length > 0).map((m) =>
       doc({ id: `m:${m.id}`, kind: 'Sección', title: m.title, subtitle: m.purpose, href: `/gimnasio#${m.id}` }, ['modulo', 'habilidades']),
     ),

@@ -37,6 +37,7 @@ export type DataRepo = Pick<
   | 'subscribeAssessments'
   | 'fetchLifetimeCounts'
   | 'addApplication'
+  | 'fetchLatestJournal'
   | 'subscribeApplications'
   | 'deleteUserData'
 > & { exportUserData: (uid: string) => Promise<unknown> };

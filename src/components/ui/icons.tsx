@@ -78,6 +78,15 @@ export const IconPath = (p: SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+export const IconFlask = (p: SVGProps<SVGSVGElement>) => (
+  <svg {...base} {...p}>
+    <path d="M9.5 3.5h5M10.5 3.5v5.2L5.6 17.6a2 2 0 0 0 1.8 2.9h9.2a2 2 0 0 0 1.8-2.9l-4.9-8.9V3.5" />
+    <path d="M7.7 14h8.6" />
+    <circle cx="10.5" cy="17" r="0.7" fill="currentColor" stroke="none" />
+    <circle cx="13.5" cy="16.2" r="0.5" fill="currentColor" stroke="none" />
+  </svg>
+);
+
 export const IconSprout = (p: SVGProps<SVGSVGElement>) => (
   <svg {...base} {...p}>
     <path d="M12 20.5v-8" />
