@@ -21,6 +21,7 @@ import { Tabs } from '@/components/ui/Tabs';
 import { GuidedSequence } from '@/components/practice/GuidedSequence';
 import { CountUp, DrawnCheck } from '@/components/motion/Reveal';
 import { growthNote } from '@/domain/growth';
+import { APPROACH_DESCRIPTION, APPROACH_LABEL, PRACTICE_RISK, practiceApproaches } from '@/domain/catalog';
 import { useGrowth } from '@/hooks/useGrowth';
 import { GrowthNote } from '@/components/growth/GrowthNote';
 
@@ -43,6 +44,9 @@ export function PracticePlayer({ practice }: { practice: Practice }) {
   const growth = useGrowth();
   // Qué creció en el jardín con esta práctica (se fija al registrarla).
   const [note, setNote] = useState<string | null>(null);
+  // Nivel de riesgo 2: hay que leer las precauciones antes de empezar.
+  const risk = PRACTICE_RISK[practice.id];
+  const [acknowledged, setAcknowledged] = useState(false);
   const missing = useMemo(() => missingPrerequisites(practice.id, completedPracticeIds(sessions)), [practice.id, sessions]);
   const level = levelOf(practice.id).level;
   // Estable durante la práctica: GuidedSequence requiere pasos memoizados.
@@ -91,6 +95,14 @@ export function PracticePlayer({ practice }: { practice: Practice }) {
         <m.h1 variants={fadeUp} className="mt-2 font-serif text-4xl text-stone-800 sm:text-5xl">
           {practice.title}
         </m.h1>
+        <m.ul variants={fadeUp} className="mt-3 flex flex-wrap gap-1.5" aria-label="Enfoque">
+          {practiceApproaches(practice.id).map((a) => (
+            <li key={a} title={APPROACH_DESCRIPTION[a]} className="rounded-full border border-stone-200 bg-white px-2.5 py-0.5 text-xs text-stone-600">
+              {APPROACH_LABEL[a]}
+            </li>
+          ))}
+          {risk && <li className="rounded-full bg-stone-800 px-2.5 py-0.5 text-xs text-stone-50">Con precauciones</li>}
+        </m.ul>
         <m.p variants={fadeUp} className="mt-4 text-lg leading-relaxed text-stone-600">
           {practice.summary}
         </m.p>
@@ -113,11 +125,30 @@ export function PracticePlayer({ practice }: { practice: Practice }) {
             . Puedes empezar igualmente si ya tienes experiencia.
           </m.p>
         )}
-        {practice.cautions && (
+        {practice.cautions && !risk && (
           <m.p variants={fadeUp} className="mt-4 rounded-xl bg-stone-100 px-4 py-3 text-sm leading-relaxed text-stone-600">
             <span className="font-medium">Precaución. </span>
             {practice.cautions}
           </m.p>
+        )}
+        {risk && (
+          <m.div variants={fadeUp} className="mt-6 rounded-2xl border border-stone-300 bg-white p-5">
+            <p className="font-medium text-stone-800">Antes de empezar</p>
+            <p className="mt-2 text-sm leading-relaxed text-stone-600">
+              Esta práctica puede remover emociones intensas. {practice.cautions}
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-stone-600">
+              Puedes detenerte en cualquier momento con «Terminar aquí». Si hoy no es un buen día, prueba{' '}
+              <Link href={`/gimnasio/${risk.alternative}`} className="text-sage-700 underline decoration-sage-300 underline-offset-2 hover:decoration-sage-700">
+                {PRACTICE_BY_ID[risk.alternative]?.title ?? risk.alternative}
+              </Link>
+              .
+            </p>
+            <label className="mt-4 flex cursor-pointer items-start gap-3 text-sm text-stone-700">
+              <input type="checkbox" checked={acknowledged} onChange={(e) => setAcknowledged(e.target.checked)} className="mt-0.5 h-4 w-4 accent-sage-700" />
+              Leí las precauciones y quiero hacerla ahora.
+            </label>
+          </m.div>
         )}
         {variants.length > 1 && (
         <m.div variants={fadeUp} className="mt-8 rounded-2xl border border-stone-200 bg-white p-6 shadow-soft">
@@ -158,6 +189,7 @@ export function PracticePlayer({ practice }: { practice: Practice }) {
         </m.div>
         <m.div variants={fadeUp} className="mt-8 flex justify-end">
           <Button
+            disabled={Boolean(risk) && !acknowledged}
             onClick={() => {
               startedAtRef.current = new Date();
               go('practice');

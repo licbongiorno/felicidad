@@ -1,4 +1,4 @@
-import { CRISIS_RESOURCES } from '@/config/safety';
+import { CrisisResources } from '@/components/safety/CrisisResources';
 import Link from 'next/link';
 import { Button, buttonStyles } from '@/components/ui/Button';
 import { isPublished } from '@/domain/governance';
@@ -11,20 +11,7 @@ export function SafetyPanel({ onBack }: { onBack: () => void }) {
         Lo que sientes ahora merece la atención de una persona, no de un ejercicio. Este no es el
         momento para un antídoto: es el momento de pedir ayuda.
       </p>
-      <ul className="mt-6 space-y-3">
-        {CRISIS_RESOURCES.map((r) => (
-          <li key={r.label} className="flex items-baseline justify-between gap-4 border-b border-stone-100 pb-3">
-            <span className="text-sm text-stone-600">{r.label}</span>
-            {r.href ? (
-              <a href={r.href} className="font-medium text-sage-700 underline decoration-sage-300 underline-offset-2 hover:decoration-sage-700">
-                {r.contact}
-              </a>
-            ) : (
-              <span className="text-right font-medium text-stone-700">{r.contact}</span>
-            )}
-          </li>
-        ))}
-      </ul>
+      <CrisisResources className="mt-2" />
       <p className="mt-6 text-sm leading-relaxed text-stone-600">
         Si estás en peligro inmediato, llama a emergencias o acude al servicio de urgencias más cercano.
         Si puedes, quédate cerca de alguien de confianza.

@@ -19,6 +19,41 @@ entrada en este registro.
 
 ---
 
+## 2026-10-14 · Fase 1: seguridad y catálogo clínico (versión 1)
+
+**Nombre.** La app pasa a llamarse **Habilidades Psicológicas**. Los identificadores internos (claves de
+almacenamiento, ids) no cambian.
+
+**Recursos de crisis de Argentina** (`src/config/safety.ts`). Verificados el 2026-10-14 en argentina.gob.ar, el sitio
+del Centro de Asistencia al Suicida y notas de prensa de 2026:
+- Emergencias 911.
+- Línea Nacional de Salud Mental 0800-999-0091: gratuita, las 24 horas, en todo el país.
+- Centro de Asistencia al Suicida 135 (CABA y GBA). Desde el resto del país, (011) 5275-1135 o 0800-345-1435.
+- Línea 144 de violencia de género: gratuita y las 24 horas.
+
+Un test obliga a revisarlos cada 12 meses (`CRISIS_RESOURCES_CHECKED_AT`).
+
+**Botón «Ayuda» en todas las pantallas.** Abre los recursos con un toque para llamar, el plan de seguridad (si está
+publicado) y los antídotos. Es el nivel 3 de riesgo: la app no gestiona crisis, facilita el acceso a ayuda humana.
+
+**Mayores de 18 años.** El consentimiento y el registro piden confirmar la edad. Se actualiza la versión del
+consentimiento (`2026-10-b`), así que cada usuario lo vuelve a aceptar una vez.
+
+**Enfoque y nivel de riesgo** (`src/domain/catalog.ts`).
+- Cada práctica y plantilla lleva su enfoque de origen: DBT, TCC, ACT, compasión (CFT), mindfulness, psicología
+  positiva, contemplativa, relajación o escritura terapéutica. Se muestra en la práctica.
+- Nivel 2, «con precauciones»:
+  - Prácticas: tonglen, conciencia pura, yo observador, perdón REACH, aceptación radical y hacer espacio. Piden
+    confirmar que se leyeron las precauciones y ofrecen una alternativa de nivel 1.
+  - Plantillas del diario: escritura expresiva, escalera de exposición, perdón y análisis en cadena.
+- Tests nuevos: enfoque en todo el contenido, alternativas de nivel 1 y vigencia de los recursos de crisis.
+
+**Para la revisión clínica:**
+- La lista de contenidos de nivel 2 y sus alternativas.
+- Si hay que añadir recursos provinciales o la línea de consumos problemáticos.
+
+---
+
 ## 2026-10-14 · Tu jardín: motivación sin castigo (versión 1)
 
 Gamificación terapéutica. Las reglas quedan en la guía de estilo, sección *Motivación*. No guarda datos nuevos: todo

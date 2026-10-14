@@ -12,7 +12,7 @@ import { EASE_OUT, fadeUp, gentleSpring, phaseVariants, stagger } from '@/lib/mo
 import { haptic } from '@/lib/haptics';
 import { Button } from '@/components/ui/Button';
 import { CountUp } from '@/components/motion/Reveal';
-import { CRISIS_RESOURCES } from '@/config/safety';
+import { CrisisResources } from '@/components/safety/CrisisResources';
 
 const DATE = new Intl.DateTimeFormat('es', { day: 'numeric', month: 'short', year: 'numeric' });
 
@@ -212,20 +212,7 @@ function Result({ instrument, score, previous, risk, onDone }: { instrument: Ins
             Has indicado pensamientos de muerte o de hacerte daño. Lo que sientes merece la atención de una persona ahora.
             Por favor, contacta con alguno de estos recursos, o con alguien de confianza.
           </p>
-          <ul className="mt-4 space-y-2 border-t border-stone-100 pt-4 text-sm">
-            {CRISIS_RESOURCES.map((r) => (
-              <li key={r.label} className="flex justify-between gap-4">
-                <span className="text-stone-600">{r.label}</span>
-                {r.href ? (
-                  <a href={r.href} className="font-medium text-sage-700 underline decoration-sage-300 underline-offset-2">
-                    {r.contact}
-                  </a>
-                ) : (
-                  <span className="text-right font-medium text-stone-800">{r.contact}</span>
-                )}
-              </li>
-            ))}
-          </ul>
+          <CrisisResources className="mt-2" />
           <p className="mt-4 text-sm text-stone-600">Si estás en peligro inmediato, llama a emergencias.</p>
           {isPublished('herramienta', 'plan-seguridad') && (
             <Link href="/plan-de-seguridad" className="mt-4 inline-block text-sm font-medium text-sage-700 underline decoration-sage-300 underline-offset-2">

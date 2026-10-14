@@ -15,7 +15,7 @@ import {
 import { getFirebaseAuth } from '@/lib/firebase/client';
 import { ensureUserProfile } from '@/lib/firebase/repositories';
 import { useAuth } from '@/providers/AuthProvider';
-import { SAFETY_DISCLAIMER } from '@/config/safety';
+import { MIN_AGE, SAFETY_DISCLAIMER } from '@/config/safety';
 import { Button } from '@/components/ui/Button';
 import { LogoMark } from '@/components/ui/icons';
 import { collapse, EASE_OUT } from '@/lib/motion';
@@ -133,8 +133,8 @@ export default function LoginPage() {
               className="mt-0.5 accent-sage-700"
             />
             <span>
-              Acepto el tratamiento de mis registros de práctica y estado de ánimo con fines de seguimiento
-              personal y, si lo autorizo expresamente, clínico. {SAFETY_DISCLAIMER}
+              Tengo {MIN_AGE} años o más y acepto el tratamiento de mis registros de práctica y estado de ánimo con
+              fines de seguimiento personal y, si lo autorizo expresamente, clínico. {SAFETY_DISCLAIMER}
             </span>
           </label>
           </m.div>

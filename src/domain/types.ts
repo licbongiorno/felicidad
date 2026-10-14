@@ -1,5 +1,5 @@
 /**
- * Modelo de dominio de Protocolo Eudaimonía.
+ * Modelo de dominio de Habilidades Psicológicas.
  * Este módulo no depende de React ni de Firebase: es la "verdad clínica" de la app.
  */
 

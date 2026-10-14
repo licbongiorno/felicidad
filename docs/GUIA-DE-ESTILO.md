@@ -1,6 +1,6 @@
 # Guía de estilo del contenido
 
-Normas para escribir o editar contenido terapéutico en Protocolo Eudaimonía. Las marcadas con ✓ se verifican
+Normas para escribir o editar contenido terapéutico en Habilidades Psicológicas. Las marcadas con ✓ se verifican
 automáticamente en `src/domain/quality.test.ts` y `src/domain/content.test.ts`: si no se cumplen, los tests fallan.
 
 ## Voz y tono
