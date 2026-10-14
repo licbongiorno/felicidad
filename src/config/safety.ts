@@ -37,6 +37,21 @@ export const CRISIS_RESOURCES: CrisisResource[] = [
   { label: 'Tu profesional tratante', contact: 'El contacto de tu plan de seguridad' },
 ];
 
+/**
+ * Recursos para la sección de chicos (botón «Ayuda» del modo chico y panel del adulto).
+ * La Línea 102 depende de cada provincia: atiende en la mayoría, gratis y las 24 horas,
+ * pero no en todas; por eso se indica el 911 como alternativa. Verificada el 2026-10-14.
+ */
+export const KID_RESOURCES: (CrisisResource & { href: string })[] = [
+  {
+    label: 'Línea 102',
+    contact: '102',
+    href: 'tel:102',
+    detail: 'Para chicas y chicos. Te escuchan y te ayudan. Gratis. Funciona en la mayoría de las provincias.',
+  },
+  { label: 'Emergencias', contact: '911', href: 'tel:911', detail: 'Si alguien está en peligro ahora.' },
+];
+
 export const APP_NAME = 'Habilidades Psicológicas';
 
 export const SAFETY_DISCLAIMER =

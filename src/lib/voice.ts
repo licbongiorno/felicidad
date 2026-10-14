@@ -23,7 +23,8 @@ function spanishVoice(): SpeechSynthesisVoice | null {
   return cachedVoice;
 }
 
-export function speak(text: string): void {
+/** `opts`: la sección para chicos usa un ritmo un poco más vivo y una voz algo más aguda. */
+export function speak(text: string, opts: { rate?: number; pitch?: number } = {}): void {
   if (!voiceSupported()) return;
   const synth = window.speechSynthesis;
   synth.cancel();
@@ -31,8 +32,8 @@ export function speak(text: string): void {
   const voice = spanishVoice();
   if (voice) u.voice = voice;
   u.lang = voice?.lang ?? 'es-ES';
-  u.rate = 0.88;
-  u.pitch = 0.95;
+  u.rate = opts.rate ?? 0.88;
+  u.pitch = opts.pitch ?? 0.95;
   synth.speak(u);
 }
 

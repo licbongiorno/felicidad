@@ -19,6 +19,39 @@ entrada en este registro.
 
 ---
 
+## 2026-10-14 · Sección para chicos (4 a 12 años), supervisada por el adulto
+
+**Qué es.** Una sección nueva, «Familia», donde el adulto responsable crea perfiles para sus hijos o hijas (apodo, franja de
+edad y avatar; sin correo, apellido ni fecha de nacimiento) y entra al «modo chico». Para salir del modo chico se pide un
+código de 4 números del adulto, guardado sólo en el dispositivo (con hash; 5 intentos fallidos = 30 segundos de espera).
+
+**Contenido (`infantil:*`, 29 actividades, todas `pendiente`).** Respiraciones animadas (globo, flor y vela, estrella,
+cuadrado, olas), técnica de la tortuga, relajación muscular para chicos (fideo, limón-gato-tortuga), escaneo corporal,
+«¿Cómo me siento?» con termómetro, juego de reconocimiento de emociones, volcán del enojo, surfear la ola (DBT-C), atención
+plena con los sentidos, detective de pensamientos, pensamientos como nubes, voz amable, mente sabia, cajita de las
+preocupaciones, semáforo para resolver problemas, «Cuento, siento, pido», misiones de valentía y de amabilidad, y frasco de
+gratitud. Cada una indica franjas de edad, cómo acompañar y de dónde viene.
+
+**En borrador.** `infantil:escalera-valiente` (exposición gradual guiada por el adulto): igual que la escalera de adultos,
+requiere validar salvaguardas y criterios de derivación con un/a profesional infantojuvenil.
+
+**Guías para familias (`guia-familia:*`, 7, `pendiente`).** Entrenador emocional (Gottman et al., 1996), tiempo especial
+(PCIT; Thomas y Zimmer-Gembeck, 2007), berrinches, acompañar la ansiedad sin acomodarse (SPACE; Lebowitz et al., 2020),
+validar (DBT-C; Perepletchikova et al., 2017), cómo usar la sección y cuándo consultar.
+
+**Seguridad.** Botón «Ayuda» propio del modo chico: buscar a un adulto de confianza, Línea 102 (derechos de niñas, niños y
+adolescentes; provincial, verificada el 2026-10-14) y 911. Si el chico marca una emoción difícil «muchísimo» en 3 días
+distintos de una semana, el panel del adulto muestra un aviso con orientación (no es un diagnóstico).
+
+**Datos.** `users/{uid}/kids` (con consentimiento del adulto, versión `2026-10-k1`) y `users/{uid}/kidActivities`
+(sólo anexión; valida emoción, intensidad 1–3 y nota de hasta 140 caracteres). Ambas entran en la exportación y el
+borrado de la cuenta. **Hay que publicar las reglas nuevas de `firestore.rules` en la consola de Firebase.**
+
+**Revisión recomendada.** Por un/a profesional de salud mental infantojuvenil, desde Ajustes › Revisión clínica
+(pestañas «Actividades para chicos» y «Guías para familias»).
+
+---
+
 ## 2026-10-14 · Plan de mejora: seguridad técnica y calidad (P0 y P1)
 
 **Contenido.** Se separan los antídotos que se solapaban. «Miedo o ansiedad» pasa a «Ansiedad», «Autocrítica o

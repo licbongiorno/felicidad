@@ -329,3 +329,94 @@
     scroll-behavior: auto !important;
   }
 }
+
+/*
+ * Sección para chicos: paleta propia, alegre pero sin sobreestimular (tonos pastel de fondo,
+ * colores vivos sólo en dibujos). Pares de texto verificados con WCAG AA en ambos modos.
+ */
+.kid-theme {
+  --kid-bg: 255 249 238;
+  --kid-surface: 255 255 255;
+  --kid-ink: 43 39 64;
+  --kid-soft: 86 80 110;
+  --kid-line: 238 228 210;
+  --kid-primary: 52 92 196;
+  --kid-onprimary: 255 255 255;
+  --kid-tint-sky: 222 240 252;
+  --kid-tint-mint: 218 245 230;
+  --kid-tint-coral: 255 226 222;
+  --kid-tint-sun: 255 241 204;
+  --kid-tint-lavender: 236 230 253;
+  --kid-tint-orange: 255 233 210;
+  --kid-tint-pink: 253 228 240;
+  --kid-tint-leaf: 226 243 216;
+  --kid-paint-sky: 92 170 236;
+  --kid-paint-mint: 72 190 146;
+  --kid-paint-coral: 242 120 108;
+  --kid-paint-sun: 252 196 72;
+  --kid-paint-lavender: 156 128 236;
+  --kid-paint-orange: 246 156 76;
+  --kid-paint-pink: 238 128 176;
+  --kid-paint-leaf: 96 176 96;
+  --kid-paint-body: 134 204 120;
+  --kid-paint-cheek: 255 160 160;
+  --kid-paint-eye: 43 39 64;
+}
+:root[data-theme='dark'] .kid-theme {
+  --kid-bg: 22 24 44;
+  --kid-surface: 34 37 64;
+  --kid-ink: 244 240 255;
+  --kid-soft: 200 196 224;
+  --kid-line: 58 60 92;
+  --kid-primary: 160 186 255;
+  --kid-onprimary: 22 24 44;
+  --kid-tint-sky: 30 52 80;
+  --kid-tint-mint: 26 60 50;
+  --kid-tint-coral: 76 40 46;
+  --kid-tint-sun: 72 60 26;
+  --kid-tint-lavender: 52 44 86;
+  --kid-tint-orange: 76 48 26;
+  --kid-tint-pink: 72 36 58;
+  --kid-tint-leaf: 34 60 36;
+  --kid-paint-sky: 104 176 236;
+  --kid-paint-mint: 84 196 156;
+  --kid-paint-coral: 240 130 118;
+  --kid-paint-sun: 250 204 90;
+  --kid-paint-lavender: 168 144 240;
+  --kid-paint-orange: 246 166 92;
+  --kid-paint-pink: 238 140 186;
+  --kid-paint-leaf: 110 186 110;
+  --kid-paint-body: 140 206 128;
+  --kid-paint-cheek: 240 140 150;
+  --kid-paint-eye: 22 24 44;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .kid-theme {
+    --kid-bg: 22 24 44;
+    --kid-surface: 34 37 64;
+    --kid-ink: 244 240 255;
+    --kid-soft: 200 196 224;
+    --kid-line: 58 60 92;
+    --kid-primary: 160 186 255;
+    --kid-onprimary: 22 24 44;
+    --kid-tint-sky: 30 52 80;
+    --kid-tint-mint: 26 60 50;
+    --kid-tint-coral: 76 40 46;
+    --kid-tint-sun: 72 60 26;
+    --kid-tint-lavender: 52 44 86;
+    --kid-tint-orange: 76 48 26;
+    --kid-tint-pink: 72 36 58;
+    --kid-tint-leaf: 34 60 36;
+    --kid-paint-sky: 104 176 236;
+    --kid-paint-mint: 84 196 156;
+    --kid-paint-coral: 240 130 118;
+    --kid-paint-sun: 250 204 90;
+    --kid-paint-lavender: 168 144 240;
+    --kid-paint-orange: 246 166 92;
+    --kid-paint-pink: 238 140 186;
+    --kid-paint-leaf: 110 186 110;
+    --kid-paint-body: 140 206 128;
+    --kid-paint-cheek: 240 140 150;
+    --kid-paint-eye: 22 24 44;
+  }
+}

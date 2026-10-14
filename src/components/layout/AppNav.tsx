@@ -40,6 +40,7 @@ const SECONDARY = [
   { href: '/crecimiento', label: 'Tu jardín', Icon: IconSprout, description: 'Lo que cultivaste y tus habilidades DBT' },
   { href: '/laboratorio', label: 'Laboratorio', Icon: IconFlask, description: 'Simulaciones y ejercicios interactivos' },
   { href: '/programas', label: 'Programas', Icon: IconPath, description: 'Recorridos guiados de varias semanas' },
+  { href: '/familia', label: 'Familia', Icon: IconSprout, description: 'Habilidades para chicos de 4 a 12 años, con tu supervisión' },
   { href: '/evaluaciones', label: 'Evaluaciones', Icon: IconPulse, description: 'Cuestionarios validados para seguir tu evolución' },
   { href: '/biblioteca', label: 'Biblioteca', Icon: IconBook, description: 'Fundamentos científicos en lenguaje claro' },
   { href: '/cartas', label: 'Cartas', Icon: IconCards, description: 'Perspectivas para romper la rumiación' },
@@ -51,7 +52,8 @@ const SECONDARY = [
 ];
 
 // Ajustes no va en la barra de escritorio: tiene su propio icono.
-const ALL = [PRIMARY[0], SECONDARY[0], ...PRIMARY.slice(1), SECONDARY[1], SECONDARY[2], SECONDARY[3]];
+const bySecondary = (href: string) => SECONDARY.find((l) => l.href === href)!;
+const ALL = [PRIMARY[0], bySecondary('/crecimiento'), ...PRIMARY.slice(1), bySecondary('/laboratorio'), bySecondary('/programas'), bySecondary('/evaluaciones')];
 
 /**
  * Escritorio (lg+): barra superior con todas las secciones y un indicador que se desliza.

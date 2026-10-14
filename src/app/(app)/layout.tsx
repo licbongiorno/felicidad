@@ -10,6 +10,7 @@ import { ConsentGate } from '@/components/layout/ConsentGate';
 import { VerifyEmailNotice } from '@/components/layout/VerifyEmailNotice';
 import { LogoMark } from '@/components/ui/icons';
 import { SearchLauncher } from '@/components/search/SearchLauncher';
+import { useActiveKidId } from '@/lib/kids/kidMode';
 
 /**
  * Área privada. La protección aquí es de UX; la seguridad real la imponen las reglas
@@ -19,12 +20,15 @@ import { SearchLauncher } from '@/components/search/SearchLauncher';
 export default function PrivateLayout({ children }: { children: React.ReactNode }) {
   const { user, profile, loading, hasConsent } = useAuth();
   const router = useRouter();
+  // En modo chico, el área de adultos no está disponible: se sale con el código del adulto.
+  const kidMode = !!useActiveKidId();
 
   useEffect(() => {
     if (!loading && !user) router.replace('/login');
-  }, [user, loading, router]);
+    else if (kidMode) router.replace('/chicos');
+  }, [user, loading, kidMode, router]);
 
-  if (loading || !user || profile === undefined) {
+  if (loading || !user || profile === undefined || kidMode) {
     return (
       <div className="flex min-h-screen items-center justify-center" aria-label="Cargando">
         <m.div animate={{ scale: [0.9, 1, 0.9], opacity: [0.5, 1, 0.5] }} transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}>

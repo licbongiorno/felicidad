@@ -18,7 +18,7 @@ import { DEMO_MODE } from '@/lib/demo';
 
 export type ReviewStatus = 'borrador' | 'pendiente' | 'revisado';
 
-export type ContentKind = 'practica' | 'antidoto' | 'diario' | 'articulo' | 'instrumento' | 'herramienta' | 'programa';
+export type ContentKind = 'practica' | 'antidoto' | 'diario' | 'articulo' | 'instrumento' | 'herramienta' | 'programa' | 'infantil' | 'guia-familia';
 
 export interface ReviewRecord {
   version: number;
@@ -41,6 +41,7 @@ export const REVIEW_OVERRIDES: Record<string, Partial<ReviewRecord>> = {
   'diario:escalera-exposicion': { status: 'borrador', note: 'Exposición autoguiada: definir salvaguardas y criterios de derivación.' },
   'articulo:exposicion-gradual': { status: 'borrador', note: 'Acompaña a la escalera de exposición.' },
   'instrumento:phq9': { status: 'borrador', note: 'PHQ-9: el ítem 9 (ideación suicida) exige un protocolo de respuesta aprobado.' },
+  'infantil:escalera-valiente': { status: 'borrador', note: 'Exposición gradual en la infancia guiada por el adulto: validar salvaguardas y criterios de derivación con un/a profesional infantojuvenil.' },
   'instrumento:isi': { status: 'borrador', note: 'ISI: tiene derechos de autor (Morin) y su uso en una app requiere licencia de Mapi Research Trust. Verificar también la redacción con la versión española validada.' },
 };
 

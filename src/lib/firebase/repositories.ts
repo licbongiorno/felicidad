@@ -29,7 +29,8 @@ import type { LifetimeCounts } from '@/domain/growth';
 
 export { CONSENT_VERSION };
 
-export const USER_COLLECTIONS = ['sessions', 'checkins', 'afflictionLogs', 'journal', 'assessments', 'applications', 'settings'] as const;
+// kids y kidActivities: perfiles de chicos a cargo del adulto (entran en la exportación y el borrado).
+export const USER_COLLECTIONS = ['sessions', 'checkins', 'afflictionLogs', 'journal', 'assessments', 'applications', 'settings', 'kids', 'kidActivities'] as const;
 type UserCollection = (typeof USER_COLLECTIONS)[number];
 
 const userCollection = (uid: string, name: UserCollection) =>
