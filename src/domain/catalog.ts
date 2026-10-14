@@ -180,7 +180,11 @@ export const MODULES: SkillModule[] = [
     approaches: ['dbt', 'mindfulness'],
     practices: ['tipp', 'pausa-stop', 'cinco-sentidos', 'plantas-de-los-pies', 'pros-y-contras', 'aceptacion-radical'],
     journal: [],
-    resources: [{ href: '/biblioteca/kit-de-crisis', label: 'Kit de crisis emocional' }],
+    resources: [
+      { href: '/laboratorio/semaforo', label: 'Semáforo emocional' },
+      { href: '/laboratorio/caja', label: 'Mi caja de herramientas' },
+      { href: '/biblioteca/kit-de-crisis', label: 'Kit de crisis emocional' },
+    ],
   },
   {
     id: 'emociones',
@@ -201,7 +205,10 @@ export const MODULES: SkillModule[] = [
     approaches: ['tcc', 'act', 'mindfulness'],
     practices: ['pajaros-en-el-cielo', 'anotacion-mental', 'hacer-espacio', 'observador'],
     journal: ['reestructuracion', 'defusion', 'preocupacion', 'experimento', 'escalera-exposicion'],
-    resources: [{ href: '/biblioteca/trampas-del-pensamiento', label: 'Trampas del pensamiento' }],
+    resources: [
+      { href: '/laboratorio/hecho-o-interpretacion', label: '¿Hecho o interpretación?' },
+      { href: '/biblioteca/trampas-del-pensamiento', label: 'Trampas del pensamiento' },
+    ],
   },
   {
     id: 'relaciones',
@@ -210,7 +217,10 @@ export const MODULES: SkillModule[] = [
     approaches: ['dbt', 'tcc', 'contemplativa'],
     practices: ['dear-man', 'give-fast', 'amor-altruista', 'ecuanimidad', 'regocijo-empatico', 'perdon-reach'],
     journal: ['conversacion', 'carta-gratitud', 'perdon'],
-    resources: [{ href: '/biblioteca/asertividad-y-limites', label: 'Asertividad y límites' }],
+    resources: [
+      { href: '/laboratorio/conversaciones', label: 'Simulador de conversaciones' },
+      { href: '/biblioteca/asertividad-y-limites', label: 'Asertividad y límites' },
+    ],
   },
   {
     id: 'autocompasion',

@@ -132,6 +132,12 @@ service cloud.firestore {
           && v.keys().hasOnly(['conducta', 'vulnerabilidad', 'disparador', 'eslabones', 'consecuencias', 'alternativas', 'prevencion', 'reparacion'])
           && shortText(v, 'conducta') && shortText(v, 'vulnerabilidad') && shortText(v, 'disparador') && longText(v, 'eslabones')
           && shortText(v, 'consecuencias') && longText(v, 'alternativas') && shortText(v, 'prevencion') && shortText(v, 'reparacion'))
+        || (type == 'caja-herramientas'
+          && v.keys().hasOnly(['verdePracticas', 'verdePropias', 'amarilloSenales', 'amarilloPracticas', 'amarilloPropias',
+               'rojoSenales', 'rojoPracticas', 'rojoPropias', 'personas', 'frases'])
+          && shortText(v, 'verdePracticas') && longText(v, 'verdePropias') && longText(v, 'amarilloSenales')
+          && shortText(v, 'amarilloPracticas') && longText(v, 'amarilloPropias') && longText(v, 'rojoSenales')
+          && shortText(v, 'rojoPracticas') && longText(v, 'rojoPropias') && longText(v, 'personas') && longText(v, 'frases'))
         || (type == 'reflexion-carta'
           && v.keys().hasOnly(['autor', 'texto'])
           && shortText(v, 'autor') && longText(v, 'texto'));
@@ -226,7 +232,7 @@ service cloud.firestore {
                'escritura-expresiva', 'carta-gratitud', 'mejor-yo', 'reestructuracion', 'carta-compasiva',
                'activacion', 'preocupacion', 'perdon', 'intencion', 'resolucion-problemas', 'diario-sueno',
                'experimento', 'escalera-exposicion', 'plan-seguridad', 'conversacion', 'tarjeta-diaria',
-               'analisis-cadena', 'reflexion-carta']
+               'analisis-cadena', 'caja-herramientas', 'reflexion-carta']
           && request.resource.data.values is map
           && validJournalValues(request.resource.data.type, request.resource.data.values)
           && request.resource.data.createdAt == request.time;

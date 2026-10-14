@@ -128,6 +128,10 @@ export function subscribeJournal(_uid: string, since: Date, onData: (rows: Journ
   return subscribe('journal', () => store().journal.filter((j) => j.createdAt >= since), onData);
 }
 
+export async function fetchLatestJournal(_uid: string, type: JournalEntry['type']): Promise<JournalEntry | null> {
+  return store().journal.filter((j) => j.type === type).sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())[0] ?? null;
+}
+
 export async function addApplication(_uid: string, a: NewApplication) {
   store().applications.unshift({ ...a, id: id(), createdAt: new Date(), tz: a.tz ?? currentTimeZone() });
   commit('applications');

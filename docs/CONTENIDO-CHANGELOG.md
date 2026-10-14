@@ -19,6 +19,46 @@ entrada en este registro.
 
 ---
 
+## 2026-10-14 · Fase 4: Laboratorio (versión 1)
+
+Sección nueva, `/laboratorio`, con ejercicios interactivos para ensayar sin riesgo. Los datos están en
+`src/domain/lab.ts`.
+
+**Simulador de conversaciones.**
+- Cuatro situaciones: decir que no a más trabajo, pedir ayuda en casa, poner un límite a un familiar y hablar con un
+  amigo que cancela.
+- En cada paso, la otra persona habla y hay tres respuestas: asertiva, pasiva y agresiva. Cada una trae una
+  explicación basada en DEAR MAN, GIVE y FAST.
+- Las respuestas no asertivas invitan a probar otra; no hay puntos.
+- Son guiones escritos, sin IA, y se pueden revisar.
+
+**Semáforo emocional.**
+- Según la intensidad (0 a 10), indica qué hacer primero:
+  - verde: pensar y reflexionar;
+  - amarillo: pausa y respiración;
+  - rojo: primero el cuerpo, con TIPP y los cinco sentidos.
+- En rojo muestra los recursos de crisis.
+
+**Mi caja de herramientas.** Se preparan en calma las señales y lo que ayuda en cada zona: prácticas elegidas, ideas
+propias, personas y frases. Se guarda como entrada del diario (`caja-herramientas`, oculta y versionada) y siempre
+se carga la última versión, aunque tenga más de 90 días.
+
+**¿Hecho o interpretación?** Doce frases (seis hechos y seis interpretaciones), con la explicación y la trampa del
+pensamiento relacionada. No guarda puntuación.
+
+**Integración.**
+- Los módulos de Afrontamiento, Pensamientos y Relaciones enlazan sus ejercicios del Laboratorio.
+- El buscador y el menú «Más» incluyen el Laboratorio.
+
+**Reglas de Firestore.** Aceptan el tipo `caja-herramientas`. Probado en el emulador: 25/25. **Hay que volver a
+publicar `firestore.rules`.**
+
+**Para la revisión clínica:**
+- Los guiones del simulador, sobre todo la situación con un familiar.
+- Los rangos del semáforo (0–4, 5–7 y 8–10).
+
+---
+
 ## 2026-10-14 · Fase 3: catálogo por necesidad (versión 1)
 
 **Gimnasio → Habilidades.** La sección se renombra; la ruta `/gimnasio` no cambia. El catálogo deja de agruparse por

@@ -305,6 +305,19 @@ export function subscribeJournal(
   );
 }
 
+/**
+ * Última entrada de un tipo, sin ventana temporal (caja de herramientas, plan de seguridad).
+ * Filtra por un solo campo y ordena en el cliente: no necesita índice compuesto.
+ */
+export async function fetchLatestJournal(uid: string, type: JournalEntry['type']): Promise<JournalEntry | null> {
+  const snap = await getDocs(query(userCollection(uid, 'journal'), where('type', '==', type)));
+  const rows = snap.docs.map((d) => {
+    const v = d.data({ serverTimestamps: 'estimate' });
+    return { id: d.id, type: v.type, values: v.values ?? {}, createdAt: toDate(v.createdAt), tz: v.tz ?? null } as JournalEntry;
+  });
+  return rows.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())[0] ?? null;
+}
+
 // ---------------------------------------------------------------- aplicaciones en la vida cotidiana
 
 export type NewApplication = Omit<Application, 'id' | 'createdAt'>;
