@@ -2,6 +2,7 @@ import { EMPTY_PERSONAL, type AfflictionLog, type Application, type Assessment, 
 import type { NewAfflictionLog, NewApplication, NewAssessment, NewJournalEntry, NewSession } from '@/lib/firebase/repositories';
 import { currentTimeZone } from '@/domain/metrics';
 import type { LifetimeCounts } from '@/domain/growth';
+import { demoKidsData, resetDemoKids } from '@/lib/kids/memoryKids';
 
 /**
  * Backend en memoria para el modo demo (sin configuración de Firebase).
@@ -167,7 +168,7 @@ export function subscribeAssessments(_uid: string, since: Date, onData: (rows: A
 
 export async function exportUserData(_uid: string) {
   const { sessions, afflictions, checkins, journal, assessments, applications, personal } = store();
-  return { exportedAt: new Date().toISOString(), profile: { demo: true }, sessions, checkins, afflictionLogs: afflictions, journal, assessments, applications, settings: [{ id: 'personal', ...personal }] };
+  return { exportedAt: new Date().toISOString(), profile: { demo: true }, sessions, checkins, afflictionLogs: afflictions, journal, assessments, applications, settings: [{ id: 'personal', ...personal }], kids: demoKidsData().kids, kidActivities: demoKidsData().activities };
 }
 
 export async function deleteUserData(_uid: string) {
@@ -177,5 +178,6 @@ export async function deleteUserData(_uid: string) {
   } catch {
     /* nada que limpiar */
   }
+  resetDemoKids();
   (Object.keys(listeners) as Kind[]).forEach((k) => listeners[k].forEach((l) => l()));
 }

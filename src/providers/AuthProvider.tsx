@@ -5,6 +5,8 @@ import { onAuthStateChanged, signOut as firebaseSignOut, type User } from 'fireb
 import { getFirebaseAuth } from '@/lib/firebase/client';
 import { CONSENT_VERSION } from '@/lib/consent';
 import { useProgressStore } from '@/store/useProgressStore';
+import { useKidsStore } from '@/store/useKidsStore';
+import { exitKidMode } from '@/lib/kids/kidMode';
 import { CONFIG_MISSING, DEMO_MODE } from '@/lib/demo';
 import type { Profile } from '@/domain/types';
 import { ConfigError } from '@/components/layout/ConfigError';
@@ -65,6 +67,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       } else {
         setProfile(null);
         useProgressStore.getState().disconnect();
+        useKidsStore.getState().disconnect();
       }
     });
     return () => {
@@ -81,6 +84,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       hasConsent: DEMO_MODE || profile?.consentVersion === CONSENT_VERSION,
       signOut: async () => {
         useProgressStore.getState().disconnect();
+        useKidsStore.getState().disconnect();
+        exitKidMode();
         if (DEMO_MODE) return window.location.assign('/');
         await firebaseSignOut(getFirebaseAuth());
         // Privacidad en equipos compartidos: elimina la caché local de datos clínicos.

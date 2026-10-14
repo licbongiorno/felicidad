@@ -22,6 +22,14 @@ const config: Config = {
         garden: Object.fromEntries(
           ['sky-top', 'sky-bottom', 'sun', 'hill-far', 'hill-mid', 'hill-near', 'leaf', 'leaf-deep', 'stem', 'trunk', 'petal-a', 'petal-b', 'petal-c', 'water', 'glow'].map((k) => [k, v(`garden-${k}`)]),
         ),
+        // Sección para chicos: tokens --kid-* (globals.css, sólo dentro de .kid-theme).
+        kid: Object.fromEntries(
+          [
+            'bg', 'surface', 'ink', 'soft', 'line', 'primary', 'onprimary',
+            ...['sky', 'mint', 'coral', 'sun', 'lavender', 'orange', 'pink', 'leaf'].map((c) => `tint-${c}`),
+            ...['sky', 'mint', 'coral', 'sun', 'lavender', 'orange', 'pink', 'leaf', 'body', 'cheek', 'eye'].map((c) => `paint-${c}`),
+          ].map((k) => [k, v(`kid-${k}`)]),
+        ),
         // Superficie de acento (tarjeta destacada): oscura en ambos modos, para no encender
         // un bloque claro de gran tamaño en modo oscuro.
         accent: { from: v('accent-from'), to: v('accent-to'), fg: v('accent-fg'), muted: v('accent-muted'), soft: v('accent-soft') },
@@ -29,6 +37,8 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
         serif: ['var(--font-serif)', 'Georgia', 'serif'],
+        // Redondeada y muy legible para la sección para chicos.
+        kid: ['var(--font-kid)', 'var(--font-sans)', 'system-ui', 'sans-serif'],
       },
       keyframes: {
         // Deriva ambiental muy lenta de los halos de fondo.

@@ -9,6 +9,8 @@ import { PRACTICE_LEVELS, levelOf } from './levels';
 import { ARTICLES, ARTICLE_BY_ID } from './library';
 import { PRACTICES, PRACTICE_BY_ID, totalDurationSec } from './practices';
 import { inflesz, longestSentenceWords } from './readability';
+import { KID_ACTIVITIES } from './kids';
+import { KID_GUIDES } from './kids-guides';
 
 /**
  * Calidad del contenido (plan de mejora de contenido):
@@ -133,6 +135,8 @@ describe('gobernanza clínica', () => {
       instrumento: (id) => INSTRUMENTS.some((i) => i.id === id),
       herramienta: (id) => id === 'plan-seguridad',
       programa: () => true,
+      infantil: (id) => KID_ACTIVITIES.some((a) => a.id === id),
+      'guia-familia': (id) => KID_GUIDES.some((g) => g.id === id),
     };
     for (const key of Object.keys(REVIEW_OVERRIDES)) {
       const [kind, id] = key.split(':');

@@ -7,6 +7,8 @@ import { JOURNAL_TEMPLATES } from './journal';
 import { ARTICLES } from './library';
 import { PRACTICES } from './practices';
 import { PROGRAMS } from './programs';
+import { KID_ACTIVITIES } from './kids';
+import { KID_GUIDES } from './kids-guides';
 
 /**
  * Cola de revisión clínica: todo el contenido publicable con su ficha de gobernanza, para
@@ -33,6 +35,8 @@ export const KIND_LABEL: Record<ContentKind, string> = {
   instrumento: 'Evaluaciones',
   herramienta: 'Herramientas',
   programa: 'Programas',
+  infantil: 'Actividades para chicos',
+  'guia-familia': 'Guías para familias',
 };
 
 const item = (kind: ContentKind, id: string, title: string, href: string, extra: Partial<ReviewItem> = {}): ReviewItem => ({
@@ -56,6 +60,9 @@ export function reviewQueue(): ReviewItem[] {
     ),
     ...ARTICLES.map((a) => item('articulo', a.id, a.title, `/biblioteca/${a.id}`)),
     ...PROGRAMS.map((p) => item('programa', p.id, p.title, `/programas/${p.id}`)),
+    // Las actividades para chicos se ven desde el modo chico (Familia › Entrar al modo chico).
+    ...KID_ACTIVITIES.map((a) => item('infantil', a.id, a.title, `/chicos/${a.id}`, { evidence: `${a.bands.join(', ')} años` })),
+    ...KID_GUIDES.map((g) => item('guia-familia', g.id, g.title, `/familia/guia/${g.id}`)),
   ];
 }
 

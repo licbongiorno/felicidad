@@ -262,3 +262,55 @@ describe('versión del contenido', () => {
     await assertFails(addDoc(col, { ...validSession(), contentVersion: 'v2' }));
   });
 });
+
+describe('sección para chicos', () => {
+  const kid = () => ({ name: 'Juli', band: '7-9', avatar: 'sol', consent: { version: '2026-10', acceptedAt: serverTimestamp() }, createdAt: serverTimestamp() });
+  const activity = (over: Record<string, unknown> = {}) => ({
+    kidId: 'k1',
+    activityId: 'globo-magico',
+    feeling: null,
+    intensity: null,
+    note: null,
+    tz: 'America/Argentina/Buenos_Aires',
+    createdAt: serverTimestamp(),
+    ...over,
+  });
+
+  it('el adulto crea un perfil con consentimiento y otro usuario no lo ve', async () => {
+    await assertSucceeds(setDoc(doc(alice(), 'users/alice/kids/k1'), kid()));
+    await assertFails(getDoc(doc(bob(), 'users/alice/kids/k1')));
+    await assertFails(setDoc(doc(bob(), 'users/alice/kids/k2'), kid()));
+  });
+
+  it('rechaza perfiles sin consentimiento, con datos de más o con valores inválidos', async () => {
+    const { consent: _c, ...noConsent } = kid();
+    await assertFails(setDoc(doc(alice(), 'users/alice/kids/k1'), noConsent));
+    await assertFails(setDoc(doc(alice(), 'users/alice/kids/k1'), { ...kid(), email: 'x@y.z' }));
+    await assertFails(setDoc(doc(alice(), 'users/alice/kids/k1'), { ...kid(), band: '13-17' }));
+    await assertFails(setDoc(doc(alice(), 'users/alice/kids/k1'), { ...kid(), name: 'x'.repeat(25) }));
+  });
+
+  it('se puede cambiar apodo, edad y avatar, pero no el consentimiento', async () => {
+    await assertSucceeds(setDoc(doc(alice(), 'users/alice/kids/k1'), kid()));
+    await assertSucceeds(updateDoc(doc(alice(), 'users/alice/kids/k1'), { name: 'Julieta', band: '10-12', avatar: 'luna' }));
+    await assertFails(updateDoc(doc(alice(), 'users/alice/kids/k1'), { consent: { version: 'otra', acceptedAt: serverTimestamp() } }));
+    await assertSucceeds(deleteDoc(doc(alice(), 'users/alice/kids/k1')));
+  });
+
+  it('las actividades exigen un perfil existente y son de sólo anexión', async () => {
+    await assertFails(addDoc(collection(alice(), 'users/alice/kidActivities'), activity()));
+    await assertSucceeds(setDoc(doc(alice(), 'users/alice/kids/k1'), kid()));
+    const ref = await assertSucceeds(addDoc(collection(alice(), 'users/alice/kidActivities'), activity({ feeling: 'miedo', intensity: 3 })));
+    await assertFails(updateDoc(ref, { intensity: 1 }));
+    await assertSucceeds(deleteDoc(ref));
+  });
+
+  it('valida emoción, intensidad y largo de la nota', async () => {
+    await assertSucceeds(setDoc(doc(alice(), 'users/alice/kids/k1'), kid()));
+    const col = collection(alice(), 'users/alice/kidActivities');
+    await assertFails(addDoc(col, activity({ feeling: 'ira' })));
+    await assertFails(addDoc(col, activity({ intensity: 4 })));
+    await assertFails(addDoc(col, activity({ note: 'x'.repeat(141) })));
+    await assertSucceeds(addDoc(col, activity({ note: 'Jugué con mi perro' })));
+  });
+});
