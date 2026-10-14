@@ -1,6 +1,6 @@
 import type { Article } from './library';
 
-/** Cuarta tanda: habilidades de crisis (DBT), asertividad, pánico y cuidado de quien cuida. */
+/** Cuarta tanda: habilidades de crisis (DBT), asertividad, pánico y cuidado de quien cuida; mapa de las habilidades DBT. */
 
 const LINEHAN = { citation: 'Linehan, M. M. (2015). DBT skills training manual (2nd ed.). Guilford Press.' };
 
@@ -30,6 +30,9 @@ export const SKILL_ARTICLES: Article[] = [
           'TIPP: temperatura (agua fría en la cara), ejercicio intenso, respiración pausada y relajación. Actúan sobre el sistema nervioso en minutos. Tienen contraindicaciones médicas: léelas en la práctica.',
           'STOP: parar, respirar, observar y proseguir con intención. Útil antes de responder en caliente.',
           'Acción opuesta: si la emoción no se ajusta a los hechos, hacer lo contrario de lo que empuja a hacer.',
+          'Calmarse con los cinco sentidos: ofrecerte algo amable para la vista, el oído, el olfato, el gusto y el tacto.',
+          'Pros y contras: comparar qué pasa si sigues el impulso y qué pasa si lo resistes. Mejor si la tabla está preparada de antes.',
+          'Aceptación radical: dejar de pelear con lo que ya pasó, para que el dolor no se convierta en sufrimiento.',
           'Después, cuando la intensidad baje de 7, los antídotos de la app vuelven a ser útiles.',
         ],
       },
@@ -38,7 +41,7 @@ export const SKILL_ARTICLES: Article[] = [
       title: 'Si hay riesgo',
       body: 'Si en la crisis aparecen pensamientos de hacerte daño, este kit no basta: contacta con emergencias o con tu profesional. Si tienes un plan de seguridad, este es el momento de usarlo.',
     },
-    related: { practices: ['tipp', 'pausa-stop', 'accion-opuesta'], articles: ['antidotos-y-regulacion', 'practica-segura'] },
+    related: { practices: ['tipp', 'pausa-stop', 'cinco-sentidos', 'pros-y-contras', 'aceptacion-radical', 'accion-opuesta'], articles: ['habilidades-dbt', 'antidotos-y-regulacion', 'practica-segura'] },
     references: [
       LINEHAN,
       {
@@ -177,6 +180,80 @@ export const SKILL_ARTICLES: Article[] = [
       {
         citation: 'Sörensen, S., Pinquart, M., & Duberstein, P. (2002). How effective are interventions with caregivers? An updated meta-analysis. The Gerontologist, 42(3), 356–372.',
         doi: '10.1093/geront/42.3.356',
+      },
+    ],
+  },
+  {
+    id: 'habilidades-dbt',
+    title: 'Las habilidades de la DBT',
+    subtitle: 'Cuatro grupos de habilidades para regular las emociones y cuidar las relaciones.',
+    category: 'Terapias contextuales',
+    readingMin: 7,
+    keyPoints: [
+      'La terapia dialéctico-conductual (DBT) combina aceptación y cambio.',
+      'Sus habilidades se agrupan en cuatro módulos: conciencia plena, tolerancia al malestar, regulación emocional y efectividad interpersonal.',
+      'Las habilidades se aprenden con práctica, mejor en calma que en plena crisis.',
+      'La app no sustituye un tratamiento DBT completo, que incluye terapia individual y grupo de habilidades.',
+    ],
+    sections: [
+      {
+        heading: 'Aceptar y cambiar a la vez',
+        paragraphs: [
+          'La terapia dialéctico-conductual fue creada por Marsha Linehan para personas con emociones muy intensas y conductas que les hacían daño. «Dialéctica» significa unir dos ideas que parecen opuestas: aceptarte tal como eres ahora y, al mismo tiempo, trabajar para cambiar.',
+          'Hoy se usa también para la desregulación emocional en general. En un ensayo clínico con personas con alto riesgo suicida, las versiones que incluían el entrenamiento en habilidades fueron las más eficaces (Linehan et al., 2015). Además, cuanto más usan las personas las habilidades, más mejoran (Neacsiu et al., 2010).',
+        ],
+      },
+      {
+        heading: 'Conciencia plena y tolerancia al malestar',
+        paragraphs: [
+          'La conciencia plena es la base de todo lo demás. En la DBT se entrena con la «mente sabia»: el punto de equilibrio entre lo que sientes y lo que sabes. Práctica: Mente sabia.',
+          'La tolerancia al malestar sirve para atravesar una crisis sin empeorarla. Incluye TIPP para bajar rápido la activación, calmarse con los cinco sentidos, los pros y contras ante un impulso y la aceptación radical de lo que no se puede cambiar.',
+        ],
+      },
+      {
+        heading: 'Regulación emocional',
+        paragraphs: [
+          'Este módulo ayuda a entender las emociones y a cambiar las que no te ayudan. Comprobar los hechos revisa si la emoción encaja con lo que pasa. La acción opuesta cambia la emoción cuando no encaja. PLEASE reduce la vulnerabilidad de fondo cuidando el sueño, la comida, el movimiento y la salud.',
+        ],
+      },
+      {
+        heading: 'Efectividad interpersonal',
+        paragraphs: [
+          'Las relaciones son una fuente frecuente de emociones intensas. DEAR MAN ayuda a pedir lo que necesitas o a decir que no. GIVE cuida la relación: ser amable, mostrar interés y validar. FAST cuida tu respeto propio: ser justo/a contigo, no disculparte de más y mantener tus valores.',
+        ],
+      },
+      {
+        heading: 'Cómo practicarlas',
+        paragraphs: [
+          'Las habilidades funcionan mejor si se ensayan en calma, con situaciones de intensidad baja o media. Así, cuando llega una crisis, ya sabes qué hacer. El programa «Habilidades DBT» de la app propone un módulo por semana.',
+          'Una revisión sistemática encontró que el entrenamiento en habilidades DBT por sí solo, sin el tratamiento completo, da resultados prometedores, aunque los estudios todavía son pocos y variados (Valentine et al., 2015).',
+        ],
+      },
+    ],
+    caveat: {
+      title: 'La app no es un tratamiento DBT',
+      body: 'Si tienes autolesiones, pensamientos de suicidio o crisis frecuentes, estas prácticas no bastan. Busca un programa DBT completo con un equipo profesional. Si hay riesgo ahora, contacta con emergencias o usa tu plan de seguridad.',
+    },
+    related: {
+      practices: ['mente-sabia', 'tipp', 'cinco-sentidos', 'pros-y-contras', 'aceptacion-radical', 'comprobar-hechos', 'accion-opuesta', 'please', 'dear-man', 'give-fast'],
+      articles: ['kit-de-crisis', 'asertividad-y-limites', 'antidotos-y-regulacion'],
+    },
+    references: [
+      LINEHAN,
+      {
+        citation:
+          'Linehan, M. M., Korslund, K. E., Harned, M. S., Gallop, R. J., Lungu, A., Neacsiu, A. D., McDavid, J., Comtois, K. A., & Murray-Gregory, A. M. (2015). Dialectical behavior therapy for high suicide risk in individuals with borderline personality disorder: A randomized clinical trial and component analysis. JAMA Psychiatry, 72(5), 475–482.',
+        doi: '10.1001/jamapsychiatry.2014.3039',
+      },
+      {
+        citation:
+          'Neacsiu, A. D., Rizvi, S. L., & Linehan, M. M. (2010). Dialectical behavior therapy skills use as a mediator and outcome of treatment for borderline personality disorder. Behaviour Research and Therapy, 48(9), 832–839.',
+        doi: '10.1016/j.brat.2010.05.017',
+      },
+      {
+        citation:
+          'Valentine, S. E., Bankoff, S. M., Poulin, R. M., Reidler, E. B., & Pantalone, D. W. (2015). The use of dialectical behavior therapy skills training as stand-alone treatment: A systematic review of the treatment outcome literature. Journal of Clinical Psychology, 71(1), 1–20.',
+        doi: '10.1002/jclp.22114',
       },
     ],
   },

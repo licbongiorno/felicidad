@@ -19,6 +19,42 @@ entrada en este registro.
 
 ---
 
+## 2026-10-14 · Habilidades DBT para pacientes (versión 1)
+
+Todo el contenido nuevo queda en estado `pendiente` (publicado, revisión clínica formal pendiente). Completa las
+habilidades DBT que ya estaban (TIPP, acción opuesta y DEAR MAN) con los cuatro módulos del manual de Linehan (2015).
+
+**Prácticas nuevas** (`src/domain/practices-dbt.ts`), todas con nivel de evidencia preliminar:
+- Conciencia plena: *Mente sabia* (iniciación).
+- Tolerancia al malestar:
+  - *Calmarse con los cinco sentidos*: herramienta rápida de 2,5 min (iniciación).
+  - *Pros y contras ante un impulso* (iniciación). Remite al plan de seguridad si el impulso es hacerse daño.
+  - *Aceptación radical* (intermedio, requiere *Mente sabia*). Precaución: no implica aceptar maltrato o peligro;
+    con duelos o traumas recientes, practicarla con el/la terapeuta.
+- Regulación emocional:
+  - *Comprobar los hechos* (intermedio).
+  - *PLEASE: cuidar el cuerpo* (iniciación). Precaución para trastornos de la conducta alimentaria.
+- Efectividad interpersonal: *GIVE y FAST* (iniciación), con validación (Shenk y Fruzzetti, 2011).
+
+**Biblioteca, glosario y programas.**
+- Artículo *Las habilidades de la DBT*: mapa de los cuatro módulos. Su recuadro aclara que la app no sustituye un
+  tratamiento DBT completo y remite a un equipo profesional ante autolesiones, ideación suicida o crisis frecuentes.
+- El artículo *Kit de crisis emocional* incorpora los cinco sentidos, los pros y contras y la aceptación radical.
+- Glosario: aceptación radical, mente sabia, terapia dialéctico-conductual (DBT) y validación.
+- Programa *Habilidades DBT*, de 4 semanas: un módulo por semana.
+
+**Verificación.**
+- Los tests de calidad y de integridad pasan (legibilidad INFLESZ, guía de estilo, niveles y enlaces).
+- DOI nuevos sin verificar contra Crossref (no hubo acceso a la red en esta sesión): Linehan et al. (2015),
+  10.1001/jamapsychiatry.2014.3039; Neacsiu et al. (2010), 10.1016/j.brat.2010.05.017; Valentine et al. (2015),
+  10.1002/jclp.22114; Shenk y Fruzzetti (2011), 10.1521/jscp.2011.30.2.163. Ejecutar `npm run verify:refs`.
+
+**Para la revisión clínica:**
+- Aceptación radical: salvaguardas ante maltrato, duelo y trauma.
+- PLEASE: redacción de la precaución para trastornos de la conducta alimentaria.
+- Pros y contras: si el plan de seguridad debe enlazarse directamente desde la práctica.
+
+
 ## 2026-10-13 · Habilidades: crisis, pensamiento, relaciones, pánico y cuidadores (versión 1)
 
 Todo el contenido nuevo queda en estado `pendiente` (publicado, revisión clínica formal pendiente).

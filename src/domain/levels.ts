@@ -25,6 +25,7 @@ export const PRACTICE_LEVELS: Record<string, LevelInfo> = {
   'mano-en-el-pecho': { level: 'iniciacion' },
   'plantas-de-los-pies': { level: 'iniciacion' },
   'tipp': { level: 'iniciacion' },
+  'cinco-sentidos': { level: 'iniciacion' },
   // Atencionales
   'atencion-respiracion': { level: 'iniciacion' },
   'escaneo-corporal': { level: 'iniciacion' },
@@ -32,6 +33,7 @@ export const PRACTICE_LEVELS: Record<string, LevelInfo> = {
   'suspiro-ciclico': { level: 'iniciacion' },
   'atencion-sonidos': { level: 'iniciacion' },
   'caminar-atencion': { level: 'iniciacion' },
+  'mente-sabia': { level: 'iniciacion' },
   'relajacion-progresiva': { level: 'iniciacion' },
   // Constructivas
   'saboreo': { level: 'iniciacion' },
@@ -44,6 +46,9 @@ export const PRACTICE_LEVELS: Record<string, LevelInfo> = {
   'activacion-conductual': { level: 'iniciacion' },
   'resolucion-problemas': { level: 'iniciacion' },
   'dear-man': { level: 'iniciacion' },
+  'pros-y-contras': { level: 'iniciacion' },
+  'please': { level: 'iniciacion' },
+  'give-fast': { level: 'iniciacion' },
   'accion-opuesta': { level: 'intermedio' },
   'amor-altruista': { level: 'intermedio' },
   'regocijo-empatico': { level: 'intermedio', prerequisites: ['amor-altruista'] },
@@ -55,6 +60,8 @@ export const PRACTICE_LEVELS: Record<string, LevelInfo> = {
   'anotacion-mental': { level: 'intermedio', prerequisites: ['atencion-respiracion'] },
   'surfear-impulso': { level: 'intermedio', prerequisites: ['atencion-respiracion'] },
   'hacer-espacio': { level: 'intermedio', prerequisites: ['escaneo-corporal'] },
+  'comprobar-hechos': { level: 'intermedio' },
+  'aceptacion-radical': { level: 'intermedio', prerequisites: ['mente-sabia'] },
   'observador': { level: 'avanzado', prerequisites: ['pajaros-en-el-cielo'] },
   'conciencia-pura': { level: 'avanzado', prerequisites: ['atencion-respiracion', 'pajaros-en-el-cielo'] },
 };
