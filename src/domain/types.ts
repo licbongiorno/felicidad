@@ -158,6 +158,8 @@ export type JournalType =
   | 'escalera-exposicion'
   | 'plan-seguridad'
   | 'conversacion'
+  | 'tarjeta-diaria'
+  | 'analisis-cadena'
   | 'reflexion-carta';
 
 export type JournalValue = string | number;

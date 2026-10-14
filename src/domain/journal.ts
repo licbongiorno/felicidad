@@ -540,6 +540,75 @@ export const JOURNAL_TEMPLATES: JournalTemplate[] = [
     ],
   },
   {
+    type: 'tarjeta-diaria',
+    title: 'Tarjeta diaria DBT',
+    summary: 'Registrar cada día tus emociones, tu impulso más fuerte y las habilidades que usaste.',
+    when: 'Cada noche, unos dos minutos. Llévala a tu sesión de terapia.',
+    rationale:
+      'La tarjeta diaria es el registro central de la terapia dialéctico-conductual. Ayuda a ver patrones que de un día para otro pasan desapercibidos: qué emociones se repiten, cuándo aparecen los impulsos y qué habilidades te funcionan. Además, usar las habilidades más a menudo se asocia con una mayor mejoría.',
+    evidenceLevel: 'preliminar',
+    evidence: [
+      { citation: 'Linehan, M. M. (2015). DBT skills training manual (2nd ed.). Guilford Press.' },
+      {
+        citation:
+          'Neacsiu, A. D., Rizvi, S. L., & Linehan, M. M. (2010). Dialectical behavior therapy skills use as a mediator and outcome of treatment for borderline personality disorder. Behaviour Research and Therapy, 48(9), 832–839.',
+        doi: '10.1016/j.brat.2010.05.017',
+      },
+    ],
+    caution:
+      'Si hoy tuviste impulsos de hacerte daño, abre tu plan de seguridad y cuéntaselo a tu terapeuta. Si el riesgo es ahora, llama a emergencias.',
+    headline: 'resumen',
+    helpLink: { href: '/biblioteca/rueda-de-emociones', label: 'Ponerle nombre a lo que sientes' },
+    fields: [
+      { id: 'resumen', label: 'El día en una frase', kind: 'text' },
+      { id: 'tristeza', label: 'Tristeza', kind: 'scale', anchors: ['0 · nada', '10 · máxima'] },
+      { id: 'miedo', label: 'Miedo o ansiedad', kind: 'scale', anchors: ['0 · nada', '10 · máximo'] },
+      { id: 'ira', label: 'Ira', kind: 'scale', anchors: ['0 · nada', '10 · máxima'] },
+      { id: 'verguenza', label: 'Vergüenza o culpa', kind: 'scale', anchors: ['0 · nada', '10 · máxima'] },
+      { id: 'alegria', label: 'Alegría', kind: 'scale', anchors: ['0 · nada', '10 · máxima'] },
+      { id: 'impulso', label: 'Tu impulso más fuerte del día', kind: 'text', placeholder: 'Ej.: Gritar, aislarme, beber, darme un atracón', optional: true },
+      { id: 'impulsoIntensidad', label: 'Intensidad de ese impulso', kind: 'scale', anchors: ['0 · nada', '10 · máxima'], optional: true },
+      { id: 'conducta', label: '¿Hiciste algo que querías evitar?', kind: 'text', placeholder: 'Qué y cuándo. Si no, déjalo en blanco.', optional: true },
+      { id: 'habilidades', label: 'Habilidades que usaste', kind: 'text', placeholder: 'Ej.: TIPP, mente sabia, acción opuesta' },
+      { id: 'utilidad', label: '¿Cuánto te ayudaron?', kind: 'scale', anchors: ['0 · nada', '10 · mucho'], optional: true },
+    ],
+  },
+  {
+    type: 'analisis-cadena',
+    title: 'Análisis en cadena',
+    summary: 'Reconstruir, eslabón por eslabón, cómo llegaste a una conducta que querías evitar, y dónde cortar la cadena.',
+    when: 'Después de una conducta que te hizo daño o que lamentas, cuando ya estés en calma.',
+    rationale:
+      'En la terapia dialéctico-conductual, el análisis en cadena es la herramienta para entender una conducta problema. Ninguna conducta sale de la nada: hay vulnerabilidades, un disparador y una cadena de pensamientos, emociones y sensaciones. Verla por escrito permite encontrar los eslabones donde una habilidad podría haber cambiado el final.',
+    evidenceLevel: 'preliminar',
+    evidence: [
+      { citation: 'Linehan, M. M. (2015). DBT skills training manual (2nd ed.). Guilford Press.' },
+      {
+        citation: 'Rizvi, S. L., & Ritschel, L. A. (2014). Mastering the art of chain analysis in dialectical behavior therapy. Cognitive and Behavioral Practice, 21(3), 335–349.',
+        doi: '10.1016/j.cbpra.2013.09.002',
+      },
+    ],
+    caution:
+      'Hazlo en calma, no en plena crisis. Si la conducta fue hacerte daño, revisa este análisis con tu terapeuta y usa tu plan de seguridad. No es para culparte, sino para entender.',
+    headline: 'conducta',
+    helpLink: { href: '/biblioteca/habilidades-dbt', label: 'Repasar las habilidades DBT' },
+    fields: [
+      { id: 'conducta', label: 'La conducta que quiero entender', kind: 'text', placeholder: 'Qué hiciste, en concreto' },
+      { id: 'vulnerabilidad', label: 'Qué te hacía más vulnerable ese día', kind: 'text', placeholder: 'Ej.: Dormí mal, no comí, venía de una discusión' },
+      { id: 'disparador', label: 'El disparador: qué pasó justo antes', kind: 'text', placeholder: 'El hecho concreto que inició la cadena' },
+      {
+        id: 'eslabones',
+        label: 'Los eslabones, en orden',
+        kind: 'textarea',
+        hint: 'Uno por línea: pensamientos, emociones, sensaciones del cuerpo y acciones, desde el disparador hasta la conducta.',
+      },
+      { id: 'consecuencias', label: 'Qué pasó después', kind: 'text', placeholder: 'En el momento y más tarde: en ti, en otros' },
+      { id: 'alternativas', label: 'Dónde podría cortar la cadena', kind: 'textarea', hint: 'Elige uno o dos eslabones y la habilidad que podrías usar en cada uno.' },
+      { id: 'prevencion', label: 'Cómo reducir la vulnerabilidad la próxima vez', kind: 'text', optional: true },
+      { id: 'reparacion', label: 'Qué puedo hacer para reparar, si hace falta', kind: 'text', optional: true },
+    ],
+  },
+  {
     type: 'reflexion-carta',
     title: 'Reflexión sobre una carta',
     summary: 'Tu respuesta a una de las cartas filosóficas.',

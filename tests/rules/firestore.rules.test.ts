@@ -91,6 +91,14 @@ describe('diario', () => {
     await assertFails(addDoc(col, entry('escritura-expresiva', { texto: 'x'.repeat(8001) })));
     await assertFails(addDoc(col, entry('defusion', { credibilidadPre: 12 })));
   });
+
+  it('acepta la tarjeta diaria y el análisis en cadena de la DBT', async () => {
+    const col = collection(alice(), 'users/alice/journal');
+    await assertSucceeds(addDoc(col, entry('tarjeta-diaria', { resumen: 'Día tranquilo', tristeza: 3, miedo: 2, ira: 0, verguenza: 1, alegria: 6, habilidades: 'mente sabia' })));
+    await assertSucceeds(addDoc(col, entry('analisis-cadena', { conducta: 'grité', vulnerabilidad: 'dormí mal', disparador: 'una crítica', eslabones: 'pensé…', consecuencias: 'culpa', alternativas: 'TIPP' })));
+    await assertFails(addDoc(col, entry('tarjeta-diaria', { ira: 11 })));
+    await assertFails(addDoc(col, entry('analisis-cadena', { conducta: 'x'.repeat(281) })));
+  });
 });
 
 describe('evaluaciones WHO-5', () => {

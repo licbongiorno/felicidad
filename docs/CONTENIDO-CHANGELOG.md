@@ -19,6 +19,40 @@ entrada en este registro.
 
 ---
 
+## 2026-10-14 · Tarjeta diaria, análisis en cadena y rueda de emociones (versión 1)
+
+Todo el contenido nuevo queda en estado `pendiente` (publicado, revisión clínica formal pendiente).
+
+**Diario: dos plantillas DBT nuevas.**
+- *Tarjeta diaria DBT* (`tarjeta-diaria`): el día en una frase, cinco emociones del 0 al 10, el impulso más fuerte y
+  su intensidad, una conducta a evitar, las habilidades usadas y cuánto ayudaron. No pregunta por ideación suicida
+  de forma explícita. El aviso remite al plan de seguridad y a emergencias si hubo impulsos de hacerse daño.
+- *Análisis en cadena* (`analisis-cadena`): vulnerabilidad, disparador, eslabones, consecuencias, dónde cortar la
+  cadena, prevención y reparación (Rizvi y Ritschel, 2014). El aviso pide hacerlo en calma y revisarlo con el/la
+  terapeuta si la conducta fue hacerse daño.
+- Las reglas de Firestore aceptan los dos tipos nuevos y validan sus campos. Probado en el emulador: 20/20 tests.
+  **Hay que volver a publicar `firestore.rules`** en la consola de Firebase; si no, estas entradas no se guardan.
+
+**Rueda de emociones** (`/biblioteca/rueda-de-emociones`, datos en `src/domain/emotions.ts`).
+- 10 familias: alegría, amor, tristeza, miedo, ira, vergüenza, culpa, envidia, celos y asco.
+- Cada una tiene cinco matices de menor a mayor intensidad, cómo se siente en el cuerpo, a qué impulsa, cuándo encaja
+  con los hechos y su acción opuesta. Cuando existe, enlaza al antídoto.
+- Se enlaza desde la Biblioteca, el buscador, el glosario (*granularidad emocional*) y la tarjeta diaria.
+- Nuevo test de calidad: familias completas, legibilidad INFLESZ ≥ 55 y antídotos existentes.
+
+**Programa *Habilidades DBT*.** La semana 1 propone la tarjeta diaria; la semana 3, el análisis en cadena.
+
+**Verificación.**
+- DOI nuevo sin verificar contra Crossref: Rizvi y Ritschel (2014), 10.1016/j.cbpra.2013.09.002. Ejecutar
+  `npm run verify:refs`.
+
+**Para la revisión clínica:**
+- Tarjeta diaria: si conviene añadir un ítem explícito de impulsos de autolesión o suicidio. Exigiría un protocolo de
+  respuesta como el del ítem 9 del PHQ-9.
+- Rueda de emociones: las acciones opuestas de amor (relación dañina), celos y culpa.
+
+---
+
 ## 2026-10-14 · Habilidades DBT para pacientes (versión 1)
 
 Todo el contenido nuevo queda en estado `pendiente` (publicado, revisión clínica formal pendiente). Completa las
