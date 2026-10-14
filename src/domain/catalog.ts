@@ -140,3 +140,154 @@ export const JOURNAL_RISK: Partial<Record<JournalType, RiskLevel>> = {
 export const practiceRisk = (id: string): RiskLevel => PRACTICE_RISK[id]?.level ?? 1;
 export const journalRisk = (type: JournalType): RiskLevel => JOURNAL_RISK[type] ?? 1;
 export const practiceApproaches = (id: string): Approach[] => PRACTICE_APPROACHES[id] ?? [];
+
+// ---------------------------------------------------------------- módulos por necesidad
+
+/**
+ * Módulos transversales: organizan el catálogo por necesidad psicológica, no por teoría.
+ * Cada práctica tiene un módulo principal; las plantillas del diario y los recursos de la
+ * biblioteca se asocian al módulo donde más ayudan.
+ */
+export type ModuleId =
+  | 'emociones'
+  | 'pensamientos'
+  | 'relaciones'
+  | 'valores'
+  | 'habitos'
+  | 'autocompasion'
+  | 'autoconocimiento'
+  | 'cuerpo'
+  | 'problemas'
+  | 'bienestar'
+  | 'afrontamiento';
+
+export interface SkillModule {
+  id: ModuleId;
+  title: string;
+  /** Para qué sirve, en una frase y en lenguaje cotidiano. */
+  purpose: string;
+  approaches: Approach[];
+  practices: string[];
+  journal: JournalType[];
+  resources: { href: string; label: string }[];
+}
+
+export const MODULES: SkillModule[] = [
+  {
+    id: 'afrontamiento',
+    title: 'Afrontamiento y momentos difíciles',
+    purpose: 'Atravesar un momento de mucho malestar sin empeorarlo.',
+    approaches: ['dbt', 'mindfulness'],
+    practices: ['tipp', 'pausa-stop', 'cinco-sentidos', 'plantas-de-los-pies', 'pros-y-contras', 'aceptacion-radical'],
+    journal: [],
+    resources: [{ href: '/biblioteca/kit-de-crisis', label: 'Kit de crisis emocional' }],
+  },
+  {
+    id: 'emociones',
+    title: 'Regulación emocional',
+    purpose: 'Reconocer, entender y regular las emociones sin exigir que desaparezcan.',
+    approaches: ['dbt', 'tcc', 'mindfulness'],
+    practices: ['mente-sabia', 'comprobar-hechos', 'accion-opuesta', 'please', 'surfear-impulso'],
+    journal: ['tarjeta-diaria', 'analisis-cadena', 'escritura-expresiva'],
+    resources: [
+      { href: '/biblioteca/rueda-de-emociones', label: 'Rueda de emociones' },
+      { href: '/antidotos', label: 'Antídotos para cada emoción' },
+    ],
+  },
+  {
+    id: 'pensamientos',
+    title: 'Pensamientos y atención',
+    purpose: 'Ver los pensamientos como pensamientos y dejar de creerles todo.',
+    approaches: ['tcc', 'act', 'mindfulness'],
+    practices: ['pajaros-en-el-cielo', 'anotacion-mental', 'hacer-espacio', 'observador'],
+    journal: ['reestructuracion', 'defusion', 'preocupacion', 'experimento', 'escalera-exposicion'],
+    resources: [{ href: '/biblioteca/trampas-del-pensamiento', label: 'Trampas del pensamiento' }],
+  },
+  {
+    id: 'relaciones',
+    title: 'Relaciones y comunicación',
+    purpose: 'Pedir lo que necesitas, poner límites y cuidar los vínculos.',
+    approaches: ['dbt', 'tcc', 'contemplativa'],
+    practices: ['dear-man', 'give-fast', 'amor-altruista', 'ecuanimidad', 'regocijo-empatico', 'perdon-reach'],
+    journal: ['conversacion', 'carta-gratitud', 'perdon'],
+    resources: [{ href: '/biblioteca/asertividad-y-limites', label: 'Asertividad y límites' }],
+  },
+  {
+    id: 'autocompasion',
+    title: 'Autocompasión y autocrítica',
+    purpose: 'Tratarte con la amabilidad con que tratarías a alguien que quieres.',
+    approaches: ['cft', 'contemplativa'],
+    practices: ['pausa-autocompasion', 'mano-en-el-pecho', 'tonglen'],
+    journal: ['carta-compasiva'],
+    resources: [{ href: '/biblioteca/autocompasion', label: 'Autocompasión' }],
+  },
+  {
+    id: 'valores',
+    title: 'Valores y sentido',
+    purpose: 'Aclarar lo que te importa y dar pasos en esa dirección.',
+    approaches: ['act', 'positiva'],
+    practices: ['brujula-valores', 'mejor-yo-posible'],
+    journal: ['valores', 'mejor-yo', 'intencion'],
+    resources: [{ href: '/biblioteca/sentido-y-valores', label: 'Sentido y valores' }],
+  },
+  {
+    id: 'habitos',
+    title: 'Hábitos y activación',
+    purpose: 'Salir del círculo del desánimo empezando por acciones pequeñas.',
+    approaches: ['tcc'],
+    practices: ['activacion-conductual'],
+    journal: ['activacion', 'diario-sueno'],
+    resources: [{ href: '/biblioteca/activacion-conductual', label: 'Activación conductual' }],
+  },
+  {
+    id: 'problemas',
+    title: 'Resolución de problemas',
+    purpose: 'Pasar de darle vueltas a un problema a elegir el siguiente paso.',
+    approaches: ['tcc'],
+    practices: ['resolucion-problemas'],
+    journal: ['resolucion-problemas'],
+    resources: [{ href: '/biblioteca/procrastinacion-y-perfeccionismo', label: 'Procrastinación y perfeccionismo' }],
+  },
+  {
+    id: 'cuerpo',
+    title: 'Atención plena y cuerpo',
+    purpose: 'Entrenar la atención y bajar la activación del cuerpo.',
+    approaches: ['mindfulness', 'relajacion', 'contemplativa'],
+    practices: [
+      'espacio-tres-minutos',
+      'atencion-respiracion',
+      'respiracion-resonante',
+      'suspiro-ciclico',
+      'escaneo-corporal',
+      'relajacion-progresiva',
+      'atencion-sonidos',
+      'caminar-atencion',
+      'conciencia-pura',
+    ],
+    journal: [],
+    resources: [{ href: '/gimnasio/temporizador', label: 'Temporizador libre' }],
+  },
+  {
+    id: 'bienestar',
+    title: 'Bienestar y fortalezas',
+    purpose: 'Notar lo que está bien y usar tus fortalezas.',
+    approaches: ['positiva', 'contemplativa'],
+    practices: ['tres-cosas-buenas', 'saboreo', 'gratitud-contemplativa', 'fortalezas'],
+    journal: ['tres-cosas', 'saboreo'],
+    resources: [{ href: '/biblioteca/perma-y-psicologia-positiva', label: 'Psicología positiva' }],
+  },
+  {
+    id: 'autoconocimiento',
+    title: 'Autoconocimiento y patrones',
+    purpose: 'Explorar tus roles, necesidades y patrones. Es reflexión, no diagnóstico.',
+    approaches: ['escritura'],
+    practices: [],
+    journal: [],
+    resources: [],
+  },
+];
+
+export const MODULE_BY_ID = Object.fromEntries(MODULES.map((m) => [m.id, m])) as Record<ModuleId, SkillModule>;
+
+/** Módulo principal de cada práctica. */
+export const MODULE_OF_PRACTICE: Record<string, ModuleId> = Object.fromEntries(MODULES.flatMap((m) => m.practices.map((p) => [p, m.id])));

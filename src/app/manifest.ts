@@ -15,7 +15,7 @@ export default function manifest(): MetadataRoute.Manifest {
     icons: [{ src: '/icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' }],
     shortcuts: [
       { name: 'Antídotos', url: '/antidotos', description: 'Trabajar una emoción difícil ahora' },
-      { name: 'Gimnasio', url: '/gimnasio', description: 'Empezar una práctica guiada' },
+      { name: 'Habilidades', url: '/gimnasio', description: 'Empezar una práctica guiada' },
       { name: 'Diario', url: '/diario', description: 'Escribir una entrada' },
     ],
   };

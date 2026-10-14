@@ -19,6 +19,35 @@ entrada en este registro.
 
 ---
 
+## 2026-10-14 · Fase 3: catálogo por necesidad (versión 1)
+
+**Gimnasio → Habilidades.** La sección se renombra; la ruta `/gimnasio` no cambia. El catálogo deja de agruparse por
+familia de práctica (atencional, constructiva, deconstructiva) y pasa a organizarse por necesidad psicológica
+(`MODULES` en `src/domain/catalog.ts`). Son 11 módulos, cada uno con su ícono:
+- Afrontamiento y momentos difíciles.
+- Regulación emocional.
+- Pensamientos y atención.
+- Relaciones y comunicación.
+- Autocompasión y autocrítica.
+- Valores y sentido.
+- Hábitos y activación.
+- Resolución de problemas.
+- Atención plena y cuerpo.
+- Bienestar y fortalezas.
+- Autoconocimiento y patrones, todavía vacío: se completa en la fase 6.
+
+**Cómo se muestra.**
+- Cada módulo reúne sus prácticas, las plantillas del diario y las lecturas relacionadas.
+- Las tarjetas indican el enfoque, «Con precauciones» si corresponde, el nivel y la evidencia.
+- Hay un filtro por enfoque (DBT, TCC, ACT, CFT, mindfulness, psicología positiva, contemplativa y relajación) que
+  explica cada uno.
+- Los módulos aparecen en el buscador.
+- La familia de práctica se sigue mostrando dentro de cada práctica.
+
+**Verificación.** Un test nuevo comprueba que cada práctica está en un solo módulo y que los enlaces existen.
+
+---
+
 ## 2026-10-14 · Fase 2: ciclo completo de cada ejercicio (versión 1)
 
 Cada práctica sigue cinco pasos: Comprender, Practicar, Reflexionar, Llevarlo a tu vida y Revisar. Los dos últimos son

@@ -30,7 +30,7 @@ import {
 
 const PRIMARY = [
   { href: '/dashboard', label: 'Panel', Icon: IconPanel },
-  { href: '/gimnasio', label: 'Gimnasio', Icon: IconGym },
+  { href: '/gimnasio', label: 'Habilidades', Icon: IconGym },
   { href: '/antidotos', label: 'Antídotos', Icon: IconAntidote },
   { href: '/diario', label: 'Diario', Icon: IconJournal },
 ];
@@ -73,9 +73,9 @@ export function AppNav() {
         className={`sticky top-0 z-30 border-b print:hidden border-stone-200/60 bg-stone-50/80 backdrop-blur-md ${immersive ? 'pointer-events-none' : ''}`}
       >
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3.5">
-          <Link href="/dashboard" className="group flex items-center gap-2.5 font-serif text-lg text-stone-800">
+          <Link href="/dashboard" aria-label="Habilidades Psicológicas · Panel" className="group flex items-center gap-2.5 whitespace-nowrap font-serif text-lg text-stone-800">
             <LogoMark className="h-6 w-6 transition-transform duration-700 ease-out group-hover:rotate-90 group-hover:scale-110" />
-            <span className="hidden sm:inline">Habilidades Psicológicas</span>
+            <span className="hidden sm:inline xl:hidden 2xl:inline">Habilidades Psicológicas</span>
             <span className="sm:hidden">Habilidades</span>
           </Link>
 
@@ -103,7 +103,7 @@ export function AppNav() {
                   key={href}
                   href={href}
                   aria-current={active ? 'page' : undefined}
-                  className={`relative rounded-full px-3.5 py-1.5 transition-colors duration-200 ${
+                  className={`relative whitespace-nowrap rounded-full px-3 py-1.5 transition-colors duration-200 ${
                     active ? 'text-stone-900' : 'text-stone-600 hover:text-stone-800'
                   }`}
                 >

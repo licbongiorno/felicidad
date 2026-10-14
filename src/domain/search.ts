@@ -9,6 +9,7 @@ import { FAMILY_LABEL } from './evidence';
 import { GLOSSARY } from './glossary';
 import { THINKING_TRAPS } from './thinkingTraps';
 import { EMOTION_FAMILIES } from './emotions';
+import { MODULES } from './catalog';
 import { isPublished } from './governance';
 
 /**
@@ -44,7 +45,7 @@ const doc = (d: Omit<SearchDoc, 'titleN' | 'bodyN'>, body: string[]): SearchDoc 
 
 const SECTIONS: [string, string, string, string[]][] = [
   ['/dashboard', 'Panel', 'Racha, ánimo, sugerencias y qué te funciona', ['inicio', 'progreso', 'estadisticas']],
-  ['/gimnasio', 'Gimnasio mental', 'Catálogo de prácticas guiadas', ['meditacion', 'meditar', 'ejercicios']],
+  ['/gimnasio', 'Habilidades', 'Catálogo de prácticas guiadas por necesidad', ['gimnasio', 'meditacion', 'meditar', 'ejercicios', 'modulos']],
   ['/gimnasio/temporizador', FREE_TIMER_TITLE, 'Práctica sin guía con campanas de intervalo', ['meditacion', 'silencio', 'campana', 'timer']],
   ['/antidotos', 'Antídotos', 'Trabajar ahora una emoción difícil', ['emocion', 'crisis', 'malestar']],
   ['/diario', 'Diario', 'Registros escritos estructurados', ['escribir', 'journal', 'notas']],
@@ -88,6 +89,9 @@ export function buildIndex(): SearchDoc[] {
       doc({ id: `d:${t.id}`, kind: 'Glosario', title: t.name, subtitle: t.description, href: `/biblioteca/trampas-del-pensamiento#${t.id}` }, [t.example]),
     ),
     doc({ id: 's:/biblioteca/rueda-de-emociones', kind: 'Sección', title: 'Rueda de emociones', subtitle: 'Ponerle nombre a lo que sientes y qué hacer con ello', href: '/biblioteca/rueda-de-emociones' }, ['emociones', 'sentimientos', 'dbt', 'granularidad']),
+    ...MODULES.filter((m) => m.practices.length > 0).map((m) =>
+      doc({ id: `m:${m.id}`, kind: 'Sección', title: m.title, subtitle: m.purpose, href: `/gimnasio#${m.id}` }, ['modulo', 'habilidades']),
+    ),
     ...EMOTION_FAMILIES.map((e) =>
       doc({ id: `e:${e.id}`, kind: 'Glosario', title: e.name, subtitle: e.shades.join(', '), href: `/biblioteca/rueda-de-emociones#${e.id}` }, [e.urge]),
     ),
