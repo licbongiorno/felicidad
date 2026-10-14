@@ -19,6 +19,39 @@ entrada en este registro.
 
 ---
 
+## 2026-10-14 · Fase 6: autoconocimiento y recorridos nuevos (versión 1)
+
+**Módulo «Autoconocimiento y patrones».** Es una exploración personal y nunca un diagnóstico. Dos enfoques nuevos en el
+catálogo: Terapia de esquemas, y Psicodinámica · Jung.
+- Prácticas (`src/domain/practices-self.ts`):
+  - *El adulto sano* (terapia de esquemas): intermedio y de nivel 2, con «Pausa de autocompasión» como alternativa.
+    La evidencia es preliminar: la de la terapia completa (Bamelis et al., 2014) no se extiende al ejercicio
+    autoguiado.
+  - *Lo que muestro y lo que guardo* (persona y sombra de Jung): marco teórico y fundamento contemplativo, sin
+    evidencia experimental, como se declara.
+- Plantillas del diario:
+  - *Los roles que asumo*.
+  - *Mis necesidades emocionales*: las cinco necesidades de Young.
+  - *Un patrón que se repite*: nivel 2, con un aviso.
+- Artículo *Conocerte mejor* y término del glosario *Esquema*.
+
+**Cuatro recorridos nuevos** (los A a D de la propuesta):
+- *Atravesar momentos difíciles*: 3 semanas.
+- *Aprender a poner límites*: 3 semanas, con el simulador del Laboratorio.
+- *Conocerme mejor*: 4 semanas.
+- *Una rutina que me haga bien*: 4 semanas.
+
+Son propuestas educativas, no protocolos validados.
+
+**Reglas de Firestore.** Aceptan las tres plantillas nuevas. Probado en el emulador: 28/28. **Hay que volver a publicar
+`firestore.rules`.**
+
+**Para la revisión clínica:**
+- El encuadre de los ejercicios inspirados en Jung y en la terapia de esquemas.
+- Si «Un patrón que se repite» debería quedar en borrador hasta revisarlo.
+
+---
+
 ## 2026-10-14 · Fase 5: personalización (versión 1)
 
 **Preferencias sincronizadas** (`users/{uid}/settings/personal`, `src/domain/personal.ts`):

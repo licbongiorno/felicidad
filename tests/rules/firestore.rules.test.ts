@@ -92,6 +92,14 @@ describe('diario', () => {
     await assertFails(addDoc(col, entry('defusion', { credibilidadPre: 12 })));
   });
 
+  it('acepta las plantillas de autoconocimiento', async () => {
+    const col = collection(alice(), 'users/alice/journal');
+    await assertSucceeds(addDoc(col, entry('mis-roles', { situacion: 'En mi familia', rol: 'La que resuelve todo', gano: 'Me necesitan', cuesta: 'Me agoto' })));
+    await assertSucceeds(addDoc(col, entry('necesidades', { vinculo: 6, autonomia: 4, expresion: 3, juego: 2, limites: 7, masNecesito: 'Expresar lo que siento' })));
+    await assertSucceeds(addDoc(col, entry('patron-repetido', { patron: 'Me alejo', disparador: 'Cercanía', siento: 'Miedo', hago: 'Me voy', consecuencia: 'Soledad', necesitaba: 'Seguridad' })));
+    await assertFails(addDoc(col, entry('necesidades', { juego: 11 })));
+  });
+
   it('acepta la caja de herramientas y rechaza campos ajenos', async () => {
     const col = collection(alice(), 'users/alice/journal');
     await assertSucceeds(addDoc(col, entry('caja-herramientas', { rojoPracticas: 'tipp,cinco-sentidos', rojoPropias: 'Ducharme', frases: 'Va a pasar' })));

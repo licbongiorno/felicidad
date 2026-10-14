@@ -138,6 +138,18 @@ service cloud.firestore {
           && shortText(v, 'verdePracticas') && longText(v, 'verdePropias') && longText(v, 'amarilloSenales')
           && shortText(v, 'amarilloPracticas') && longText(v, 'amarilloPropias') && longText(v, 'rojoSenales')
           && shortText(v, 'rojoPracticas') && longText(v, 'rojoPropias') && longText(v, 'personas') && longText(v, 'frases'))
+        || (type == 'mis-roles'
+          && v.keys().hasOnly(['situacion', 'rol', 'desdeCuando', 'gano', 'cuesta', 'distinto'])
+          && shortText(v, 'situacion') && shortText(v, 'rol') && shortText(v, 'desdeCuando') && shortText(v, 'gano')
+          && shortText(v, 'cuesta') && shortText(v, 'distinto'))
+        || (type == 'necesidades'
+          && v.keys().hasOnly(['vinculo', 'autonomia', 'expresion', 'juego', 'limites', 'masNecesito', 'paso'])
+          && score(v, 'vinculo') && score(v, 'autonomia') && score(v, 'expresion') && score(v, 'juego') && score(v, 'limites')
+          && shortText(v, 'masNecesito') && shortText(v, 'paso'))
+        || (type == 'patron-repetido'
+          && v.keys().hasOnly(['patron', 'disparador', 'siento', 'hago', 'consecuencia', 'recuerda', 'necesitaba', 'alternativa'])
+          && shortText(v, 'patron') && shortText(v, 'disparador') && shortText(v, 'siento') && shortText(v, 'hago')
+          && shortText(v, 'consecuencia') && shortText(v, 'recuerda') && shortText(v, 'necesitaba') && shortText(v, 'alternativa'))
         || (type == 'reflexion-carta'
           && v.keys().hasOnly(['autor', 'texto'])
           && shortText(v, 'autor') && longText(v, 'texto'));
@@ -232,7 +244,8 @@ service cloud.firestore {
                'escritura-expresiva', 'carta-gratitud', 'mejor-yo', 'reestructuracion', 'carta-compasiva',
                'activacion', 'preocupacion', 'perdon', 'intencion', 'resolucion-problemas', 'diario-sueno',
                'experimento', 'escalera-exposicion', 'plan-seguridad', 'conversacion', 'tarjeta-diaria',
-               'analisis-cadena', 'caja-herramientas', 'reflexion-carta']
+               'analisis-cadena', 'caja-herramientas', 'mis-roles', 'necesidades', 'patron-repetido',
+               'reflexion-carta']
           && request.resource.data.values is map
           && validJournalValues(request.resource.data.type, request.resource.data.values)
           && request.resource.data.createdAt == request.time;

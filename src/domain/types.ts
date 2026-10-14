@@ -207,6 +207,9 @@ export type JournalType =
   | 'tarjeta-diaria'
   | 'analisis-cadena'
   | 'caja-herramientas'
+  | 'mis-roles'
+  | 'necesidades'
+  | 'patron-repetido'
   | 'reflexion-carta';
 
 export type JournalValue = string | number;
