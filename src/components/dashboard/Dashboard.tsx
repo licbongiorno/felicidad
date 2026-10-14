@@ -6,7 +6,6 @@ import { useMemo, type ReactNode } from 'react';
 import { useProgressStore } from '@/store/useProgressStore';
 import {
   antidoteEffect,
-  computeStreak,
   dailyMinutes,
   moodBaseline,
   moodByPracticeDay,
@@ -26,6 +25,9 @@ import { WeeklyReview } from './WeeklyReview';
 import { WhatWorks } from './WhatWorks';
 import { suggestNext } from '@/domain/recommend';
 import { buttonStyles } from '@/components/ui/Button';
+import { GrowthCard } from '@/components/growth/GrowthCard';
+import { WeeklyChallenge } from '@/components/growth/WeeklyChallenge';
+import { daysThisMonth } from '@/domain/growth';
 
 const WEEKDAY = new Intl.DateTimeFormat('es', { weekday: 'short', day: 'numeric', month: 'short' });
 
@@ -38,7 +40,8 @@ export function Dashboard() {
   const journal = useProgressStore((s) => s.journal);
   const assessments = useProgressStore((s) => s.assessments);
 
-  const streak = useMemo(() => computeStreak(sessions), [sessions]);
+  // Constancia sin castigo: días del mes, no rachas que se rompen (ver domain/growth).
+  const month = useMemo(() => daysThisMonth(sessions, journal), [sessions, journal]);
   const days = useMemo(() => dailyMinutes(sessions, 28), [sessions]);
   const practiced = useMemo(() => practiceDayKeys(sessions), [sessions]);
   const dose = useMemo(() => skillDose(sessions, 28), [sessions]);
@@ -90,11 +93,18 @@ export function Dashboard() {
         </m.section>
       )}
 
+      {/* Jardín y desafío -------------------------------------------------------------- */}
+      {!isNew && <GrowthCard className="lg:col-span-2" />}
+      {!isNew && (
+        <m.div variants={fadeUp}>
+          <WeeklyChallenge className="h-full" />
+        </m.div>
+      )}
+
       {/* Constancia ---------------------------------------------------------------- */}
       <Panel title="Constancia" className="lg:col-span-2">
         <div className="flex flex-wrap items-baseline gap-x-10 gap-y-4">
-          <Figure value={streak.current} unit={streak.current === 1 ? 'día seguido' : 'días seguidos'} />
-          <Figure value={streak.longest} unit="racha más larga" muted />
+          <Figure value={month.days} unit={`${month.days === 1 ? 'día' : 'días'} practicados en ${month.monthLabel}`} />
           <Figure value={practiced.size} unit="días con práctica (90 d)" muted />
         </div>
         <div className="mt-8" aria-label="Minutos de práctica en los últimos 28 días">

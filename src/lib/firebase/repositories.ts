@@ -5,6 +5,7 @@ import {
   doc,
   getDoc,
   getDocs,
+  getCountFromServer,
   updateDoc,
   writeBatch,
   onSnapshot,
@@ -24,6 +25,7 @@ import { getDb } from './db';
 import { CONSENT_VERSION } from '@/lib/consent';
 import type { AfflictionLog, Assessment, DailyCheckin, JournalEntry, Profile, SessionRecord } from '@/domain/types';
 import { currentTimeZone } from '@/domain/metrics';
+import type { LifetimeCounts } from '@/domain/growth';
 
 export { CONSENT_VERSION };
 
@@ -164,6 +166,33 @@ export function subscribeSessions(
       ),
     onError,
   );
+}
+
+/**
+ * Recuentos de toda la vida para el jardín y la colección DBT (consultas de recuento:
+ * una lectura por cada 1000 documentos contados, sin descargar los registros).
+ * Usa índices de un solo campo: no necesita índices compuestos.
+ */
+export async function fetchLifetimeCounts(uid: string, practiceIds: string[], journalTypes: string[]): Promise<LifetimeCounts> {
+  const at = new Date();
+  const sessions = userCollection(uid, 'sessions');
+  const journal = userCollection(uid, 'journal');
+  const count = async (q: ReturnType<typeof query>) => (await getCountFromServer(q)).data().count;
+  const done = where('completed', '==', true);
+  const families = ['attentional', 'constructive', 'deconstructive'] as const;
+  const [fam, prac, jt, journalTotal] = await Promise.all([
+    Promise.all(families.map((f) => count(query(sessions, done, where('family', '==', f))))),
+    Promise.all(practiceIds.map((p) => count(query(sessions, done, where('practiceId', '==', p))))),
+    Promise.all(journalTypes.map((t) => count(query(journal, where('type', '==', t))))),
+    count(query(journal)),
+  ]);
+  return {
+    at,
+    families: { attentional: fam[0], constructive: fam[1], deconstructive: fam[2] },
+    practices: Object.fromEntries(practiceIds.map((p, i) => [p, prac[i]])),
+    journalTypes: Object.fromEntries(journalTypes.map((t, i) => [t, jt[i]])),
+    journalTotal,
+  };
 }
 
 // ---------------------------------------------------------------- registros de antídotos

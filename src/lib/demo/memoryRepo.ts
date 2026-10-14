@@ -1,6 +1,7 @@
 import type { AfflictionLog, Assessment, DailyCheckin, JournalEntry, SessionRecord } from '@/domain/types';
 import type { NewAfflictionLog, NewAssessment, NewJournalEntry, NewSession } from '@/lib/firebase/repositories';
 import { currentTimeZone } from '@/domain/metrics';
+import type { LifetimeCounts } from '@/domain/growth';
 
 /**
  * Backend en memoria para el modo demo (sin configuración de Firebase).
@@ -73,6 +74,19 @@ function subscribe<T>(kind: Kind, select: () => T[], onData: (rows: T[]) => void
 }
 
 const id = () => Math.random().toString(36).slice(2, 12);
+
+export async function fetchLifetimeCounts(_uid: string, practiceIds: string[], journalTypes: string[]): Promise<LifetimeCounts> {
+  const { sessions, journal } = store();
+  const done = sessions.filter((s) => s.completed);
+  const by = (f: string) => done.filter((s) => s.family === f).length;
+  return {
+    at: new Date(),
+    families: { attentional: by('attentional'), constructive: by('constructive'), deconstructive: by('deconstructive') },
+    practices: Object.fromEntries(practiceIds.map((p) => [p, done.filter((s) => s.practiceId === p).length])),
+    journalTypes: Object.fromEntries(journalTypes.map((t) => [t, journal.filter((j) => j.type === t).length])),
+    journalTotal: journal.length,
+  };
+}
 
 export async function addSession(_uid: string, s: NewSession) {
   store().sessions.unshift({ ...s, id: id(), durationSec: Math.round(s.durationSec), tz: s.tz ?? currentTimeZone() });

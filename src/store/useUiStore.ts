@@ -15,9 +15,11 @@ const PREFS_KEY = 'eudaimonia-prefs';
 interface Prefs {
   voice: boolean;
   chime: boolean;
+  /** Mostrar el desafío semanal opcional en el panel y en Tu jardín. */
+  challenge: boolean;
 }
 
-const DEFAULT_PREFS: Prefs = { voice: false, chime: true };
+const DEFAULT_PREFS: Prefs = { voice: false, chime: true, challenge: true };
 
 function loadPrefs(): Prefs {
   if (typeof window === 'undefined') return DEFAULT_PREFS;
@@ -55,8 +57,8 @@ export const useUiStore = create<UiState>()((set, get) => ({
   setImmersive: (immersive) => set({ immersive }),
   setPref: (key, value) => {
     set({ [key]: value } as Partial<UiState>);
-    const { voice, chime } = get();
-    savePrefs({ voice, chime });
+    const { voice, chime, challenge } = get();
+    savePrefs({ voice, chime, challenge });
   },
   // Tras montar (no en el render del servidor) para evitar desajustes de hidratación.
   hydrate: () => {

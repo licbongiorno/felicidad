@@ -25,6 +25,9 @@ import { CountUp, DrawnCheck } from '@/components/motion/Reveal';
 import { SafetyPanel } from './SafetyPanel';
 import { AntidoteHistory } from './AntidoteHistory';
 import { Tabs } from '@/components/ui/Tabs';
+import { GrowthNote } from '@/components/growth/GrowthNote';
+import { growthNote } from '@/domain/growth';
+import { useGrowth } from '@/hooks/useGrowth';
 
 /**
  * Flujo clínico:
@@ -51,6 +54,9 @@ const MIN_PRACTICE_SEC = 60;
 
 export function AntidoteModule() {
   const logAntidote = useProgressStore((s) => s.logAntidote);
+  const growth = useGrowth();
+  // Qué creció en el jardín con este antídoto (se fija al guardarlo).
+  const [note, setNote] = useState<string | null>(null);
 
   // Enlace profundo desde el buscador: /antidotos?emocion=ira abre directamente la medición.
   const params = useSearchParams();
@@ -103,6 +109,7 @@ export function AntidoteModule() {
   function handleSave() {
     if (!antidote || intensityPre === null || intensityPost === null || !startedAtRef.current) return;
     const training = PRACTICE_BY_ID[antidote.trainingPracticeId];
+    setNote(practicedSec >= MIN_PRACTICE_SEC ? growthNote(training.family, growth.counts.families[training.family], growth.garden.total) : null);
     logAntidote(
       {
         emotionId: antidote.emotionId,
@@ -349,6 +356,7 @@ export function AntidoteModule() {
               ? 'La intensidad se mantuvo. A veces la emoción necesita más tiempo, o un antídoto distinto; quedarte con ella sin actuar ya es práctica.'
               : 'La intensidad subió. Ocurre cuando una emoción recibe atención por primera vez. Si persiste, considera hablarlo con tu terapeuta.'}
         </m.p>
+        {note && <GrowthNote note={note} className="mt-8" />}
 
         <m.div variants={fadeUp}>
           <Link

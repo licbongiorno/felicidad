@@ -19,6 +19,44 @@ entrada en este registro.
 
 ---
 
+## 2026-10-14 · Tu jardín: motivación sin castigo (versión 1)
+
+Gamificación terapéutica. Las reglas quedan en la guía de estilo, sección *Motivación*. No guarda datos nuevos: todo
+se deriva de las sesiones y del diario, así que **no cambian las reglas de Firestore**.
+
+**Tu jardín** (`/crecimiento`, `src/domain/growth.ts`, `src/components/growth/`).
+- Jardín ilustrado en SVG, con modo claro y oscuro y animaciones suaves que respetan «reducir movimiento».
+- Cada práctica completa hace crecer una planta de su familia: helechos (atención), flores (compasión y cualidades) y
+  árboles (comprensión). Cada planta pasa por cinco etapas. Los antídotos completos también cuentan.
+- Hitos a las 1, 5, 12, 25, 50, 80, 120 y 180 prácticas: sol, mariposas, arroyo, pájaros, banco, faroles y jardín
+  maduro. Cada entrada del diario suma una luciérnaga.
+- Usa los recuentos de toda la vida con consultas de recuento de Firestore (unas 17 lecturas por carga, sin índices
+  nuevos), así que el jardín no se reduce cuando las sesiones salen de la ventana de 90 días. Sin conexión, usa la
+  ventana local.
+- Al terminar una práctica o un antídoto aparece un aviso sobrio con lo que creció.
+
+**Colección de habilidades DBT.**
+- 13 habilidades, con íconos propios: mente sabia, STOP, tarjeta diaria, TIPP, cinco sentidos, pros y contras,
+  aceptación radical, comprobar los hechos, acción opuesta, PLEASE, análisis en cadena, DEAR MAN y GIVE y FAST.
+- Cinco niveles de dominio que no bajan: descubierta, en práctica, afianzada, integrada y propia (1, 3, 6, 10 y 15
+  usos).
+
+**Desafío semanal opcional.** 12 desafíos que rotan cada lunes. Se pueden ocultar, no se «pierden» y sólo cuentan lo
+de la semana en curso.
+
+**Panel.** La constancia pasa de «días seguidos» y «racha más larga» a «días practicados este mes». El informe para
+el terapeuta conserva la racha como dato clínico.
+
+**Verificación.** 12 tests nuevos (`growth.test.ts`): crecimiento determinista, que el jardín nunca retroceda, días del
+mes, niveles de dominio y desafíos que apunten a contenido existente. 281 tests en total. Revisado con capturas en
+claro, oscuro y móvil.
+
+**Para la revisión clínica:**
+- Si conviene ofrecer un ajuste para ocultar del todo el jardín a quien no le sirva.
+- Si el desafío semanal debería adaptarse al programa que sigue cada paciente.
+
+---
+
 ## 2026-10-14 · Antídotos, evaluaciones y programas nuevos (versión 1)
 
 Todo el contenido nuevo queda en estado `pendiente`, salvo el ISI, que queda en `borrador`.

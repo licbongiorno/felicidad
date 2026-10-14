@@ -23,6 +23,7 @@ import {
   IconJournal as IconReport,
   IconPath,
   IconPulse,
+  IconSprout,
   LogoMark,
 } from '@/components/ui/icons';
 
@@ -34,8 +35,9 @@ const PRIMARY = [
 ];
 
 const SECONDARY = [
+  { href: '/crecimiento', label: 'Tu jardín', Icon: IconSprout, description: 'Lo que cultivaste y tus habilidades DBT' },
   { href: '/programas', label: 'Programas', Icon: IconPath, description: 'Recorridos guiados de varias semanas' },
-  { href: '/evaluaciones', label: 'Evaluaciones', Icon: IconPulse, description: 'Mide tu bienestar con el WHO-5' },
+  { href: '/evaluaciones', label: 'Evaluaciones', Icon: IconPulse, description: 'Cuestionarios validados para seguir tu evolución' },
   { href: '/biblioteca', label: 'Biblioteca', Icon: IconBook, description: 'Fundamentos científicos en lenguaje claro' },
   { href: '/cartas', label: 'Cartas', Icon: IconCards, description: 'Perspectivas para romper la rumiación' },
   { href: '/informe', label: 'Informe', Icon: IconReport, description: 'Resumen imprimible para tu terapeuta' },
