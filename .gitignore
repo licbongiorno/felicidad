@@ -10,3 +10,4 @@ test-results
 blob-report
 *.log
 referencias-informe.json
+playwright.local.config.ts

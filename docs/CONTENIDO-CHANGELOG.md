@@ -19,6 +19,41 @@ entrada en este registro.
 
 ---
 
+## 2026-10-14 · Plan de mejora: seguridad técnica y calidad (P0 y P1)
+
+**Contenido.** Se separan los antídotos que se solapaban. «Miedo o ansiedad» pasa a «Ansiedad», «Autocrítica o
+vergüenza» a «Autocrítica» y «Envidia o celos» a «Envidia», porque ahora hay antídotos propios de miedo, vergüenza y
+celos. Las señales de ansiedad y de autocrítica se ajustan.
+
+**Panel de revisión clínica** (`/revision`, `src/domain/reviewQueue.ts`).
+- Lista todo el contenido con su versión, estado, evidencia y nivel de riesgo, y enlaza a cada pieza para verla como
+  un paciente.
+- Cada pieza se puede aprobar o marcar para cambios, con un comentario. «Copiar decisiones» genera el texto para
+  aplicarlo en `REVIEW_OVERRIDES`.
+- Sólo lo ven los correos de `NEXT_PUBLIC_REVIEWER_EMAILS`; en modo demo, cualquiera.
+
+**Plan de seguridad.** Siempre carga la última versión, aunque tenga más de 90 días (`useLatestJournal`, compartido
+con la caja de herramientas).
+
+**App Check** (opcional). Si existe `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`, Firebase exige que las peticiones vengan de
+esta web. La política de seguridad (CSP) admite los dominios de reCAPTCHA.
+
+**Pruebas.**
+- Se ejecutó la batería de punta a punta: 158 pasan y 3 se omiten en móvil.
+- Se actualizaron las pruebas desfasadas por el contenido nuevo y se sumaron flujos nuevos: ayuda, nivel de riesgo,
+  simulador, caja y semáforo, «Llevarlo a tu vida» y favoritas.
+- La auditoría de accesibilidad suma 9 páginas.
+- Se corrigió el contraste del menú inferior en móvil.
+- La prueba sin conexión ya fallaba antes de estos cambios (la emulación sin red de Chromium no siempre afecta al
+  service worker). Ahora comprueba lo esencial: nunca aparece el error del navegador.
+
+**Integración continua** (`.github/workflows/`).
+- En cada cambio: tipos, lint, tests, build, reglas en el emulador, y punta a punta con accesibilidad.
+- Una vez por mes, y cuando cambia el contenido: verificación de todos los DOI contra Crossref.
+- Se sincronizó `package-lock.json`, al que le faltaban dependencias y hacía fallar `npm ci`.
+
+---
+
 ## 2026-10-14 · Fase 6: autoconocimiento y recorridos nuevos (versión 1)
 
 **Módulo «Autoconocimiento y patrones».** Es una exploración personal y nunca un diagnóstico. Dos enfoques nuevos en el

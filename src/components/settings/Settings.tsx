@@ -18,6 +18,8 @@ import { currentTimeZone, toDateKey } from '@/domain/metrics';
 import { SAFETY_DISCLAIMER } from '@/config/safety';
 import { Button } from '@/components/ui/Button';
 import { Sheet } from '@/components/ui/Sheet';
+import Link from 'next/link';
+import { canReview } from '@/components/review/ReviewPanel';
 
 const DAYS: { id: Weekday; label: string }[] = [
   { id: 'MO', label: 'L' },
@@ -77,6 +79,17 @@ export function Settings() {
       <Section title="Tus datos">
         <DataRights uid={user?.uid ?? 'demo'} onDeleted={signOut} />
       </Section>
+
+      {canReview(user?.email) && (
+        <Section title="Revisión clínica">
+          <p className="text-sm leading-relaxed text-stone-600">
+            Tienes acceso al panel para revisar y aprobar el contenido de la app.{' '}
+            <Link href="/revision" className="text-sage-700 underline decoration-sage-300 underline-offset-2">
+              Abrir el panel de revisión
+            </Link>
+          </p>
+        </Section>
+      )}
 
       <Section title="Consentimiento">
         <p className="text-sm leading-relaxed text-stone-600">

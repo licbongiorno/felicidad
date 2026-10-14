@@ -1,0 +1,34 @@
+# Verificación mensual de las referencias científicas: cada DOI se compara con Crossref
+# (título, año y revista). El informe queda como artefacto; falla si algún DOI no existe.
+name: Referencias científicas
+
+on:
+  schedule:
+    - cron: '17 9 1 * *' # día 1 de cada mes
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['src/domain/**']
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm run verify:refs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: referencias-informe
+          path: referencias-informe.json
+      - name: Fallar si hay DOI inexistentes o discrepancias
+        run: |
+          node -e "
+            const r = require('./referencias-informe.json');
+            const bad = r.filter((x) => x.status === 'DOI_NO_EXISTE' || x.status === 'DISCREPANCIA');
+            for (const x of bad) console.log('::error::' + x.status + ' ' + x.doi + ' — ' + x.citation.slice(0, 120));
+            process.exit(bad.length ? 1 : 0);
+          "

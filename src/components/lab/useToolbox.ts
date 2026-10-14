@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import type { JournalEntry } from '@/domain/types';
 import type { Zone } from '@/domain/lab';
-import { loadRepo, useProgressStore } from '@/store/useProgressStore';
+import { useLatestJournal } from '@/hooks/useLatestJournal';
 
 export interface Toolbox {
   practices: Record<Zone, string[]>;
@@ -54,25 +54,6 @@ export function toValues(t: Toolbox): Record<string, string> {
 
 /** La caja vigente: la última versión guardada, aunque tenga más de 90 días. */
 export function useToolbox() {
-  const uid = useProgressStore((s) => s.uid);
-  const journal = useProgressStore((s) => s.journal);
-  const [fetched, setFetched] = useState<JournalEntry | null | undefined>(undefined);
-
-  useEffect(() => {
-    if (!uid) return;
-    let alive = true;
-    loadRepo()
-      .then((repo) => repo.fetchLatestJournal(uid, 'caja-herramientas'))
-      .then((e) => alive && setFetched(e))
-      .catch(() => alive && setFetched(null));
-    return () => {
-      alive = false;
-    };
-  }, [uid]);
-
-  return useMemo(() => {
-    const recent = journal.find((j) => j.type === 'caja-herramientas');
-    const latest = [recent, fetched].filter(Boolean).sort((a, b) => b!.createdAt.getTime() - a!.createdAt.getTime())[0] ?? null;
-    return { loaded: fetched !== undefined || Boolean(recent), entry: latest, toolbox: fromEntry(latest) };
-  }, [journal, fetched]);
+  const { loaded, latest } = useLatestJournal('caja-herramientas');
+  return useMemo(() => ({ loaded, entry: latest, toolbox: fromEntry(latest) }), [loaded, latest]);
 }

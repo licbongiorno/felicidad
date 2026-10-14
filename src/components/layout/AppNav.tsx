@@ -163,7 +163,7 @@ export function AppNav() {
                 setMoreOpen(true);
               }}
               className={`relative flex w-full flex-col items-center gap-1 pb-1 pt-3 text-[11px] transition-colors active:scale-95 ${
-                moreActive ? 'text-sage-700' : 'text-stone-500'
+                moreActive ? 'text-sage-700' : 'text-stone-600'
               }`}
             >
               {moreActive && (
@@ -210,7 +210,7 @@ function TabLink({ href, label, active, children }: { href: string; label: strin
       onClick={() => haptic('tick')}
       aria-current={active ? 'page' : undefined}
       className={`relative flex flex-col items-center gap-1 pb-1 pt-3 text-[11px] transition-colors active:scale-95 ${
-        active ? 'text-sage-700' : 'text-stone-500'
+        active ? 'text-sage-700' : 'text-stone-600'
       }`}
     >
       {active && <m.span layoutId="tab-indicator" transition={gentleSpring} className="absolute top-0 h-0.5 w-8 rounded-full bg-sage-600" />}
