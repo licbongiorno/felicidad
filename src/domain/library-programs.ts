@@ -154,4 +154,54 @@ export const PROGRAM_ARTICLES: Article[] = [
       { citation: 'Clark, D. M., & Wells, A. (1995). A cognitive model of social phobia. En R. G. Heimberg et al. (Eds.), Social phobia: Diagnosis, assessment, and treatment (pp. 69–93). Guilford Press.' },
     ],
   },
+  {
+    id: 'autoconocimiento',
+    title: 'Conocerte mejor',
+    subtitle: 'Roles, necesidades y patrones: una exploración personal, no un diagnóstico.',
+    category: 'Terapias contextuales',
+    readingMin: 6,
+    keyPoints: [
+      'Muchas reacciones que se repiten tienen sentido si se miran desde las necesidades que intentan cubrir.',
+      'La terapia de esquemas describe cinco necesidades emocionales básicas y las partes («modos») que aparecen cuando no se cubren.',
+      'Jung propuso mirar la imagen que mostramos y las partes que dejamos fuera de ella.',
+      'Estos ejercicios son para conocerte, no para ponerte una etiqueta. Lo que descubras es buen material para tu terapia.',
+    ],
+    sections: [
+      {
+        heading: 'Por qué repetimos',
+        paragraphs: [
+          'A veces terminamos una y otra vez en el mismo lugar: cuidando a todos menos a nosotros, alejándonos cuando alguien se acerca, exigiéndonos sin descanso. No es falta de voluntad. Esas formas de reaccionar se aprendieron en algún momento porque servían, y siguen apareciendo aunque hoy ya no ayuden.',
+          'La terapia de esquemas, creada por Jeffrey Young, llama «esquemas» a esos patrones profundos de creencias y emociones. Se forman cuando algunas necesidades emocionales básicas no se cubrieron: sentirse seguro/a y querido/a, tener autonomía, poder expresar lo que se siente, disfrutar y tener límites realistas.',
+        ],
+      },
+      {
+        heading: 'Partes de uno mismo',
+        paragraphs: [
+          'En la terapia de esquemas, las reacciones del momento se describen como «modos»: una parte asustada, una enojada, una muy exigente o una que se desconecta. También existe el «adulto sano», la parte que puede comprender a las demás, cuidarlas y poner límites. La práctica «El adulto sano» ensaya esa mirada.',
+          'Carl Jung habló de la «persona», la imagen que mostramos para adaptarnos, y de la «sombra», las partes propias que no aceptamos. A menudo la sombra aparece en lo que nos irrita mucho de otras personas. Es un marco para reflexionar, sin evidencia experimental.',
+        ],
+      },
+      {
+        heading: 'Cómo explorar sin hacerte daño',
+        paragraphs: [
+          'Empieza por situaciones de intensidad media. Escribe con curiosidad, como si investigaras a alguien que te importa. Si aparece algo muy doloroso, para: no hace falta resolverlo solo/a.',
+          'La terapia de esquemas completa, con terapeuta, mostró buenos resultados en ensayos clínicos (Bamelis et al., 2014). Los ejercicios de la app no son esa terapia: son una forma de conocerte mejor y de llevar preguntas a tu proceso.',
+        ],
+      },
+    ],
+    caveat: {
+      title: 'Exploración, no diagnóstico',
+      body: 'Nada de lo que escribas aquí dice qué «tienes». Si estos ejercicios traen recuerdos traumáticos, angustia intensa o ganas de hacerte daño, detente y busca a tu terapeuta o usa el botón «Ayuda».',
+    },
+    related: { practices: ['adulto-sano', 'persona-y-sombra', 'pausa-autocompasion', 'brujula-valores'], articles: ['autocompasion', 'autoestima'] },
+    references: [
+      { citation: 'Young, J. E., Klosko, J. S., & Weishaar, M. E. (2003). Schema therapy: A practitioner’s guide. Guilford Press.' },
+      {
+        citation:
+          'Bamelis, L. L. M., Evers, S. M. A. A., Spinhoven, P., & Arntz, A. (2014). Results of a multicenter randomized controlled trial of the clinical effectiveness of schema therapy for personality disorders. American Journal of Psychiatry, 171(3), 305–322.',
+        doi: '10.1176/appi.ajp.2013.12040518',
+      },
+      { citation: 'Jung, C. G. (1964). Man and his symbols. Doubleday.' },
+    ],
+  },
 ];

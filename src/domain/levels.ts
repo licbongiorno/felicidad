@@ -61,6 +61,8 @@ export const PRACTICE_LEVELS: Record<string, LevelInfo> = {
   'surfear-impulso': { level: 'intermedio', prerequisites: ['atencion-respiracion'] },
   'hacer-espacio': { level: 'intermedio', prerequisites: ['escaneo-corporal'] },
   'comprobar-hechos': { level: 'intermedio' },
+  'persona-y-sombra': { level: 'intermedio' },
+  'adulto-sano': { level: 'intermedio', prerequisites: ['pausa-autocompasion'] },
   'aceptacion-radical': { level: 'intermedio', prerequisites: ['mente-sabia'] },
   'observador': { level: 'avanzado', prerequisites: ['pajaros-en-el-cielo'] },
   'conciencia-pura': { level: 'avanzado', prerequisites: ['atencion-respiracion', 'pajaros-en-el-cielo'] },

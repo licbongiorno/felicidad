@@ -15,7 +15,7 @@ import type { JournalType } from './types';
  *       ayuda humana (botón «Ayuda» en todas las pantallas, plan de seguridad).
  */
 
-export type Approach = 'dbt' | 'tcc' | 'act' | 'cft' | 'mindfulness' | 'positiva' | 'contemplativa' | 'relajacion' | 'escritura';
+export type Approach = 'dbt' | 'tcc' | 'act' | 'cft' | 'mindfulness' | 'positiva' | 'contemplativa' | 'relajacion' | 'escritura' | 'esquemas' | 'psicodinamica';
 
 export const APPROACH_LABEL: Record<Approach, string> = {
   dbt: 'DBT',
@@ -27,6 +27,8 @@ export const APPROACH_LABEL: Record<Approach, string> = {
   contemplativa: 'Contemplativa',
   relajacion: 'Relajación',
   escritura: 'Escritura terapéutica',
+  esquemas: 'Terapia de esquemas',
+  psicodinamica: 'Psicodinámica · Jung',
 };
 
 export const APPROACH_DESCRIPTION: Record<Approach, string> = {
@@ -39,6 +41,8 @@ export const APPROACH_DESCRIPTION: Record<Approach, string> = {
   contemplativa: 'Tradición contemplativa: prácticas de cultivo mental con evidencia sobre todo indirecta.',
   relajacion: 'Técnicas fisiológicas de relajación y respiración.',
   escritura: 'Escritura expresiva y estructurada para ordenar la experiencia.',
+  esquemas: 'Terapia de esquemas: necesidades emocionales, patrones aprendidos y la parte de «adulto sano». Aquí, como exploración.',
+  psicodinamica: 'Enfoques psicodinámicos y de Jung: reflexión sobre patrones, partes de uno mismo y significados. Nunca como diagnóstico.',
 };
 
 export const PRACTICE_APPROACHES: Record<string, Approach[]> = {
@@ -83,6 +87,8 @@ export const PRACTICE_APPROACHES: Record<string, Approach[]> = {
   'comprobar-hechos': ['dbt', 'tcc'],
   please: ['dbt'],
   'give-fast': ['dbt'],
+  'adulto-sano': ['esquemas', 'cft'],
+  'persona-y-sombra': ['psicodinamica'],
 };
 
 export const JOURNAL_APPROACHES: Partial<Record<JournalType, Approach[]>> = {
@@ -106,6 +112,9 @@ export const JOURNAL_APPROACHES: Partial<Record<JournalType, Approach[]>> = {
   conversacion: ['dbt', 'tcc'],
   'tarjeta-diaria': ['dbt'],
   'analisis-cadena': ['dbt'],
+  'mis-roles': ['psicodinamica', 'escritura'],
+  necesidades: ['esquemas'],
+  'patron-repetido': ['esquemas', 'psicodinamica'],
 };
 
 // ---------------------------------------------------------------- nivel de riesgo
@@ -128,6 +137,7 @@ export const PRACTICE_RISK: Record<string, { level: RiskLevel; alternative: stri
   'perdon-reach': { level: 2, alternative: 'pausa-autocompasion' },
   'aceptacion-radical': { level: 2, alternative: 'mente-sabia' },
   'hacer-espacio': { level: 2, alternative: 'escaneo-corporal' },
+  'adulto-sano': { level: 2, alternative: 'pausa-autocompasion' },
 };
 
 export const JOURNAL_RISK: Partial<Record<JournalType, RiskLevel>> = {
@@ -135,6 +145,7 @@ export const JOURNAL_RISK: Partial<Record<JournalType, RiskLevel>> = {
   'escalera-exposicion': 2,
   perdon: 2,
   'analisis-cadena': 2,
+  'patron-repetido': 2,
 };
 
 export const practiceRisk = (id: string): RiskLevel => PRACTICE_RISK[id]?.level ?? 1;
@@ -290,10 +301,10 @@ export const MODULES: SkillModule[] = [
     id: 'autoconocimiento',
     title: 'Autoconocimiento y patrones',
     purpose: 'Explorar tus roles, necesidades y patrones. Es reflexión, no diagnóstico.',
-    approaches: ['escritura'],
-    practices: [],
-    journal: [],
-    resources: [],
+    approaches: ['esquemas', 'psicodinamica'],
+    practices: ['persona-y-sombra', 'adulto-sano'],
+    journal: ['mis-roles', 'necesidades', 'patron-repetido'],
+    resources: [{ href: '/biblioteca/autoconocimiento', label: 'Conocerte mejor' }],
   },
 ];
 
