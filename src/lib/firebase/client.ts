@@ -1,5 +1,6 @@
 import { getApp, getApps, initializeApp, type FirebaseApp } from 'firebase/app';
 import { browserLocalPersistence, indexedDBLocalPersistence, initializeAuth, type Auth } from 'firebase/auth';
+import { initializeAppCheck, ReCaptchaV3Provider } from 'firebase/app-check';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -13,8 +14,21 @@ const firebaseConfig = {
 let app: FirebaseApp | undefined;
 let auth: Auth | undefined;
 
+/**
+ * App Check: certifica que las peticiones a Firestore y Auth vienen de esta web y no de un
+ * script que copió la configuración. Sólo se activa si existe la clave de reCAPTCHA v3
+ * (NEXT_PUBLIC_RECAPTCHA_SITE_KEY); después hay que «aplicarlo» en la consola de Firebase.
+ */
+const RECAPTCHA_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+
 export function getFirebaseApp(): FirebaseApp {
-  app ??= getApps().length ? getApp() : initializeApp(firebaseConfig);
+  if (!app) {
+    const fresh = !getApps().length;
+    app = fresh ? initializeApp(firebaseConfig) : getApp();
+    if (fresh && RECAPTCHA_KEY && typeof window !== 'undefined') {
+      initializeAppCheck(app, { provider: new ReCaptchaV3Provider(RECAPTCHA_KEY), isTokenAutoRefreshEnabled: true });
+    }
+  }
   return app;
 }
 

@@ -86,7 +86,7 @@ const BASE_ANTIDOTES: Antidote[] = [
   },
   {
     emotionId: 'envidia',
-    emotionLabel: 'Envidia o celos',
+    emotionLabel: 'Envidia',
     markers: 'Comparación, sensación de pérdida o injusticia ante el logro o la felicidad ajena.',
     antidoteName: 'Regocijo empático',
     incompatibility:
@@ -152,8 +152,8 @@ const BASE_ANTIDOTES: Antidote[] = [
   },
   {
     emotionId: 'autocritica',
-    emotionLabel: 'Autocrítica o vergüenza',
-    markers: 'Voz interna dura, deseo de esconderse, sensación de ser insuficiente.',
+    emotionLabel: 'Autocrítica',
+    markers: 'Voz interna dura que te reprocha y exige, sensación de ser insuficiente.',
     antidoteName: 'Autocompasión',
     incompatibility:
       'La autocrítica activa un sistema de amenaza dirigido hacia uno mismo; la autocompasión activa un sistema de cuidado. Tratarse como a un amigo en dificultad interrumpe el ataque.',
@@ -188,8 +188,8 @@ const BASE_ANTIDOTES: Antidote[] = [
   },
   {
     emotionId: 'ansiedad',
-    emotionLabel: 'Miedo o ansiedad',
-    markers: 'Anticipación de amenaza, pulso acelerado, «¿y si…?», impulso de evitar.',
+    emotionLabel: 'Ansiedad',
+    markers: 'Inquietud difusa, anticipación de amenaza, pulso acelerado, «¿y si…?».',
     antidoteName: 'Aceptación y presencia',
     incompatibility:
       'La ansiedad se alimenta de la lucha por eliminarla y del desplazamiento al futuro. Permitir la sensación en el presente, sin controlarla, retira ese combustible.',

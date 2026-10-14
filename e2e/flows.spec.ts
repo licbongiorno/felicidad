@@ -44,7 +44,7 @@ test('antídoto completo: reconocer → medir → practicar → volver a medir',
 
 test('el cribado de riesgo detiene el ejercicio y muestra ayuda', async ({ page }) => {
   await open(page, '/antidotos');
-  await page.getByRole('button', { name: /^Ansiedad|^Miedo/ }).click();
+  await page.getByRole('button', { name: /^Ansiedad/ }).click();
   await page.getByRole('radio', { name: '9' }).click();
   await expect(page.getByText(/90 segundos de\s+respiración lenta/)).toBeVisible();
   await page.getByLabel(/pensamientos de hacerme daño/).check();
@@ -155,6 +155,9 @@ test('teclado: el foco no escapa de una hoja modal abierta', async ({ page, isMo
 test('buscador: Ctrl+K, escribir sin tildes y abrir el resultado con Enter', async ({ page, isMobile }) => {
   test.skip(isMobile, 'Atajo de teclado: sólo escritorio');
   await open(page, '/dashboard');
+  // El atajo se registra al hidratar: esperar a que el panel termine de cargar.
+  await page.waitForLoadState('networkidle');
+  await expect(page.getByRole('heading', { level: 1, name: 'Panel' })).toBeVisible();
   await page.keyboard.press('Control+k');
   const input = page.getByRole('combobox', { name: /Buscar/ });
   await expect(input).toBeFocused();
@@ -176,7 +179,7 @@ test('buscador: botón de la cabecera y enlace profundo a un antídoto', async (
   await page.getByRole('combobox', { name: /Buscar/ }).fill('envidia');
   await page.getByRole('option').filter({ hasText: 'Envidia' }).first().click();
   await expect(page).toHaveURL(/\/antidotos\?emocion=envidia$/);
-  await expect(page.getByRole('heading', { name: 'Envidia o celos' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Envidia', exact: true })).toBeVisible();
 });
 
 test('accesibilidad WCAG 2.1 AA: buscador abierto', async ({ page }) => {
@@ -216,7 +219,7 @@ test('antídoto nuevo: soledad, desde el buscador hasta el registro', async ({ p
 test('gimnasio: herramientas rápidas de 1–3 minutos sin selector de duración', async ({ page }) => {
   await open(page, '/gimnasio');
   const quick = page.getByRole('region', { name: /Herramientas rápidas/ });
-  await expect(quick.getByRole('link')).toHaveCount(5);
+  await expect(quick.getByRole('link')).toHaveCount(6);
   await quick.getByRole('link', { name: /Pausa STOP/ }).click();
   await expect(page.getByRole('heading', { level: 1, name: 'Pausa STOP' })).toBeVisible();
   await expect(page.getByRole('radiogroup', { name: 'Duración' })).toHaveCount(0);
@@ -225,7 +228,8 @@ test('gimnasio: herramientas rápidas de 1–3 minutos sin selector de duración
 test('niveles: una práctica avanzada recomienda sus prerrequisitos', async ({ page }) => {
   await open(page, '/gimnasio/tonglen');
   await expect(page.getByText(/Práctica de nivel avanzado/)).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Meditación de amor altruista' })).toBeVisible();
+  // Aparece como prerrequisito y como alternativa más segura (nivel de riesgo 2).
+  await expect(page.getByRole('link', { name: 'Meditación de amor altruista' }).first()).toBeVisible();
 });
 
 test('GAD-7: siete respuestas producen la puntuación y su interpretación', async ({ page }) => {
@@ -312,7 +316,63 @@ test('diario: preparar una conversación difícil (DEAR MAN)', async ({ page }) 
   await expect(page.getByText('Entrada guardada')).toBeVisible();
 });
 
-for (const path of ['/', '/dashboard', '/gimnasio', '/gimnasio/espacio-tres-minutos', '/gimnasio/amor-altruista', '/gimnasio/relajacion-progresiva', '/biblioteca/glosario', '/biblioteca/estres-y-agotamiento', '/plan-de-seguridad', '/biblioteca/trampas-del-pensamiento', '/biblioteca/ataques-de-panico', '/gimnasio/tipp', '/gimnasio/temporizador', '/antidotos', '/diario', '/evaluaciones', '/informe', '/biblioteca/rumiacion', '/biblioteca/autocompasion', '/programas/fundamentos', '/programas/desanimo', '/cartas', '/ajustes']) {
+test('ayuda: el botón está en todas las pantallas y llama a las líneas de crisis', async ({ page }) => {
+  for (const path of ['/dashboard', '/gimnasio', '/laboratorio']) {
+    await open(page, path);
+    await page.getByRole('button', { name: 'Ayuda' }).click();
+    await expect(page.getByRole('link', { name: /Llamar a Línea Nacional de Salud Mental/ })).toHaveAttribute('href', 'tel:08009990091');
+    await page.keyboard.press('Escape');
+  }
+});
+
+test('nivel de riesgo 2: hay que leer las precauciones antes de empezar', async ({ page }) => {
+  await open(page, '/gimnasio/aceptacion-radical');
+  const start = page.getByRole('button', { name: 'Preparado' });
+  await expect(start).toBeDisabled();
+  await page.getByLabel(/Leí las precauciones/).check();
+  await expect(start).toBeEnabled();
+});
+
+test('laboratorio: el simulador explica una respuesta pasiva y deja probar otra', async ({ page }) => {
+  await open(page, '/laboratorio/conversaciones/decir-no-trabajo');
+  await page.getByRole('radio', { name: /no hay problema/ }).click();
+  await expect(page.getByText('Respuesta pasiva')).toBeVisible();
+  await page.getByRole('button', { name: 'Probar otra respuesta' }).click();
+  await page.getByRole('radio', { name: /Hoy tengo un compromiso/ }).click();
+  await expect(page.getByText('Respuesta asertiva')).toBeVisible();
+  await page.getByRole('button', { name: 'Seguir la conversación' }).click();
+  await expect(page.getByText(/es urgente/).first()).toBeVisible();
+});
+
+test('laboratorio: la caja de herramientas aparece en el semáforo en rojo', async ({ page }) => {
+  await open(page, '/laboratorio/caja');
+  await page.getByPlaceholder(/No puedo pensar/).fill('Me tiemblan las manos');
+  await page.getByRole('button', { name: 'Guardar mi caja' }).click();
+  await expect(page.getByText('Guardada.')).toBeVisible();
+  await page.goto('/laboratorio/semaforo');
+  await page.getByRole('radio', { name: '9' }).click();
+  await expect(page.getByText('Me tiemblan las manos')).toBeVisible();
+  await expect(page.getByRole('link', { name: /Llamar a Emergencias/ })).toBeVisible();
+});
+
+test('llevarlo a tu vida: el plan se guarda con la práctica', async ({ page }) => {
+  await open(page, '/gimnasio/pausa-stop');
+  await page.getByRole('button', { name: 'Preparado' }).click();
+  await page.getByRole('button', { name: 'Comenzar', exact: true }).click();
+  await page.getByRole('button', { name: 'Pausar', exact: true }).click();
+  await page.getByRole('button', { name: 'Terminar aquí' }).click();
+  await page.getByPlaceholder(/Mañana, antes de la reunión/).fill('Antes de contestar mensajes');
+  await page.getByRole('button', { name: 'Registrar práctica' }).click();
+  await expect(page.getByText(/Te propusiste: «Antes de contestar mensajes»/)).toBeVisible();
+});
+
+test('favoritas: se marcan desde el catálogo y aparecen arriba', async ({ page }) => {
+  await open(page, '/gimnasio');
+  await page.getByRole('button', { name: /Guardar «Mente sabia» en favoritas/ }).click();
+  await expect(page.getByRole('heading', { name: 'Tus favoritas' })).toBeVisible();
+});
+
+for (const path of ['/', '/dashboard', '/gimnasio', '/gimnasio/espacio-tres-minutos', '/gimnasio/amor-altruista', '/gimnasio/relajacion-progresiva', '/biblioteca/glosario', '/biblioteca/estres-y-agotamiento', '/plan-de-seguridad', '/biblioteca/trampas-del-pensamiento', '/biblioteca/ataques-de-panico', '/gimnasio/tipp', '/gimnasio/temporizador', '/antidotos', '/diario', '/evaluaciones', '/informe', '/biblioteca/rumiacion', '/biblioteca/autocompasion', '/programas/fundamentos', '/programas/desanimo', '/cartas', '/ajustes', '/crecimiento', '/laboratorio', '/laboratorio/semaforo', '/laboratorio/caja', '/laboratorio/conversaciones/decir-no-trabajo', '/laboratorio/hecho-o-interpretacion', '/biblioteca/rueda-de-emociones', '/biblioteca/autoconocimiento', '/gimnasio/aceptacion-radical']) {
   test(`accesibilidad WCAG 2.1 AA: ${path}`, async ({ page }) => {
     await open(page, path);
     await page.waitForLoadState('networkidle');
@@ -360,7 +420,7 @@ test('ajustes: la apariencia elegida se aplica y persiste al recargar', async ({
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
-  await page.getByRole('radio', { name: 'Sistema' }).click();
+  await page.getByRole('radio', { name: 'Sistema', exact: true }).click();
   await expect(page.locator('html')).not.toHaveAttribute('data-theme', /.+/);
 });
 
@@ -407,9 +467,11 @@ test('sin conexión: la app abre las secciones clave y avisa del estado', async 
     await page.goto('/gimnasio/temporizador');
     await expect(page.getByRole('heading', { name: 'Temporizador libre' })).toBeVisible();
     await expect(page.getByText(/Sin conexión\. Puedes seguir practicando/)).toBeVisible();
-    // Una página no disponible offline muestra un aviso propio, no el error del navegador.
+    // Una página no precargada nunca muestra el error del navegador: o la sirve la caché
+    // (con el aviso de estado de la app) o el aviso propio del service worker. Según la
+    // versión de Chromium, la emulación sin red puede no aplicarse a las peticiones del SW.
     await page.goto('/biblioteca/rumiacion');
-    await expect(page.getByRole('heading', { name: 'Sin conexión' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Sin conexión' }).or(page.getByText(/Sin conexión\. Puedes seguir practicando/))).toBeVisible();
   } finally {
     await context.setOffline(false);
   }

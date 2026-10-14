@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import { m } from 'motion/react';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useLatestJournal } from '@/hooks/useLatestJournal';
 import { TEMPLATE_BY_TYPE } from '@/domain/journal';
 import { isPublished, reviewOf, REVIEW_LABEL } from '@/domain/governance';
 import { useProgressStore } from '@/store/useProgressStore';
@@ -33,10 +34,10 @@ const GUIDANCE: Record<string, string> = {
 export function SafetyPlan() {
   const template = TEMPLATE_BY_TYPE['plan-seguridad'];
   const review = reviewOf('herramienta', 'plan-seguridad');
-  const journal = useProgressStore((s) => s.journal);
   const status = useProgressStore((s) => s.status);
   const logJournal = useProgressStore((s) => s.logJournal);
-  const latest = useMemo(() => journal.find((j) => j.type === 'plan-seguridad'), [journal]);
+  // La versión vigente aunque tenga más de 90 días (la ventana del store no la alcanzaría).
+  const { loaded: latestLoaded, latest } = useLatestJournal('plan-seguridad');
 
   const [values, setValues] = useState<Record<string, string>>({});
   const [saved, setSaved] = useState(false);
@@ -44,10 +45,10 @@ export function SafetyPlan() {
 
   // Prellenar con la última versión cuando llegan los datos.
   useEffect(() => {
-    if (loaded.current || status !== 'ready') return;
+    if (loaded.current || status !== 'ready' || !latestLoaded) return;
     loaded.current = true;
     if (latest) setValues(Object.fromEntries(Object.entries(latest.values).map(([k, v]) => [k, String(v)])));
-  }, [latest, status]);
+  }, [latest, latestLoaded, status]);
 
   if (!isPublished('herramienta', 'plan-seguridad')) {
     return (

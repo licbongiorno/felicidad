@@ -21,7 +21,8 @@ export default defineConfig({
     { name: 'movil', use: { ...devices['Pixel 7'] } },
   ],
   webServer: {
-    command: 'npm run dev',
+    // En CI se prueba la build de producción (el service worker sólo se registra en producción).
+    command: process.env.CI ? 'npx next start -p 3000' : 'npm run dev',
     url: 'http://localhost:3000',
     reuseExistingServer: true,
     timeout: 180_000,

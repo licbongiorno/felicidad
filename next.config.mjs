@@ -14,7 +14,7 @@ const isDev = process.env.NODE_ENV !== 'production';
  */
 const csp = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline' https://apis.google.com${isDev ? " 'unsafe-eval'" : ''}`,
+  `script-src 'self' 'unsafe-inline' https://apis.google.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/${isDev ? " 'unsafe-eval'" : ''}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self' data:",
@@ -26,10 +26,13 @@ const csp = [
     'https://firebaseinstallations.googleapis.com',
     'https://www.googleapis.com',
     'https://*.firebaseio.com',
+    // App Check (reCAPTCHA v3): validación de que la petición viene de esta web.
+    'https://content-firebaseappcheck.googleapis.com',
+    'https://www.google.com/recaptcha/',
     'wss://*.firebaseio.com',
     ...(isDev ? ['ws:'] : []),
   ].join(' '),
-  'frame-src https://*.firebaseapp.com https://accounts.google.com https://apis.google.com',
+  'frame-src https://*.firebaseapp.com https://accounts.google.com https://apis.google.com https://www.google.com/recaptcha/ https://recaptcha.google.com/recaptcha/',
   "worker-src 'self'",
   "manifest-src 'self'",
   "object-src 'none'",
