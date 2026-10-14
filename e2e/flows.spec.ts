@@ -84,7 +84,7 @@ test('ajustes: la exportación descarga un JSON con los datos', async ({ page })
   expect(download.suggestedFilename()).toBe(`eudaimonia-datos-${localDate}.json`);
   // Mismo formato que la exportación de Firestore, con metadatos.
   const data = JSON.parse(readFileSync((await download.path())!, 'utf8'));
-  expect(data).toMatchObject({ app: 'Protocolo Eudaimonía', formatVersion: 1 });
+  expect(data).toMatchObject({ app: 'Habilidades Psicológicas', formatVersion: 1 });
   expect(Object.keys(data)).toEqual(expect.arrayContaining(['sessions', 'checkins', 'afflictionLogs', 'journal', 'assessments', 'timezone']));
   expect(data).not.toHaveProperty('afflictions');
 });

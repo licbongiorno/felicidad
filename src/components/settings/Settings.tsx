@@ -256,7 +256,7 @@ function DataRights({ uid, onDeleted }: { uid: string; onDeleted: () => Promise<
     try {
       const data = await (await loadRepo()).exportUserData(uid);
       // Sobre con metadatos para que el archivo sea interpretable fuera de la app.
-      const envelope = { app: 'Protocolo Eudaimonía', formatVersion: 1, timezone: currentTimeZone(), ...(data as object) };
+      const envelope = { app: 'Habilidades Psicológicas', formatVersion: 1, timezone: currentTimeZone(), ...(data as object) };
       // Fecha LOCAL en el nombre: con toISOString() una exportación a las 23:00 llevaba la fecha del día siguiente.
       downloadFile(`eudaimonia-datos-${toDateKey(new Date())}.json`, JSON.stringify(envelope, null, 2), 'application/json');
     } catch {

@@ -1,4 +1,6 @@
-# Protocolo Eudaimonía
+# Habilidades Psicológicas
+
+(Antes «Protocolo Eudaimonía»; los identificadores internos conservan el nombre anterior.)
 
 Aplicación web para el entrenamiento sistemático del bienestar mental, basada en neurociencia contemplativa,
 psicología positiva y terapias de tercera generación.

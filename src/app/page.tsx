@@ -38,8 +38,8 @@ export default function Home() {
           <LogoMark className="h-9 w-9" />
         </StaggerItem>
         <StaggerItem>
-          <p className="mt-8 text-xs uppercase tracking-[0.3em] text-stone-600">Protocolo</p>
-          <h1 className="mt-3 font-serif text-6xl tracking-tight text-stone-800 sm:text-7xl">Eudaimonía</h1>
+          <p className="mt-8 text-xs uppercase tracking-[0.3em] text-stone-600">Entrenamiento</p>
+          <h1 className="mt-3 font-serif text-5xl tracking-tight text-stone-800 sm:text-7xl">Habilidades Psicológicas</h1>
         </StaggerItem>
         <StaggerItem>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-stone-600">

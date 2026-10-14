@@ -3,9 +3,9 @@ import type { MetadataRoute } from 'next';
 /** Manifiesto PWA: permite instalar la app y abrirla a pantalla completa, como una app nativa. */
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Protocolo Eudaimonía',
-    short_name: 'Eudaimonía',
-    description: 'Entrenamiento sistemático del bienestar mental basado en evidencia.',
+    name: 'Habilidades Psicológicas',
+    short_name: 'Habilidades',
+    description: 'Entrena habilidades psicológicas basadas en evidencia, entre sesiones o por tu cuenta.',
     start_url: '/dashboard',
     display: 'standalone',
     background_color: '#fafaf9',

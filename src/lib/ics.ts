@@ -42,7 +42,7 @@ export function buildReminderIcs({
   return [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
-    'PRODID:-//Protocolo Eudaimonia//Recordatorio//ES',
+    'PRODID:-//Habilidades Psicologicas//Recordatorio//ES',
     'CALSCALE:GREGORIAN',
     'BEGIN:VEVENT',
     `UID:${Date.now()}-${Math.random().toString(36).slice(2)}@eudaimonia`,
@@ -50,7 +50,7 @@ export function buildReminderIcs({
     `DTSTART;TZID=${tz}:${localStamp(start)}`,
     `DTEND;TZID=${tz}:${localStamp(end)}`,
     `RRULE:FREQ=WEEKLY;BYDAY=${days.join(',')}`,
-    `SUMMARY:${esc('Práctica · Eudaimonía')}`,
+    `SUMMARY:${esc('Práctica · Habilidades Psicológicas')}`,
     `DESCRIPTION:${esc(`Cuando ${cue}, practico ${minutes} minutos.\n${url}`)}`,
     `URL:${url}`,
     'BEGIN:VALARM',

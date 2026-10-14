@@ -13,6 +13,7 @@ import { formatClock } from '@/hooks/useGuidedTimer';
 import { Button } from '@/components/ui/Button';
 import { IntensityScale } from '@/components/ui/IntensityScale';
 import { EvidencePanel } from '@/components/ui/EvidencePanel';
+import { journalRisk } from '@/domain/catalog';
 
 interface Props {
   template: JournalTemplate;
@@ -144,9 +145,13 @@ export function JournalEditor({ template, onSaved, onCancel }: Props) {
       </m.header>
 
       {template.caution && (
-        <m.p variants={fadeUp} className="mt-6 rounded-xl bg-stone-100 px-4 py-3 text-sm leading-relaxed text-stone-600">
-          <span className="font-medium">Antes de empezar. </span>
+        <m.p
+          variants={fadeUp}
+          className={`mt-6 rounded-xl px-4 py-3 text-sm leading-relaxed text-stone-600 ${journalRisk(template.type) === 2 ? 'border border-stone-300 bg-white' : 'bg-stone-100'}`}
+        >
+          <span className="font-medium">{journalRisk(template.type) === 2 ? 'Con precauciones. ' : 'Antes de empezar. '}</span>
           {template.caution}
+          {journalRisk(template.type) === 2 && ' Puedes parar cuando quieras: escribir sólo una parte también vale.'}
         </m.p>
       )}
 

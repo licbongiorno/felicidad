@@ -1,4 +1,4 @@
-# Protocolo Eudaimonía — Arquitectura
+# Habilidades Psicológicas — Arquitectura
 
 ## 1. Estructura del proyecto
 

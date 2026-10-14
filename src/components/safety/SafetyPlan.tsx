@@ -8,7 +8,7 @@ import { isPublished, reviewOf, REVIEW_LABEL } from '@/domain/governance';
 import { useProgressStore } from '@/store/useProgressStore';
 import { fadeUp, stagger } from '@/lib/motion';
 import { haptic } from '@/lib/haptics';
-import { CRISIS_RESOURCES } from '@/config/safety';
+import { CrisisResources } from '@/components/safety/CrisisResources';
 import { Button, buttonStyles } from '@/components/ui/Button';
 import { DrawnCheck } from '@/components/motion/Reveal';
 
@@ -83,20 +83,7 @@ export function SafetyPlan() {
 
       <m.section variants={fadeUp} aria-label="Ayuda inmediata" className="mt-8 rounded-2xl border border-stone-300 bg-white p-5">
         <p className="text-sm font-medium text-stone-800">Si estás en peligro inmediato</p>
-        <ul className="mt-2 space-y-1 text-sm">
-          {CRISIS_RESOURCES.map((r) => (
-            <li key={r.label} className="flex justify-between gap-4">
-              <span className="text-stone-600">{r.label}</span>
-              {r.href ? (
-                <a href={r.href} className="font-medium text-sage-700 underline decoration-sage-300 underline-offset-2">
-                  {r.contact}
-                </a>
-              ) : (
-                <span className="text-right font-medium text-stone-800">{r.contact}</span>
-              )}
-            </li>
-          ))}
-        </ul>
+        <CrisisResources className="mt-2" />
       </m.section>
 
       <m.ol variants={fadeUp} className="mt-8 space-y-6">

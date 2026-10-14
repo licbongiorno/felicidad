@@ -1,18 +1,46 @@
 /**
- * Recursos de crisis. DEBEN ajustarse a la jurisdicción donde se use la app y ser
- * revisados por el/la profesional responsable antes de producción.
+ * Recursos de crisis de Argentina (alcance nacional).
+ * Verificados el 2026-10-14 en fuentes oficiales (argentina.gob.ar, Centro de Asistencia
+ * al Suicida) y notas de prensa de 2026. Revisarlos cada año, o antes si cambia algún
+ * servicio, y anotar la fecha en CRISIS_RESOURCES_CHECKED_AT.
  */
 export interface CrisisResource {
   label: string;
   contact: string;
   href?: string;
+  /** Alcance, horario o para qué sirve. */
+  detail?: string;
 }
 
+export const CRISIS_RESOURCES_CHECKED_AT = '2026-10-14';
+
 export const CRISIS_RESOURCES: CrisisResource[] = [
-  { label: 'Emergencias', contact: 'Número de emergencias local' },
-  { label: 'Tu profesional tratante', contact: 'Contacto definido en tu plan de seguridad' },
-  // Ejemplo a completar: { label: 'Línea de prevención del suicidio', contact: '…', href: 'tel:…' },
+  { label: 'Emergencias', contact: '911', href: 'tel:911', detail: 'Si tu vida o la de otra persona está en peligro ahora.' },
+  {
+    label: 'Línea Nacional de Salud Mental',
+    contact: '0800-999-0091',
+    href: 'tel:08009990091',
+    detail: 'Urgencias en salud mental. Gratuita, las 24 horas, en todo el país.',
+  },
+  {
+    label: 'Centro de Asistencia al Suicida',
+    contact: '135',
+    href: 'tel:135',
+    detail: 'Gratuita desde CABA y el Gran Buenos Aires. Desde el resto del país: (011) 5275-1135 o 0800-345-1435.',
+  },
+  {
+    label: 'Violencia de género · Línea 144',
+    contact: '144',
+    href: 'tel:144',
+    detail: 'Gratuita, las 24 horas, en todo el país.',
+  },
+  { label: 'Tu profesional tratante', contact: 'El contacto de tu plan de seguridad' },
 ];
 
+export const APP_NAME = 'Habilidades Psicológicas';
+
 export const SAFETY_DISCLAIMER =
-  'Protocolo Eudaimonía es una herramienta de entrenamiento complementaria. No reemplaza la evaluación ni el tratamiento por un/a profesional de la salud mental.';
+  'Habilidades Psicológicas es una herramienta de entrenamiento complementaria. No reemplaza la evaluación ni el tratamiento por un/a profesional de la salud mental.';
+
+/** Edad mínima de uso: la versión para menores requiere un circuito propio. */
+export const MIN_AGE = 18;

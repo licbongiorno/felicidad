@@ -10,8 +10,8 @@ const sans = Inter({ subsets: ['latin'], variable: '--font-sans', display: 'swap
 const serif = Newsreader({ subsets: ['latin'], variable: '--font-serif', display: 'swap' });
 
 export const metadata: Metadata = {
-  title: 'Protocolo Eudaimonía',
-  description: 'Entrenamiento sistemático del bienestar mental basado en evidencia.',
+  title: 'Habilidades Psicológicas',
+  description: 'Entrena habilidades psicológicas basadas en evidencia, entre sesiones o por tu cuenta.',
   robots: { index: false, follow: false },
 };
 

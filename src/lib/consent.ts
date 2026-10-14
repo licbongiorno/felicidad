@@ -1,2 +1,3 @@
 /** Versión del consentimiento informado vigente. Cambiarla obliga a reaceptar. */
-export const CONSENT_VERSION = '2026-10';
+// 2026-10-b: se añade la confirmación de edad mínima (18 años).
+export const CONSENT_VERSION = '2026-10-b';

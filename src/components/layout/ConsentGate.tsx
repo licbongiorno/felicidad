@@ -3,12 +3,13 @@
 import { m } from 'motion/react';
 import { useState } from 'react';
 import { useAuth } from '@/providers/AuthProvider';
-import { SAFETY_DISCLAIMER } from '@/config/safety';
+import { MIN_AGE, SAFETY_DISCLAIMER } from '@/config/safety';
 import { fadeUp, stagger } from '@/lib/motion';
 import { Button } from '@/components/ui/Button';
 import { LogoMark } from '@/components/ui/icons';
 
 const POINTS = [
+  `La app es para personas de ${MIN_AGE} años o más.`,
   'Guardamos tus prácticas, registros de ánimo, antídotos, diario y evaluaciones para mostrarte tu progreso.',
   'Tus datos son privados. Un/a profesional sólo puede leerlos si tú aceptas expresamente un vínculo con él/ella, y puedes revocarlo cuando quieras.',
   'Puedes descargar todos tus datos o borrar tu cuenta en cualquier momento desde Ajustes.',
@@ -64,7 +65,7 @@ export function ConsentGate() {
       </m.p>
       <m.label variants={fadeUp} className="mt-8 flex cursor-pointer items-start gap-3 rounded-2xl border border-stone-200 bg-white p-4 text-sm text-stone-700">
         <input type="checkbox" checked={checked} onChange={(e) => setChecked(e.target.checked)} className="mt-0.5 h-4 w-4 accent-sage-700" />
-        He leído y acepto el tratamiento de mis datos en estos términos.
+        Tengo {MIN_AGE} años o más, he leído y acepto el tratamiento de mis datos en estos términos.
       </m.label>
       {error && (
         <p role="alert" className="mt-4 text-sm text-stone-700">

@@ -9,6 +9,7 @@ import { useUiStore } from '@/store/useUiStore';
 import { calm, gentleSpring } from '@/lib/motion';
 import { haptic } from '@/lib/haptics';
 import { Sheet } from '@/components/ui/Sheet';
+import { HelpButton } from './HelpButton';
 import { isPublished } from '@/domain/governance';
 import {
   IconAntidote,
@@ -74,8 +75,11 @@ export function AppNav() {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3.5">
           <Link href="/dashboard" className="group flex items-center gap-2.5 font-serif text-lg text-stone-800">
             <LogoMark className="h-6 w-6 transition-transform duration-700 ease-out group-hover:rotate-90 group-hover:scale-110" />
-            Eudaimonía
+            <span className="hidden sm:inline">Habilidades Psicológicas</span>
+            <span className="sm:hidden">Habilidades</span>
           </Link>
+
+          <HelpButton />
 
           <button
             type="button"

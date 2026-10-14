@@ -164,6 +164,35 @@ describe('gobernanza clínica', () => {
   });
 });
 
+// ---------------------------------------------------------------- catálogo y seguridad
+describe('catálogo clínico', () => {
+  it('cada práctica y cada plantilla visible tiene enfoque, y no sobran entradas', async () => {
+    const { PRACTICE_APPROACHES, JOURNAL_APPROACHES, APPROACH_LABEL } = await import('./catalog');
+    for (const p of PRACTICES) expect(PRACTICE_APPROACHES[p.id]?.length, p.id).toBeGreaterThan(0);
+    for (const id of Object.keys(PRACTICE_APPROACHES)) expect(PRACTICE_BY_ID[id], id).toBeDefined();
+    for (const t of JOURNAL_TEMPLATES.filter((x) => !x.hidden)) expect(JOURNAL_APPROACHES[t.type]?.length, t.type).toBeGreaterThan(0);
+    for (const list of Object.values(PRACTICE_APPROACHES)) for (const a of list) expect(APPROACH_LABEL[a]).toBeDefined();
+  });
+
+  it('el contenido de nivel 2 tiene precauciones y una alternativa de nivel 1', async () => {
+    const { PRACTICE_RISK, JOURNAL_RISK, practiceRisk } = await import('./catalog');
+    for (const [id, r] of Object.entries(PRACTICE_RISK)) {
+      expect(PRACTICE_BY_ID[id]?.cautions, id).toBeTruthy();
+      expect(PRACTICE_BY_ID[r.alternative], `${id} → ${r.alternative}`).toBeDefined();
+      expect(practiceRisk(r.alternative), r.alternative).toBe(1);
+    }
+    for (const type of Object.keys(JOURNAL_RISK)) expect(JOURNAL_TEMPLATES.find((t) => t.type === type)?.caution, type).toBeTruthy();
+  });
+
+  it('los recursos de crisis son llamables y se revisaron hace menos de 12 meses', async () => {
+    const { CRISIS_RESOURCES, CRISIS_RESOURCES_CHECKED_AT } = await import('@/config/safety');
+    const days = (Date.now() - new Date(`${CRISIS_RESOURCES_CHECKED_AT}T00:00:00`).getTime()) / 86_400_000;
+    expect(days, 'Revisa los teléfonos de crisis y actualiza CRISIS_RESOURCES_CHECKED_AT.').toBeLessThanOrEqual(365);
+    expect(CRISIS_RESOURCES.some((r) => r.href === 'tel:911')).toBe(true);
+    for (const r of CRISIS_RESOURCES) if (r.href) expect(r.href, r.label).toMatch(/^tel:\d+$/);
+  });
+});
+
 // ---------------------------------------------------------------- instrumentos
 describe('instrumentos', () => {
   it.each(INSTRUMENTS.map((i) => [i.id, i] as const))('%s puntúa dentro de su rango', (_id, ins) => {

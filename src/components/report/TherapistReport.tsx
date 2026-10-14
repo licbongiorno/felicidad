@@ -166,7 +166,7 @@ export function TherapistReport() {
         className="mx-auto mt-12 max-w-3xl rounded-2xl border border-stone-200 bg-white p-8 shadow-soft sm:p-12 print:mt-0 print:max-w-none print:rounded-none print:border-0 print:p-0 print:shadow-none"
       >
         <header className="border-b border-stone-200 pb-6">
-          <p className="text-xs uppercase tracking-[0.2em] text-stone-500">Protocolo Eudaimonía · Informe de seguimiento</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-stone-500">Habilidades Psicológicas · Informe de seguimiento</p>
           <h2 className="mt-2 font-serif text-3xl text-stone-900">{who}</h2>
           <p className="mt-1 text-sm text-stone-600">
             Del {DATE.format(since)} al {DATE.format(new Date())} · generado el {DATE.format(new Date())}
