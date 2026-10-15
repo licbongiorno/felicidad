@@ -33,7 +33,7 @@
 | Guías para familias (`KID_GUIDES`) | 13 (4 de paquetes) | `src/domain/kids-guides.ts` |
 | Paquetes de contenido (`PACKS`) | 5 | `src/domain/packs/index.ts:9` |
 | Elementos en borrador (`REVIEW_OVERRIDES`) | 6 | `src/domain/governance.ts:38-45` |
-| Rutas (`page.tsx`) | **43** (35 en `(app)`, 6 en `(kids)` y 3 públicas: `/`, `/login`, `/privacidad`) | `find src/app -name page.tsx` |
+| Rutas (`page.tsx`) | **43** (34 en `(app)`, 6 en `(kids)` y 3 públicas: `/`, `/login`, `/privacidad`) | `find src/app -name page.tsx` |
 | Páginas prerenderizadas en la build | 433 | `.next/prerender-manifest.json` |
 | Archivos en `src/` | 271 (≈ 40 000 líneas TS/TSX; `src/domain` ≈ 21 000) | `wc -l` |
 | Componentes `.tsx` | 101 | `src/components` |
