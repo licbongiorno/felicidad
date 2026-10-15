@@ -705,6 +705,84 @@ export const PROGRAMS: Program[] = [
       },
     ],
   },
+  {
+    id: 'vivir-mis-valores',
+    title: 'Vivir según mis valores',
+    subtitle: 'Cuatro semanas para pasar de lo que me importa a lo que hago',
+    description:
+      'Para aclarar tus valores, notar cuándo te alejas de ellos y dar pasos concretos en esa dirección, aunque aparezcan dudas o miedo.',
+    basis: 'Terapia de aceptación y compromiso (Hayes, Strosahl y Wilson, 2012) e intenciones de implementación (Gollwitzer y Sheeran, 2006).',
+    rhythm: '10 minutos al día, 4 o 5 días por semana.',
+    weeks: [
+      {
+        title: 'Semana 1 · Mi brújula',
+        focus: 'Lo que me importa',
+        description: 'Explorarás qué valores quieres que guíen tu vida en distintas áreas.',
+        practiceIds: ['brujula-valores', 'espacio-tres-minutos'],
+        articleIds: ['sentido-y-valores'],
+        journalType: 'valores',
+      },
+      {
+        title: 'Semana 2 · Puntos de elección',
+        focus: 'Acercarme o alejarme',
+        description: 'Aprenderás a notar los momentos en que lo que sientes te empuja lejos de lo que te importa.',
+        practiceIds: ['punto-de-eleccion', 'pajaros-en-el-cielo'],
+        articleIds: ['flexibilidad-psicologica'],
+        journalType: 'defusion',
+      },
+      {
+        title: 'Semana 3 · Acción comprometida',
+        focus: 'Un paso por vez',
+        description: 'Elegirás pasos pequeños y concretos hacia tus valores, con día y momento.',
+        practiceIds: ['accion-comprometida', 'habito-minimo'],
+        articleIds: ['activacion-conductual'],
+        journalType: 'intencion',
+      },
+      {
+        title: 'Semana 4 · Sostener el rumbo',
+        focus: 'Revisar y ajustar',
+        description: 'Revisarás qué funcionó y cómo seguir, imaginando tu mejor versión posible.',
+        practiceIds: ['revision-semanal', 'mejor-yo-posible'],
+        articleIds: ['perma-y-psicologia-positiva'],
+        journalType: 'mejor-yo',
+      },
+    ],
+  },
+  {
+    id: 'dejar-de-postergar',
+    title: 'Dejar de postergar',
+    subtitle: 'Tres semanas para empezar lo que vienes evitando',
+    description:
+      'Para entender por qué postergas, bajar el malestar de empezar y construir hábitos pequeños que se sostengan, sin exigirte perfección.',
+    basis: 'Metaanálisis de la procrastinación (Steel, 2007), terapia de resolución de problemas y formación de hábitos (Lally et al., 2010).',
+    rhythm: '5 a 10 minutos al día.',
+    weeks: [
+      {
+        title: 'Semana 1 · Entender',
+        focus: 'Por qué postergo',
+        description: 'Verás qué malestar intentas evitar al postergar y probarás empezar solo cinco minutos.',
+        practiceIds: ['cinco-minutos', 'surfear-impulso'],
+        articleIds: ['procrastinacion-y-perfeccionismo'],
+        journalType: 'experimento',
+      },
+      {
+        title: 'Semana 2 · Decidir y empezar',
+        focus: 'Del círculo mental al primer paso',
+        description: 'Ordenarás las decisiones pendientes y elegirás el primer paso de cada una.',
+        practiceIds: ['decidir-entre-opciones', 'resolucion-problemas'],
+        articleIds: ['rumiacion'],
+        journalType: 'resolucion-problemas',
+      },
+      {
+        title: 'Semana 3 · Sostener',
+        focus: 'Hábitos mínimos',
+        description: 'Convertirás lo que te cuesta empezar en un hábito pequeño, atado a tu rutina, y lo revisarás cada semana.',
+        practiceIds: ['habito-minimo', 'revision-semanal', 'pausa-autocompasion'],
+        articleIds: ['activacion-conductual'],
+        journalType: 'intencion',
+      },
+    ],
+  },
 ];
 
 export const PROGRAM_BY_ID: Record<string, Program> = Object.fromEntries(PROGRAMS.map((p) => [p.id, p]));

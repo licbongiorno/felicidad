@@ -219,7 +219,7 @@ test('antídoto nuevo: soledad, desde el buscador hasta el registro', async ({ p
 test('gimnasio: herramientas rápidas de 1–3 minutos sin selector de duración', async ({ page }) => {
   await open(page, '/gimnasio');
   const quick = page.getByRole('region', { name: /Herramientas rápidas/ });
-  await expect(quick.getByRole('link')).toHaveCount(6);
+  await expect(quick.getByRole('link')).toHaveCount(7);
   await quick.getByRole('link', { name: /Pausa STOP/ }).click();
   await expect(page.getByRole('heading', { level: 1, name: 'Pausa STOP' })).toBeVisible();
   await expect(page.getByRole('radiogroup', { name: 'Duración' })).toHaveCount(0);

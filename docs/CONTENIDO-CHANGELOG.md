@@ -19,6 +19,23 @@ entrada en este registro.
 
 ---
 
+## 2026-10-15 · Más contenido para adultos: módulos con pocas opciones y Laboratorio
+
+**9 prácticas nuevas (`pendiente`)** para los módulos que tenían menos opciones:
+- Hábitos: «Un hábito mínimo» y «Revisión semanal».
+- Resolución de problemas: «Decidir entre opciones» y «La regla de los cinco minutos» (herramienta rápida).
+- Valores: «Acción comprometida» y «El punto de elección» (ACT).
+- Autocompasión: «Respiración de ritmo calmante» e «Imaginar mi yo compasivo» (CFT).
+- Autoconocimiento: «Mi línea de vida» (identidad narrativa; con precauciones).
+
+**Laboratorio:** 4 simulaciones de conversación nuevas (repartir tareas en pareja, reclamar en un negocio, recibir una
+crítica en el trabajo y poner un límite con las pantallas a un adolescente) y 12 frases nuevas de «¿Hecho o interpretación?»,
+con 4 trampas del pensamiento que antes no aparecían.
+
+**2 programas nuevos:** «Vivir según mis valores» (4 semanas) y «Dejar de postergar» (3 semanas).
+
+---
+
 ## 2026-10-15 · Sección para chicos: franjas de 0 a 3 y de 13 a 17 años
 
 **0 a 3 años, sin modo chico.** La OMS recomienda no usar pantallas antes de los 2 años. Esta franja tiene 10 actividades
