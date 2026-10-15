@@ -214,6 +214,182 @@ export const SIMULATIONS: Simulation[] = [
     ],
     closing: 'Comprobaste los hechos en lugar de suponer, validaste a tu amigo y cuidaste lo que necesitas. Una conversación así suele acercar.',
   },
+  {
+    id: 'pareja-tareas',
+    title: 'Repartir las tareas de la casa',
+    context: 'Sientes que haces casi todas las tareas de la casa. Hoy, al llegar, ves los platos sin lavar otra vez.',
+    goal: 'Pedir un reparto más justo sin que termine en pelea.',
+    other: 'Tu pareja',
+    skills: ['dear-man', 'give-fast'],
+    steps: [
+      {
+        line: '«Hola. ¿Qué hay para comer?»',
+        options: [
+          { text: '«Nada. Como siempre, tengo que hacer todo yo.»', style: 'agresivo', feedback: 'El «siempre» y el reproche ponen al otro a la defensiva. Es probable que discutan sobre quién hace más, sin llegar a un acuerdo.' },
+          { text: '«Ya preparo algo.»', style: 'pasivo', feedback: 'Evitas el conflicto hoy, pero el cansancio y el enojo se acumulan. Tu necesidad también cuenta.' },
+          {
+            text: '«Antes de cocinar, ¿podemos hablar cinco minutos? Hay algo de la casa que me tiene cansado/a.»',
+            style: 'asertivo',
+            feedback: 'Eliges el momento y anticipas el tema con calma. Así la otra persona puede escucharte mejor.',
+          },
+        ],
+      },
+      {
+        line: '«Bueno, dale. ¿Qué pasa?»',
+        options: [
+          {
+            text: '«Esta semana lavé los platos todos los días y también hice las compras. Me siento sobrepasado/a. Me gustaría que repartamos las tareas.»',
+            style: 'asertivo',
+            feedback: 'Describes hechos concretos (D), expresas cómo te sientes (E) y pides con claridad (A). Sin etiquetas ni acusaciones.',
+          },
+          { text: '«Nada, olvídalo, no es importante.»', style: 'pasivo', feedback: 'Sí es importante para ti. Si lo callas, el problema sigue y la próxima vez quizás explotes.' },
+          { text: '«Pasa que eres un egoísta y nunca colaboras.»', style: 'agresivo', feedback: 'Etiquetar a la persona («egoísta») suele cerrar la conversación. Habla de conductas, no de cómo es.' },
+        ],
+      },
+      {
+        line: '«No me había dado cuenta. Yo estoy con mucho trabajo, también.»',
+        options: [
+          {
+            text: '«Te creo, los dos estamos con mucho. ¿Qué te parece si armamos una lista y cada uno elige tareas fijas?»',
+            style: 'asertivo',
+            feedback: 'Validas su cansancio (GIVE) y propones una solución concreta (N: negociar). Pasan de quién tiene razón a cómo resolverlo.',
+          },
+          { text: '«Siempre tienes una excusa.»', style: 'agresivo', feedback: 'Desestimar lo que siente lo aleja. Puedes reconocer su cansancio y sostener tu pedido a la vez.' },
+          { text: '«Ah, bueno, entonces sigo yo.»', style: 'pasivo', feedback: 'Su cansancio no anula el tuyo. Puedes ser comprensivo/a y seguir buscando un reparto justo.' },
+        ],
+      },
+    ],
+    closing: 'Hablaste de hechos y no de defectos, validaste el cansancio del otro y propusiste una solución concreta. Ahora queda revisar juntos cómo funciona en unas semanas.',
+  },
+  {
+    id: 'devolver-producto',
+    title: 'Reclamar en un negocio',
+    context: 'Compraste unos auriculares que dejaron de funcionar a los diez días. Vas al negocio con el ticket.',
+    goal: 'Conseguir el cambio o la devolución con firmeza y respeto.',
+    other: 'El vendedor',
+    skills: ['dear-man'],
+    steps: [
+      {
+        line: '«Hola, ¿en qué te puedo ayudar?»',
+        options: [
+          {
+            text: '«Hola. Compré estos auriculares hace diez días y dejaron de funcionar. Tengo el ticket. Quisiera cambiarlos.»',
+            style: 'asertivo',
+            feedback: 'Describes la situación con datos y pides con claridad lo que quieres. Es la forma más directa de resolverlo.',
+          },
+          { text: '«Perdón que moleste… creo que estos auriculares no andan, pero no sé, quizás fui yo.»', style: 'pasivo', feedback: 'Disculparte de más y dudar de ti debilita tu pedido. Tienes derecho a reclamar.' },
+          { text: '«Me vendieron una porquería. Quiero mi plata ya.»', style: 'agresivo', feedback: 'Se entiende el enojo, pero atacar al vendedor no ayuda: él puede ser quien te resuelva el problema.' },
+        ],
+      },
+      {
+        line: '«Mmm, para cambios tenés que mandarlos al servicio técnico. Tarda un mes.»',
+        options: [
+          {
+            text: '«Entiendo que es el procedimiento. Están dentro de la garantía y los necesito para trabajar. ¿Podemos hacer el cambio hoy?»',
+            style: 'asertivo',
+            feedback: 'Reconoces lo que dice y repites tu pedido con calma (disco rayado). Das un motivo sin justificarte de más.',
+          },
+          { text: '«Ah, bueno, si es así…»', style: 'pasivo', feedback: 'Aceptas la primera negativa. A veces basta con repetir el pedido con amabilidad para que aparezca otra opción.' },
+          { text: '«¡Un mes! Esto es una estafa.»', style: 'agresivo', feedback: 'Subir el tono suele endurecer la postura del otro. Puedes ser firme sin gritar.' },
+        ],
+      },
+      {
+        line: '«Dejame consultar con el encargado.»',
+        options: [
+          { text: '«Gracias. Te espero.»', style: 'asertivo', feedback: 'Agradeces sin ceder en tu pedido. Esperar con calma también es parte de ser firme.' },
+          { text: '«No, no hace falta, ya fue.»', style: 'pasivo', feedback: 'Abandonas justo cuando aparecía una salida. Quedarte un poco más podía resolverlo.' },
+          { text: '«Más vale que me lo resuelvan.»', style: 'agresivo', feedback: 'La amenaza no suma. Ya pediste con claridad: ahora puedes esperar la respuesta.' },
+        ],
+      },
+    ],
+    closing: 'Pediste con datos, sostuviste tu pedido sin agredir y diste lugar a una solución. Reclamar así cuida tus derechos y el trato.',
+  },
+  {
+    id: 'critica-en-el-trabajo',
+    title: 'Recibir una crítica',
+    context: 'En una reunión, un compañero dice delante de todos que tu parte del proyecto está atrasada.',
+    goal: 'Responder sin defenderte de más ni atacar, y aclarar lo que pasa.',
+    other: 'Tu compañero',
+    skills: ['give-fast', 'comprobar-hechos'],
+    steps: [
+      {
+        line: '«Bueno, lo que se está atrasando es la parte de vos. Así no llegamos.»',
+        options: [
+          { text: '«¿Mi parte? Si tú ni siquiera entregaste lo tuyo a tiempo.»', style: 'agresivo', feedback: 'Contraatacar convierte la reunión en una pelea. El tema de fondo, el atraso, queda sin resolver.' },
+          { text: '«Sí, perdón, es mi culpa, soy un desastre.»', style: 'pasivo', feedback: 'Asumir toda la culpa y etiquetarte no es justo contigo. Puedes reconocer el atraso sin descalificarte.' },
+          {
+            text: '«Es cierto que tengo un retraso de dos días. Me gustaría explicar por qué y cómo lo voy a resolver.»',
+            style: 'asertivo',
+            feedback: 'Reconoces el hecho sin dramatizar y propones avanzar. Responder a la crítica con datos baja la tensión.',
+          },
+        ],
+      },
+      {
+        line: '«Dale, contá.»',
+        options: [
+          {
+            text: '«Estuve esperando los datos del área de ventas, que llegaron ayer. El jueves lo tengo listo.»',
+            style: 'asertivo',
+            feedback: 'Explicas con hechos, sin culpar, y das un compromiso concreto. Es lo que necesita el equipo para planificar.',
+          },
+          { text: '«Es que con todo lo que me pasa… no sé si llego.»', style: 'pasivo', feedback: 'La duda sin plan aumenta la preocupación de todos. Si necesitas ayuda, pídela con claridad.' },
+          { text: '«Ventas siempre hace todo mal y yo pago los platos rotos.»', style: 'agresivo', feedback: 'Generalizar y culpar a otros genera más conflicto. Describe lo que pasó, sin juicios.' },
+        ],
+      },
+      {
+        line: '«Ok. Igual la próxima avisá antes.»',
+        options: [
+          { text: '«Tienes razón, la próxima aviso apenas vea un retraso. Y te pido que estas cosas me las digas antes en privado.»', style: 'asertivo', feedback: 'Aceptas lo justo de la crítica y también pides lo que necesitas (FAST: respetarte a ti también).' },
+          { text: '«Sí, sí, perdón.»', style: 'pasivo', feedback: 'Reconocer está bien, pero también puedes pedir que la próxima vez te lo diga en privado.' },
+          { text: '«Y tú la próxima no me expongas así.»', style: 'agresivo', feedback: 'El pedido es válido, pero dicho como reproche suena a amenaza. Puedes pedirlo con calma.' },
+        ],
+      },
+    ],
+    closing: 'Separaste el hecho del juicio, reconociste lo que era cierto y pediste lo que necesitabas. Recibir críticas así cuida tu lugar en el equipo y tu autoestima.',
+  },
+  {
+    id: 'hijo-pantallas',
+    title: 'Poner un límite con las pantallas',
+    context: 'Son las diez de la noche y tu hijo adolescente sigue con el celular. Mañana tiene escuela temprano.',
+    goal: 'Sostener el límite sin pelear y cuidando el vínculo.',
+    other: 'Tu hijo',
+    skills: ['dear-man', 'give-fast'],
+    steps: [
+      {
+        line: '«¿Qué? Ya voy, ya voy…»',
+        options: [
+          { text: '«Siempre lo mismo contigo. Dame ese celular ya.»', style: 'agresivo', feedback: 'Es probable que reaccione con más resistencia. Puedes ser firme sin pelear.' },
+          { text: '«Bueno, cinco minutitos más…»', style: 'pasivo', feedback: 'Si el límite cambia cada noche, cuesta más sostenerlo. La previsibilidad ayuda a los dos.' },
+          {
+            text: '«Son las diez, como acordamos. Te doy dos minutos para terminar y después el celular se queda en la cocina.»',
+            style: 'asertivo',
+            feedback: 'Recuerdas el acuerdo, das un aviso breve y dices con claridad qué va a pasar. Firme y previsible.',
+          },
+        ],
+      },
+      {
+        line: '«¡Pero estoy hablando con mis amigos! No es justo.»',
+        options: [
+          {
+            text: '«Entiendo que es importante hablar con ellos. Igual necesitas dormir. Mañana a la tarde puedes seguir.»',
+            style: 'asertivo',
+            feedback: 'Validas lo que le importa (GIVE) y sostienes el límite. Validar no es ceder: es mostrar que lo escuchas.',
+          },
+          { text: '«Me da igual lo que te parezca justo.»', style: 'agresivo', feedback: 'Desestimar lo que siente daña la confianza. Puedes mantener la regla y reconocer su enojo.' },
+          { text: '«Bueno, está bien, pero un rato nada más.»', style: 'pasivo', feedback: 'Ceder ante la queja enseña que protestar funciona. Mejor sostener el acuerdo con calma.' },
+        ],
+      },
+      {
+        line: '«Ufff… bueno, tomá.»',
+        options: [
+          { text: '«Gracias. Sé que te costó. Que descanses.»', style: 'asertivo', feedback: 'Reconoces el esfuerzo sin sermones. Terminar con calidez cuida el vínculo para la próxima vez.' },
+          { text: '«¿Ves que no era tan difícil?»', style: 'agresivo', feedback: 'El comentario irónico puede arruinar lo logrado. Agradecer funciona mejor.' },
+          { text: '«Ok.»', style: 'pasivo', feedback: 'No está mal, pero un breve reconocimiento de su esfuerzo suma mucho a la relación.' },
+        ],
+      },
+    ],
+    closing: 'Sostuviste un acuerdo con calma, validaste su enojo y terminaste con calidez. Los límites previsibles y amables son los que mejor funcionan en la adolescencia.',
+  },
 ];
 
 // ---------------------------------------------------------------- ¿hecho o interpretación?
@@ -239,6 +415,18 @@ export const FACT_ITEMS: FactItem[] = [
   { text: 'Mi amiga ya no quiere verme.', kind: 'interpretacion', why: 'Es una conclusión a partir de un solo hecho.', trap: 'sobregeneralizar' },
   { text: 'Anoche dormí cinco horas.', kind: 'hecho', why: 'Es un dato que se puede medir.' },
   { text: 'Mañana va a ser un día horrible.', kind: 'interpretacion', why: 'Es una predicción: el futuro todavía no pasó.', trap: 'adivinar-el-futuro' },
+  { text: 'Me llegó un correo de mi jefa que dice «tenemos que hablar».', kind: 'hecho', why: 'Es lo que dice el mensaje, palabra por palabra.' },
+  { text: 'Me van a despedir.', kind: 'interpretacion', why: 'Es una predicción a partir de un mensaje breve. Hay muchas razones para pedir una charla.', trap: 'catastrofizar' },
+  { text: 'Saqué un 6 en el examen.', kind: 'hecho', why: 'Es un resultado concreto y comprobable.' },
+  { text: 'Nunca voy a aprobar esta materia.', kind: 'interpretacion', why: 'Usa un «nunca» a partir de un solo resultado.', trap: 'sobregeneralizar' },
+  { text: 'Mi pareja llegó media hora tarde.', kind: 'hecho', why: 'Es un dato de tiempo que se puede verificar.' },
+  { text: 'Si me quisiera, habría llegado a tiempo.', kind: 'interpretacion', why: 'Une el amor con la puntualidad sin pruebas. Puede haber otras explicaciones.', trap: 'leer-la-mente' },
+  { text: 'En la reunión, dos personas miraron el celular mientras hablaba.', kind: 'hecho', why: 'Describe una conducta observable.' },
+  { text: 'Mi presentación fue aburridísima.', kind: 'interpretacion', why: 'Es un juicio global a partir de un detalle; quizás tenían otra cosa que atender.', trap: 'filtro-mental' },
+  { text: 'Me siento muy ansioso/a antes de viajar.', kind: 'hecho', why: 'Es una emoción que estás sintiendo: describirla es un hecho.' },
+  { text: 'Me siento ansioso/a, así que algo malo va a pasar en el viaje.', kind: 'interpretacion', why: 'Toma la emoción como prueba de peligro. Sentir miedo no significa que haya un riesgo real.', trap: 'razonamiento-emocional' },
+  { text: 'Me felicitaron por el trabajo que entregué.', kind: 'hecho', why: 'Es algo que te dijeron, concreto y verificable.' },
+  { text: 'Lo dijeron por compromiso, no era tan bueno.', kind: 'interpretacion', why: 'Resta valor a lo positivo sin datos que lo apoyen.', trap: 'descalificar-lo-positivo' },
 ];
 
 // ---------------------------------------------------------------- semáforo emocional
