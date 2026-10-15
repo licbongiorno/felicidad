@@ -40,7 +40,8 @@ type Glyph =
   | 'sol'
   | 'charla'
   | 'fideo'
-  | 'nieve';
+  | 'nieve'
+  | 'pincel';
 
 /** Palabras del id que deciden el dibujo (en orden: la primera que coincide gana). */
 const BY_WORD: [RegExp, Glyph][] = [
@@ -82,6 +83,7 @@ export function glyphFor(a: KidActivity): Glyph {
   if (a.kind === 'emocion') return 'cara';
   if (a.kind === 'gratitud') return 'frasco';
   if (a.kind === 'juego') return 'cartas';
+  if (a.kind === 'dibujar') return 'pincel';
   const hit = BY_WORD.find(([re]) => re.test(a.id));
   if (hit) return hit[1];
   if (a.kind === 'mision') return 'bandera';
@@ -265,6 +267,12 @@ const GLYPHS: Record<Glyph, React.ReactNode> = {
     <>
       <path d="M8 26 h32 a16 14 0 0 1 -32 0Z" className="fill-kid-paint-orange" />
       <path d="M14 26 q2 -10 6 -2 t6 -4 t6 0 t4 -6" {...s} className="stroke-kid-paint-sun" strokeWidth="3" />
+    </>
+  ),
+  pincel: (
+    <>
+      <path d="M33 9 l6 6 -15 15 -6 -6Z" className="fill-kid-paint-orange stroke-kid-ink" strokeWidth="2.2" strokeLinejoin="round" />
+      <path d="M18 24 c-5 0 -8 3 -8 8 c0 3 -2 5 -4 6 c6 1 13 0 15 -4 c1.5 -2.5 1 -5 -0.5 -6.5Z" className="fill-kid-paint-pink stroke-kid-ink" strokeWidth="2.2" strokeLinejoin="round" />
     </>
   ),
   nieve: (

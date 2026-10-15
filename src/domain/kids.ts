@@ -166,6 +166,8 @@ export type KidActivity = ActivityBase &
     | { kind: 'emocion'; intro: string }
     | { kind: 'gratitud'; intro: string }
     | { kind: 'mision'; intro: string; steps: KidStep[]; missions: string[] }
+    /** Dibujar con el dedo: ideas para empezar y una pregunta para conversar al final. */
+    | { kind: 'dibujar'; intro: string; prompts: string[]; question: string }
     /** 0 a 3 años: pasos para el adulto, que se muestran en Familia (sin modo chico). */
     | { kind: 'juntos'; steps: KidStep[] }
   );
@@ -1857,6 +1859,49 @@ export const KID_ACTIVITIES: KidActivity[] = [
     ],
     forAdult: 'Interésate por sus valores aunque no coincidan con los tuyos. Que se sienta escuchado en esto fortalece mucho el vínculo.',
     evidence: 'Trabajar con valores es central en la terapia de aceptación y compromiso (ACT), que se usa también con adolescentes.',
+  },
+  {
+    id: 'dibujo-como-me-siento',
+    kind: 'dibujar',
+    title: 'Dibujo cómo me siento',
+    tagline: 'Pon tu emoción en colores.',
+    skill: 'emociones',
+    bands: ['4-6', '7-9', '10-12'],
+    minutes: 5,
+    intro: 'A veces lo que sentimos es difícil de decir. Con colores y formas se puede mostrar.',
+    prompts: ['¿De qué color es lo que sientes hoy?', '¿Tiene forma de nube, de rayo o de sol?', '¿Es grande o chiquito?', '¿En qué parte del cuerpo lo sientes?'],
+    question: '¿Qué le pondrías a tu dibujo para que se sienta mejor?',
+    forAdult: 'Mira el dibujo con curiosidad y sin interpretarlo: pregunta «¿Me cuentas tu dibujo?». No es un test ni dice nada por sí solo. El dibujo no se guarda en la app; si quieres conservarlo, usa «Guardar dibujo».',
+    evidence: 'Expresar emociones con el dibujo ayuda a ponerlas en palabras después. Es un recurso habitual en la psicología infantil y en la educación emocional.',
+  },
+  {
+    id: 'dibujo-mi-lugar-tranquilo',
+    kind: 'dibujar',
+    title: 'Mi lugar tranquilo',
+    tagline: 'Dibuja un lugar donde te sientes bien.',
+    skill: 'calma',
+    bands: ['4-6', '7-9', '10-12', '13-17'],
+    minutes: 5,
+    intro: 'Piensa en un lugar donde sientes calma y estás a salvo. Puede ser real o inventado.',
+    prompts: ['¿Qué colores tiene tu lugar?', '¿Hay plantas, agua o animales?', '¿Quién te acompaña?', '¿Qué se escucha allí?'],
+    question: 'Cuando sientas nervios, ¿cómo podrías visitar tu lugar con la imaginación?',
+    forAdult: 'Pídele que te cuente su lugar y úsenlo después como un refugio imaginario: cerrar los ojos y «visitarlo» unos minutos ayuda a calmarse. El dibujo no se guarda en la app.',
+    evidence: 'La imaginación de un lugar seguro es una técnica de relajación usada en programas de regulación emocional para chicos y adolescentes.',
+  },
+  {
+    id: 'dibujo-achicar-el-miedo',
+    kind: 'dibujar',
+    title: 'Dibujo mi miedo y lo achico',
+    tagline: 'Dale una cara graciosa a tu miedo.',
+    skill: 'valentia',
+    bands: ['4-6', '7-9', '10-12'],
+    minutes: 5,
+    intro: 'Vamos a dibujar al miedo como si fuera un personaje. Después le ponemos algo gracioso para que se vea más chiquito.',
+    prompts: ['¿Cómo se llama tu miedo?', '¿De qué color es?', 'Ponle un sombrero o unas medias de colores.', 'Hazlo más chiquito que tú.'],
+    question: '¿Qué le dirías a tu miedo la próxima vez que aparezca?',
+    forAdult: 'Ponerle nombre y forma al miedo lo vuelve algo de lo que se puede hablar. Sigue su ritmo: si se angustia, pasen a otra actividad. Si los miedos son muy intensos o duran mucho, consulten con un profesional.',
+    evidence: 'Externalizar el problema (verlo como algo separado de uno) viene de la terapia narrativa con chicos. El humor ayuda a bajar la intensidad del miedo.',
+    caution: 'No es para miedos ligados a algo que pasó de verdad y lo asustó mucho. En ese caso, conversen con un profesional.',
   },
 ];
 

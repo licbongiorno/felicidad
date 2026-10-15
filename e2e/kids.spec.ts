@@ -238,3 +238,27 @@ test('accesibilidad WCAG 2.1 AA y sin desplazamiento lateral: cuentos del modo c
   await page.waitForURL('**/chicos/cuentos/**');
   await expectAccessible(page);
 });
+
+test('dibujo: se dibuja con el dedo, se termina y se gana el sticker', async ({ page }) => {
+  await enterAsKid(page);
+  await page.goto('/chicos/dibujo-como-me-siento');
+  await expect(page.getByRole('heading', { name: 'Dibujo cómo me siento', level: 1 })).toBeVisible();
+  await expect(page.getByRole('button', { name: '¡Terminé!' })).toBeDisabled();
+  const canvas = page.getByRole('img', { name: 'Hoja en blanco para dibujar' });
+  const box = (await canvas.boundingBox())!;
+  await page.mouse.move(box.x + 40, box.y + 40);
+  await page.mouse.down();
+  await page.mouse.move(box.x + 160, box.y + 120, { steps: 8 });
+  await page.mouse.up();
+  await expect(page.getByRole('img', { name: 'Tu dibujo, con 1 trazo' })).toBeVisible();
+  await page.getByRole('button', { name: 'Deshacer' }).click();
+  await expect(page.getByRole('img', { name: 'Hoja en blanco para dibujar' })).toBeVisible();
+  await page.mouse.move(box.x + 60, box.y + 60);
+  await page.mouse.down();
+  await page.mouse.move(box.x + 200, box.y + 90, { steps: 8 });
+  await page.mouse.up();
+  await page.getByRole('button', { name: '¡Terminé!' }).click();
+  await expectAccessible(page);
+  await page.getByRole('button', { name: 'Listo', exact: true }).click();
+  await expect(page.getByText(/Ganaste un sticker nuevo/)).toBeVisible();
+});
