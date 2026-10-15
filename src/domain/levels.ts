@@ -75,6 +75,19 @@ export const PRACTICE_LEVELS: Record<string, LevelInfo> = {
   'aceptacion-radical': { level: 'intermedio', prerequisites: ['mente-sabia'] },
   'observador': { level: 'avanzado', prerequisites: ['pajaros-en-el-cielo'] },
   'conciencia-pura': { level: 'avanzado', prerequisites: ['atencion-respiracion', 'pajaros-en-el-cielo'] },
+  // Logoterapia, humanista y Gestalt
+  'que-me-pide-la-vida': { level: 'iniciacion' },
+  'lo-vivido-queda': { level: 'iniciacion' },
+  'necesidades-que-pido': { level: 'iniciacion' },
+  'darse-cuenta': { level: 'iniciacion' },
+  'derreflexion': { level: 'iniciacion' },
+  'tres-caminos-sentido': { level: 'intermedio', prerequisites: ['que-me-pide-la-vida'] },
+  'escucharme-sin-juzgar': { level: 'intermedio', prerequisites: ['escaneo-corporal'] },
+  'yo-real-yo-ideal': { level: 'intermedio', prerequisites: ['pausa-autocompasion'] },
+  'intencion-paradojica': { level: 'intermedio', prerequisites: ['derreflexion'] },
+  'polaridades': { level: 'intermedio', prerequisites: ['pausa-autocompasion'] },
+  'asuntos-pendientes': { level: 'intermedio', prerequisites: ['pausa-autocompasion'] },
+  'silla-vacia': { level: 'avanzado', prerequisites: ['asuntos-pendientes', 'pausa-autocompasion'] },
 };
 
 export function levelOf(practiceId: string): LevelInfo {
