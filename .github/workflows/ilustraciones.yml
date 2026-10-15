@@ -14,6 +14,11 @@ on:
         description: 'Regenerar aunque ya existan'
         type: boolean
         default: false
+      provider:
+        description: 'Servicio de imágenes'
+        type: choice
+        options: [pollinations, huggingface]
+        default: pollinations
 
 permissions:
   contents: write
@@ -42,18 +47,31 @@ jobs:
           python-version: '3.12'
       - run: pip install pillow
       - name: Generar
+        env:
+          # Token de Hugging Face como secreto del repositorio (Settings → Secrets → Actions → HF_TOKEN).
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          ONLY: ${{ inputs.only }}
+          FORCE: ${{ inputs.force }}
+          PROVIDER: ${{ inputs.provider }}
         run: |
+          SCRIPT=scripts/generate_story_images.py
+          if [ "$PROVIDER" = "huggingface" ]; then
+            if [ -z "$HF_TOKEN" ]; then echo "::error::Falta el secreto HF_TOKEN"; exit 1; fi
+            SCRIPT=scripts/generate_story_images_hf.py
+          fi
           ARGS=""
-          if [ -n "${{ inputs.only }}" ]; then ARGS="$ARGS --only ${{ inputs.only }}"; fi
-          if [ "${{ inputs.force }}" = "true" ]; then ARGS="$ARGS --force"; fi
-          python3 scripts/generate_story_images.py $ARGS || echo "Algunas imágenes fallaron; se suben las que salieron."
+          if [ -n "$ONLY" ]; then ARGS="$ARGS --only $ONLY"; fi
+          if [ "$FORCE" = "true" ]; then ARGS="$ARGS --force"; fi
+          python3 "$SCRIPT" $ARGS || echo "Algunas imágenes fallaron; se suben las que salieron."
       - name: Subir a la rama ilustraciones-cuentos
+        env:
+          PROVIDER: ${{ inputs.provider }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add public/cuentos src/domain/story-art.ts
           if git diff --cached --quiet; then echo "Sin cambios"; exit 0; fi
-          git commit -m "Ilustraciones de cuentos generadas con Pollinations.ai"
+          git commit -m "Ilustraciones de cuentos generadas ($PROVIDER)"
           git push origin ilustraciones-cuentos
       - uses: actions/upload-artifact@v4
         with:
