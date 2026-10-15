@@ -64,3 +64,36 @@ test('desafíos: empezar uno, marcar el día y verlo hecho; se puede dejar', asy
   await page.getByRole('button', { name: 'Dejar este desafío' }).click();
   await expect(page.getByRole('article', { name: 'Una semana de gratitud' })).toHaveCount(0);
 });
+
+test('mapa de habilidades: de la necesidad a la práctica, con su ficha', async ({ page }) => {
+  await open(page, '/gimnasio');
+  await page.getByRole('link', { name: /¿No sabes por dónde empezar\?/ }).click();
+  await page.waitForURL('**/habilidades');
+  await expect(page.getByRole('heading', { name: '¿Qué necesitas?', level: 1 })).toBeVisible();
+  await noSideScroll(page);
+  await expectAccessible(page);
+  await page.getByRole('link', { name: /^Poner límites/ }).click();
+  await page.waitForURL('**/habilidades/limites');
+  await expect(page.getByText('Qué vas a aprender.')).toBeVisible();
+  await expect(page.getByText('Para empezar')).toBeVisible();
+  await noSideScroll(page);
+  await expectAccessible(page);
+  await page.locator('main a[href^="/gimnasio/"]').first().click();
+  await page.waitForURL('**/gimnasio/dear-man');
+  await page.getByRole('tab', { name: 'Ficha' }).click();
+  await expect(page.getByText('Revisión clínica pendiente', { exact: false })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Poner límites' })).toBeVisible();
+});
+
+test('buscador: encuentra una necesidad y una píldora', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'Atajo de teclado: sólo escritorio');
+  await open(page, '/dashboard');
+  await page.waitForLoadState('networkidle');
+  await page.keyboard.press('Control+k');
+  const input = page.getByRole('combobox', { name: /Buscar/ });
+  await input.fill('poner limites');
+  await expect(page.getByRole('option').filter({ hasText: 'Poner límites' }).first()).toBeVisible();
+  await input.fill('burnout');
+  await page.getByRole('option').filter({ hasText: '¿Es burnout o solo cansancio?' }).click();
+  await expect(page).toHaveURL(/\/biblioteca\/pildoras\/que-es-el-burnout$/);
+});

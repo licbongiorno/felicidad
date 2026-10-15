@@ -15,6 +15,18 @@ export default function GymPage() {
           Prácticas guiadas organizadas según lo que necesitas. Cada una indica de qué enfoque viene (DBT, TCC, ACT y otros),
           su nivel de evidencia y si conviene hacerla con precauciones.
         </p>
+        <Link
+          href="/habilidades"
+          className="group mt-5 flex max-w-2xl items-center justify-between gap-6 rounded-2xl border border-stone-200 bg-white px-6 py-4 transition-[border-color,box-shadow] hover:border-sage-300 hover:shadow-soft"
+        >
+          <span>
+            <span className="block font-serif text-lg text-stone-800">¿No sabes por dónde empezar?</span>
+            <span className="block text-sm text-stone-600">Elige lo que necesitas y te mostramos las habilidades que lo trabajan.</span>
+          </span>
+          <span className="text-stone-500 transition-transform group-hover:translate-x-0.5" aria-hidden>
+            →
+          </span>
+        </Link>
       </StaggerItem>
 
       <StaggerItem as="section" className="mt-10" aria-labelledby="rapidas">

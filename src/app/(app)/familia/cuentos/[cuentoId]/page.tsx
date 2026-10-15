@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { isPublished } from '@/domain/governance';
 import { STORIES, STORY_BY_ID } from '@/domain/stories';
 import { FamilyStory } from '@/components/family/FamilyStories';
 
@@ -8,6 +9,6 @@ export function generateStaticParams() {
 
 export default async function FamilyStoryPage({ params }: { params: Promise<{ cuentoId: string }> }) {
   const { cuentoId } = await params;
-  if (!STORY_BY_ID[cuentoId]) notFound();
+  if (!STORY_BY_ID[cuentoId] || !isPublished('cuento', cuentoId)) notFound();
   return <FamilyStory storyId={cuentoId} />;
 }

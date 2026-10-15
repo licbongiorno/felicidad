@@ -19,6 +19,13 @@ entrada en este registro.
 
 ---
 
+## 2026-10-15 · Mapa de habilidades por necesidad, ficha de habilidad y cuentos en la revisión clínica
+
+- **Mapa de habilidades** (`/habilidades`, `src/domain/needs.ts`): 18 necesidades cotidianas, cada una con objetivo de aprendizaje, prácticas de distintos enfoques, programas y píldoras. Una prueba exige que la primera sugerencia de cada necesidad sea de iniciación y sin riesgo 2.
+- **Ficha de la habilidad** (pestaña «Ficha» en cada práctica): necesidades y objetivo, módulo, duración, nivel, enfoque, evidencia, cuidado y estado de revisión, con la versión y la fecha de verificación de las referencias.
+- **Gobernanza:** los cuentos (`cuento`) y las píldoras (`pildora`) entran en la cola de revisión clínica y en sus filtros. Un cuento en borrador deja de mostrarse fuera del modo demo.
+- **Privacidad adolescente:** el frasco de gratitud ya no dice que el adulto no ve lo que escribe el adolescente, porque queda guardado en la cuenta del adulto y sale en su exportación. Ahora dice: «Tu adulto no ve en la app lo que escribes aquí, pero queda guardado en su cuenta».
+
 ## 2026-10-15 · Terapias breves e integrativas, etapas de la vida, salud y trabajo; píldoras, desafíos y dibujo
 
 Todo el contenido nuevo queda en estado `pendiente` de revisión clínica.

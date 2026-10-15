@@ -11,7 +11,7 @@ import { fadeUp, stagger } from '@/lib/motion';
 import { Button } from '@/components/ui/Button';
 
 const KEY = 'eudaimonia-review';
-const KINDS: ContentKind[] = ['herramienta', 'instrumento', 'practica', 'antidoto', 'diario', 'articulo', 'programa', 'infantil', 'guia-familia'];
+const KINDS: ContentKind[] = ['herramienta', 'instrumento', 'practica', 'antidoto', 'diario', 'articulo', 'programa', 'infantil', 'guia-familia', 'cuento', 'pildora'];
 
 /** Correos autorizados a revisar (variable de Vercel NEXT_PUBLIC_REVIEWER_EMAILS, separados por comas). */
 const REVIEWERS = (process.env.NEXT_PUBLIC_REVIEWER_EMAILS ?? '')

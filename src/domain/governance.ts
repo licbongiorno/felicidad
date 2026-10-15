@@ -18,7 +18,7 @@ import { DEMO_MODE } from '@/lib/demo';
 
 export type ReviewStatus = 'borrador' | 'pendiente' | 'revisado';
 
-export type ContentKind = 'practica' | 'antidoto' | 'diario' | 'articulo' | 'instrumento' | 'herramienta' | 'programa' | 'infantil' | 'guia-familia' | 'pildora';
+export type ContentKind = 'practica' | 'antidoto' | 'diario' | 'articulo' | 'instrumento' | 'herramienta' | 'programa' | 'infantil' | 'guia-familia' | 'pildora' | 'cuento';
 
 export interface ReviewRecord {
   version: number;
