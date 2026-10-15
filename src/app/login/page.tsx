@@ -12,7 +12,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
 } from 'firebase/auth';
-import { getFirebaseAuth } from '@/lib/firebase/client';
+import { appCheckReady, getFirebaseAuth } from '@/lib/firebase/client';
 import { ensureUserProfile } from '@/lib/firebase/repositories';
 import { useAuth } from '@/providers/AuthProvider';
 import { MIN_AGE, SAFETY_DISCLAIMER } from '@/config/safety';
@@ -58,6 +58,7 @@ export default function LoginPage() {
         mode === 'signin'
           ? await signInWithEmailAndPassword(auth, email, password)
           : await createUserWithEmailAndPassword(auth, email, password);
+      await appCheckReady();
       await ensureUserProfile(cred.user, consent);
       if (mode === 'signup') await sendEmailVerification(cred.user).catch(() => undefined);
     });
@@ -66,6 +67,7 @@ export default function LoginPage() {
   function onGoogle() {
     run(async () => {
       const cred = await signInWithPopup(getFirebaseAuth(), new GoogleAuthProvider(), browserPopupRedirectResolver);
+      await appCheckReady();
       await ensureUserProfile(cred.user, consent);
     });
   }

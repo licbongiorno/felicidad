@@ -10,6 +10,7 @@ import { exitKidMode, hasPin } from '@/lib/kids/kidMode';
 import { KID_RESOURCES } from '@/config/safety';
 import type { KidActivityLog, KidProfile } from '@/domain/kids';
 import { Sheet } from '@/components/ui/Sheet';
+import { LoadingScreen } from '@/components/layout/LoadingScreen';
 import { Mascot } from './Mascot';
 import { AvatarIcon } from './KidArt';
 import { AskPin } from './PinPad';
@@ -41,7 +42,8 @@ export function KidShell({ children }: { children: ReactNode }) {
   const narration = useNarration(kid);
 
   const ready = !loading && !!user && profile !== undefined;
-  const missingKid = activeId === null || (status === 'ready' && !kid);
+  // Sin el perfil (borrado, o los perfiles no se pueden leer): de vuelta a Familia.
+  const missingKid = activeId === null || ((status === 'ready' || status === 'error') && !kid);
 
   useEffect(() => {
     if (!loading && !user) router.replace('/login');
@@ -53,9 +55,9 @@ export function KidShell({ children }: { children: ReactNode }) {
 
   if (!ready || !kid || !hasConsent) {
     return (
-      <div className="kid-theme flex min-h-screen items-center justify-center bg-kid-bg" aria-label="Cargando">
+      <LoadingScreen className="kid-theme bg-kid-bg">
         <Mascot size={96} />
-      </div>
+      </LoadingScreen>
     );
   }
 
