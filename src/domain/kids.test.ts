@@ -42,7 +42,7 @@ describe('actividades para chicos', () => {
   it('cada franja tiene variedad: al menos 10 actividades y 5 habilidades, con el check-in y la gratitud', () => {
     for (const b of AGE_BANDS.filter((x) => hasKidMode(x.id))) {
       const list = activitiesFor(b.id);
-      expect(list.length, b.id).toBeGreaterThanOrEqual(10);
+      expect(list.length, b.id).toBeGreaterThanOrEqual(20);
       expect(new Set(list.map((a) => a.skill)).size, b.id).toBeGreaterThanOrEqual(5);
       expect(list.some((a) => a.id === 'como-me-siento'), b.id).toBe(true);
       expect(list.some((a) => a.id === 'frasco-de-gratitud'), b.id).toBe(true);
@@ -90,8 +90,8 @@ describe('actividades para chicos', () => {
 
   it('los adolescentes tienen habilidades propias además de las compartidas', () => {
     const teen = activitiesFor('13-17');
-    expect(teen.filter((a) => a.bands.length === 1).length).toBeGreaterThanOrEqual(8);
-    expect(teen.length).toBeGreaterThanOrEqual(15);
+    expect(teen.length).toBeGreaterThanOrEqual(25);
+    for (const id of ['tipp-rapido', 'stop', 'accion-opuesta', 'pedir-y-decir-que-no', 'redes-y-yo']) expect(teen.map((a) => a.id)).toContain(id);
   });
 
   it('las respiraciones tienen la exhalación igual o más larga que la inhalación', () => {
@@ -179,5 +179,30 @@ describe('recursos de ayuda para chicos', () => {
   it('son llamables e incluyen emergencias', () => {
     expect(KID_RESOURCES.some((r) => r.href === 'tel:911')).toBe(true);
     for (const r of KID_RESOURCES) expect(r.href, r.label).toMatch(/^tel:\d+$/);
+  });
+});
+
+describe('caminos de aprendizaje', () => {
+  it('cada franja tiene al menos 3 caminos con actividades existentes de su edad', async () => {
+    const { KID_PATHS, pathsFor } = await import('./kids');
+    expect(new Set(KID_PATHS.map((p) => p.id)).size).toBe(KID_PATHS.length);
+    for (const b of AGE_BANDS) expect(pathsFor(b.id).length, b.id).toBeGreaterThanOrEqual(3);
+    for (const p of KID_PATHS) {
+      expect(p.activities.length, p.id).toBeGreaterThanOrEqual(5);
+      for (const id of p.activities) {
+        expect(KID_ACTIVITY_BY_ID[id], `${p.id} → ${id}`).toBeDefined();
+        expect(KID_ACTIVITY_BY_ID[id].bands, `${p.id} → ${id}`).toContain(p.band);
+      }
+    }
+  });
+
+  it('el progreso cuenta lo hecho y propone la siguiente actividad', async () => {
+    const { KID_PATH_BY_ID, pathProgress } = await import('./kids');
+    const p = KID_PATH_BY_ID['peques-calma'];
+    expect(pathProgress(p, new Set()).next?.id).toBe('globo-magico');
+    const half = pathProgress(p, new Set(['globo-magico', 'huele-la-flor']));
+    expect(half.completed).toBe(2);
+    expect(half.next?.id).toBe('soplar-burbujas');
+    expect(pathProgress(p, new Set(p.activities)).next).toBeNull();
   });
 });

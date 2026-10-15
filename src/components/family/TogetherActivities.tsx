@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { activitiesFor, type KidActivityLog, type KidProfile } from '@/domain/kids';
+import { activitiesFor, pathProgress, pathsFor, stickersOf, type KidActivityLog, type KidProfile } from '@/domain/kids';
 import { useKidsStore } from '@/store/useKidsStore';
 import { Button } from '@/components/ui/Button';
 import { Sticker } from '@/components/kids/KidArt';
@@ -15,7 +15,12 @@ export function TogetherActivities({ kid, logs }: { kid: KidProfile; logs: KidAc
   const activities = useMemo(() => activitiesFor(kid.band), [kid.band]);
   const [open, setOpen] = useState<string | null>(null);
   const [done, setDone] = useState<string | null>(null);
+  const [pathId, setPathId] = useState<string | null>(null);
   const count = (id: string) => logs.filter((l) => l.activityId === id).length;
+  const doneSet = useMemo(() => stickersOf(logs), [logs]);
+  const paths = pathsFor(kid.band);
+  const path = paths.find((p) => p.id === pathId) ?? null;
+  const shown = path ? path.activities.map((id) => activities.find((a) => a.id === id)).filter((a): a is (typeof activities)[number] => !!a) : activities;
 
   return (
     <section id="juntos" className="mt-10 scroll-mt-24" aria-labelledby="juntos-titulo">
@@ -26,8 +31,38 @@ export function TogetherActivities({ kid, logs }: { kid: KidProfile; logs: KidAc
         Antes de los 2 años se recomienda no usar pantallas, y muy poco hasta los 5. Por eso, a esta edad la app es para ti: lee la actividad y háganla
         juntos, sin el teléfono de por medio.
       </p>
+      {paths.length > 0 && (
+        <div className="mt-5">
+          <h3 className="text-sm font-medium text-stone-800">Caminos</h3>
+          <div className="mt-2 flex flex-wrap gap-2" role="group" aria-label="Filtrar por camino">
+            <button
+              type="button"
+              aria-pressed={!path}
+              onClick={() => setPathId(null)}
+              className={`rounded-full px-3.5 py-1.5 text-sm ring-1 ring-inset ${!path ? 'bg-sage-700 text-stone-50 ring-sage-700' : 'bg-white text-stone-700 ring-stone-200'}`}
+            >
+              Todas ({activities.length})
+            </button>
+            {paths.map((p) => {
+              const { completed, total } = pathProgress(p, doneSet);
+              return (
+                <button
+                  key={p.id}
+                  type="button"
+                  aria-pressed={pathId === p.id}
+                  onClick={() => setPathId(p.id)}
+                  className={`rounded-full px-3.5 py-1.5 text-sm ring-1 ring-inset ${pathId === p.id ? 'bg-sage-700 text-stone-50 ring-sage-700' : 'bg-white text-stone-700 ring-stone-200'}`}
+                >
+                  {p.title} · {completed}/{total}
+                </button>
+              );
+            })}
+          </div>
+          {path && <p className="mt-2 text-sm text-stone-600">{path.description} Háganlas en este orden, a su ritmo.</p>}
+        </div>
+      )}
       <ul className="kid-theme mt-4 grid gap-3">
-        {activities.map((a) => {
+        {shown.map((a) => {
           const expanded = open === a.id;
           const n = count(a.id);
           return (

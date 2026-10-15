@@ -160,7 +160,7 @@ test('0 a 3 años: sin modo chico, con actividades para hacer juntos que se regi
 
 test('adolescentes: líneas de salud mental en la ayuda y lo que escriben no se muestra al adulto', async ({ page }) => {
   await enterAsKid(page, /13 a 17 años/);
-  await expect(page.getByRole('link', { name: /STOP antes de reaccionar/ })).toBeVisible();
+  await expect(page.getByRole('link', { name: /^STOP antes de reaccionar/ })).toBeVisible();
   await page.getByRole('button', { name: 'Ayuda' }).click();
   await expect(page.getByRole('link', { name: /Llamar a Línea Nacional de Salud Mental/ })).toHaveAttribute('href', 'tel:08009990091');
   await page.keyboard.press('Escape');
@@ -172,4 +172,17 @@ test('adolescentes: líneas de salud mental en la ayuda y lo que escriben no se 
   await openPanel(page);
   await expect(page.getByText(/Por su privacidad/)).toBeVisible();
   await expect(page.getByText(/Algo privado/)).toHaveCount(0);
+});
+
+test('caminos: se elige uno, se avanza y propone la siguiente actividad', async ({ page }) => {
+  await enterAsKid(page);
+  await expect(page.getByRole('heading', { name: 'Mis caminos' })).toBeVisible();
+  await page.getByRole('link', { name: /Empezar: ¿Cómo me siento hoy\?/ }).click();
+  await page.getByRole('button', { name: 'Alegría' }).click();
+  await page.getByRole('button', { name: 'Un poco' }).click();
+  await page.getByRole('button', { name: 'Listo' }).click();
+  await expect(page.getByRole('link', { name: /Siguiente: Los colores de mis emociones/ })).toBeVisible();
+  await page.goto('/chicos/camino/medianos-emociones');
+  await expect(page.getByRole('progressbar', { name: '1 de 5 actividades' })).toBeVisible();
+  await expectAccessible(page);
 });

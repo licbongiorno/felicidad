@@ -31,6 +31,13 @@ yo, dormir mejor, antes de una prueba y brújula de valores) y 11 que ya existí
 Línea Nacional de Salud Mental (0800-999-0091) y el CAS (135). **Privacidad:** el adulto ve las actividades, las emociones y
 los avisos, pero no lo que el adolescente escribe; se le informa a ambos.
 
+**Más contenido.** 26 actividades nuevas (9 para 0 a 3 años, 14 para 4 a 9 y 6 para 10 a 17; algunas sirven para
+varias franjas). Ahora cada franja tiene entre 20 y 33 actividades.
+
+**Caminos de aprendizaje (19).** De 4 a 5 por franja: recorridos ordenados de 5 o 6 actividades (por ejemplo, «Calma en
+cinco pasos», «Mente valiente», «Kit para momentos intensos»). Muestran el progreso, proponen la siguiente actividad y, al
+terminar una, invitan a seguir el camino. En 0 a 3 años, los caminos filtran las actividades para hacer juntos.
+
 **Guías nuevas:** «Los primeros años: de 0 a 3» y «Acompañar en la adolescencia».
 
 **Reglas de Firestore:** se admiten las franjas `0-3` y `13-17`. **Hay que volver a publicar `firestore.rules`.**
