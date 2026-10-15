@@ -7,8 +7,7 @@ import { storiesFor, storyLogId, STORY_BY_ID, themesFor, type Story, type StoryT
 import { fadeUp, stagger } from '@/lib/motion';
 import { useKid } from './KidShell';
 import { StoryBook } from './StoryBook';
-import { StoryScene } from './StoryScene';
-import { STORY_CAST } from '@/domain/story-cast';
+import { StoryArt } from './StoryArt';
 
 /** Biblioteca de cuentos del chico: los de su edad, filtrables por tema. */
 export function KidStories() {
@@ -68,7 +67,7 @@ export function StoryCard({ story, href, read = false }: { story: Story; href: s
   return (
     <Link href={href} className="block h-full overflow-hidden rounded-3xl bg-kid-surface shadow-[0_4px_0_rgb(0_0_0/0.06)] ring-2 ring-kid-line transition-transform active:scale-[0.98]">
       <div className="relative">
-        <StoryScene scene={story.pages[0].scene} cast={STORY_CAST[story.id]} mood="feliz" />
+        <StoryArt story={story} mood="feliz" />
         {read && <span className="absolute right-3 top-3 rounded-full bg-kid-surface px-3 py-1 text-sm font-bold">Leído ✓</span>}
       </div>
       <span className="block p-4">
