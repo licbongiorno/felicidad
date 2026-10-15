@@ -8,6 +8,7 @@ import { fadeUp, stagger } from '@/lib/motion';
 import { Mascot } from './Mascot';
 import { FeelingFace, SKILL_PAINT, Sticker } from './KidArt';
 import { useKid } from './KidShell';
+import { KidPaths } from './KidPaths';
 
 /** Inicio del modo chico: cómo me siento, mi jardín y las actividades por habilidad. */
 export function KidHome() {
@@ -66,6 +67,12 @@ export function KidHome() {
           </span>
         </Link>
       </m.div>
+
+      <KidPaths />
+
+      <m.h2 variants={fadeUp} className="mt-10 text-sm font-extrabold uppercase tracking-[0.18em] text-kid-soft">
+        Todas las actividades
+      </m.h2>
 
       {skills.map((s) => (
         <m.section key={s.id} variants={fadeUp} className="mt-8" aria-labelledby={`skill-${s.id}`}>

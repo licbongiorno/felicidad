@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { m } from 'motion/react';
 import { useMemo, useState } from 'react';
-import { AGE_BANDS, FEELING_BY_ID, INTENSITY_LABEL, KID_ACTIVITY_BY_ID, kidAlert, stickersOf, weeklySummary, activitiesFor, gardenStage } from '@/domain/kids';
+import { hasKidMode, isTeen, AGE_BANDS, FEELING_BY_ID, INTENSITY_LABEL, KID_ACTIVITY_BY_ID, kidAlert, stickersOf, weeklySummary, activitiesFor, gardenStage } from '@/domain/kids';
 import { useKids } from '@/hooks/useKids';
 import { enterKidMode, hasPin } from '@/lib/kids/kidMode';
 import { fadeUp, stagger } from '@/lib/motion';
@@ -13,6 +13,7 @@ import { Button, buttonStyles } from '@/components/ui/Button';
 import { AvatarIcon, FeelingFace } from '@/components/kids/KidArt';
 import { CreatePin } from '@/components/kids/PinPad';
 import { KidProfileForm } from './KidProfileForm';
+import { TogetherActivities } from './TogetherActivities';
 
 const fmt = new Intl.DateTimeFormat('es-AR', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
 
@@ -73,7 +74,7 @@ export function KidReport({ kidId }: { kidId: string }) {
           </p>
         </div>
         <div className="flex w-full flex-wrap gap-2 sm:w-auto">
-          <Button onClick={enter}>Entrar al modo chico</Button>
+          {hasKidMode(kid.band) && <Button onClick={enter}>Entrar al modo chico</Button>}
           <Button variant="secondary" onClick={() => setEditing(true)}>
             Editar
           </Button>
@@ -147,7 +148,16 @@ export function KidReport({ kidId }: { kidId: string }) {
         </div>
       </m.section>
 
-      {(week.gratitude.length > 0 || missions.length > 0) && (
+      {!hasKidMode(kid.band) && <TogetherActivities kid={kid} logs={logs} />}
+
+      {isTeen(kid.band) && (
+        <m.p variants={fadeUp} className="mt-8 rounded-2xl border border-stone-200 bg-stone-50 px-5 py-4 text-sm leading-relaxed text-stone-700">
+          Por su privacidad, a los adolescentes no les mostramos a ti lo que escriben (sus cosas buenas y misiones). Ves sus actividades, las emociones
+          que marca y los avisos de seguridad. Se lo contamos también a {kid.name} en la app.
+        </m.p>
+      )}
+
+      {!isTeen(kid.band) && (week.gratitude.length > 0 || missions.length > 0) && (
         <m.section variants={fadeUp} className="mt-10 grid gap-4 sm:grid-cols-2">
           {week.gratitude.length > 0 && (
             <div className="rounded-2xl border border-stone-200 bg-white p-6 shadow-soft">

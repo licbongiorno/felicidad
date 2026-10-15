@@ -7,8 +7,8 @@ import { m } from 'motion/react';
 import { useAuth } from '@/providers/AuthProvider';
 import { useActiveKid } from '@/hooks/useKids';
 import { exitKidMode, hasPin } from '@/lib/kids/kidMode';
-import { KID_RESOURCES } from '@/config/safety';
-import type { KidActivityLog, KidProfile } from '@/domain/kids';
+import { KID_RESOURCES, TEEN_RESOURCES } from '@/config/safety';
+import { hasKidMode, isTeen, type KidActivityLog, type KidProfile } from '@/domain/kids';
 import { Sheet } from '@/components/ui/Sheet';
 import { LoadingScreen } from '@/components/layout/LoadingScreen';
 import { Mascot } from './Mascot';
@@ -43,7 +43,7 @@ export function KidShell({ children }: { children: ReactNode }) {
 
   const ready = !loading && !!user && profile !== undefined;
   // Sin el perfil (borrado, o los perfiles no se pueden leer): de vuelta a Familia.
-  const missingKid = activeId === null || ((status === 'ready' || status === 'error') && !kid);
+  const missingKid = activeId === null || ((status === 'ready' || status === 'error') && !kid) || (!!kid && !hasKidMode(kid.band));
 
   useEffect(() => {
     if (!loading && !user) router.replace('/login');
@@ -110,7 +110,7 @@ function KidHeader({ kid, narration }: { kid: KidProfile; narration: ReturnType<
               <span className="hidden sm:inline">Voz</span>
             </button>
           )}
-          <KidHelpButton />
+          <KidHelpButton teen={isTeen(kid.band)} />
           <button type="button" onClick={() => setExitOpen(true)} className="flex h-12 items-center rounded-full px-3 text-base font-bold text-kid-soft hover:bg-kid-surface" aria-haspopup="dialog">
             Salir
           </button>
@@ -136,7 +136,7 @@ function KidHeader({ kid, narration }: { kid: KidProfile; narration: ReturnType<
 }
 
 /** «Ayuda» para chicos: buscar a un adulto de confianza y, si no hay, líneas gratuitas. */
-export function KidHelpButton() {
+export function KidHelpButton({ teen = false }: { teen?: boolean }) {
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -167,7 +167,7 @@ export function KidHelpButton() {
           </div>
           <p className="mt-5 text-sm font-medium text-stone-700">Si no hay un adulto cerca, puedes llamar gratis:</p>
           <ul className="mt-2 divide-y divide-stone-100">
-            {KID_RESOURCES.map((r) => (
+            {(teen ? TEEN_RESOURCES : KID_RESOURCES).map((r) => (
               <li key={r.label} className="flex items-center justify-between gap-4 py-3">
                 <span className="min-w-0">
                   <span className="block text-base font-medium text-stone-800">{r.label}</span>

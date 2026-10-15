@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { m } from 'motion/react';
 import { useMemo, useState } from 'react';
-import { AGE_BANDS, kidAlert, MAX_KIDS, weeklySummary, type KidProfile } from '@/domain/kids';
+import { AGE_BANDS, hasKidMode, kidAlert, MAX_KIDS, weeklySummary, type KidProfile } from '@/domain/kids';
 import { KID_GUIDES } from '@/domain/kids-guides';
 import { KID_RESOURCES } from '@/config/safety';
 import { useKids } from '@/hooks/useKids';
@@ -41,7 +41,7 @@ export function FamilyHub() {
         <div className="min-w-0 flex-1">
           <h1 className="font-serif text-4xl text-stone-800">Familia</h1>
           <p className="mt-2 max-w-2xl leading-relaxed text-stone-600">
-            Habilidades para chicos de 4 a 12 años, con actividades cortas, dibujos y voz. Se usan con tu supervisión: tú creas su perfil y ves lo que
+            Habilidades para chicos de 0 a 17 años, con actividades cortas, dibujos y voz. Se usan con tu supervisión: tú creas su perfil y ves lo que
             registran.
           </p>
         </div>
@@ -193,7 +193,13 @@ function KidCard({ kid, logs, onEnter }: { kid: KidProfile; logs: ReturnType<typ
         </p>
       )}
       <div className="mt-4 flex flex-wrap gap-2">
-        <Button onClick={onEnter}>Entrar al modo chico</Button>
+        {hasKidMode(kid.band) ? (
+          <Button onClick={onEnter}>Entrar al modo chico</Button>
+        ) : (
+          <Link href={`/familia/chico/${kid.id}#juntos`} className={buttonStyles('primary')}>
+            Actividades para hacer juntos
+          </Link>
+        )}
         <Link href={`/familia/chico/${kid.id}`} className={buttonStyles('secondary')}>
           Ver su panel
         </Link>

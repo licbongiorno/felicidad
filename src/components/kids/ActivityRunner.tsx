@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { AnimatePresence, m } from 'motion/react';
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { KID_ACTIVITY_BY_ID, type KidActivity, type KidActivityLog } from '@/domain/kids';
+import { KID_ACTIVITY_BY_ID, pathProgress, pathsFor, stickersOf, type KidActivity, type KidActivityLog } from '@/domain/kids';
 import { isPublished } from '@/domain/governance';
 import { playChime } from '@/lib/chime';
 import { Mascot } from './Mascot';
@@ -146,6 +146,7 @@ function Celebration({ activity, newSticker, onAgain }: { activity: KidActivity;
           </m.div>
         )}
         <p className="mt-3 max-w-md text-lg text-kid-soft">Tu jardín creció un poquito.</p>
+        <NextInPath activity={activity} />
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           <Link href="/chicos" className={kidButton('primary')}>
             Volver al inicio
@@ -159,6 +160,33 @@ function Celebration({ activity, newSticker, onAgain }: { activity: KidActivity;
         </div>
       </div>
     </m.section>
+  );
+}
+
+/** Si la actividad es parte de un camino, propone la siguiente. */
+function NextInPath({ activity }: { activity: KidActivity }) {
+  const { kid, logs } = useKid();
+  const suggestion = useMemo(() => {
+    const done = stickersOf(logs);
+    done.add(activity.id);
+    for (const p of pathsFor(kid.band)) {
+      if (!p.activities.includes(activity.id)) continue;
+      const { next, completed, total } = pathProgress(p, done);
+      if (next) return { path: p, next, completed, total };
+    }
+    return null;
+  }, [logs, activity.id, kid.band]);
+  if (!suggestion) return null;
+  return (
+    <Link
+      href={`/chicos/${suggestion.next.id}`}
+      className="mt-5 block w-full max-w-md rounded-3xl bg-kid-tint-sky px-5 py-4 text-left ring-2 ring-kid-line transition-transform active:scale-[0.98]"
+    >
+      <span className="block text-sm font-bold text-kid-soft">
+        Tu camino «{suggestion.path.title}» · {suggestion.completed} de {suggestion.total}
+      </span>
+      <span className="mt-0.5 block text-lg font-extrabold">Siguiente: {suggestion.next.title} →</span>
+    </Link>
   );
 }
 

@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { m } from 'motion/react';
 import { useState } from 'react';
-import { FEELING_BY_ID, INTENSITY_LABEL, KID_FEELINGS, suggestionsFor, type KidActivity, type KidFeelingId, type KidIntensity } from '@/domain/kids';
+import { FEELING_BY_ID, isTeen, INTENSITY_LABEL, KID_FEELINGS, suggestionsFor, type KidActivity, type KidFeelingId, type KidIntensity } from '@/domain/kids';
 import type { FinishPayload } from '../ActivityRunner';
 import { Mascot } from '../Mascot';
 import { FeelingFace, SKILL_PAINT, Sticker } from '../KidArt';
@@ -88,7 +88,9 @@ export function FeelingCheck({ activity, onFinish }: { activity: CheckActivity; 
       <p className="mt-3 max-w-xl text-2xl font-bold leading-snug">{f.validation}</p>
       {strong && (
         <m.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-4 max-w-xl rounded-3xl bg-kid-tint-sky px-6 py-4 text-xl font-bold leading-snug">
-          Gracias por contarlo. Es un muy buen momento para buscar a tu adulto y contarle cómo te sientes.
+          {isTeen(kid.band)
+            ? 'Gracias por registrarlo. Hablar con alguien de confianza ayuda mucho. Si piensas en hacerte daño, llama ahora al 0800-999-0091: es gratis y atienden las 24 horas.'
+            : 'Gracias por contarlo. Es un muy buen momento para buscar a tu adulto y contarle cómo te sientes.'}
         </m.p>
       )}
       {ideas.length > 0 && (

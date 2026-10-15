@@ -19,6 +19,31 @@ entrada en este registro.
 
 ---
 
+## 2026-10-15 · Sección para chicos: franjas de 0 a 3 y de 13 a 17 años
+
+**0 a 3 años, sin modo chico.** La OMS recomienda no usar pantallas antes de los 2 años. Esta franja tiene 10 actividades
+para que el adulto las haga con el chico, y se marcan como hechas desde su panel: ida y vuelta cara a cara, poner palabras a
+lo que siente, calma compartida, canción y balanceo, rutina para dormir, cucú, despedidas cortas, acompañar un berrinche,
+leer juntos y juego en el piso.
+
+**13 a 17 años.** 9 actividades propias (TIPP, STOP, acción opuesta, chequear los hechos, pedir o decir que no, las redes y
+yo, dormir mejor, antes de una prueba y brújula de valores) y 11 que ya existían, extendidas a esta edad. La ayuda suma la
+Línea Nacional de Salud Mental (0800-999-0091) y el CAS (135). **Privacidad:** el adulto ve las actividades, las emociones y
+los avisos, pero no lo que el adolescente escribe; se le informa a ambos.
+
+**Más contenido.** 26 actividades nuevas (9 para 0 a 3 años, 14 para 4 a 9 y 6 para 10 a 17; algunas sirven para
+varias franjas). Ahora cada franja tiene entre 20 y 31 actividades.
+
+**Caminos de aprendizaje (19).** De 4 a 5 por franja: recorridos ordenados de 5 o 6 actividades (por ejemplo, «Calma en
+cinco pasos», «Mente valiente», «Kit para momentos intensos»). Muestran el progreso, proponen la siguiente actividad y, al
+terminar una, invitan a seguir el camino. En 0 a 3 años, los caminos filtran las actividades para hacer juntos.
+
+**Guías nuevas:** «Los primeros años: de 0 a 3» y «Acompañar en la adolescencia».
+
+**Reglas de Firestore:** se admiten las franjas `0-3` y `13-17`. **Hay que volver a publicar `firestore.rules`.**
+
+---
+
 ## 2026-10-14 · Sección para chicos (4 a 12 años), supervisada por el adulto
 
 **Qué es.** Una sección nueva, «Familia», donde el adulto responsable crea perfiles para sus hijos o hijas (apodo, franja de
