@@ -1,0 +1,62 @@
+# Genera las ilustraciones de los cuentos con Pollinations.ai (scripts/generate_story_images.py)
+# y las sube a la rama «ilustraciones-cuentos» para revisarlas antes de publicarlas.
+# Se ejecuta a mano desde la pestaña Actions (o desde la API).
+name: Generar ilustraciones de cuentos
+
+on:
+  workflow_dispatch:
+    inputs:
+      only:
+        description: 'Ids separados por coma (vacío = todos los que falten)'
+        required: false
+        default: ''
+      force:
+        description: 'Regenerar aunque ya existan'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ilustraciones
+  cancel-in-progress: false
+
+jobs:
+  generar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Partir de la rama de ilustraciones si ya existe
+        run: |
+          if git ls-remote --exit-code --heads origin ilustraciones-cuentos >/dev/null; then
+            git fetch origin ilustraciones-cuentos
+            git checkout -B ilustraciones-cuentos origin/ilustraciones-cuentos
+            git merge --no-edit origin/main || true
+          else
+            git checkout -B ilustraciones-cuentos
+          fi
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pillow
+      - name: Generar
+        run: |
+          ARGS=""
+          if [ -n "${{ inputs.only }}" ]; then ARGS="$ARGS --only ${{ inputs.only }}"; fi
+          if [ "${{ inputs.force }}" = "true" ]; then ARGS="$ARGS --force"; fi
+          python3 scripts/generate_story_images.py $ARGS || echo "Algunas imágenes fallaron; se suben las que salieron."
+      - name: Subir a la rama ilustraciones-cuentos
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/cuentos src/domain/story-art.ts
+          if git diff --cached --quiet; then echo "Sin cambios"; exit 0; fi
+          git commit -m "Ilustraciones de cuentos generadas con Pollinations.ai"
+          git push origin ilustraciones-cuentos
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ilustraciones
+          path: public/cuentos/*.webp
+          if-no-files-found: ignore
