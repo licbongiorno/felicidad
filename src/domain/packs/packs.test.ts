@@ -5,6 +5,9 @@ import { PRACTICE_BY_ID } from '../practices';
 import { ARTICLE_BY_ID } from '../library';
 import { inflesz, longestSentenceWords } from '../readability';
 import { PACKS, PACK_PILLS } from '.';
+import { GLOSSARY } from '../glossary';
+import { KID_GUIDES } from '../kids-guides';
+import { PROGRAMS } from '../programs';
 
 describe('paquetes de contenido', () => {
   it('sólo importan tipos (evita ciclos de importación entre registros)', () => {
@@ -35,6 +38,13 @@ describe('paquetes de contenido', () => {
   it('ids únicos entre todos los paquetes', () => {
     const all = PACKS.flatMap((p) => [...p.practices.map((x) => `p:${x.id}`), ...p.articles.map((x) => `a:${x.id}`), ...p.programs.map((x) => `g:${x.id}`), ...p.pills.map((x) => `i:${x.id}`)]);
     expect(new Set(all).size).toBe(all.length);
+  });
+
+  it('el glosario, las guías y los programas no repiten ids con el contenido base', () => {
+    for (const list of [GLOSSARY.map((g) => g.id), KID_GUIDES.map((g) => g.id), PROGRAMS.map((p) => p.id)]) {
+      const dup = list.filter((id, i) => list.indexOf(id) !== i);
+      expect(dup).toEqual([]);
+    }
   });
 });
 
