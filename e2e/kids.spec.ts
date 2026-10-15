@@ -197,8 +197,11 @@ test('cuentos: se lee uno de su edad, se elige cómo lo dejó y el adulto lo ve 
   await page.locator('main a[href^="/chicos/cuentos/"]').first().click();
   await page.waitForURL('**/chicos/cuentos/**');
   const title = await page.getByRole('heading', { level: 1 }).innerText();
-  for (let i = 0; i < 20 && !(await page.getByText('Fin del cuento.').isVisible()); i++) {
-    await page.getByRole('button', { name: /^(Seguir →|Terminar)$/ }).click();
+  for (let i = 0; i < 20; i++) {
+    const next = page.getByRole('button', { name: /^(Seguir →|Terminar)$/ });
+    const label = (await next.innerText()).trim();
+    await next.click();
+    if (label === 'Terminar') break;
   }
   await expect(page.getByRole('heading', { name: 'Para conversar' })).toBeVisible();
   await page.getByRole('group', { name: 'Cómo me dejó el cuento' }).getByRole('button', { name: 'Calma' }).click();
@@ -221,8 +224,14 @@ test('familia: cuentos para leer juntos con guía para el adulto, por edad y tem
   await expectAccessible(page);
 });
 
-test('accesibilidad WCAG 2.1 AA: cuentos del modo chico', async ({ page }) => {
+test('accesibilidad WCAG 2.1 AA y sin desplazamiento lateral: cuentos del modo chico', async ({ page }) => {
   await enterAsKid(page);
+  for (const path of ['/chicos', '/chicos/cuentos', '/chicos/album', '/chicos/como-me-siento']) {
+    await page.goto(path);
+    await page.waitForLoadState('networkidle');
+    const { sw, w } = await page.evaluate(() => ({ sw: document.documentElement.scrollWidth, w: document.documentElement.clientWidth }));
+    expect(sw, path).toBeLessThanOrEqual(w);
+  }
   await page.goto('/chicos/cuentos');
   await expectAccessible(page);
   await page.locator('main a[href^="/chicos/cuentos/"]').first().click();

@@ -671,6 +671,33 @@ export const JOURNAL_TEMPLATES: JournalTemplate[] = [
     ],
   },
   {
+    type: 'sentido',
+    title: '¿Qué me pide la vida hoy?',
+    summary: 'Una pregunta de la logoterapia para encontrar sentido en lo concreto del día y responder con un gesto.',
+    when: 'Por la mañana, para orientar el día, o en un día gris en que todo parece dar igual.',
+    rationale:
+      'Viktor Frankl propuso cambiar la pregunta «¿qué espero de la vida?» por «¿qué me pide la vida?». El sentido se descubre en tres caminos: lo que haces o creas, lo que vives o amas, y la actitud ante lo que no puedes cambiar. Escribirlo vuelve concreta la respuesta.',
+    evidenceLevel: 'preliminar',
+    evidence: [
+      { citation: 'Frankl, V. E. (1946/2015). El hombre en busca de sentido. Herder.' },
+      {
+        citation:
+          'Steger, M. F., Frazier, P., Oishi, S., & Kaler, M. (2006). The Meaning in Life Questionnaire: Assessing the presence of and search for meaning in life. Journal of Counseling Psychology, 53(1), 80–93.',
+        doi: '10.1037/0022-0167.53.1.80',
+      },
+    ],
+    headline: 'pide',
+    helpLink: { href: '/gimnasio/que-me-pide-la-vida', label: 'Practicar «¿Qué me pide la vida hoy?»' },
+    fields: [
+      { id: 'situacion', label: 'Mi día o la situación que atravieso', kind: 'text', placeholder: 'Ej.: Un día de mucho trabajo y cansancio' },
+      { id: 'pide', label: '¿Qué me pide hoy la vida?', kind: 'text', placeholder: 'Ej.: Escuchar a mi hija con calma' },
+      { id: 'camino', label: 'Por qué camino respondo', kind: 'text', optional: true, hint: 'Crear o hacer algo, vivir o amar, o la actitud ante lo que no puedo cambiar.' },
+      { id: 'respuesta', label: 'Mi respuesta concreta de hoy', kind: 'text', placeholder: 'Qué, cuándo y con quién' },
+      { id: 'vivido', label: 'Algo ya vivido que nadie me quita', kind: 'text', optional: true },
+      { id: 'balance', label: 'Por la noche: ¿cómo respondí?', kind: 'text', optional: true },
+    ],
+  },
+  {
     type: 'caja-herramientas',
     title: 'Mi caja de herramientas',
     summary: 'Lo que te funciona en cada zona del semáforo emocional, preparado en calma.',

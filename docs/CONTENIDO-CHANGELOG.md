@@ -19,6 +19,36 @@ entrada en este registro.
 
 ---
 
+## 2026-10-15 · Cuentos para chicos por edad y tema
+
+**35 cuentos (`pendiente`)** en la sección para chicos y en Familia («Cuentos para leer juntos»):
+- 20 originales y 15 adaptaciones libres de clásicos en dominio público: Esopo, Andersen, los hermanos Grimm, Oscar Wilde y Tolstói. La adaptación se declara en cada cuento.
+- Temas: duelo, muerte, separación, esperanza, valentía, miedos, enojo, amistad, ser distinto, paciencia, gratitud, sentido y cambios. Cada franja de 4 a 17 años tiene al menos un cuento de duelo, muerte, separación, esperanza y valentía.
+- Muerte y duelo con palabras claras («murió»), sin eufemismos ni afirmaciones religiosas. Los cuentos sensibles piden al adulto leerlos antes.
+- Cada cuento trae preguntas para conversar, una guía para el adulto y, cuando corresponde, una actividad para seguir. Al terminar, el chico puede elegir cómo lo dejó el cuento y queda en el panel del adulto.
+- Para revisar clínicamente: los cuentos de 13 a 17 años con logoterapia y Gestalt («La silla vacía», «Lo vivido») y «Después del accidente».
+
+## 2026-10-15 · Logoterapia, psicología humanista y Gestalt
+
+Todo el contenido nuevo entra como `pendiente` de revisión clínica.
+
+**3 enfoques nuevos en el catálogo:** «Logoterapia · Frankl», «Humanista · Rogers» y «Gestalt», con su descripción.
+
+**12 prácticas nuevas (`pendiente`)**, la mayoría con evidencia `preliminar`:
+- Logoterapia: «¿Qué me pide la vida hoy?», «Los tres caminos del sentido» (con precauciones), «Derreflexión: volcarte hacia afuera», «Intención paradójica» (nivel de riesgo 2: no en crisis, ni con pensamientos obsesivos, pánico intenso o miedo a hacer daño sin terapeuta; alternativa: derreflexión) y «Lo vivido queda».
+- Humanista: «Escucharme sin juzgar» (focusing breve, con precauciones), «Mi yo real y mi yo ideal» (con precauciones) y «Necesidades que hoy pido» (Maslow, sin la pirámide rígida).
+- Gestalt: «Darse cuenta: aquí y ahora», «La silla vacía» (nivel avanzado y riesgo 2: no con trauma, abuso o duelo reciente sin acompañamiento; también por escrito), «Asuntos pendientes» (carta que no se envía; riesgo 2) y «Polaridades: el que exige y el que se resiste».
+
+**Diario:** plantilla nueva `sentido` («¿Qué me pide la vida hoy?»), en el módulo de Valores (requiere volver a publicar `firestore.rules`).
+
+**Cartas:** mazo nuevo «Existencialismo y humanismo» con 15 cartas (Frankl, Rogers, Maslow, Gendlin, Rollo May, Yalom, Buber, Fritz y Laura Perls). Las formulaciones no literales están marcadas como paráfrasis o concepto.
+
+**Biblioteca:** categoría nueva «Humanismo y existencialismo» con 3 artículos: «Logoterapia: vivir con sentido», «Psicología humanista: el poder de ser escuchado» y «Gestalt: el darse cuenta y el aquí y ahora». Glosario: 8 términos nuevos.
+
+**Programa nuevo:** «Una vida con sentido» (4 semanas).
+
+**A revisar clínicamente:** la redacción de las precauciones de la silla vacía, asuntos pendientes e intención paradójica; la exactitud de las traducciones de Rogers marcadas como cita; y los DOI nuevos (`npm run verify:refs`).
+
 ## 2026-10-15 · Ritual diario, primer uso guiado, hitos y privacidad
 
 - **Tu día**: tarjeta al inicio del panel con tres pasos (registro de ánimo, una práctica y la pregunta del día) y un anillo de progreso. Si pasaron 4 días o más sin actividad, da la bienvenida de regreso sin culpa.

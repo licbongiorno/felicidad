@@ -783,6 +783,52 @@ export const PROGRAMS: Program[] = [
       },
     ],
   },
+  {
+    id: 'vida-con-sentido',
+    title: 'Una vida con sentido',
+    subtitle: 'Cuatro semanas con Frankl, Rogers y la Gestalt',
+    description:
+      'Un recorrido por la logoterapia, la psicología humanista y la terapia Gestalt: preguntarte qué te pide la vida, escucharte sin juzgar, aceptar quién eres hoy y encontrar sentido en lo que haces, en lo que vives y en lo que ya viviste. Es reflexión, no un tratamiento.',
+    basis: 'Logoterapia (Frankl, 1946), enfoque centrado en la persona (Rogers, 1957, 1961), terapia Gestalt (Perls et al., 1951) y metaanálisis de terapias existenciales (Vos et al., 2015).',
+    rhythm: 'Una práctica al día, de 5 a 10 minutos, y una reflexión escrita por semana.',
+    weeks: [
+      {
+        title: 'Semana 1 · Lo que la vida me pide',
+        focus: 'Dar vuelta la pregunta',
+        description:
+          'Cambiarás la pregunta «¿qué espero de la vida?» por «¿qué me pide hoy?» y responderás con gestos concretos. Volverás a mirar tus valores desde ahí.',
+        practiceIds: ['que-me-pide-la-vida', 'brujula-valores'],
+        articleIds: ['logoterapia'],
+        journalType: 'sentido',
+      },
+      {
+        title: 'Semana 2 · Aquí y ahora',
+        focus: 'Darme cuenta y escucharme',
+        description:
+          'Practicarás el darse cuenta de la Gestalt y la escucha del cuerpo del focusing. Cuando te observes demasiado, probarás volcarte hacia afuera.',
+        practiceIds: ['darse-cuenta', 'escucharme-sin-juzgar', 'derreflexion'],
+        articleIds: ['gestalt'],
+      },
+      {
+        title: 'Semana 3 · Quién soy hoy',
+        focus: 'Aceptarme para poder cambiar',
+        description:
+          'Mirarás la distancia entre tu yo real y tu yo ideal, darás voz a las partes que se pelean por dentro y nombrarás lo que hoy necesitas pedir.',
+        practiceIds: ['yo-real-yo-ideal', 'polaridades', 'necesidades-que-pido'],
+        articleIds: ['psicologia-humanista'],
+        journalType: 'carta-compasiva',
+      },
+      {
+        title: 'Semana 4 · Los tres caminos',
+        focus: 'Crear, amar y la actitud',
+        description:
+          'Recorrerás los tres caminos del sentido, mirarás tu historia en capítulos y reconocerás lo vivido que nadie te puede quitar.',
+        practiceIds: ['tres-caminos-sentido', 'linea-de-vida', 'lo-vivido-queda'],
+        articleIds: ['sentido-y-valores'],
+        journalType: 'sentido',
+      },
+    ],
+  },
 ];
 
 export const PROGRAM_BY_ID: Record<string, Program> = Object.fromEntries(PROGRAMS.map((p) => [p.id, p]));

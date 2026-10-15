@@ -15,7 +15,7 @@ import { FavoriteButton } from '@/components/personal/FavoriteButton';
 import { useProgressStore } from '@/store/useProgressStore';
 import type { Practice } from '@/domain/types';
 
-const FILTERS: (Approach | 'todas')[] = ['todas', 'dbt', 'tcc', 'act', 'cft', 'mindfulness', 'esquemas', 'psicodinamica', 'positiva', 'contemplativa', 'relajacion'];
+const FILTERS: (Approach | 'todas')[] = ['todas', 'dbt', 'tcc', 'act', 'cft', 'mindfulness', 'esquemas', 'psicodinamica', 'positiva', 'contemplativa', 'relajacion', 'logoterapia', 'humanista', 'gestalt'];
 
 /**
  * Catálogo de habilidades por necesidad psicológica, con filtro por enfoque terapéutico.

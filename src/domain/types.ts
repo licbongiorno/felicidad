@@ -211,7 +211,8 @@ export type JournalType =
   | 'necesidades'
   | 'patron-repetido'
   | 'reflexion-carta'
-  | 'pregunta-del-dia';
+  | 'pregunta-del-dia'
+  | 'sentido';
 
 export type JournalValue = string | number;
 

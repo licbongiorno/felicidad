@@ -517,3 +517,12 @@ test('sin conexión: la app abre las secciones clave y avisa del estado', async 
     await context.setOffline(false);
   }
 });
+
+test('ninguna página se desplaza hacia los costados (celular y computadora)', async ({ page }) => {
+  for (const path of ['/', '/dashboard', '/gimnasio', '/gimnasio/silla-vacia', '/antidotos', '/diario', '/biblioteca', '/biblioteca/logoterapia', '/programas', '/programas/vida-con-sentido', '/cartas', '/laboratorio', '/crecimiento', '/familia', '/familia/cuentos', '/ajustes', '/evaluaciones', '/informe', '/privacidad']) {
+    await open(page, path);
+    await page.waitForLoadState('networkidle');
+    const { sw, w } = await page.evaluate(() => ({ sw: document.documentElement.scrollWidth, w: document.documentElement.clientWidth }));
+    expect(sw, path).toBeLessThanOrEqual(w);
+  }
+});
