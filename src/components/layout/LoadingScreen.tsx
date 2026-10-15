@@ -9,6 +9,44 @@ import { LogoMark } from '@/components/ui/icons';
 const SLOW_MS = 15_000;
 
 /**
+ * Borra lo que la app guarda en este navegador (caché sin conexión de Firestore, service
+ * worker y archivos en caché) y recarga. Resuelve cargas trabadas por una caché vieja o
+ * dañada, o por otra pestaña abierta con una versión anterior. Los datos están en la nube:
+ * no se pierde nada (sólo los cambios hechos sin conexión que aún no se sincronizaron).
+ */
+async function repairAndReload() {
+  try {
+    const regs = (await navigator.serviceWorker?.getRegistrations?.()) ?? [];
+    await Promise.all(regs.map((r) => r.unregister()));
+  } catch {
+    /* sin service worker */
+  }
+  try {
+    const keys = (await caches?.keys?.()) ?? [];
+    await Promise.all(keys.map((k) => caches.delete(k)));
+  } catch {
+    /* sin Cache Storage */
+  }
+  try {
+    const dbs = (await indexedDB.databases?.()) ?? [];
+    await Promise.all(
+      dbs
+        .filter((d) => d.name?.startsWith('firestore/'))
+        .map(
+          (d) =>
+            new Promise<void>((resolve) => {
+              const req = indexedDB.deleteDatabase(d.name!);
+              req.onsuccess = req.onerror = req.onblocked = () => resolve();
+            }),
+        ),
+    );
+  } catch {
+    /* navegador sin indexedDB.databases(): se recarga igual */
+  }
+  window.location.reload();
+}
+
+/**
  * Pantalla de carga con salida: si tarda más de 15 s (sin conexión con el servidor,
  * reCAPTCHA bloqueado, caché vieja…), ofrece reintentar o cerrar sesión en lugar de
  * dejar el indicador girando para siempre.
@@ -31,10 +69,20 @@ export function LoadingScreen({ children, className = '' }: { children?: ReactNo
       {slow && (
         <div role="alert" className="mt-8 max-w-sm rounded-2xl border border-stone-200 bg-white p-6 text-center shadow-soft">
           <p className="font-medium text-stone-800">Está tardando más de lo normal</p>
-          <p className="mt-2 text-sm leading-relaxed text-stone-600">Revisa tu conexión a internet. Si sigue igual, reintenta o vuelve a iniciar sesión.</p>
+          <p className="mt-2 text-sm leading-relaxed text-stone-600">
+            Revisa tu conexión a internet. Si tienes la app abierta en otra pestaña, ciérrala. Si sigue igual, usa «Reparar»: borra la copia guardada en
+            este navegador y vuelve a cargar. Tus datos están en la nube y no se pierden.
+          </p>
           <div className="mt-4 flex flex-wrap justify-center gap-2">
             <button type="button" onClick={() => window.location.reload()} className="rounded-full bg-sage-700 px-5 py-2.5 text-sm font-medium text-stone-50 hover:bg-sage-800">
               Reintentar
+            </button>
+            <button
+              type="button"
+              onClick={() => void repairAndReload()}
+              className="rounded-full border border-stone-300 bg-white px-5 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-50"
+            >
+              Reparar
             </button>
             {user && (
               <button

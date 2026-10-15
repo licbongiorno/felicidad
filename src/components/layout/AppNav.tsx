@@ -53,7 +53,7 @@ const SECONDARY = [
 
 // Ajustes no va en la barra de escritorio: tiene su propio icono.
 const bySecondary = (href: string) => SECONDARY.find((l) => l.href === href)!;
-const ALL = [PRIMARY[0], bySecondary('/crecimiento'), ...PRIMARY.slice(1), bySecondary('/laboratorio'), bySecondary('/programas'), bySecondary('/evaluaciones')];
+const ALL = [PRIMARY[0], bySecondary('/crecimiento'), ...PRIMARY.slice(1), bySecondary('/laboratorio'), bySecondary('/programas'), bySecondary('/evaluaciones'), bySecondary('/familia')];
 
 /**
  * Escritorio (lg+): barra superior con todas las secciones y un indicador que se desliza.
