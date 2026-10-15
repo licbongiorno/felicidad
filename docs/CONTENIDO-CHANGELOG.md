@@ -32,7 +32,7 @@ Línea Nacional de Salud Mental (0800-999-0091) y el CAS (135). **Privacidad:** 
 los avisos, pero no lo que el adolescente escribe; se le informa a ambos.
 
 **Más contenido.** 26 actividades nuevas (9 para 0 a 3 años, 14 para 4 a 9 y 6 para 10 a 17; algunas sirven para
-varias franjas). Ahora cada franja tiene entre 20 y 33 actividades.
+varias franjas). Ahora cada franja tiene entre 20 y 31 actividades.
 
 **Caminos de aprendizaje (19).** De 4 a 5 por franja: recorridos ordenados de 5 o 6 actividades (por ejemplo, «Calma en
 cinco pasos», «Mente valiente», «Kit para momentos intensos»). Muestran el progreso, proponen la siguiente actividad y, al
