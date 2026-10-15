@@ -4,8 +4,10 @@ import { Stagger, StaggerItem } from '@/components/motion/Reveal';
 import { isPublished } from '@/domain/governance';
 import { GLOSSARY } from '@/domain/glossary';
 import { EMOTION_FAMILIES } from '@/domain/emotions';
+import { PILLS } from '@/domain/pills';
 
 const VISIBLE = ARTICLES.filter((a) => isPublished('articulo', a.id));
+const VISIBLE_PILLS = PILLS.filter((p) => isPublished('pildora', p.id));
 
 const CATEGORY_ORDER: ArticleCategory[] = [
   'Fundamentos',
@@ -15,6 +17,9 @@ const CATEGORY_ORDER: ArticleCategory[] = [
   'Humanismo y existencialismo',
   'Hábitos y cuerpo',
   'Relaciones',
+  'Terapias breves e integrativas',
+  'Etapas de la vida',
+  'Salud y trabajo',
   'Uso responsable',
 ];
 
@@ -33,7 +38,24 @@ export default function LibraryPage() {
         </p>
       </StaggerItem>
 
-      <StaggerItem className="mt-8">
+      {VISIBLE_PILLS.length > 0 && (
+        <StaggerItem className="mt-8">
+          <Link
+            href="/biblioteca/pildoras"
+            className="group flex items-center justify-between gap-6 rounded-2xl border border-sage-200 bg-sage-50 px-6 py-4 transition-[border-color,box-shadow] hover:border-sage-300 hover:shadow-soft"
+          >
+            <span>
+              <span className="block font-serif text-lg text-stone-800">Píldoras</span>
+              <span className="block text-sm text-stone-600">{VISIBLE_PILLS.length} ideas clave en tarjetas, para leer en un minuto</span>
+            </span>
+            <span className="text-stone-500 transition-transform group-hover:translate-x-0.5" aria-hidden>
+              →
+            </span>
+          </Link>
+        </StaggerItem>
+      )}
+
+      <StaggerItem className={VISIBLE_PILLS.length > 0 ? 'mt-3' : 'mt-8'}>
         <Link
           href="/biblioteca/glosario"
           className="group flex items-center justify-between gap-6 rounded-2xl border border-stone-200 bg-white px-6 py-4 transition-[border-color,box-shadow] hover:border-sage-300 hover:shadow-soft"

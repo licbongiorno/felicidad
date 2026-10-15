@@ -206,9 +206,10 @@ test('buscador: Ctrl+K, escribir sin tildes y abrir el resultado con Enter', asy
   await input.fill('rumiacion');
   await expect(page.getByRole('option').first()).toContainText('Rumiación');
   await expect(page.getByRole('option').first()).toContainText('Defusión');
-  // Varias palabras (AND): sólo el artículo contiene ambas.
+  // Varias palabras (AND): sólo los artículos que contienen ambas, el más pertinente primero.
   await input.fill('rumiacion pensar');
-  await expect(page.getByRole('option')).toHaveCount(1);
+  await expect(page.getByRole('option')).toHaveCount(2);
+  await expect(page.getByRole('option').first()).toContainText('Rumiación: cuando pensar no ayuda');
   await page.keyboard.press('Enter');
   await expect(page).toHaveURL(/\/biblioteca\/rumiacion$/);
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Rumiación');
@@ -216,7 +217,7 @@ test('buscador: Ctrl+K, escribir sin tildes y abrir el resultado con Enter', asy
 
 test('buscador: botón de la cabecera y enlace profundo a un antídoto', async ({ page }) => {
   await open(page, '/gimnasio');
-  await page.getByRole('button', { name: /Buscar/ }).click();
+  await page.getByRole('button', { name: /^Buscar/ }).click();
   await page.getByRole('combobox', { name: /Buscar/ }).fill('envidia');
   await page.getByRole('option').filter({ hasText: 'Envidia' }).first().click();
   await expect(page).toHaveURL(/\/antidotos\?emocion=envidia$/);
@@ -225,7 +226,7 @@ test('buscador: botón de la cabecera y enlace profundo a un antídoto', async (
 
 test('accesibilidad WCAG 2.1 AA: buscador abierto', async ({ page }) => {
   await open(page, '/dashboard');
-  await page.getByRole('button', { name: /Buscar/ }).click();
+  await page.getByRole('button', { name: /^Buscar/ }).click();
   await page.getByRole('combobox', { name: /Buscar/ }).fill('respiracion');
   await page.waitForTimeout(800);
   const results = await new AxeBuilder({ page }).include('[role="dialog"]').withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();
@@ -260,7 +261,7 @@ test('antídoto nuevo: soledad, desde el buscador hasta el registro', async ({ p
 test('gimnasio: herramientas rápidas de 1–3 minutos sin selector de duración', async ({ page }) => {
   await open(page, '/gimnasio');
   const quick = page.getByRole('region', { name: /Herramientas rápidas/ });
-  await expect(quick.getByRole('link')).toHaveCount(7);
+  await expect(quick.getByRole('link')).toHaveCount(10);
   await quick.getByRole('link', { name: /Pausa STOP/ }).click();
   await expect(page.getByRole('heading', { level: 1, name: 'Pausa STOP' })).toBeVisible();
   await expect(page.getByRole('radiogroup', { name: 'Duración' })).toHaveCount(0);

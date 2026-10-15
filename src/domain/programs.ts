@@ -1,4 +1,5 @@
 import type { JournalType } from './types';
+import { PACK_PROGRAMS } from './packs';
 
 /**
  * Programas: recorridos sugeridos de varias semanas.
@@ -25,7 +26,7 @@ export interface Program {
   rhythm: string;
 }
 
-export const PROGRAMS: Program[] = [
+const BASE_PROGRAMS: Program[] = [
   {
     id: 'fundamentos',
     title: 'Fundamentos',
@@ -830,6 +831,8 @@ export const PROGRAMS: Program[] = [
     ],
   },
 ];
+
+export const PROGRAMS: Program[] = [...BASE_PROGRAMS, ...PACK_PROGRAMS];
 
 export const PROGRAM_BY_ID: Record<string, Program> = Object.fromEntries(PROGRAMS.map((p) => [p.id, p]));
 

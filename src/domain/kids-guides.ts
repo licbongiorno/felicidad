@@ -1,4 +1,5 @@
 import type { Reference } from './types';
+import { PACK_KID_GUIDES } from './packs';
 
 /**
  * Guías para madres, padres y tutores: cómo acompañar las emociones de chicos de 0 a 17 años.
@@ -21,7 +22,7 @@ export interface KidGuide {
   references: Reference[];
 }
 
-export const KID_GUIDES: KidGuide[] = [
+const BASE_KID_GUIDES: KidGuide[] = [
   {
     id: 'entrenador-emocional',
     title: 'Ser entrenador emocional',
@@ -424,5 +425,7 @@ export const KID_GUIDES: KidGuide[] = [
     ],
   },
 ];
+
+export const KID_GUIDES: KidGuide[] = [...BASE_KID_GUIDES, ...PACK_KID_GUIDES];
 
 export const KID_GUIDE_BY_ID = Object.fromEntries(KID_GUIDES.map((g) => [g.id, g])) as Record<string, KidGuide>;

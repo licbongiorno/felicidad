@@ -1,6 +1,7 @@
 import { ProgramList } from '@/components/programs/ProgramViews';
 import { Stagger, StaggerItem } from '@/components/motion/Reveal';
 import { ProgramFinder } from '@/components/programs/ProgramFinder';
+import Link from 'next/link';
 
 export default function ProgramsPage() {
   return (
@@ -12,6 +13,13 @@ export default function ProgramsPage() {
           dónde empezar, empieza por <span className="text-stone-700">Fundamentos</span>.
         </p>
         <ProgramFinder />
+        <p className="mt-4 text-sm text-stone-600">
+          ¿Prefieres algo más corto?{' '}
+          <Link href="/desafios" className="text-sage-700 underline underline-offset-4">
+            Prueba un desafío de 7, 21 o 30 días
+          </Link>
+          .
+        </p>
       </StaggerItem>
       <ProgramList />
     </Stagger>
