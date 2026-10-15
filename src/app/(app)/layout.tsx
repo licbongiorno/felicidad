@@ -2,13 +2,12 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { m } from 'motion/react';
 import { useAuth } from '@/providers/AuthProvider';
 import { AppNav } from '@/components/layout/AppNav';
 import { SyncNotice } from '@/components/layout/SyncNotice';
 import { ConsentGate } from '@/components/layout/ConsentGate';
 import { VerifyEmailNotice } from '@/components/layout/VerifyEmailNotice';
-import { LogoMark } from '@/components/ui/icons';
+import { LoadingScreen } from '@/components/layout/LoadingScreen';
 import { SearchLauncher } from '@/components/search/SearchLauncher';
 import { useActiveKidId } from '@/lib/kids/kidMode';
 
@@ -29,13 +28,7 @@ export default function PrivateLayout({ children }: { children: React.ReactNode 
   }, [user, loading, kidMode, router]);
 
   if (loading || !user || profile === undefined || kidMode) {
-    return (
-      <div className="flex min-h-screen items-center justify-center" aria-label="Cargando">
-        <m.div animate={{ scale: [0.9, 1, 0.9], opacity: [0.5, 1, 0.5] }} transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}>
-          <LogoMark className="h-10 w-10" />
-        </m.div>
-      </div>
-    );
+    return <LoadingScreen />;
   }
 
   if (!hasConsent) return <ConsentGate />;

@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { onAuthStateChanged, signOut as firebaseSignOut, type User } from 'firebase/auth';
-import { getFirebaseAuth } from '@/lib/firebase/client';
+import { appCheckReady, getFirebaseAuth } from '@/lib/firebase/client';
 import { CONSENT_VERSION } from '@/lib/consent';
 import { useProgressStore } from '@/store/useProgressStore';
 import { useKidsStore } from '@/store/useKidsStore';
@@ -48,7 +48,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
     let unsubProfile: (() => void) | undefined;
     let current: string | null = null;
-    const unsubAuth = onAuthStateChanged(getFirebaseAuth(), (u) => {
+    const unsubAuth = onAuthStateChanged(getFirebaseAuth(), async (u) => {
+      // Antes de leer datos: App Check activo o descartado (ver lib/firebase/client).
+      await appCheckReady();
       unsubProfile?.();
       unsubProfile = undefined;
       current = u?.uid ?? null;

@@ -57,7 +57,7 @@ export function FamilyHub() {
         <h2 id="perfiles" className="mb-4 text-xs uppercase tracking-[0.2em] text-stone-500">
           Perfiles
         </h2>
-        {status !== 'ready' && kids.length === 0 ? (
+        {(status === 'loading' || status === 'idle') && kids.length === 0 ? (
           <div className="skeleton h-28" />
         ) : (
           <ul className="grid gap-4 sm:grid-cols-2">

@@ -54,7 +54,7 @@ export const useKidsStore = create<KidsState>()((set, get) => ({
       kidsReady[k] = true;
       if (kidsReady.kids && kidsReady.activities && gen === generation) set({ status: 'ready' });
     };
-    const onError = (e: unknown) => gen === generation && set({ status: 'error', error: message(e) });
+    const onError = () => gen === generation && set({ status: 'error', error: 'No se pudieron cargar los perfiles. Revisa tu conexión e inténtalo más tarde.' });
     loadKidsRepo()
       .then((repo) => {
         if (gen !== generation) return;
