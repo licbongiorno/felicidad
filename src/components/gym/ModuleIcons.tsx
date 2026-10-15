@@ -105,6 +105,58 @@ const icons: Record<ModuleId, Icon> = {
       <path d="M9.6 8a2.6 2.6 0 0 1 2.4-1.6" />
     </svg>
   ),
+  // Dos corazones que se tocan.
+  pareja: (p) => (
+    <svg {...base} {...p}>
+      <path d="M9 19s-5.5-3.3-5.5-7.4A3 3 0 0 1 9 10a3 3 0 0 1 5.5 1.6" />
+      <path d="M15 20s-5.5-3.3-5.5-7.4A3 3 0 0 1 15 11a3 3 0 0 1 5.5 1.6c0 4.1-5.5 7.4-5.5 7.4z" />
+    </svg>
+  ),
+  // Una hoja que cae.
+  duelo: (p) => (
+    <svg {...base} {...p}>
+      <path d="M6 18c0-7 5-11 12-12 0 7-4 12-12 12z" />
+      <path d="M6 18l7-7M4 21h5" />
+    </svg>
+  ),
+  // Una luna con estrellas.
+  sueno: (p) => (
+    <svg {...base} {...p}>
+      <path d="M15.5 4.5a7.5 7.5 0 1 0 4 12.5 6 6 0 0 1-4-12.5z" />
+      <path d="M19 4v3M17.5 5.5h3" />
+    </svg>
+  ),
+  // Un maletín con una pausa.
+  trabajo: (p) => (
+    <svg {...base} {...p}>
+      <rect x="3.5" y="7.5" width="17" height="11.5" rx="2" />
+      <path d="M9 7.5V6a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 6v1.5M10.5 11.5v4M13.5 11.5v4" />
+    </svg>
+  ),
+  // Un camino con tres etapas.
+  etapas: (p) => (
+    <svg {...base} {...p}>
+      <path d="M4 19c4 0 4-6 8-6s4-6 8-6" />
+      <circle cx="4" cy="19" r="1.4" />
+      <circle cx="12" cy="13" r="1.4" />
+      <circle cx="20" cy="7" r="1.4" />
+    </svg>
+  ),
+  // Una cruz suave dentro de un círculo: cuidado de la salud.
+  salud: (p) => (
+    <svg {...base} {...p}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 8v8M8 12h8" />
+    </svg>
+  ),
+  // Piezas distintas que encajan.
+  neurodiversidad: (p) => (
+    <svg {...base} {...p}>
+      <path d="M4 4h7v4a2 2 0 1 0 0 3v2H4z" />
+      <path d="M13 11h7v9h-7v-3a2 2 0 1 0 0-3z" />
+      <path d="M4 15h7v5H4z" />
+    </svg>
+  ),
 };
 
 export function ModuleIcon({ id, ...p }: { id: ModuleId } & SVGProps<SVGSVGElement>) {

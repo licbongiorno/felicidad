@@ -1,4 +1,5 @@
 import type { JournalType } from './types';
+import { PACK_META } from './packs';
 
 /**
  * Catálogo clínico: enfoque terapéutico de origen y nivel de riesgo de cada contenido.
@@ -15,7 +16,7 @@ import type { JournalType } from './types';
  *       ayuda humana (botón «Ayuda» en todas las pantallas, plan de seguridad).
  */
 
-export type Approach = 'dbt' | 'tcc' | 'act' | 'cft' | 'mindfulness' | 'positiva' | 'contemplativa' | 'relajacion' | 'escritura' | 'esquemas' | 'psicodinamica' | 'logoterapia' | 'humanista' | 'gestalt';
+export type Approach = 'dbt' | 'tcc' | 'act' | 'cft' | 'mindfulness' | 'positiva' | 'contemplativa' | 'relajacion' | 'escritura' | 'esquemas' | 'psicodinamica' | 'logoterapia' | 'humanista' | 'gestalt' | 'soluciones' | 'narrativa' | 'motivacional' | 'metacognitiva' | 'focalizada-emocion' | 'interpersonal' | 'mentalizacion' | 'gottman';
 
 export const APPROACH_LABEL: Record<Approach, string> = {
   dbt: 'DBT',
@@ -32,6 +33,14 @@ export const APPROACH_LABEL: Record<Approach, string> = {
   logoterapia: 'Logoterapia · Frankl',
   humanista: 'Humanista · Rogers',
   gestalt: 'Gestalt',
+  soluciones: 'Centrada en soluciones',
+  narrativa: 'Terapia narrativa',
+  motivacional: 'Entrevista motivacional',
+  metacognitiva: 'Metacognitiva',
+  'focalizada-emocion': 'Focalizada en la emoción',
+  interpersonal: 'Interpersonal (TIP)',
+  mentalizacion: 'Mentalización',
+  gottman: 'Método Gottman',
 };
 
 export const APPROACH_DESCRIPTION: Record<Approach, string> = {
@@ -49,6 +58,14 @@ export const APPROACH_DESCRIPTION: Record<Approach, string> = {
   logoterapia: 'Logoterapia de Viktor Frankl: descubrir el sentido en lo que haces, en lo que vives y en la actitud ante lo inevitable.',
   humanista: 'Psicología humanista (Rogers, Maslow, Gendlin): escucha sin juicio, aceptación, autenticidad y necesidades de crecimiento.',
   gestalt: 'Terapia Gestalt (Fritz y Laura Perls): darse cuenta del aquí y ahora, cerrar asuntos pendientes y dialogar entre partes.',
+  soluciones: 'Terapia breve centrada en soluciones (de Shazer, Berg): buscar lo que ya funciona, las excepciones y el próximo pequeño paso.',
+  narrativa: 'Terapia narrativa (White, Epston): separar a la persona del problema y reescribir la propia historia.',
+  motivacional: 'Entrevista motivacional (Miller, Rollnick): explorar la ambivalencia y fortalecer las propias razones para cambiar.',
+  metacognitiva: 'Terapia metacognitiva (Wells): cambiar la relación con la preocupación y la rumiación, no su contenido.',
+  'focalizada-emocion': 'Terapia focalizada en la emoción (Greenberg): llegar a la emoción de fondo y a la necesidad que señala.',
+  interpersonal: 'Terapia interpersonal: el ánimo en relación con duelos, cambios de rol y conflictos con otros.',
+  mentalizacion: 'Mentalización (Fonagy, Bateman): entender los estados mentales propios y ajenos detrás de las conductas.',
+  gottman: 'Método Gottman para parejas: amistad, manejo del conflicto y sentido compartido, según décadas de investigación.',
 };
 
 export const PRACTICE_APPROACHES: Record<string, Approach[]> = {
@@ -116,6 +133,7 @@ export const PRACTICE_APPROACHES: Record<string, Approach[]> = {
   'silla-vacia': ['gestalt'],
   'asuntos-pendientes': ['gestalt', 'escritura'],
   polaridades: ['gestalt'],
+  ...Object.fromEntries(Object.entries(PACK_META).map(([id, m]) => [id, m.approaches])),
 };
 
 export const JOURNAL_APPROACHES: Partial<Record<JournalType, Approach[]>> = {
@@ -169,6 +187,7 @@ export const PRACTICE_RISK: Record<string, { level: RiskLevel; alternative: stri
   'intencion-paradojica': { level: 2, alternative: 'derreflexion' },
   'silla-vacia': { level: 2, alternative: 'pausa-autocompasion' },
   'asuntos-pendientes': { level: 2, alternative: 'pausa-autocompasion' },
+  ...Object.fromEntries(Object.entries(PACK_META).flatMap(([id, m]) => (m.risk ? [[id, m.risk]] : []))),
 };
 
 export const JOURNAL_RISK: Partial<Record<JournalType, RiskLevel>> = {
@@ -201,7 +220,14 @@ export type ModuleId =
   | 'cuerpo'
   | 'problemas'
   | 'bienestar'
-  | 'afrontamiento';
+  | 'afrontamiento'
+  | 'pareja'
+  | 'duelo'
+  | 'sueno'
+  | 'trabajo'
+  | 'etapas'
+  | 'salud'
+  | 'neurodiversidad';
 
 export interface SkillModule {
   id: ModuleId;
@@ -344,7 +370,76 @@ export const MODULES: SkillModule[] = [
       { href: '/biblioteca/gestalt', label: 'Gestalt: el darse cuenta' },
     ],
   },
+  {
+    id: 'pareja',
+    title: 'Vida en pareja',
+    purpose: 'Cuidar la amistad, manejar los conflictos y construir un proyecto compartido.',
+    approaches: ['gottman', 'focalizada-emocion', 'mentalizacion'],
+    practices: [],
+    journal: [],
+    resources: [],
+  },
+  {
+    id: 'duelo',
+    title: 'Duelo y pérdidas',
+    purpose: 'Atravesar una pérdida a tu ritmo, entre el dolor y la vida que sigue.',
+    approaches: ['interpersonal', 'narrativa', 'act', 'logoterapia'],
+    practices: [],
+    journal: [],
+    resources: [{ href: '/biblioteca/duelo', label: 'El duelo' }],
+  },
+  {
+    id: 'sueno',
+    title: 'Dormir mejor',
+    purpose: 'Recuperar el sueño con las técnicas de la TCC para el insomnio.',
+    approaches: ['tcc', 'mindfulness', 'relajacion'],
+    practices: [],
+    journal: ['diario-sueno'],
+    resources: [],
+  },
+  {
+    id: 'trabajo',
+    title: 'Trabajo y agotamiento',
+    purpose: 'Prevenir y salir del agotamiento, con límites y recuperación.',
+    approaches: ['tcc', 'act', 'motivacional'],
+    practices: [],
+    journal: [],
+    resources: [],
+  },
+  {
+    id: 'etapas',
+    title: 'Etapas de la vida',
+    purpose: 'Embarazo y posparto, crianza, jubilación y vejez: cambios que piden recursos nuevos.',
+    approaches: ['interpersonal', 'cft', 'narrativa'],
+    practices: [],
+    journal: [],
+    resources: [],
+  },
+  {
+    id: 'salud',
+    title: 'Dolor y salud crónica',
+    purpose: 'Vivir con dolor o una enfermedad crónica sin que ocupe toda la vida.',
+    approaches: ['act', 'mindfulness', 'tcc'],
+    practices: [],
+    journal: [],
+    resources: [],
+  },
+  {
+    id: 'neurodiversidad',
+    title: 'Neurodiversidad',
+    purpose: 'Estrategias para TDAH y autismo: organización, energía y regulación sensorial.',
+    approaches: ['tcc', 'mindfulness'],
+    practices: [],
+    journal: [],
+    resources: [],
+  },
 ];
+
+// Las prácticas de los paquetes de contenido se suman a su módulo.
+for (const [id, m] of Object.entries(PACK_META)) {
+  const mod = MODULES.find((x) => x.id === m.module);
+  if (mod && !mod.practices.includes(id)) mod.practices.push(id);
+}
 
 export const MODULE_BY_ID = Object.fromEntries(MODULES.map((m) => [m.id, m])) as Record<ModuleId, SkillModule>;
 

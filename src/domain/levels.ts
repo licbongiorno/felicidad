@@ -4,6 +4,8 @@
  * desestabilizar (p. ej. conciencia no dual, tonglen) sin la base atencional o afectiva.
  */
 
+import { PACK_META } from './packs';
+
 export type Level = 'iniciacion' | 'intermedio' | 'avanzado';
 
 export const LEVEL_LABEL: Record<Level, string> = {
@@ -88,6 +90,7 @@ export const PRACTICE_LEVELS: Record<string, LevelInfo> = {
   'polaridades': { level: 'intermedio', prerequisites: ['pausa-autocompasion'] },
   'asuntos-pendientes': { level: 'intermedio', prerequisites: ['pausa-autocompasion'] },
   'silla-vacia': { level: 'avanzado', prerequisites: ['asuntos-pendientes', 'pausa-autocompasion'] },
+  ...Object.fromEntries(Object.entries(PACK_META).map(([id, m]) => [id, { level: m.level, prerequisites: m.prerequisites }])),
 };
 
 export function levelOf(practiceId: string): LevelInfo {

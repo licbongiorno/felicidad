@@ -1,3 +1,5 @@
+import { PACK_GLOSSARY } from './packs';
+
 /** Glosario: términos técnicos usados en la app, en lenguaje claro, con su sección de referencia. */
 
 export interface GlossaryTerm {
@@ -11,7 +13,7 @@ export interface GlossaryTerm {
   seeAlso?: { href: string; label: string };
 }
 
-export const GLOSSARY: GlossaryTerm[] = [
+const BASE_GLOSSARY: GlossaryTerm[] = [
   { id: 'aceptacion', term: 'Aceptación', definition: 'Permitir que pensamientos, emociones y sensaciones estén presentes sin luchar contra ellos. No es resignarse: es dejar de gastar energía en una pelea que no se gana.', articleId: 'flexibilidad-psicologica', practiceId: 'hacer-espacio' },
   { id: 'activacion-conductual', term: 'Activación conductual', definition: 'Tratamiento que rompe el círculo del desánimo empezando por la acción: programar actividades pequeñas de placer, logro y conexión antes de tener ganas.', articleId: 'activacion-conductual', practiceId: 'activacion-conductual' },
   { id: 'asertividad', term: 'Asertividad', definition: 'Expresar lo que necesitas o piensas con claridad y respeto, hacia el otro y hacia ti. Es la vía entre callar y explotar.', articleId: 'asertividad-y-limites', practiceId: 'dear-man' },
@@ -55,3 +57,5 @@ export const GLOSSARY: GlossaryTerm[] = [
   { id: 'darse-cuenta', term: 'Darse cuenta', definition: 'En la terapia Gestalt, notar lo que pasa ahora afuera, en el cuerpo y en los pensamientos, sin explicarlo ni juzgarlo. Es el punto de partida del cambio.', articleId: 'gestalt', practiceId: 'darse-cuenta' },
   { id: 'asunto-pendiente', term: 'Asunto pendiente', definition: 'En la Gestalt, una experiencia que quedó incompleta, como algo no dicho o una despedida que no fue. Tiende a volver hasta que se cierra.', articleId: 'gestalt', practiceId: 'asuntos-pendientes' },
 ];
+
+export const GLOSSARY: GlossaryTerm[] = [...BASE_GLOSSARY, ...PACK_GLOSSARY];

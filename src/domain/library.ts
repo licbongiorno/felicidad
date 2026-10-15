@@ -4,6 +4,7 @@ import { MORE_ARTICLES } from './library-more';
 import { SKILL_ARTICLES } from './library-skills';
 import { PROGRAM_ARTICLES } from './library-programs';
 import { EXISTENTIAL_ARTICLES } from './library-existential';
+import { PACK_ARTICLES } from './packs';
 
 /**
  * Biblioteca: fundamentos teóricos en lenguaje claro.
@@ -19,6 +20,9 @@ export type ArticleCategory =
   | 'Humanismo y existencialismo'
   | 'Hábitos y cuerpo'
   | 'Relaciones'
+  | 'Terapias breves e integrativas'
+  | 'Etapas de la vida'
+  | 'Salud y trabajo'
   | 'Uso responsable';
 
 export interface Article {
@@ -498,6 +502,6 @@ const BASE_ARTICLES: Article[] = [
   },
 ];
 
-export const ARTICLES: Article[] = [...BASE_ARTICLES, ...EXTRA_ARTICLES, ...MORE_ARTICLES, ...SKILL_ARTICLES, ...PROGRAM_ARTICLES, ...EXISTENTIAL_ARTICLES];
+export const ARTICLES: Article[] = [...BASE_ARTICLES, ...EXTRA_ARTICLES, ...MORE_ARTICLES, ...SKILL_ARTICLES, ...PROGRAM_ARTICLES, ...EXISTENTIAL_ARTICLES, ...PACK_ARTICLES];
 
 export const ARTICLE_BY_ID: Record<string, Article> = Object.fromEntries(ARTICLES.map((a) => [a.id, a]));

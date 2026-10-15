@@ -15,6 +15,9 @@ const CATEGORY_ORDER: ArticleCategory[] = [
   'Humanismo y existencialismo',
   'Hábitos y cuerpo',
   'Relaciones',
+  'Terapias breves e integrativas',
+  'Etapas de la vida',
+  'Salud y trabajo',
   'Uso responsable',
 ];
 
