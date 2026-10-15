@@ -62,7 +62,7 @@ export function SkillsCatalog() {
       </nav>
 
       {/* Filtro por enfoque ----------------------------------------------------------- */}
-      <div className="sticky top-[57px] z-10 -mx-6 mt-10 bg-stone-50/90 px-6 py-3 backdrop-blur-md">
+      <div className="sticky top-[57px] z-10 -mx-5 mt-10 bg-stone-50/90 px-5 py-3 sm:-mx-6 sm:px-6 backdrop-blur-md">
         <div role="radiogroup" aria-label="Filtrar por enfoque" className="flex gap-1.5 overflow-x-auto pb-1">
           {FILTERS.map((f) => {
             const active = f === filter;

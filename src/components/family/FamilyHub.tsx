@@ -7,6 +7,8 @@ import { useMemo, useState } from 'react';
 import { AGE_BANDS, hasKidMode, kidAlert, MAX_KIDS, weeklySummary, type KidProfile } from '@/domain/kids';
 import { KID_GUIDES } from '@/domain/kids-guides';
 import { familyTip } from '@/domain/family-tips';
+import { STORIES } from '@/domain/stories';
+import { StoryScene } from '@/components/kids/StoryScene';
 import { KID_RESOURCES } from '@/config/safety';
 import { useKids } from '@/hooks/useKids';
 import { enterKidMode, hasPin } from '@/lib/kids/kidMode';
@@ -91,6 +93,25 @@ export function FamilyHub() {
             )}
           </p>
         )}
+      </m.section>
+
+      <m.section variants={fadeUp} className="mt-12" aria-labelledby="cuentos">
+        <Link
+          href="/familia/cuentos"
+          className="kid-theme flex flex-col gap-4 overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-soft transition-shadow hover:shadow-lift sm:flex-row sm:items-center"
+        >
+          <span className="block w-full sm:w-56 sm:shrink-0" aria-hidden>
+            <StoryScene scene="noche" />
+          </span>
+          <span className="block px-5 pb-5 sm:py-5 sm:pl-0">
+            <span id="cuentos" className="block font-serif text-2xl text-stone-800">
+              Cuentos para leer juntos
+            </span>
+            <span className="mt-1 block text-sm leading-relaxed text-stone-600">
+              {STORIES.length} cuentos por edad sobre duelo, separación, muerte, esperanza, valentía y más, con preguntas para conversar.
+            </span>
+          </span>
+        </Link>
       </m.section>
 
       <m.section variants={fadeUp} className="mt-12" aria-labelledby="guias">

@@ -186,3 +186,46 @@ test('caminos: se elige uno, se avanza y propone la siguiente actividad', async 
   await expect(page.getByRole('progressbar', { name: '1 de 5 actividades' })).toBeVisible();
   await expectAccessible(page);
 });
+
+test('cuentos: se lee uno de su edad, se elige cómo lo dejó y el adulto lo ve en su panel', async ({ page }) => {
+  await enterAsKid(page);
+  await page.getByRole('link', { name: /^Cuentos/ }).click();
+  await page.waitForURL('**/chicos/cuentos');
+  await expect(page.getByRole('heading', { name: 'Cuentos', level: 1 })).toBeVisible();
+  // Filtrar por un tema deja sólo cuentos de ese tema.
+  await page.getByRole('button', { name: 'Valentía', exact: true }).click();
+  await page.locator('main a[href^="/chicos/cuentos/"]').first().click();
+  await page.waitForURL('**/chicos/cuentos/**');
+  const title = await page.getByRole('heading', { level: 1 }).innerText();
+  for (let i = 0; i < 20 && !(await page.getByText('Fin del cuento.').isVisible()); i++) {
+    await page.getByRole('button', { name: /^(Seguir →|Terminar)$/ }).click();
+  }
+  await expect(page.getByRole('heading', { name: 'Para conversar' })).toBeVisible();
+  await page.getByRole('group', { name: 'Cómo me dejó el cuento' }).getByRole('button', { name: 'Calma' }).click();
+  await expect(page.getByRole('status').filter({ hasText: 'Guardado' })).toBeVisible();
+  await openPanel(page);
+  await expect(page.getByText(`Cuento: ${title}`)).toBeVisible();
+});
+
+test('familia: cuentos para leer juntos con guía para el adulto, por edad y tema', async ({ page }) => {
+  await freshFamily(page);
+  await page.getByRole('link', { name: /Cuentos para leer juntos/ }).click();
+  await page.waitForURL('**/familia/cuentos');
+  await page.getByRole('button', { name: '10 a 12 años' }).click();
+  await page.getByRole('button', { name: 'Duelo', exact: true }).click();
+  await page.locator('main a[href^="/familia/cuentos/"]').first().click();
+  await expect(page.getByRole('heading', { name: 'Para ti, antes de leer' })).toBeVisible();
+  await expect(page.getByText(/tema sensible/)).toBeVisible();
+  await page.getByRole('button', { name: 'Leer el cuento' }).click();
+  await expect(page.getByRole('button', { name: 'Seguir →' })).toBeVisible();
+  await expectAccessible(page);
+});
+
+test('accesibilidad WCAG 2.1 AA: cuentos del modo chico', async ({ page }) => {
+  await enterAsKid(page);
+  await page.goto('/chicos/cuentos');
+  await expectAccessible(page);
+  await page.locator('main a[href^="/chicos/cuentos/"]').first().click();
+  await page.waitForURL('**/chicos/cuentos/**');
+  await expectAccessible(page);
+});

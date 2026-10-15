@@ -9,6 +9,8 @@ import { Mascot } from './Mascot';
 import { FeelingFace, SKILL_PAINT, Sticker } from './KidArt';
 import { useKid } from './KidShell';
 import { KidPaths } from './KidPaths';
+import { StoryScene } from './StoryScene';
+import { storiesFor } from '@/domain/stories';
 
 /** Inicio del modo chico: cómo me siento, mi jardín y las actividades por habilidad. */
 export function KidHome() {
@@ -64,6 +66,18 @@ export function KidHome() {
             <span className="block text-base text-kid-soft">
               {stickers.size} {stickers.size === 1 ? 'sticker' : 'stickers'} · {stage.label.toLowerCase()}
             </span>
+          </span>
+        </Link>
+        <Link
+          href="/chicos/cuentos"
+          className="flex items-center gap-4 overflow-hidden rounded-3xl bg-kid-tint-lavender p-5 shadow-[0_4px_0_rgb(0_0_0/0.06)] transition-transform active:scale-[0.98] sm:col-span-2"
+        >
+          <span className="w-24 shrink-0 overflow-hidden rounded-2xl sm:w-32" aria-hidden>
+            <StoryScene scene="noche" />
+          </span>
+          <span>
+            <span className="block text-2xl font-extrabold">Cuentos</span>
+            <span className="block text-base text-kid-soft">{storiesFor(kid.band).length} historias para sentir y pensar</span>
           </span>
         </Link>
       </m.div>

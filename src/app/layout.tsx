@@ -14,6 +14,8 @@ export const metadata: Metadata = {
   title: 'Habilidades Psicológicas',
   description: 'Entrena habilidades psicológicas basadas en evidencia, entre sesiones o por tu cuenta.',
   robots: { index: false, follow: false },
+  icons: { apple: '/icons/apple-touch-icon.png' },
+  appleWebApp: { capable: true, title: 'Habilidades', statusBarStyle: 'default' },
 };
 
 export const viewport: Viewport = {
