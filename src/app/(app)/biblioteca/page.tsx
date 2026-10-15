@@ -12,6 +12,7 @@ const CATEGORY_ORDER: ArticleCategory[] = [
   'Neurociencia contemplativa',
   'Psicología positiva',
   'Terapias contextuales',
+  'Humanismo y existencialismo',
   'Hábitos y cuerpo',
   'Relaciones',
   'Uso responsable',

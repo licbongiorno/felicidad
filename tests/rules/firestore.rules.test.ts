@@ -107,6 +107,13 @@ describe('diario', () => {
     await assertFails(addDoc(col, entry('necesidades', { juego: 11 })));
   });
 
+  it('acepta el registro de sentido (logoterapia) y rechaza campos ajenos', async () => {
+    const col = collection(alice(), 'users/alice/journal');
+    await assertSucceeds(addDoc(col, entry('sentido', { situacion: 'Un día cansado', pide: 'Escuchar a mi hija', respuesta: 'Cenar sin pantallas', balance: 'Lo hice' })));
+    await assertFails(addDoc(col, entry('sentido', { pide: 'x', extra: 'y' })));
+    await assertFails(addDoc(col, entry('sentido', { pide: 'x'.repeat(281) })));
+  });
+
   it('acepta la caja de herramientas y rechaza campos ajenos', async () => {
     const col = collection(alice(), 'users/alice/journal');
     await assertSucceeds(addDoc(col, entry('caja-herramientas', { rojoPracticas: 'tipp,cinco-sentidos', rojoPropias: 'Ducharme', frases: 'Va a pasar' })));

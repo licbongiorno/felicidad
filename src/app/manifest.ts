@@ -12,7 +12,14 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: '#fafaf9',
     lang: 'es',
     categories: ['health', 'medical', 'lifestyle'],
-    icons: [{ src: '/icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' }],
+    id: '/dashboard',
+    orientation: 'portrait',
+    icons: [
+      { src: '/icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' },
+      { src: '/icons/icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
+      { src: '/icons/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+      { src: '/icons/maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+    ],
     shortcuts: [
       { name: 'Antídotos', url: '/antidotos', description: 'Trabajar una emoción difícil ahora' },
       { name: 'Habilidades', url: '/gimnasio', description: 'Empezar una práctica guiada' },

@@ -12,8 +12,9 @@
  */
 
 import { EXTRA_CARDS } from './cards-extra';
+import { EXISTENTIAL_CARDS } from './cards-existential';
 
-export type DeckId = 'estoicismo' | 'clasica' | 'spinoza' | 'foucault' | 'jung' | 'contemplativa' | 'psicologia';
+export type DeckId = 'estoicismo' | 'clasica' | 'spinoza' | 'foucault' | 'jung' | 'contemplativa' | 'psicologia' | 'existencial';
 
 export type TextType = 'cita' | 'paráfrasis' | 'concepto';
 
@@ -38,6 +39,7 @@ export const DECKS: Record<DeckId, { title: string; description: string }> = {
   jung: { title: 'Psicología junguiana', description: 'Sombra, proyección e integración.' },
   contemplativa: { title: 'Contemplativa', description: 'La mente como campo de entrenamiento.' },
   psicologia: { title: 'Psicología contemporánea', description: 'Distancia, flexibilidad y sentido.' },
+  existencial: { title: 'Existencialismo y humanismo', description: 'Sentido, aceptación, encuentro y darse cuenta: Frankl, Rogers y la Gestalt.' },
 };
 
 const BASE_CARDS: PhilosophyCard[] = [
@@ -333,4 +335,4 @@ const BASE_CARDS: PhilosophyCard[] = [
   },
 ];
 
-export const CARDS: PhilosophyCard[] = [...BASE_CARDS, ...EXTRA_CARDS];
+export const CARDS: PhilosophyCard[] = [...BASE_CARDS, ...EXTRA_CARDS, ...EXISTENTIAL_CARDS];

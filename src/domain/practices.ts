@@ -5,6 +5,7 @@ import { SKILL_PRACTICES } from './practices-skills';
 import { DBT_PRACTICES } from './practices-dbt';
 import { SELF_PRACTICES } from './practices-self';
 import { PLUS_PRACTICES } from './practices-plus';
+import { EXISTENTIAL_PRACTICES } from './practices-existential';
 
 /**
  * Catálogo del Gimnasio Mental.
@@ -613,7 +614,7 @@ const BASE_PRACTICES: Practice[] = [
   },
 ];
 
-const ALL = [...MORE_PRACTICES, ...SKILL_PRACTICES, ...DBT_PRACTICES, ...SELF_PRACTICES, ...PLUS_PRACTICES];
+const ALL = [...MORE_PRACTICES, ...SKILL_PRACTICES, ...DBT_PRACTICES, ...SELF_PRACTICES, ...PLUS_PRACTICES, ...EXISTENTIAL_PRACTICES];
 
 export const PRACTICES: Practice[] = [...ALL.filter((p) => p.micro), ...BASE_PRACTICES, ...EXTRA_PRACTICES, ...ALL.filter((p) => !p.micro)];
 

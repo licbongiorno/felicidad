@@ -215,6 +215,16 @@
     text-rendering: optimizeLegibility;
     scroll-behavior: smooth;
   }
+  /* En el celular, la página nunca se desplaza hacia los costados. «clip» (y no «hidden»)
+     no crea un contenedor de desplazamiento, así que los encabezados fijos siguen funcionando. */
+  html,
+  body {
+    overflow-x: clip;
+  }
+  /* Por defecto un fieldset no se achica por debajo de su contenido y ensancha la página. */
+  fieldset {
+    min-width: 0;
+  }
   h1,
   h2 {
     text-wrap: balance;

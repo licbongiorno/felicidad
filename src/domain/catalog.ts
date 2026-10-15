@@ -15,7 +15,7 @@ import type { JournalType } from './types';
  *       ayuda humana (botón «Ayuda» en todas las pantallas, plan de seguridad).
  */
 
-export type Approach = 'dbt' | 'tcc' | 'act' | 'cft' | 'mindfulness' | 'positiva' | 'contemplativa' | 'relajacion' | 'escritura' | 'esquemas' | 'psicodinamica';
+export type Approach = 'dbt' | 'tcc' | 'act' | 'cft' | 'mindfulness' | 'positiva' | 'contemplativa' | 'relajacion' | 'escritura' | 'esquemas' | 'psicodinamica' | 'logoterapia' | 'humanista' | 'gestalt';
 
 export const APPROACH_LABEL: Record<Approach, string> = {
   dbt: 'DBT',
@@ -29,6 +29,9 @@ export const APPROACH_LABEL: Record<Approach, string> = {
   escritura: 'Escritura terapéutica',
   esquemas: 'Terapia de esquemas',
   psicodinamica: 'Psicodinámica · Jung',
+  logoterapia: 'Logoterapia · Frankl',
+  humanista: 'Humanista · Rogers',
+  gestalt: 'Gestalt',
 };
 
 export const APPROACH_DESCRIPTION: Record<Approach, string> = {
@@ -43,6 +46,9 @@ export const APPROACH_DESCRIPTION: Record<Approach, string> = {
   escritura: 'Escritura expresiva y estructurada para ordenar la experiencia.',
   esquemas: 'Terapia de esquemas: necesidades emocionales, patrones aprendidos y la parte de «adulto sano». Aquí, como exploración.',
   psicodinamica: 'Enfoques psicodinámicos y de Jung: reflexión sobre patrones, partes de uno mismo y significados. Nunca como diagnóstico.',
+  logoterapia: 'Logoterapia de Viktor Frankl: descubrir el sentido en lo que haces, en lo que vives y en la actitud ante lo inevitable.',
+  humanista: 'Psicología humanista (Rogers, Maslow, Gendlin): escucha sin juicio, aceptación, autenticidad y necesidades de crecimiento.',
+  gestalt: 'Terapia Gestalt (Fritz y Laura Perls): darse cuenta del aquí y ahora, cerrar asuntos pendientes y dialogar entre partes.',
 };
 
 export const PRACTICE_APPROACHES: Record<string, Approach[]> = {
@@ -98,6 +104,18 @@ export const PRACTICE_APPROACHES: Record<string, Approach[]> = {
   'ritmo-calmante': ['cft', 'relajacion'],
   'yo-compasivo': ['cft'],
   'linea-de-vida': ['psicodinamica', 'positiva'],
+  'que-me-pide-la-vida': ['logoterapia'],
+  'tres-caminos-sentido': ['logoterapia'],
+  derreflexion: ['logoterapia'],
+  'intencion-paradojica': ['logoterapia'],
+  'lo-vivido-queda': ['logoterapia', 'positiva'],
+  'escucharme-sin-juzgar': ['humanista'],
+  'yo-real-yo-ideal': ['humanista'],
+  'necesidades-que-pido': ['humanista'],
+  'darse-cuenta': ['gestalt', 'mindfulness'],
+  'silla-vacia': ['gestalt'],
+  'asuntos-pendientes': ['gestalt', 'escritura'],
+  polaridades: ['gestalt'],
 };
 
 export const JOURNAL_APPROACHES: Partial<Record<JournalType, Approach[]>> = {
@@ -124,6 +142,7 @@ export const JOURNAL_APPROACHES: Partial<Record<JournalType, Approach[]>> = {
   'mis-roles': ['psicodinamica', 'escritura'],
   necesidades: ['esquemas'],
   'patron-repetido': ['esquemas', 'psicodinamica'],
+  sentido: ['logoterapia'],
 };
 
 // ---------------------------------------------------------------- nivel de riesgo
@@ -147,6 +166,9 @@ export const PRACTICE_RISK: Record<string, { level: RiskLevel; alternative: stri
   'aceptacion-radical': { level: 2, alternative: 'mente-sabia' },
   'hacer-espacio': { level: 2, alternative: 'escaneo-corporal' },
   'adulto-sano': { level: 2, alternative: 'pausa-autocompasion' },
+  'intencion-paradojica': { level: 2, alternative: 'derreflexion' },
+  'silla-vacia': { level: 2, alternative: 'pausa-autocompasion' },
+  'asuntos-pendientes': { level: 2, alternative: 'pausa-autocompasion' },
 };
 
 export const JOURNAL_RISK: Partial<Record<JournalType, RiskLevel>> = {
@@ -210,8 +232,8 @@ export const MODULES: SkillModule[] = [
     id: 'emociones',
     title: 'Regulación emocional',
     purpose: 'Reconocer, entender y regular las emociones sin exigir que desaparezcan.',
-    approaches: ['dbt', 'tcc', 'mindfulness'],
-    practices: ['mente-sabia', 'comprobar-hechos', 'accion-opuesta', 'please', 'surfear-impulso'],
+    approaches: ['dbt', 'tcc', 'mindfulness', 'humanista'],
+    practices: ['mente-sabia', 'comprobar-hechos', 'accion-opuesta', 'please', 'surfear-impulso', 'escucharme-sin-juzgar'],
     journal: ['tarjeta-diaria', 'analisis-cadena', 'escritura-expresiva'],
     resources: [
       { href: '/biblioteca/rueda-de-emociones', label: 'Rueda de emociones' },
@@ -222,8 +244,8 @@ export const MODULES: SkillModule[] = [
     id: 'pensamientos',
     title: 'Pensamientos y atención',
     purpose: 'Ver los pensamientos como pensamientos y dejar de creerles todo.',
-    approaches: ['tcc', 'act', 'mindfulness'],
-    practices: ['pajaros-en-el-cielo', 'anotacion-mental', 'hacer-espacio', 'observador'],
+    approaches: ['tcc', 'act', 'mindfulness', 'logoterapia'],
+    practices: ['pajaros-en-el-cielo', 'anotacion-mental', 'hacer-espacio', 'observador', 'derreflexion', 'intencion-paradojica'],
     journal: ['reestructuracion', 'defusion', 'preocupacion', 'experimento', 'escalera-exposicion'],
     resources: [
       { href: '/laboratorio/hecho-o-interpretacion', label: '¿Hecho o interpretación?' },
@@ -234,8 +256,8 @@ export const MODULES: SkillModule[] = [
     id: 'relaciones',
     title: 'Relaciones y comunicación',
     purpose: 'Pedir lo que necesitas, poner límites y cuidar los vínculos.',
-    approaches: ['dbt', 'tcc', 'contemplativa'],
-    practices: ['dear-man', 'give-fast', 'amor-altruista', 'ecuanimidad', 'regocijo-empatico', 'perdon-reach'],
+    approaches: ['dbt', 'tcc', 'contemplativa', 'humanista', 'gestalt'],
+    practices: ['dear-man', 'give-fast', 'amor-altruista', 'ecuanimidad', 'regocijo-empatico', 'perdon-reach', 'necesidades-que-pido', 'asuntos-pendientes', 'silla-vacia'],
     journal: ['conversacion', 'carta-gratitud', 'perdon'],
     resources: [
       { href: '/laboratorio/conversaciones', label: 'Simulador de conversaciones' },
@@ -255,10 +277,13 @@ export const MODULES: SkillModule[] = [
     id: 'valores',
     title: 'Valores y sentido',
     purpose: 'Aclarar lo que te importa y dar pasos en esa dirección.',
-    approaches: ['act', 'positiva'],
-    practices: ['brujula-valores', 'accion-comprometida', 'punto-de-eleccion', 'mejor-yo-posible'],
-    journal: ['valores', 'mejor-yo', 'intencion'],
-    resources: [{ href: '/biblioteca/sentido-y-valores', label: 'Sentido y valores' }],
+    approaches: ['act', 'positiva', 'logoterapia'],
+    practices: ['brujula-valores', 'accion-comprometida', 'punto-de-eleccion', 'mejor-yo-posible', 'que-me-pide-la-vida', 'tres-caminos-sentido'],
+    journal: ['valores', 'mejor-yo', 'intencion', 'sentido'],
+    resources: [
+      { href: '/biblioteca/sentido-y-valores', label: 'Sentido y valores' },
+      { href: '/biblioteca/logoterapia', label: 'Logoterapia: vivir con sentido' },
+    ],
   },
   {
     id: 'habitos',
@@ -302,7 +327,7 @@ export const MODULES: SkillModule[] = [
     title: 'Bienestar y fortalezas',
     purpose: 'Notar lo que está bien y usar tus fortalezas.',
     approaches: ['positiva', 'contemplativa'],
-    practices: ['tres-cosas-buenas', 'saboreo', 'gratitud-contemplativa', 'fortalezas'],
+    practices: ['tres-cosas-buenas', 'saboreo', 'gratitud-contemplativa', 'fortalezas', 'lo-vivido-queda'],
     journal: ['tres-cosas', 'saboreo'],
     resources: [{ href: '/biblioteca/perma-y-psicologia-positiva', label: 'Psicología positiva' }],
   },
@@ -310,10 +335,14 @@ export const MODULES: SkillModule[] = [
     id: 'autoconocimiento',
     title: 'Autoconocimiento y patrones',
     purpose: 'Explorar tus roles, necesidades y patrones. Es reflexión, no diagnóstico.',
-    approaches: ['esquemas', 'psicodinamica'],
-    practices: ['linea-de-vida', 'persona-y-sombra', 'adulto-sano'],
+    approaches: ['esquemas', 'psicodinamica', 'humanista', 'gestalt'],
+    practices: ['linea-de-vida', 'persona-y-sombra', 'adulto-sano', 'darse-cuenta', 'yo-real-yo-ideal', 'polaridades'],
     journal: ['mis-roles', 'necesidades', 'patron-repetido'],
-    resources: [{ href: '/biblioteca/autoconocimiento', label: 'Conocerte mejor' }],
+    resources: [
+      { href: '/biblioteca/autoconocimiento', label: 'Conocerte mejor' },
+      { href: '/biblioteca/psicologia-humanista', label: 'Psicología humanista' },
+      { href: '/biblioteca/gestalt', label: 'Gestalt: el darse cuenta' },
+    ],
   },
 ];
 

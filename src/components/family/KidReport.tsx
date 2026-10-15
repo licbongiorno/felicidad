@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { m } from 'motion/react';
 import { useMemo, useState } from 'react';
 import { hasKidMode, isTeen, AGE_BANDS, FEELING_BY_ID, INTENSITY_LABEL, KID_ACTIVITY_BY_ID, kidAlert, stickersOf, weeklySummary, activitiesFor, gardenStage } from '@/domain/kids';
+import { storyOfLog } from '@/domain/stories';
 import { useKids } from '@/hooks/useKids';
 import { enterKidMode, hasPin } from '@/lib/kids/kidMode';
 import { fadeUp, stagger } from '@/lib/motion';
@@ -195,7 +196,7 @@ export function KidReport({ kidId }: { kidId: string }) {
               <li key={l.id} className="flex items-center gap-3 px-5 py-3">
                 {l.feeling ? <FeelingFace feeling={l.feeling} size={28} /> : <span className="h-7 w-7" />}
                 <span className="min-w-0 flex-1">
-                  <span className="block text-sm text-stone-800">{KID_ACTIVITY_BY_ID[l.activityId]?.title ?? l.activityId}</span>
+                  <span className="block text-sm text-stone-800">{KID_ACTIVITY_BY_ID[l.activityId]?.title ?? (storyOfLog(l.activityId) ? `Cuento: ${storyOfLog(l.activityId)!.title}` : l.activityId)}</span>
                   {l.feeling && (
                     <span className="block text-xs text-stone-500">
                       {FEELING_BY_ID[l.feeling].label}
