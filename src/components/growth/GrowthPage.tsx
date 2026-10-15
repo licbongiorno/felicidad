@@ -9,6 +9,7 @@ import { CountUp } from '@/components/motion/Reveal';
 import { Garden } from './Garden';
 import { SkillMedal } from './SkillIcons';
 import { WeeklyChallenge } from './WeeklyChallenge';
+import { MilestoneList } from './Milestones';
 
 const MODULES: DbtModule[] = ['conciencia', 'malestar', 'regulacion', 'interpersonal'];
 
@@ -173,6 +174,10 @@ export function GrowthPage() {
           <li>Si un día no tienes ganas, descansar también es cuidarte.</li>
         </ul>
       </m.aside>
+
+      <m.div variants={fadeUp}>
+        <MilestoneList className="mt-12" />
+      </m.div>
     </m.div>
   );
 }

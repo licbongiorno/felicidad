@@ -23,6 +23,7 @@ import { MoodTrend } from './MoodTrend';
 import { Welcome } from './Welcome';
 import { WeeklyReview } from './WeeklyReview';
 import { WhatWorks } from './WhatWorks';
+import { TodayCard } from './TodayCard';
 import { suggestNext } from '@/domain/recommend';
 import { buttonStyles } from '@/components/ui/Button';
 import { GrowthCard } from '@/components/growth/GrowthCard';
@@ -63,6 +64,8 @@ export function Dashboard() {
   const isNew = sessions.length + checkins.length + journal.length + assessments.length + afflictions.length === 0;
   const todayKey = toDateKey(new Date());
   const todayCheckin = checkins.find((c) => c.date === todayKey);
+  const balance = suggestions.find((s) => s.id === 'balance');
+  const todayPractice = balance ? { title: balance.title, href: balance.href } : null;
   const maxDose = Math.max(1, ...Object.values(dose).map((d) => d.minutes));
   const maxWeekly = Math.max(1, ...Object.values(dose).flatMap((d) => d.weekly));
 
@@ -71,6 +74,8 @@ export function Dashboard() {
   return (
     <m.div variants={stagger(0.08)} initial="hidden" animate="show" className="grid gap-5 lg:grid-cols-3">
       {isNew && <Welcome />}
+
+      <TodayCard className="lg:col-span-3" practice={todayPractice} />
 
       {!isNew && suggestions.length > 0 && (
         <m.section variants={fadeUp} className="grid gap-4 lg:col-span-3 md:grid-cols-2" aria-label="Sugerencias">
@@ -327,7 +332,7 @@ export function Dashboard() {
       </Panel>
 
       {/* Check-in ------------------------------------------------------------------- */}
-      <Panel title="Registro de hoy" className="lg:col-span-2">
+      <Panel title="Registro de hoy" className="lg:col-span-2" id="registro-de-hoy">
         <CheckinForm existing={todayCheckin} />
       </Panel>
 
@@ -346,11 +351,12 @@ export function Dashboard() {
   );
 }
 
-function Panel({ title, className = '', children }: { title: string; className?: string; children: ReactNode }) {
+function Panel({ title, className = '', id, children }: { title: string; className?: string; id?: string; children: ReactNode }) {
   return (
     <m.section
+      id={id}
       variants={fadeUp}
-      className={`rounded-2xl border border-stone-200/80 bg-white p-6 shadow-soft transition-shadow duration-500 hover:shadow-lift ${className}`}
+      className={`scroll-mt-24 rounded-2xl border border-stone-200/80 bg-white p-6 shadow-soft transition-shadow duration-500 hover:shadow-lift ${className}`}
     >
       <h2 className="mb-6 text-xs uppercase tracking-[0.2em] text-stone-500">{title}</h2>
       {children}

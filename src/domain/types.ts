@@ -210,7 +210,8 @@ export type JournalType =
   | 'mis-roles'
   | 'necesidades'
   | 'patron-repetido'
-  | 'reflexion-carta';
+  | 'reflexion-carta'
+  | 'pregunta-del-dia';
 
 export type JournalValue = string | number;
 

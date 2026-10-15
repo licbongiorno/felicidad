@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { m } from 'motion/react';
 import { useState } from 'react';
 import { useAuth } from '@/providers/AuthProvider';
@@ -61,7 +62,10 @@ export function ConsentGate() {
         ))}
       </m.ul>
       <m.p variants={fadeUp} className="mt-6 text-sm leading-relaxed text-stone-500">
-        {SAFETY_DISCLAIMER}
+        {SAFETY_DISCLAIMER}{' '}
+        <Link href="/privacidad" target="_blank" className="text-sage-700 underline decoration-sage-300 underline-offset-2">
+          Leer la política de privacidad
+        </Link>
       </m.p>
       <m.label variants={fadeUp} className="mt-8 flex cursor-pointer items-start gap-3 rounded-2xl border border-stone-200 bg-white p-4 text-sm text-stone-700">
         <input type="checkbox" checked={checked} onChange={(e) => setChecked(e.target.checked)} className="mt-0.5 h-4 w-4 accent-sage-700" />

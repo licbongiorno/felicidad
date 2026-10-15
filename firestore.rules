@@ -152,7 +152,10 @@ service cloud.firestore {
           && shortText(v, 'consecuencia') && shortText(v, 'recuerda') && shortText(v, 'necesitaba') && shortText(v, 'alternativa'))
         || (type == 'reflexion-carta'
           && v.keys().hasOnly(['autor', 'texto'])
-          && shortText(v, 'autor') && longText(v, 'texto'));
+          && shortText(v, 'autor') && longText(v, 'texto'))
+        || (type == 'pregunta-del-dia'
+          && v.keys().hasOnly(['pregunta', 'respuesta'])
+          && shortText(v, 'pregunta') && longText(v, 'respuesta'));
     }
 
     function inRange(v, lo, hi) { return v is number && v >= lo && v <= hi; }
@@ -252,7 +255,7 @@ service cloud.firestore {
                'activacion', 'preocupacion', 'perdon', 'intencion', 'resolucion-problemas', 'diario-sueno',
                'experimento', 'escalera-exposicion', 'plan-seguridad', 'conversacion', 'tarjeta-diaria',
                'analisis-cadena', 'caja-herramientas', 'mis-roles', 'necesidades', 'patron-repetido',
-               'reflexion-carta']
+               'reflexion-carta', 'pregunta-del-dia']
           && request.resource.data.values is map
           && validJournalValues(request.resource.data.type, request.resource.data.values)
           && request.resource.data.createdAt == request.time;

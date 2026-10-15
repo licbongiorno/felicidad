@@ -6,6 +6,7 @@ import { m } from 'motion/react';
 import { useMemo, useState } from 'react';
 import { AGE_BANDS, hasKidMode, kidAlert, MAX_KIDS, weeklySummary, type KidProfile } from '@/domain/kids';
 import { KID_GUIDES } from '@/domain/kids-guides';
+import { familyTip } from '@/domain/family-tips';
 import { KID_RESOURCES } from '@/config/safety';
 import { useKids } from '@/hooks/useKids';
 import { enterKidMode, hasPin } from '@/lib/kids/kidMode';
@@ -173,6 +174,7 @@ export function FamilyHub() {
 function KidCard({ kid, logs, onEnter }: { kid: KidProfile; logs: ReturnType<typeof useKids>['activities']; onEnter: () => void }) {
   const week = useMemo(() => weeklySummary(logs), [logs]);
   const alert = useMemo(() => kidAlert(logs), [logs]);
+  const tip = useMemo(() => familyTip(kid, logs), [kid, logs]);
   return (
     <li className="rounded-2xl border border-stone-200 bg-white p-5 shadow-soft">
       <div className="flex items-center gap-3">
@@ -192,6 +194,13 @@ function KidCard({ kid, logs, onEnter }: { kid: KidProfile; logs: ReturnType<typ
           Marcó {alert.feeling.label.toLowerCase()} «muchísimo» en {alert.days} días de esta semana. Mira su panel.
         </p>
       )}
+      <div className="mt-3 rounded-xl bg-sage-50 px-3 py-2.5 text-sm leading-relaxed text-stone-700">
+        <span className="block text-xs uppercase tracking-[0.18em] text-sage-700">Idea para esta semana</span>
+        {tip.text}{' '}
+        <Link href={`/familia/guia/${tip.guide.id}`} className="text-sage-700 underline decoration-sage-300 underline-offset-2">
+          {tip.guide.title}
+        </Link>
+      </div>
       <div className="mt-4 flex flex-wrap gap-2">
         {hasKidMode(kid.band) ? (
           <Button onClick={onEnter}>Entrar al modo chico</Button>

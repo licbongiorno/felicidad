@@ -709,6 +709,28 @@ export const JOURNAL_TEMPLATES: JournalTemplate[] = [
       { id: 'texto', label: 'Reflexión', kind: 'textarea' },
     ],
   },
+  {
+    type: 'pregunta-del-dia',
+    title: 'Pregunta del día',
+    summary: 'Una pregunta breve para mirar tu día con calma.',
+    when: 'Desde el inicio, una vez al día.',
+    rationale:
+      'Escribir unas líneas sobre lo que vives ayuda a ordenarlo en palabras. Una pregunta distinta cada día mantiene la reflexión fresca y fácil de empezar.',
+    evidenceLevel: 'preliminar',
+    evidence: [
+      {
+        citation:
+          'Frattaroli, J. (2006). Experimental disclosure and its moderators: A meta-analysis. Psychological Bulletin, 132(6), 823–865.',
+        doi: '10.1037/0033-2909.132.6.823',
+      },
+    ],
+    hidden: true,
+    headline: 'pregunta',
+    fields: [
+      { id: 'pregunta', label: 'Pregunta', kind: 'text' },
+      { id: 'respuesta', label: 'Tu respuesta', kind: 'textarea' },
+    ],
+  },
 ];
 
 export const TEMPLATE_BY_TYPE = Object.fromEntries(JOURNAL_TEMPLATES.map((t) => [t.type, t])) as Record<
