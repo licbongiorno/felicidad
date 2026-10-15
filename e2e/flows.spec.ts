@@ -20,6 +20,47 @@ test('un usuario nuevo ve la bienvenida en el panel', async ({ page }) => {
   expect(date).toMatch(/^[A-ZÁÉÍÓÚ][a-záéíóú]+, \d{1,2} de [a-z]+$/);
 });
 
+test('primer uso: tres preguntas arman una ruta con programa y primera práctica', async ({ page }) => {
+  await open(page, '/dashboard');
+  await page.getByRole('button', { name: 'Duermo mal' }).click();
+  await page.getByRole('button', { name: 'Unos 10 minutos' }).click();
+  await page.getByRole('button', { name: 'Por la noche' }).click();
+  await expect(page.getByText('Te recomendamos')).toBeVisible();
+  await expect(page.getByText('Dormir mejor', { exact: true })).toBeVisible();
+  await expect(page.getByRole('link', { name: /^Empezar:/ })).toBeVisible();
+  await expect(page.getByRole('button', { name: /Recordatorio por la noche/ })).toBeVisible();
+});
+
+test('tu día: responder la pregunta del día suma un paso y celebra el primer hito', async ({ page }) => {
+  await open(page, '/dashboard');
+  await expect(page.getByRole('img', { name: '0 de 3 pasos hechos hoy' })).toBeVisible();
+  await page.getByRole('button', { name: 'Otra pregunta' }).click();
+  await page.locator('#respuesta-del-dia').fill('Una caminata al sol.');
+  await page.getByRole('button', { name: 'Guardar respuesta' }).click();
+  await expect(page.getByText('Pregunta del día · respondida')).toBeVisible();
+  await expect(page.getByRole('img', { name: '1 de 3 pasos hechos hoy' })).toBeVisible();
+  await expect(page.getByRole('status').filter({ hasText: 'Primera pregunta del día' })).toBeVisible();
+  await page.getByRole('link', { name: 'Ver mis hitos' }).click();
+  await expect(page.getByRole('heading', { name: 'Tus hitos' })).toBeVisible();
+  await expect(page.getByText('Primera pregunta del día (alcanzado)')).toBeAttached();
+});
+
+test('la política de privacidad es pública y se enlaza desde el inicio', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('link', { name: 'Privacidad' }).click();
+  await expect(page.getByRole('heading', { name: 'Privacidad', level: 1 })).toBeVisible();
+  await expect(page.getByText(/Ley 25\.326/)).toBeVisible();
+});
+
+test('programas: «Ayúdame a elegir» recomienda uno', async ({ page }) => {
+  await open(page, '/programas');
+  await page.getByRole('button', { name: /Ayúdame a elegir/ }).click();
+  await page.getByRole('button', { name: 'Postergo lo que tengo que hacer' }).click();
+  await page.getByRole('button', { name: '2 a 5 minutos' }).click();
+  await page.getByRole('button', { name: 'Por la mañana' }).click();
+  await expect(page.getByRole('link', { name: 'Ver el programa' })).toHaveAttribute('href', '/programas/dejar-de-postergar');
+});
+
 test('antídoto completo: reconocer → medir → practicar → volver a medir', async ({ page }) => {
   await open(page, '/antidotos');
   await page.getByRole('button', { name: /^Ira/ }).click();
@@ -372,7 +413,7 @@ test('favoritas: se marcan desde el catálogo y aparecen arriba', async ({ page 
   await expect(page.getByRole('heading', { name: 'Tus favoritas' })).toBeVisible();
 });
 
-for (const path of ['/', '/dashboard', '/gimnasio', '/gimnasio/espacio-tres-minutos', '/gimnasio/amor-altruista', '/gimnasio/relajacion-progresiva', '/biblioteca/glosario', '/biblioteca/estres-y-agotamiento', '/plan-de-seguridad', '/biblioteca/trampas-del-pensamiento', '/biblioteca/ataques-de-panico', '/gimnasio/tipp', '/gimnasio/temporizador', '/antidotos', '/diario', '/evaluaciones', '/informe', '/biblioteca/rumiacion', '/biblioteca/autocompasion', '/programas/fundamentos', '/programas/desanimo', '/cartas', '/ajustes', '/crecimiento', '/laboratorio', '/laboratorio/semaforo', '/laboratorio/caja', '/laboratorio/conversaciones/decir-no-trabajo', '/laboratorio/hecho-o-interpretacion', '/biblioteca/rueda-de-emociones', '/biblioteca/autoconocimiento', '/gimnasio/aceptacion-radical']) {
+for (const path of ['/', '/dashboard', '/gimnasio', '/gimnasio/espacio-tres-minutos', '/gimnasio/amor-altruista', '/gimnasio/relajacion-progresiva', '/biblioteca/glosario', '/biblioteca/estres-y-agotamiento', '/plan-de-seguridad', '/biblioteca/trampas-del-pensamiento', '/biblioteca/ataques-de-panico', '/gimnasio/tipp', '/gimnasio/temporizador', '/antidotos', '/diario', '/evaluaciones', '/informe', '/biblioteca/rumiacion', '/biblioteca/autocompasion', '/programas/fundamentos', '/programas/desanimo', '/cartas', '/ajustes', '/crecimiento', '/laboratorio', '/laboratorio/semaforo', '/laboratorio/caja', '/laboratorio/conversaciones/decir-no-trabajo', '/laboratorio/hecho-o-interpretacion', '/biblioteca/rueda-de-emociones', '/biblioteca/autoconocimiento', '/gimnasio/aceptacion-radical', '/privacidad', '/programas']) {
   test(`accesibilidad WCAG 2.1 AA: ${path}`, async ({ page }) => {
     await open(page, path);
     await page.waitForLoadState('networkidle');
@@ -389,7 +430,7 @@ for (const path of ['/', '/dashboard', '/gimnasio', '/gimnasio/espacio-tres-minu
 test.describe('modo oscuro', () => {
   test.use({ colorScheme: 'dark' });
 
-  for (const path of ['/', '/dashboard', '/gimnasio/amor-altruista', '/antidotos', '/diario', '/evaluaciones', '/informe', '/biblioteca/rumiacion', '/programas/fundamentos', '/cartas', '/ajustes']) {
+  for (const path of ['/', '/dashboard', '/gimnasio/amor-altruista', '/antidotos', '/diario', '/evaluaciones', '/informe', '/biblioteca/rumiacion', '/programas/fundamentos', '/cartas', '/ajustes', '/privacidad']) {
     test(`accesibilidad WCAG 2.1 AA en oscuro: ${path}`, async ({ page }) => {
       await open(page, path);
       await page.waitForLoadState('networkidle');

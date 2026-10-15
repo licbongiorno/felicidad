@@ -19,6 +19,15 @@ entrada en este registro.
 
 ---
 
+## 2026-10-15 · Ritual diario, primer uso guiado, hitos y privacidad
+
+- **Tu día**: tarjeta al inicio del panel con tres pasos (registro de ánimo, una práctica y la pregunta del día) y un anillo de progreso. Si pasaron 4 días o más sin actividad, da la bienvenida de regreso sin culpa.
+- **Pregunta del día** (`pendiente`): 64 preguntas en 8 temas que se alternan cada día. La respuesta se guarda en el diario como tipo nuevo `pregunta-del-dia` (requiere volver a publicar `firestore.rules`).
+- **Primer uso**: tres preguntas (qué trabajar, cuánto tiempo, qué momento) que recomiendan un programa, una primera práctica sin precauciones y un recordatorio de calendario. Guarda el objetivo en «Mis objetivos». También en Programas, como «Ayúdame a elegir».
+- **Hitos** (`pendiente`): 13 reconocimientos de práctica (nunca de resultados) con una celebración breve. No se pierden ni hay rachas.
+- **Familia**: «Idea para esta semana» en cada perfil, elegida con reglas simples según lo registrado, con su guía.
+- **Privacidad**: página pública `/privacidad` (borrador para revisión legal), enlazada desde el inicio, el registro, el consentimiento y Ajustes.
+
 ## 2026-10-15 · Más contenido para adultos: módulos con pocas opciones y Laboratorio
 
 **9 prácticas nuevas (`pendiente`)** para los módulos que tenían menos opciones:

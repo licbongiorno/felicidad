@@ -92,6 +92,13 @@ describe('diario', () => {
     await assertFails(addDoc(col, entry('defusion', { credibilidadPre: 12 })));
   });
 
+  it('acepta la pregunta del día y rechaza campos de más', async () => {
+    const col = collection(alice(), 'users/alice/journal');
+    await assertSucceeds(addDoc(col, entry('pregunta-del-dia', { pregunta: '¿Qué te dio calma hoy?', respuesta: 'El café en el balcón.' })));
+    await assertFails(addDoc(col, entry('pregunta-del-dia', { pregunta: '¿Qué?', respuesta: 'x', extra: 'y' })));
+    await assertFails(addDoc(col, entry('pregunta-del-dia', { pregunta: 'x'.repeat(281), respuesta: 'x' })));
+  });
+
   it('acepta las plantillas de autoconocimiento', async () => {
     const col = collection(alice(), 'users/alice/journal');
     await assertSucceeds(addDoc(col, entry('mis-roles', { situacion: 'En mi familia', rol: 'La que resuelve todo', gano: 'Me necesitan', cuesta: 'Me agoto' })));

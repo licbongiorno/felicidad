@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useState, type FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { AnimatePresence, m } from 'motion/react';
@@ -139,6 +140,11 @@ export default function LoginPage() {
               fines de seguimiento personal y, si lo autorizo expresamente, clínico. {SAFETY_DISCLAIMER}
             </span>
           </label>
+          <p className="text-xs text-stone-600">
+            <Link href="/privacidad" className="text-sage-700 underline decoration-sage-300 underline-offset-2">
+              Política de privacidad
+            </Link>
+          </p>
           </m.div>
         )}
         </AnimatePresence>

@@ -97,6 +97,11 @@ export function Settings() {
           {profile?.consentVersion === CONSENT_VERSION && <span className="text-sage-700"> · vigente</span>}
         </p>
         <p className="mt-3 text-sm leading-relaxed text-stone-500">{SAFETY_DISCLAIMER}</p>
+        <p className="mt-3 text-sm">
+          <Link href="/privacidad" className="text-sage-700 underline decoration-sage-300 underline-offset-2">
+            Política de privacidad
+          </Link>
+        </p>
       </Section>
     </m.div>
   );

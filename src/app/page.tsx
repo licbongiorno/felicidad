@@ -87,6 +87,11 @@ export default function Home() {
 
         <StaggerItem>
           <p className="mt-20 max-w-xl text-xs leading-relaxed text-stone-600">{SAFETY_DISCLAIMER}</p>
+          <p className="mt-3 text-xs">
+            <Link href="/privacidad" className="text-sage-700 underline decoration-sage-300 underline-offset-2">
+              Privacidad
+            </Link>
+          </p>
         </StaggerItem>
       </Stagger>
     </div>
