@@ -11,6 +11,7 @@ import { useKid } from './KidShell';
 import { KidPaths } from './KidPaths';
 import { StoryScene } from './StoryScene';
 import { storiesFor } from '@/domain/stories';
+import { ActivityIcon } from './ActivityIcon';
 
 /** Inicio del modo chico: cómo me siento, mi jardín y las actividades por habilidad. */
 export function KidHome() {
@@ -101,7 +102,7 @@ export function KidHome() {
                   href={`/chicos/${a.id}`}
                   className={`flex h-full items-center gap-3 rounded-3xl p-4 shadow-[0_4px_0_rgb(0_0_0/0.06)] transition-transform active:scale-[0.98] ${SKILL_PAINT[a.skill].tint}`}
                 >
-                  <Sticker skill={a.skill} earned={stickers.has(a.id)} size={56} className="shrink-0" />
+                  <ActivityIcon activity={a} done={stickers.has(a.id)} size={56} />
                   <span className="min-w-0">
                     <span className="block text-lg font-extrabold leading-tight">{a.title}</span>
                     <span className="mt-0.5 block text-sm text-kid-soft">

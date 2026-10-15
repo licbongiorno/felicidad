@@ -1,17 +1,34 @@
 'use client';
 
 import { m } from 'motion/react';
+import type { MascotMood } from '@/domain/kids';
 import type { StoryScene as Scene } from '@/domain/stories';
+import type { CastMember } from '@/domain/story-cast';
+import { StoryCastLayer } from './StoryCast';
 
 /**
  * Ilustraciones de los cuentos: escenarios simples, dibujados en SVG con los colores de la
  * sección para chicos (funcionan en claro y en oscuro). Decorativas: el texto cuenta todo.
  */
-export function StoryScene({ scene, className = '' }: { scene: Scene; className?: string }) {
+export function StoryScene({
+  scene,
+  cast,
+  mood,
+  page = 0,
+  className = '',
+}: {
+  scene: Scene;
+  /** Personajes del cuento (ver domain/story-cast). */
+  cast?: CastMember[];
+  mood?: MascotMood;
+  page?: number;
+  className?: string;
+}) {
   return (
     <svg viewBox="0 0 400 220" className={`block h-auto w-full ${className}`} aria-hidden preserveAspectRatio="xMidYMid slice">
       <Sky scene={scene} />
       {SCENES[scene]}
+      {cast && cast.length > 0 && <StoryCastLayer cast={cast} mood={mood} page={page} />}
     </svg>
   );
 }
