@@ -165,7 +165,7 @@ service cloud.firestore {
     // Perfil de chico: apodo corto, franja de edad y avatar.
     function validKidProfile(d) {
       return d.name is string && d.name.size() >= 1 && d.name.size() <= 24
-        && d.band in ['4-6', '7-9', '10-12']
+        && d.band in ['0-3', '4-6', '7-9', '10-12', '13-17']
         && d.avatar in ['sol', 'luna', 'estrella', 'hoja', 'flor', 'nube', 'corazon', 'rayo'];
     }
 

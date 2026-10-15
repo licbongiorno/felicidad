@@ -286,8 +286,12 @@ describe('sección para chicos', () => {
     const { consent: _c, ...noConsent } = kid();
     await assertFails(setDoc(doc(alice(), 'users/alice/kids/k1'), noConsent));
     await assertFails(setDoc(doc(alice(), 'users/alice/kids/k1'), { ...kid(), email: 'x@y.z' }));
-    await assertFails(setDoc(doc(alice(), 'users/alice/kids/k1'), { ...kid(), band: '13-17' }));
+    await assertFails(setDoc(doc(alice(), 'users/alice/kids/k1'), { ...kid(), band: '18-25' }));
     await assertFails(setDoc(doc(alice(), 'users/alice/kids/k1'), { ...kid(), name: 'x'.repeat(25) }));
+  });
+
+  it('acepta todas las franjas de 0 a 17 años', async () => {
+    for (const band of ['0-3', '4-6', '7-9', '10-12', '13-17']) await assertSucceeds(setDoc(doc(alice(), `users/alice/kids/b${band}`), { ...kid(), band }));
   });
 
   it('se puede cambiar apodo, edad y avatar, pero no el consentimiento', async () => {

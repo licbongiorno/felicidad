@@ -15,16 +15,30 @@
 
 import { isPublished } from './governance';
 
-export type AgeBand = '4-6' | '7-9' | '10-12';
+export type AgeBand = '0-3' | '4-6' | '7-9' | '10-12' | '13-17';
 
 export const AGE_BANDS: { id: AgeBand; label: string; description: string }[] = [
+  { id: '0-3', label: '0 a 3 años', description: 'Sin pantallas para el chico: actividades guiadas para que las hagas tú con él o ella.' },
   { id: '4-6', label: '4 a 6 años', description: 'Todavía no lee solo: casi todo con voz, dibujos y botones grandes.' },
   { id: '7-9', label: '7 a 9 años', description: 'Frases cortas con voz. Actividades de 2 a 5 minutos.' },
   { id: '10-12', label: '10 a 12 años', description: 'Texto con ilustraciones y habilidades un poco más complejas.' },
+  { id: '13-17', label: '13 a 17 años', description: 'Habilidades para adolescentes. Más privacidad: no te mostramos lo que escribe.' },
 ];
 
 /** La voz narrada se activa sola para quienes todavía no leen. */
 export const narrateByDefault = (band: AgeBand) => band === '4-6';
+
+/**
+ * 0 a 3 años: la OMS recomienda no usar pantallas antes de los 2 años y muy poco hasta los 5.
+ * Por eso esa franja no tiene modo chico: son actividades que el adulto hace con el chico.
+ */
+export const hasKidMode = (band: AgeBand) => band !== '0-3';
+
+/**
+ * Adolescentes: el adulto ve las actividades, las emociones y los avisos de seguridad, pero
+ * no lo que escriben (cosas buenas, misiones). Así se sostiene la confianza sin perder el cuidado.
+ */
+export const isTeen = (band: AgeBand) => band === '13-17';
 
 // ---------------------------------------------------------------- emociones
 
@@ -141,9 +155,12 @@ export type KidActivity = ActivityBase &
     | { kind: 'emocion'; intro: string }
     | { kind: 'gratitud'; intro: string }
     | { kind: 'mision'; intro: string; steps: KidStep[]; missions: string[] }
+    /** 0 a 3 años: pasos para el adulto, que se muestran en Familia (sin modo chico). */
+    | { kind: 'juntos'; steps: KidStep[] }
   );
 
-const ALL: AgeBand[] = ['4-6', '7-9', '10-12'];
+/** Franjas con modo chico. */
+const ALL: AgeBand[] = ['4-6', '7-9', '10-12', '13-17'];
 
 export const KID_ACTIVITIES: KidActivity[] = [
   // ------------------------------------------------------------ calma
@@ -213,7 +230,7 @@ export const KID_ACTIVITIES: KidActivity[] = [
     title: 'El cuadrado tranquilo',
     tagline: 'Cuatro lados, cuatro tiempos.',
     skill: 'calma',
-    bands: ['10-12'],
+    bands: ['10-12', '13-17'],
     minutes: 2,
     shape: 'cuadrado',
     intro: 'Vamos a recorrer un cuadrado. En cada lado haces una cosa distinta.',
@@ -234,7 +251,7 @@ export const KID_ACTIVITIES: KidActivity[] = [
     title: 'Las olas del mar',
     tagline: 'Respira como las olas que van y vienen.',
     skill: 'calma',
-    bands: ['7-9', '10-12'],
+    bands: ['7-9', '10-12', '13-17'],
     minutes: 3,
     shape: 'ola',
     intro: 'Mira la ola. Cuando sube, el aire entra. Cuando baja, el aire sale, más largo.',
@@ -316,7 +333,7 @@ export const KID_ACTIVITIES: KidActivity[] = [
     title: 'Mis rayos X',
     tagline: 'Recorre tu cuerpo con una luz imaginaria.',
     skill: 'cuerpo',
-    bands: ['10-12'],
+    bands: ['10-12', '13-17'],
     minutes: 4,
     steps: [
       { text: 'Acuéstate o siéntate cómodo. Imagina que tienes unos rayos X que ven lo que siente tu cuerpo.', mood: 'calma' },
@@ -438,7 +455,7 @@ export const KID_ACTIVITIES: KidActivity[] = [
     title: 'Surfear la ola',
     tagline: 'Las emociones suben y bajan como olas.',
     skill: 'emociones',
-    bands: ['10-12'],
+    bands: ['10-12', '13-17'],
     minutes: 3,
     steps: [
       { text: 'Las emociones fuertes son como olas: suben, llegan a lo más alto y después bajan.', mood: 'piensa' },
@@ -477,7 +494,7 @@ export const KID_ACTIVITIES: KidActivity[] = [
     title: 'Detective de los sentidos',
     tagline: '5 cosas que ves, 4 que tocas, 3 que oyes…',
     skill: 'atencion',
-    bands: ['7-9', '10-12'],
+    bands: ['7-9', '10-12', '13-17'],
     minutes: 3,
     steps: [
       { text: 'Hoy eres detective. Tu lupa son tus sentidos.', mood: 'feliz' },
@@ -497,7 +514,7 @@ export const KID_ACTIVITIES: KidActivity[] = [
     title: 'Comer como un explorador',
     tagline: 'Descubre un alimento como si fuera la primera vez.',
     skill: 'atencion',
-    bands: ['7-9', '10-12'],
+    bands: ['7-9', '10-12', '13-17'],
     minutes: 4,
     steps: [
       { text: 'Busca un alimento chiquito con un adulto: una pasa, un gajo de mandarina o una galletita.', mood: 'feliz' },
@@ -519,7 +536,7 @@ export const KID_ACTIVITIES: KidActivity[] = [
     title: 'Detective de pensamientos',
     tagline: '¿Ese pensamiento dice la verdad?',
     skill: 'pensar',
-    bands: ['7-9', '10-12'],
+    bands: ['7-9', '10-12', '13-17'],
     minutes: 4,
     steps: [
       { text: 'A veces la cabeza nos dice cosas que asustan o ponen tristes. Pero no todo lo que pensamos es verdad.', mood: 'piensa' },
@@ -548,7 +565,7 @@ export const KID_ACTIVITIES: KidActivity[] = [
     title: 'Pensamientos que son nubes',
     tagline: 'Mira pasar los pensamientos sin subirte.',
     skill: 'pensar',
-    bands: ['10-12'],
+    bands: ['10-12', '13-17'],
     minutes: 3,
     steps: [
       { text: 'Imagina que estás acostado en el pasto mirando el cielo.', mood: 'calma' },
@@ -566,7 +583,7 @@ export const KID_ACTIVITIES: KidActivity[] = [
     title: 'Mi voz amable',
     tagline: 'Háblate como le hablarías a un amigo.',
     skill: 'pensar',
-    bands: ['10-12'],
+    bands: ['10-12', '13-17'],
     minutes: 3,
     steps: [
       { text: 'Cuando nos equivocamos, a veces nos hablamos con una voz muy dura: «Soy un desastre».', mood: 'piensa' },
@@ -594,7 +611,7 @@ export const KID_ACTIVITIES: KidActivity[] = [
     title: 'Mi mente sabia',
     tagline: 'Cuando la emoción y la razón se ponen de acuerdo.',
     skill: 'pensar',
-    bands: ['10-12'],
+    bands: ['10-12', '13-17'],
     minutes: 3,
     steps: [
       { text: 'Tenemos una mente que siente (la de las emociones) y una que piensa (la de la razón).', mood: 'piensa' },
@@ -649,7 +666,7 @@ export const KID_ACTIVITIES: KidActivity[] = [
     title: 'Mi escalera valiente',
     tagline: 'Sube un escalón por vez.',
     skill: 'valentia',
-    bands: ['7-9', '10-12'],
+    bands: ['7-9', '10-12', '13-17'],
     minutes: 5,
     intro: 'Cuando algo nos da miedo, no hace falta enfrentarlo todo de golpe. Se sube de a un escalón.',
     steps: [
@@ -806,6 +823,396 @@ export const KID_ACTIVITIES: KidActivity[] = [
     forAdult: 'Háganlo juntos a la noche, contando cada uno su cosa buena. Si tuvo un mal día, también vale algo muy pequeño.',
     evidence: 'Registrar cosas buenas del día aumenta el bienestar y las emociones positivas, también en escolares.',
   },
+  // ------------------------------------------------------------ 0 a 3 años: para hacer juntos (las guía el adulto)
+  {
+    id: 'cara-a-cara',
+    kind: 'juntos',
+    title: 'Ida y vuelta cara a cara',
+    tagline: 'Responder a sus gestos y sonidos.',
+    skill: 'emociones',
+    bands: ['0-3'],
+    minutes: 5,
+    steps: [
+      { text: 'Pónganse cara a cara, a unos 30 centímetros, en un momento en que esté despierto y tranquilo.' },
+      { text: 'Espera a que haga algo: un sonido, una mirada, una mueca o un gesto con la mano.' },
+      { text: 'Respóndele: imita el sonido, sonríe, nombra lo que mira. Es como una conversación sin palabras.' },
+      { text: 'Haz una pausa y espera su turno. Si mira para otro lado, está descansando: respeta esa pausa.' },
+    ],
+    forAdult: 'No hace falta un momento especial: el cambio de pañal o la comida sirven. Lo que importa es responder a lo que hace, no llenar el silencio.',
+    evidence: 'Estas interacciones de «ida y vuelta» construyen las bases del desarrollo emocional y del lenguaje, según el Centro para el Niño en Desarrollo de la Universidad de Harvard.',
+  },
+  {
+    id: 'nombrar-lo-que-siente',
+    kind: 'juntos',
+    title: 'Ponerle palabras a lo que siente',
+    tagline: 'Nombrar sus emociones en voz alta.',
+    skill: 'emociones',
+    bands: ['0-3'],
+    minutes: 2,
+    steps: [
+      { text: 'Cuando notes una emoción, nómbrala con pocas palabras: «Estás enojado. Querías el juguete».' },
+      { text: 'Usa tu cara y tu voz para acompañar: un tono suave para la tristeza, uno alegre para la alegría.' },
+      { text: 'Si llora, primero consuela. Las palabras vienen después, cuando ya se calmó un poco.' },
+      { text: 'Haz lo mismo con tus emociones: «Estoy un poco cansada, voy a sentarme un ratito».' },
+    ],
+    forAdult: 'Aunque todavía no hable, entiende mucho más de lo que puede decir. Nombrar emociones es la base de que algún día pueda regularlas.',
+    evidence: 'Hablar de las emociones con los hijos desde pequeños se asocia con una mejor regulación emocional más adelante (Gottman y colaboradores, 1996).',
+  },
+  {
+    id: 'calma-compartida',
+    kind: 'juntos',
+    title: 'Calma compartida',
+    tagline: 'Tu calma le ayuda a calmarse.',
+    skill: 'calma',
+    bands: ['0-3'],
+    minutes: 3,
+    steps: [
+      { text: 'Cuando llora o está muy alterado, primero cuida tu calma: suelta los hombros y respira lento por la nariz.' },
+      { text: 'Sostenlo cerca de tu pecho. Tu respiración lenta y tu latido le ayudan a calmarse.' },
+      { text: 'Balancéate despacio o camina, y habla en voz baja y monótona: «Shhh, estoy acá».' },
+      { text: 'Si sientes que no puedes más, déjalo en un lugar seguro, como la cuna, y tómate unos minutos. Pedir ayuda está bien.' },
+    ],
+    forAdult: 'Nunca lo sacudas, aunque estés al límite: es peligroso para su cerebro. Si el llanto es muy intenso, no para o lo notas enfermo, consulta al pediatra o a la guardia.',
+    evidence: 'Los bebés regulan sus emociones a través del adulto (co-regulación). La calma del adulto es la primera herramienta de regulación que aprenden.',
+    caution: 'Si el llanto no para, lo notas enfermo o con fiebre, consulta al pediatra o a la guardia.',
+  },
+  {
+    id: 'cancion-y-balanceo',
+    kind: 'juntos',
+    title: 'Canción y balanceo',
+    tagline: 'Una canción siempre igual para calmarse.',
+    skill: 'calma',
+    bands: ['0-3'],
+    minutes: 3,
+    steps: [
+      { text: 'Elige una canción corta y cántala siempre en los mismos momentos: al dormir o cuando está inquieto.' },
+      { text: 'Cántala lento y bajito, mientras lo meces al mismo ritmo.' },
+      { text: 'Con el tiempo, la canción sola empieza a avisarle que es hora de calmarse.' },
+    ],
+    forAdult: 'No importa cómo cantes: tu voz es la que más le calma. La repetición es lo que hace que funcione.',
+    evidence: 'Las rutinas predecibles y el canto dirigido al bebé ayudan a regular su activación y fortalecen el vínculo.',
+  },
+  {
+    id: 'rutina-para-dormir',
+    kind: 'juntos',
+    title: 'La rutina para dormir',
+    tagline: 'Los mismos pasos cada noche.',
+    skill: 'cuerpo',
+    bands: ['0-3'],
+    minutes: 5,
+    steps: [
+      { text: 'Elijan tres o cuatro pasos fijos, por ejemplo: baño, pijama, cuento y canción.' },
+      { text: 'Háganlos siempre en el mismo orden y a una hora parecida.' },
+      { text: 'Apaguen las pantallas al menos una hora antes de dormir. La luz baja le avisa al cuerpo que viene la noche.' },
+      { text: 'Termina siempre igual, con una frase corta: «Buenas noches, hasta mañana».' },
+    ],
+    forAdult: 'Una rutina predecible baja la ansiedad de la noche. Si hay cambios, como viajes o enfermedades, vuelvan a la rutina apenas se pueda.',
+    evidence: 'Las rutinas para dormir constantes se asocian con un sueño más largo y menos despertares en la primera infancia.',
+  },
+  {
+    id: 'cucu-tras',
+    kind: 'juntos',
+    title: 'Cucú, ¡acá estoy!',
+    tagline: 'Jugar a esconderse y volver.',
+    skill: 'valentia',
+    bands: ['0-3'],
+    minutes: 3,
+    steps: [
+      { text: 'Tápate la cara con las manos o con un pañuelo y pregunta: «¿Dónde está mamá?» o «¿Dónde está papá?».' },
+      { text: 'Destápate con alegría: «¡Cucú, acá estoy!».' },
+      { text: 'Cuando sea más grande, escóndete detrás de una puerta o un sillón por unos segundos.' },
+    ],
+    forAdult: 'Este juego le enseña que lo que desaparece vuelve. Ayuda a preparar las separaciones de todos los días.',
+    evidence: 'El juego de esconderse y aparecer acompaña el desarrollo de la permanencia del objeto y la tolerancia a separaciones breves.',
+  },
+  {
+    id: 'despedidas-cortas',
+    kind: 'juntos',
+    title: 'Despedidas cortas y claras',
+    tagline: 'Un ritual para las separaciones.',
+    skill: 'valentia',
+    bands: ['0-3'],
+    minutes: 2,
+    steps: [
+      { text: 'Avisa siempre que te vas, aunque llore. Irse a escondidas aumenta la inseguridad.' },
+      { text: 'Usa un ritual breve: un abrazo, un beso y una frase siempre igual, como «Vuelvo después de la siesta».' },
+      { text: 'Despídete con calma y vete. Las despedidas largas suelen hacerlo más difícil.' },
+      { text: 'Al volver, saluda con alegría y nombra que cumpliste: «Te dije que volvía, y acá estoy».' },
+    ],
+    forAdult: 'El llanto al separarse es esperable entre los 8 meses y los 3 años. Suele durar poco después de que el adulto se va.',
+    evidence: 'La ansiedad por separación es una etapa normal del desarrollo. Las despedidas predecibles ayudan a que el niño confíe en que el adulto vuelve.',
+  },
+  {
+    id: 'acompanar-el-berrinche',
+    kind: 'juntos',
+    title: 'Acompañar un berrinche',
+    tagline: 'Quedarse cerca, con pocas palabras.',
+    skill: 'emociones',
+    bands: ['0-3'],
+    minutes: 5,
+    steps: [
+      { text: 'Primero, que no pueda lastimarse: aleja lo peligroso.' },
+      { text: 'Quédate cerca, a su altura, con voz baja. No hace falta hablar mucho.' },
+      { text: 'Nombra lo que pasa: «Estás muy enojado porque nos fuimos de la plaza».' },
+      { text: 'Mantén el límite con cariño. No cedas por el berrinche, pero tampoco lo castigues por sentir.' },
+      { text: 'Cuando pase, ofrécele un abrazo y sigan con el día, sin sermones.' },
+    ],
+    forAdult: 'Entre los 18 meses y los 3 años, los berrinches son parte del desarrollo: quieren más de lo que pueden manejar. La guía «Berrinches y desbordes» tiene más ideas.',
+    evidence: 'La presencia calmada del adulto ayuda al niño a recuperar la calma (Morris y colaboradores, 2007).',
+  },
+  {
+    id: 'leer-juntos',
+    kind: 'juntos',
+    title: 'Leer juntos, conversando',
+    tagline: 'Un cuento con preguntas.',
+    skill: 'atencion',
+    bands: ['0-3'],
+    minutes: 10,
+    steps: [
+      { text: 'Elijan un libro con dibujos grandes. Con los bebés, sirven los de tela o cartón.' },
+      { text: 'Más que leer el texto, señalen y nombren lo que ven: «¡Mira el perro! ¿Cómo hace el perro?».' },
+      { text: 'Hablen de las caras de los personajes: «Está triste. ¿Por qué estará triste?».' },
+      { text: 'Si quiere el mismo libro mil veces, está perfecto: la repetición le ayuda a aprender.' },
+    ],
+    forAdult: 'Con 10 minutos al día alcanza. Leer juntos favorece el lenguaje y es un momento de conexión sin pantallas.',
+    evidence: 'La lectura compartida y conversada se asocia con un mejor desarrollo del lenguaje en la primera infancia.',
+  },
+  {
+    id: 'juego-en-el-piso',
+    kind: 'juntos',
+    title: 'Juego en el piso',
+    tagline: 'Diez minutos donde él o ella elige.',
+    skill: 'amabilidad',
+    bands: ['0-3'],
+    minutes: 10,
+    steps: [
+      { text: 'Siéntate en el piso, a su altura, y deja el teléfono lejos.' },
+      { text: 'Deja que elija con qué jugar. Tú sigues su juego.' },
+      { text: 'Describe lo que hace: «Pusiste el bloque rojo arriba». Así se siente visto.' },
+      { text: 'Celebra sus intentos, no solo los logros: «¡Lo intentaste otra vez!».' },
+    ],
+    forAdult: 'Es la versión para los más chicos del «tiempo especial». La guía con ese nombre explica por qué funciona.',
+    evidence: 'Los programas de crianza con evidencia, como la PCIT, empiezan fortaleciendo el vínculo con un rato de juego diario guiado por el niño (Thomas y Zimmer-Gembeck, 2007).',
+  },
+
+  // ------------------------------------------------------------ 13 a 17 años
+  {
+    id: 'tipp-rapido',
+    kind: 'pasos',
+    title: 'TIPP: bajar la intensidad rápido',
+    tagline: 'Cuando la emoción está al máximo.',
+    skill: 'calma',
+    bands: ['13-17'],
+    minutes: 4,
+    steps: [
+      { text: 'TIPP sirve cuando una emoción es tan fuerte que no puedes pensar. No resuelve el problema: baja el volumen para que puedas pensar.', mood: 'piensa' },
+      { text: 'Temperatura: moja tu cara con agua fría o sostén algo frío unos segundos. El frío baja el ritmo del corazón.', mood: 'calma', seconds: 20 },
+      { text: 'Intensidad: mueve el cuerpo fuerte un minuto. Salta, corre en el lugar o sube escaleras.', mood: 'valiente', seconds: 30 },
+      { text: 'Pausa al respirar: inhala contando 4 y exhala contando 6, varias veces.', mood: 'calma', seconds: 30 },
+      { text: 'Pares de músculos: aprieta los puños y los hombros cinco segundos, y suelta. Repite dos veces.', mood: 'calma', seconds: 20 },
+      { text: 'Cuando bajó un poco, pregúntate qué necesitas ahora. A veces es hablar con alguien.', mood: 'orgullo' },
+    ],
+    forAdult: 'Si tiene problemas del corazón o un trastorno de la conducta alimentaria, que no use el frío ni el ejercicio intenso sin consultar antes al médico.',
+    evidence: 'TIPP es una habilidad de tolerancia al malestar de la DBT, que también tiene una versión para adolescentes con buenos resultados.',
+    caution: 'Si tiene problemas del corazón o de la alimentación, que no use el agua fría ni el ejercicio intenso sin consultar al médico.',
+  },
+  {
+    id: 'stop',
+    kind: 'pasos',
+    title: 'STOP antes de reaccionar',
+    tagline: 'Cuatro pasos para no actuar en caliente.',
+    skill: 'calma',
+    bands: ['13-17'],
+    minutes: 2,
+    steps: [
+      { text: 'Hay momentos en que reaccionamos y después nos arrepentimos: un mensaje, un portazo, una respuesta.', mood: 'piensa' },
+      { text: 'S de stop: frena. No hagas nada todavía, ni siquiera mandar ese mensaje.', mood: 'sorpresa' },
+      { text: 'T de tomar distancia: da un paso atrás y respira un par de veces.', mood: 'calma', seconds: 10 },
+      { text: 'O de observar: ¿qué está pasando? ¿Qué siento? ¿Qué están haciendo los demás?', mood: 'piensa' },
+      {
+        text: 'P de proceder con mente sabia: elige lo que te va a ayudar después, no solo ahora.',
+        mood: 'piensa',
+        choice: {
+          question: 'Un amigo te deja en visto y te enojas. ¿Qué harías con STOP?',
+          options: [
+            { label: 'Mandarle un audio enojado ya', reply: 'Es lo que pide el enojo, pero quizás después te arrepientas. STOP te da unos minutos para decidir.' },
+            { label: 'Esperar y preguntarle más tarde qué pasó', reply: '¡Eso es STOP! Esperas a estar más tranquilo y buscas los hechos.' },
+            { label: 'Bloquearlo sin decir nada', reply: 'Puede que te alivie un rato, pero cierra la conversación. Quizás haya otra explicación.' },
+          ],
+        },
+      },
+    ],
+    forAdult: 'Si la ves usar STOP en casa, reconócelo. Practicarlo con situaciones chicas ayuda a que esté disponible en las grandes.',
+    evidence: 'STOP es una habilidad de tolerancia al malestar de la DBT para adolescentes.',
+  },
+  {
+    id: 'accion-opuesta',
+    kind: 'pasos',
+    title: 'Acción opuesta',
+    tagline: 'Hacer lo contrario de lo que pide la emoción.',
+    skill: 'emociones',
+    bands: ['13-17'],
+    minutes: 3,
+    steps: [
+      { text: 'Cada emoción trae un impulso. La tristeza pide encerrarse; el miedo, escapar; el enojo, atacar.', mood: 'piensa' },
+      { text: 'A veces seguir ese impulso empeora las cosas. Por ejemplo, cuando el miedo es más grande que el peligro real.', mood: 'piensa' },
+      {
+        text: 'Acción opuesta: haces lo contrario del impulso, con todo el cuerpo.',
+        mood: 'valiente',
+        choice: {
+          question: 'Estás triste y quieres quedarte todo el día en la cama. ¿Cuál sería la acción opuesta?',
+          options: [
+            { label: 'Salir a caminar o ver a alguien', reply: '¡Exacto! Moverse y conectar con otros es lo opuesto a aislarse.' },
+            { label: 'Ver series hasta tarde', reply: 'Eso sigue siendo encerrarse. Prueba algo que te saque un poco afuera.' },
+            { label: 'Obligarme a estar feliz', reply: 'La acción opuesta no es fingir. Es hacer algo distinto, aunque la emoción siga ahí.' },
+          ],
+        },
+      },
+      { text: 'Úsala solo cuando la emoción no ayuda o es más fuerte de lo que la situación pide.', mood: 'orgullo' },
+    ],
+    forAdult: 'Si la tristeza dura semanas, aparece todos los días o la aleja de todo, no alcanza con esta habilidad: consulten con un profesional.',
+    evidence: 'La acción opuesta es una habilidad de regulación emocional de la DBT, con base en la exposición y la activación conductual.',
+  },
+  {
+    id: 'chequear-los-hechos',
+    kind: 'pasos',
+    title: 'Chequear los hechos',
+    tagline: '¿Lo que siento encaja con lo que pasó?',
+    skill: 'pensar',
+    bands: ['13-17'],
+    minutes: 4,
+    steps: [
+      { text: 'A veces la emoción reacciona a lo que pensamos que pasó, no a lo que pasó.', mood: 'piensa' },
+      { text: 'Primero, describe solo los hechos, como lo haría una cámara: «Mis amigos subieron una foto sin mí».', mood: 'piensa' },
+      { text: 'Después, nota tu interpretación: «No me quieren, me dejaron afuera a propósito».', mood: 'piensa' },
+      { text: 'Pregúntate: ¿hay otras explicaciones posibles? ¿Qué tan probable es lo peor?', mood: 'piensa', seconds: 20 },
+      { text: 'Si la emoción no encaja con los hechos, puede bajar. Si encaja, ya sabes qué problema resolver.', mood: 'orgullo' },
+    ],
+    forAdult: 'Cuando te cuente algo que le dolió, ayúdale a separar hechos de interpretaciones sin decirle que «está exagerando».',
+    evidence: 'Chequear los hechos es una habilidad de regulación emocional de la DBT, cercana a la reestructuración cognitiva de la TCC.',
+  },
+  {
+    id: 'pedir-y-decir-que-no',
+    kind: 'pasos',
+    title: 'Pedir algo o decir que no',
+    tagline: 'Defender lo que necesitas sin pelear.',
+    skill: 'amabilidad',
+    bands: ['13-17'],
+    minutes: 4,
+    steps: [
+      { text: 'Pedir algo o decir que no, sin atacar y sin ceder en todo, es una habilidad que se entrena.', mood: 'piensa' },
+      { text: 'Describe la situación con hechos: «Esta semana tengo tres pruebas».', mood: 'piensa' },
+      { text: 'Expresa lo que sientes o piensas: «Me preocupa no llegar a estudiar».', mood: 'calma' },
+      { text: 'Pide o di que no con claridad: «Hoy no puedo salir. ¿Podemos el sábado?».', mood: 'valiente' },
+      {
+        text: 'Mantente firme sin agredir. Puedes repetir tu respuesta con calma.',
+        mood: 'valiente',
+        choice: {
+          question: 'Te insisten para que pruebes algo que no quieres. ¿Qué respuesta te cuida más?',
+          options: [
+            { label: '«No, gracias. No quiero»', reply: 'Clara y breve. No necesitas dar explicaciones largas para decir que no.' },
+            { label: '«Bueno, un poquito»', reply: 'Ceder por presión es muy común, pero tu decisión vale. Puedes practicar decir que no.' },
+            { label: 'Insultar y irme', reply: 'Te protege, pero puede traer otros problemas. Un «no» firme suele alcanzar.' },
+          ],
+        },
+      },
+      { text: 'Tu necesidad importa, y la relación también. Esta habilidad cuida las dos cosas.', mood: 'orgullo' },
+    ],
+    forAdult: 'Practiquen con situaciones de casa, como negociar un horario. Si usa la habilidad contigo, valora la forma aunque no le des lo que pide.',
+    evidence: 'Es una versión simplificada de DEAR MAN, la habilidad de efectividad interpersonal de la DBT.',
+  },
+  {
+    id: 'redes-y-yo',
+    kind: 'pasos',
+    title: 'Las redes y yo',
+    tagline: '¿Cómo me siento después de scrollear?',
+    skill: 'atencion',
+    bands: ['13-17'],
+    minutes: 3,
+    steps: [
+      { text: 'Las redes pueden conectar y divertir. También pueden hacerte sentir que todos están mejor que tú.', mood: 'piensa' },
+      { text: 'La próxima vez que dejes el teléfono, frena un segundo y nota: ¿cómo me siento ahora?', mood: 'calma', seconds: 15 },
+      {
+        text: 'Nota también qué cuentas te hacen sentir peor y cuáles te suman.',
+        mood: 'piensa',
+        choice: {
+          question: 'Si una cuenta siempre te hace sentir mal con tu cuerpo, ¿qué podrías hacer?',
+          options: [
+            { label: 'Silenciarla o dejar de seguirla', reply: 'Buena idea. Tú decides qué entra en tu día.' },
+            { label: 'Mirarla más para motivarme', reply: 'La comparación suele bajar el ánimo más que motivar. Prueba sin ella unos días.' },
+            { label: 'No hacer nada', reply: 'Es una opción, pero notar el efecto ya te da poder para elegir.' },
+          ],
+        },
+      },
+      { text: 'Prueba un pequeño cambio esta semana, como dejar el teléfono fuera del cuarto a la noche.', mood: 'orgullo' },
+    ],
+    forAdult: 'Las prohibiciones totales suelen funcionar mal en la adolescencia. Conversen sobre cómo les hacen sentir las redes y acuerden reglas juntos, como no usar pantallas a la noche.',
+    evidence: 'El uso problemático de redes, sobre todo de noche y con comparación social, se asocia con peor ánimo y peor sueño en adolescentes.',
+  },
+  {
+    id: 'dormir-mejor',
+    kind: 'pasos',
+    title: 'Dormir mejor',
+    tagline: 'El sueño cambia cómo te sientes.',
+    skill: 'cuerpo',
+    bands: ['13-17'],
+    minutes: 3,
+    steps: [
+      { text: 'En la adolescencia el reloj del cuerpo se atrasa: da sueño más tarde. No es vagancia, es biología.', mood: 'piensa' },
+      { text: 'Aun así, necesitas entre 8 y 10 horas. Dormir poco hace que todo se sienta más intenso.', mood: 'piensa' },
+      { text: 'Intenta levantarte a una hora parecida todos los días, también el fin de semana.', mood: 'calma' },
+      { text: 'Deja las pantallas una hora antes de dormir. Si no puedes, baja el brillo y silencia las notificaciones.', mood: 'calma' },
+      { text: 'Si la cabeza no para, anota lo que te preocupa en un papel para retomarlo mañana.', mood: 'orgullo' },
+    ],
+    forAdult: 'Si duerme muy poco, ronca fuerte o tiene mucho sueño de día durante semanas, consulten con su pediatra.',
+    evidence: 'La falta de sueño en la adolescencia se asocia con peor ánimo, más irritabilidad y peor rendimiento escolar.',
+  },
+  {
+    id: 'antes-de-una-prueba',
+    kind: 'pasos',
+    title: 'Antes de una prueba',
+    tagline: 'Para cuando los nervios no te dejan pensar.',
+    skill: 'valentia',
+    bands: ['13-17'],
+    minutes: 3,
+    steps: [
+      { text: 'Un poco de nervios ayuda a concentrarte. Demasiados bloquean. La idea es bajarlos un poco, no eliminarlos.', mood: 'piensa' },
+      { text: 'Respira lento: inhala contando 4 y exhala contando 6, cinco veces.', mood: 'calma', seconds: 50 },
+      { text: 'Nota el pensamiento catastrófico, como «Me va a ir horrible». Cámbialo por uno más justo: «Estudié, voy a hacer lo que pueda».', mood: 'piensa' },
+      { text: 'En la prueba, empieza por lo que sabes. Si te trabas, sigue con otra pregunta y vuelve después.', mood: 'valiente' },
+      { text: 'Pase lo que pase, una prueba no define quién eres.', mood: 'orgullo' },
+    ],
+    forAdult: 'Pregunta por cómo se preparó y cómo se siente, más que por la nota. Si la ansiedad por las pruebas es muy fuerte o le hace faltar a la escuela, consulten.',
+    evidence: 'La respiración lenta y la reestructuración de pensamientos catastróficos son componentes de la TCC para la ansiedad, que tiene buena evidencia en adolescentes (James y colaboradores, 2015).',
+  },
+  {
+    id: 'mi-brujula',
+    kind: 'pasos',
+    title: 'Mi brújula de valores',
+    tagline: 'Lo que te importa, para decidir mejor.',
+    skill: 'gratitud',
+    bands: ['13-17'],
+    minutes: 4,
+    steps: [
+      { text: 'Los valores son como una brújula: no son metas que se cumplen, sino direcciones que eliges.', mood: 'piensa' },
+      {
+        text: 'Piensa en lo que más te importa en tu vida ahora.',
+        mood: 'piensa',
+        choice: {
+          question: '¿Cuál de estas direcciones te representa más?',
+          options: [
+            { label: 'Ser buena amiga o buen amigo', reply: 'La amistad es un valor fuerte. ¿Qué pequeña acción lo mostraría hoy?' },
+            { label: 'Aprender y crecer', reply: 'Aprender es una dirección para toda la vida. ¿Qué te gustaría aprender este mes?' },
+            { label: 'Crear o expresarme', reply: 'Expresarte es muy valioso. ¿Cuándo podrías dedicarle un rato esta semana?' },
+          ],
+        },
+      },
+      { text: 'Elige una acción chiquita, para esta semana, que vaya en esa dirección.', mood: 'valiente' },
+      { text: 'Cuando tengas que decidir algo difícil, pregúntate: ¿qué opción va hacia lo que me importa?', mood: 'orgullo' },
+    ],
+    forAdult: 'Interésate por sus valores aunque no coincidan con los tuyos. Que se sienta escuchado en esto fortalece mucho el vínculo.',
+    evidence: 'Trabajar con valores es central en la terapia de aceptación y compromiso (ACT), que se usa también con adolescentes.',
+  },
 ];
 
 export const KID_ACTIVITY_BY_ID = Object.fromEntries(KID_ACTIVITIES.map((a) => [a.id, a])) as Record<string, KidActivity>;
@@ -815,14 +1222,14 @@ export const activitiesFor = (band: AgeBand) => KID_ACTIVITIES.filter((a) => a.b
 
 /** Qué proponer después de marcar una emoción (siempre actividades de la franja). */
 const SUGGESTIONS: Record<KidFeelingId, string[]> = {
-  alegria: ['superpoder-amable', 'frasco-de-gratitud', 'detective-de-sentidos'],
+  alegria: ['superpoder-amable', 'frasco-de-gratitud', 'detective-de-sentidos', 'mi-brujula'],
   calma: ['escucha-la-campana', 'detective-de-sentidos', 'frasco-de-gratitud'],
-  tristeza: ['mano-en-el-corazon', 'voz-amable', 'globo-magico', 'ola-del-mar'],
-  enojo: ['tortuga', 'volcan', 'huele-la-flor', 'respiracion-estrella', 'respiracion-cuadrado'],
-  miedo: ['globo-magico', 'huele-la-flor', 'ola-del-mar', 'pasito-valiente', 'detective-de-sentidos'],
-  preocupacion: ['cajita-preocupaciones', 'pensamientos-nube', 'detective-de-pensamientos', 'detective-de-sentidos', 'huele-la-flor'],
-  sorpresa: ['globo-magico', 'respiracion-estrella', 'escucha-la-campana'],
-  cansancio: ['espagueti', 'robot-y-muneco', 'ola-del-mar', 'rayos-x'],
+  tristeza: ['mano-en-el-corazon', 'voz-amable', 'globo-magico', 'ola-del-mar', 'accion-opuesta'],
+  enojo: ['tortuga', 'volcan', 'huele-la-flor', 'respiracion-estrella', 'stop', 'respiracion-cuadrado', 'tipp-rapido'],
+  miedo: ['globo-magico', 'huele-la-flor', 'ola-del-mar', 'pasito-valiente', 'detective-de-sentidos', 'chequear-los-hechos'],
+  preocupacion: ['cajita-preocupaciones', 'pensamientos-nube', 'detective-de-pensamientos', 'detective-de-sentidos', 'huele-la-flor', 'chequear-los-hechos', 'antes-de-una-prueba'],
+  sorpresa: ['globo-magico', 'respiracion-estrella', 'escucha-la-campana', 'stop'],
+  cansancio: ['espagueti', 'robot-y-muneco', 'ola-del-mar', 'rayos-x', 'dormir-mejor'],
 };
 
 export function suggestionsFor(feeling: KidFeelingId, band: AgeBand, max = 3): KidActivity[] {

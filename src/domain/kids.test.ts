@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   AGE_BANDS,
+  hasKidMode,
   activitiesFor,
   gardenStage,
   GARDEN_STAGES,
@@ -21,7 +22,7 @@ import { KID_RESOURCES } from '@/config/safety';
 const textsOf = (a: (typeof KID_ACTIVITIES)[number]) => {
   const t: string[] = [];
   if ('intro' in a) t.push(a.intro);
-  if (a.kind === 'pasos' || a.kind === 'mision') t.push(...a.steps.map((s) => s.text));
+  if (a.kind === 'pasos' || a.kind === 'mision' || a.kind === 'juntos') t.push(...a.steps.map((s) => s.text));
   if (a.kind === 'juego') t.push(...a.rounds.map((r) => r.situation));
   return t;
 };
@@ -33,12 +34,13 @@ describe('actividades para chicos', () => {
     for (const a of KID_ACTIVITIES) {
       expect(skills.has(a.skill), a.id).toBe(true);
       expect(a.bands.length, a.id).toBeGreaterThan(0);
-      expect(a.minutes, a.id).toBeLessThanOrEqual(5);
+      // Las de 0 a 3 años (juego o lectura juntos) pueden durar hasta 10 minutos.
+      expect(a.minutes, a.id).toBeLessThanOrEqual(a.kind === 'juntos' ? 10 : 5);
     }
   });
 
   it('cada franja tiene variedad: al menos 10 actividades y 5 habilidades, con el check-in y la gratitud', () => {
-    for (const b of AGE_BANDS) {
+    for (const b of AGE_BANDS.filter((x) => hasKidMode(x.id))) {
       const list = activitiesFor(b.id);
       expect(list.length, b.id).toBeGreaterThanOrEqual(10);
       expect(new Set(list.map((a) => a.skill)).size, b.id).toBeGreaterThanOrEqual(5);
@@ -50,7 +52,8 @@ describe('actividades para chicos', () => {
   it('los textos para chicos son bastante fáciles de leer y con frases cortas', () => {
     for (const a of KID_ACTIVITIES) {
       const text = textsOf(a).join(' ');
-      expect(Math.round(inflesz(text)), a.id).toBeGreaterThanOrEqual(65);
+      // Las de 0 a 3 años las lee el adulto: legibilidad al menos normal.
+      expect(Math.round(inflesz(text)), a.id).toBeGreaterThanOrEqual(a.kind === 'juntos' ? 58 : 65);
       expect(longestSentenceWords(text), a.id).toBeLessThanOrEqual(20);
       for (const t of textsOf(a)) expect(t.trim(), a.id).toMatch(/[.?!»…]$/);
     }
@@ -77,13 +80,27 @@ describe('actividades para chicos', () => {
     }
   });
 
+  it('de 0 a 3 años no hay pantalla para el chico: sólo actividades para hacer juntos', () => {
+    expect(hasKidMode('0-3')).toBe(false);
+    const baby = activitiesFor('0-3');
+    expect(baby.length).toBeGreaterThanOrEqual(8);
+    for (const a of KID_ACTIVITIES) expect(a.kind === 'juntos', a.id).toBe(a.bands.includes('0-3'));
+    for (const a of baby) expect(a.bands, a.id).toEqual(['0-3']);
+  });
+
+  it('los adolescentes tienen habilidades propias además de las compartidas', () => {
+    const teen = activitiesFor('13-17');
+    expect(teen.filter((a) => a.bands.length === 1).length).toBeGreaterThanOrEqual(8);
+    expect(teen.length).toBeGreaterThanOrEqual(15);
+  });
+
   it('las respiraciones tienen la exhalación igual o más larga que la inhalación', () => {
     for (const a of KID_ACTIVITIES) if (a.kind === 'respirar') expect(a.exhale, a.id).toBeGreaterThanOrEqual(a.inhale);
   });
 
   it('cada emoción sugiere al menos una actividad existente en cada franja', () => {
     for (const f of KID_FEELINGS)
-      for (const b of AGE_BANDS) {
+      for (const b of AGE_BANDS.filter((x) => hasKidMode(x.id))) {
         const s = suggestionsFor(f.id, b.id);
         expect(s.length, `${f.id} ${b.id}`).toBeGreaterThan(0);
         for (const a of s) expect(a.bands).toContain(b.id);

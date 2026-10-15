@@ -2,7 +2,7 @@
 
 import { m } from 'motion/react';
 import { useMemo, useState } from 'react';
-import { GRATITUDE_THINGS, KID_NOTE_MAX, type KidActivity } from '@/domain/kids';
+import { GRATITUDE_THINGS, isTeen, KID_NOTE_MAX, type KidActivity } from '@/domain/kids';
 import type { FinishPayload } from '../ActivityRunner';
 import { Mascot } from '../Mascot';
 import { useKid } from '../KidShell';
@@ -65,7 +65,9 @@ export function Gratitude({ activity, onFinish }: { activity: GratitudeActivity;
           />
         </label>
       )}
-      <p className="mt-3 max-w-xl text-base text-kid-soft">Lo que guardes lo puede ver tu adulto.</p>
+      <p className="mt-3 max-w-xl text-base text-kid-soft">
+        {isTeen(kid.band) ? 'La app no le muestra a tu adulto lo que escribes aquí.' : 'Lo que guardes lo puede ver tu adulto.'}
+      </p>
       <button type="button" disabled={!note} onClick={() => onFinish({ note: note.slice(0, KID_NOTE_MAX) })} className={kidButton('primary', 'mt-5 min-w-44')}>
         Guardar en el frasco
       </button>

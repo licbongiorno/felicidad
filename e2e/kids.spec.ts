@@ -138,3 +138,38 @@ for (const scheme of ['light', 'dark'] as const) {
     }
   });
 }
+
+test('0 a 3 años: sin modo chico, con actividades para hacer juntos que se registran', async ({ page }) => {
+  await freshFamily(page);
+  await page.getByRole('button', { name: 'Crear el primer perfil' }).click();
+  await page.getByLabel('Nombre o apodo').fill('Benja');
+  await page.getByRole('radio', { name: /0 a 3 años/ }).check();
+  await page.getByLabel(/Soy la madre/).check();
+  await page.getByRole('button', { name: 'Crear perfil' }).click();
+  await expect(page.getByRole('button', { name: 'Entrar al modo chico' })).toHaveCount(0);
+  await expect(async () => {
+    await page.getByRole('link', { name: 'Actividades para hacer juntos' }).click({ timeout: 2_000 });
+    await page.waitForURL('**/familia/chico/**', { timeout: 2_000 });
+  }).toPass({ timeout: 15_000 });
+  await page.getByRole('button', { name: /Ida y vuelta cara a cara/ }).click();
+  await page.getByRole('button', { name: 'Lo hicimos hoy' }).click();
+  await expect(page.getByText('¡Anotado!', { exact: false })).toBeVisible();
+  await expect(page.getByText('actividad en 1 día')).toBeVisible();
+  await expectAccessible(page);
+});
+
+test('adolescentes: líneas de salud mental en la ayuda y lo que escriben no se muestra al adulto', async ({ page }) => {
+  await enterAsKid(page, /13 a 17 años/);
+  await expect(page.getByRole('link', { name: /STOP antes de reaccionar/ })).toBeVisible();
+  await page.getByRole('button', { name: 'Ayuda' }).click();
+  await expect(page.getByRole('link', { name: /Llamar a Línea Nacional de Salud Mental/ })).toHaveAttribute('href', 'tel:08009990091');
+  await page.keyboard.press('Escape');
+  await page.goto('/chicos/frasco-de-gratitud');
+  await expect(page.getByText('La app no le muestra a tu adulto lo que escribes aquí.')).toBeVisible();
+  await page.getByRole('button', { name: 'Mis amigos' }).click();
+  await page.getByPlaceholder('Hoy jugué con…').fill('Algo privado');
+  await page.getByRole('button', { name: 'Guardar en el frasco' }).click();
+  await openPanel(page);
+  await expect(page.getByText(/Por su privacidad/)).toBeVisible();
+  await expect(page.getByText(/Algo privado/)).toHaveCount(0);
+});

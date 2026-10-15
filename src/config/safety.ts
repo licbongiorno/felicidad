@@ -52,6 +52,18 @@ export const KID_RESOURCES: (CrisisResource & { href: string })[] = [
   { label: 'Emergencias', contact: '911', href: 'tel:911', detail: 'Si alguien está en peligro ahora.' },
 ];
 
+/** Adolescentes: además de la 102 y el 911, las líneas de salud mental y de prevención del suicidio. */
+export const TEEN_RESOURCES: (CrisisResource & { href: string })[] = [
+  {
+    label: 'Línea Nacional de Salud Mental',
+    contact: '0800-999-0091',
+    href: 'tel:08009990091',
+    detail: 'Si te sientes muy mal o piensas en hacerte daño. Gratis, las 24 horas.',
+  },
+  { label: 'Centro de Asistencia al Suicida', contact: '135', href: 'tel:135', detail: 'Gratis desde CABA y el Gran Buenos Aires. Resto del país: 0800-345-1435.' },
+  ...KID_RESOURCES,
+];
+
 export const APP_NAME = 'Habilidades Psicológicas';
 
 export const SAFETY_DISCLAIMER =

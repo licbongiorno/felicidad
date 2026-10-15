@@ -1,7 +1,7 @@
 import type { Reference } from './types';
 
 /**
- * Guías para madres, padres y tutores: cómo acompañar las emociones de chicos de 4 a 12 años.
+ * Guías para madres, padres y tutores: cómo acompañar las emociones de chicos de 0 a 17 años.
  * Misma regla editorial que la biblioteca: cada afirmación empírica con su referencia y,
  * donde la evidencia es limitada, se dice.
  */
@@ -315,6 +315,113 @@ export const KID_GUIDES: KidGuide[] = [
     phrases: ['«Te veo triste hace días. ¿Quieres contarme? Estoy para ayudarte»', '«Vamos a pedir ayuda a alguien que sabe de esto. No es tu culpa»'],
     activities: [],
     references: [],
+  },
+  {
+    id: 'primeros-anos',
+    title: 'Los primeros años: de 0 a 3',
+    subtitle: 'Cómo se construye la regulación emocional antes de las palabras.',
+    readingMin: 5,
+    keyPoints: [
+      'A esta edad, el chico se regula a través de ti: tu calma es su primera herramienta.',
+      'Las interacciones de «ida y vuelta» (responder a sus gestos y sonidos) construyen su cerebro.',
+      'Antes de los 2 años, se recomienda no usar pantallas, salvo videollamadas con la familia.',
+    ],
+    sections: [
+      {
+        heading: 'La regulación empieza en el vínculo',
+        paragraphs: [
+          'Un bebé no puede calmarse solo: su sistema nervioso todavía está madurando. Cuando lo alzas, le hablas bajito y respiras lento, su cuerpo se calma con el tuyo. A esto se le llama co-regulación.',
+          'Con miles de repeticiones, el chico aprende que las emociones fuertes pasan y que hay alguien que lo ayuda. Esa confianza es la base de la regulación que tendrá más adelante.',
+        ],
+      },
+      {
+        heading: 'Ida y vuelta',
+        paragraphs: [
+          'Cuando el bebé hace un sonido, mira algo o señala, y el adulto responde, se produce una pequeña conversación. El Centro para el Niño en Desarrollo de la Universidad de Harvard llama a esto «servir y devolver», y lo considera uno de los motores del desarrollo del cerebro y del lenguaje.',
+          'No hace falta un momento especial ni juguetes caros: el cambio de pañal, la comida y el baño son oportunidades de ida y vuelta.',
+        ],
+      },
+      {
+        heading: 'Pantallas',
+        paragraphs: [
+          'La Organización Mundial de la Salud recomienda no exponer a pantallas a los menores de 2 años, y no más de una hora al día entre los 2 y los 4 años, siempre mejor acompañados. Por eso, en esta franja la app es para ti: te propone actividades para hacer juntos, sin el teléfono de por medio.',
+        ],
+      },
+    ],
+    phrases: ['«Estás enojado. Querías seguir jugando»', '«Estoy acá. Ya pasa»', '«¡Mira, un perro! ¿Cómo hace el perro?»'],
+    caveat: {
+      title: 'Cuándo consultar',
+      body: 'Consulta con su pediatra si no sonríe ni busca la mirada hacia los 3 meses, si no balbucea ni señala al año, o si perdió habilidades que ya tenía. También si el llanto es muy intenso, no para o lo notas enfermo.',
+    },
+    activities: ['cara-a-cara', 'calma-compartida', 'nombrar-lo-que-siente', 'leer-juntos'],
+    references: [
+      {
+        citation:
+          'Organización Mundial de la Salud (2019). Directrices sobre la actividad física, el comportamiento sedentario y el sueño para menores de 5 años. Ginebra: OMS.',
+      },
+      {
+        citation:
+          'Gottman, J. M., Katz, L. F., & Hooven, C. (1996). Parental meta-emotion philosophy and the emotional life of families: Theoretical models and preliminary data. Journal of Family Psychology, 10(3), 243–268.',
+        doi: '10.1037/0893-3200.10.3.243',
+      },
+    ],
+  },
+  {
+    id: 'adolescencia',
+    title: 'Acompañar en la adolescencia',
+    subtitle: 'Cuidar sin invadir: confianza, límites y señales de alarma.',
+    readingMin: 6,
+    keyPoints: [
+      'En la adolescencia es esperable que busque más privacidad y autonomía. No es un rechazo hacia ti.',
+      'La confianza se cuida escuchando más de lo que se aconseja.',
+      'Hay señales que no pueden esperar: hablar de morir, autolesiones o un cambio brusco que no mejora.',
+    ],
+    sections: [
+      {
+        heading: 'Más privacidad, el mismo cuidado',
+        paragraphs: [
+          'Los adolescentes necesitan espacios propios para construir su identidad. Por eso, en esta sección no te mostramos lo que escriben: sí ves qué actividades hacen, las emociones que marcan y los avisos de seguridad.',
+          'Contarles qué ves y qué no ayuda a que usen la app con sinceridad. Si te enteras de algo que te preocupa, háblalo con calma y sin castigos: el objetivo es que vuelva a contarte.',
+        ],
+      },
+      {
+        heading: 'Escuchar más, aconsejar menos',
+        paragraphs: [
+          'Cuando un adolescente cuenta un problema, muchas veces no busca una solución sino ser escuchado. Prueba preguntar: «¿Quieres que te ayude a pensar qué hacer, o solo que te escuche?».',
+          'Validar lo que siente, aunque el motivo te parezca pequeño, es lo que más ayuda. Las habilidades de la DBT para adolescentes incluyen a los padres justamente para practicar esto en casa.',
+        ],
+      },
+      {
+        heading: 'Sueño, redes y estrés',
+        paragraphs: [
+          'En la adolescencia el reloj biológico se atrasa y les da sueño más tarde, pero siguen necesitando entre 8 y 10 horas. Acordar juntos un horario sin pantallas a la noche suele funcionar mejor que prohibir.',
+          'Las redes sociales pueden conectar, pero la comparación constante y el uso de noche se asocian con peor ánimo. Más que controlar, conversen sobre cómo les hace sentir.',
+        ],
+      },
+      {
+        heading: 'Señales de alarma',
+        paragraphs: [
+          'Busca ayuda ese mismo día si habla de morir o de no querer vivir, si se lastima a propósito, si regala sus cosas o se despide, o si notas un cambio brusco con aislamiento, consumo de sustancias o abandono de la escuela.',
+          'Puedes llamar a la Línea Nacional de Salud Mental al 0800-999-0091, gratis y las 24 horas. Ante un peligro inmediato, llama al 911.',
+        ],
+      },
+    ],
+    phrases: [
+      '«¿Quieres que te ayude a pensar qué hacer, o solo que te escuche?»',
+      '«Tiene sentido que te sientas así»',
+      '«Te pregunto porque me importas, no para controlarte»',
+    ],
+    caveat: {
+      title: 'Si hay autolesiones o ideas de suicidio',
+      body: 'Esta sección no alcanza. Busca un tratamiento con un equipo profesional: la DBT para adolescentes tiene buena evidencia en estos casos. Ante un peligro inmediato, llama al 911.',
+    },
+    activities: ['tipp-rapido', 'stop', 'pedir-y-decir-que-no', 'redes-y-yo', 'dormir-mejor'],
+    references: [
+      {
+        citation:
+          'Mehlum, L., Tørmoen, A. J., Ramberg, M., Haga, E., Diep, L. M., Laberg, S., Larsson, B. S., Stanley, B. H., Miller, A. L., Sund, A. M., & Grøholt, B. (2014). Dialectical behavior therapy for adolescents with repeated suicidal and self-harming behavior: A randomized trial. Journal of the American Academy of Child & Adolescent Psychiatry, 53(10), 1082–1091.',
+      },
+    ],
   },
 ];
 
