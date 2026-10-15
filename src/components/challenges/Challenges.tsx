@@ -140,7 +140,7 @@ function ActiveChallenge({
         </div>
       ) : (
         <div className="mt-6 rounded-2xl bg-sage-50 p-5">
-          <p className="text-xs uppercase tracking-[0.2em] text-stone-500">Hoy</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-stone-600">Hoy</p>
           <p className="mt-1 font-serif text-xl text-stone-800">{task.title}</p>
           <p className="mt-1 text-sm leading-relaxed text-stone-700">{task.text}</p>
           <div className="mt-4 flex flex-wrap gap-3">
