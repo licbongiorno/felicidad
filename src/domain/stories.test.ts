@@ -3,6 +3,8 @@ import { AGE_BANDS, KID_ACTIVITY_BY_ID, KID_FEELINGS } from './kids';
 import { STORIES, STORY_THEMES, storiesFor, storyLogId, storyOfLog, themesFor } from './stories';
 import { inflesz, longestSentenceWords } from './readability';
 import { STORY_CAST } from './story-cast';
+import { STORY_ART } from './story-art';
+import { existsSync } from 'node:fs';
 
 const ALL_TEXT = (s: (typeof STORIES)[number]) => s.pages.map((p) => p.text).join(' ');
 const YOUNG = new Set(['0-3', '4-6']);
@@ -92,6 +94,14 @@ describe('cuentos', () => {
     // Dos cuentos no comparten exactamente el mismo elenco.
     const keys = STORIES.map((s) => JSON.stringify(STORY_CAST[s.id]));
     expect(new Set(keys).size).toBe(keys.length);
+  });
+
+  it('cada ilustración generada corresponde a un cuento y el archivo existe', () => {
+    const ids = new Set(STORIES.map((s) => s.id));
+    for (const id of STORY_ART) {
+      expect(ids.has(id), id).toBe(true);
+      expect(existsSync(`public/cuentos/${id}.webp`), id).toBe(true);
+    }
   });
 
   it('las franjas de cada cuento son contiguas (no salta edades)', () => {
