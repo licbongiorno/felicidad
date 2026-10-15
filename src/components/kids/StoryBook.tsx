@@ -9,6 +9,7 @@ import { haptic } from '@/lib/haptics';
 import { Mascot } from './Mascot';
 import { FeelingFace } from './KidArt';
 import { StoryScene } from './StoryScene';
+import { STORY_CAST } from '@/domain/story-cast';
 import { kidButton } from './ui';
 
 /**
@@ -88,7 +89,7 @@ export function StoryBook({
         {!atEnd ? (
           <m.section key={page} initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -24 }} transition={{ duration: 0.3 }} className="mt-5">
             <div className="overflow-hidden rounded-[2rem] ring-2 ring-kid-line">
-              <StoryScene scene={current.scene} />
+              <StoryScene scene={current.scene} cast={STORY_CAST[story.id]} mood={current.mood} page={page} />
             </div>
             <div className="mt-5 flex items-start gap-3">
               {current.mood && <Mascot mood={current.mood} size={64} motion="none" className="hidden shrink-0 sm:block" />}

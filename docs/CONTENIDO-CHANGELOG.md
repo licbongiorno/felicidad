@@ -19,6 +19,13 @@ entrada en este registro.
 
 ---
 
+## 2026-10-15 · Respiraciones coherentes con la consigna e ilustraciones propias
+
+- **Respiración (chicos):** los dibujos se mueven sólo al tomar y al soltar el aire, y quedan quietos al guardarlo y al descansar. Antes, la ola, la flor y la estrella bajaban durante «guarda el aire», y la llama de la vela se sacudía rápido al «soltar suave». Ahora la llama se inclina despacio y de forma pareja.
+- Tres pasos que pedían respirar «despacio» o «lento» tres veces en 15 segundos pasan a 24 segundos (unos 8 por respiración). Una prueba controla que haya al menos 6 segundos por respiración.
+- **Cuentos:** cada uno tiene su elenco propio (personas con peinado, piel y ropa distintos, animales y personajes de los clásicos) y la expresión cambia con el ánimo de cada página.
+- **Actividades:** cada actividad tiene un ícono según lo que se hace (globo, ola, volcán, detective, semáforo, etc.) en lugar del mismo ícono para toda la habilidad.
+
 ## 2026-10-15 · Cuentos para chicos por edad y tema
 
 **35 cuentos (`pendiente`)** en la sección para chicos y en Familia («Cuentos para leer juntos»):

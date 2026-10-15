@@ -2,13 +2,13 @@
 
 import { m } from 'motion/react';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import type { KidActivity } from '@/domain/kids';
+import { breathFull, breathMoves, type BreathPhase, type KidActivity } from '@/domain/kids';
 import { Mascot } from '../Mascot';
 import { useKid } from '../KidShell';
 import { kidButton } from '../ui';
 
 type BreathActivity = Extract<KidActivity, { kind: 'respirar' }>;
-type Phase = 'in' | 'hold' | 'out' | 'rest';
+type Phase = BreathPhase;
 
 /**
  * Respiración guiada con un dibujo que se mueve al ritmo: globo, flor y vela, estrella,
@@ -113,11 +113,14 @@ interface P {
 
 const ease = 'easeInOut' as const;
 
+/** Sólo se anima en las fases que cambian; en las pausas el dibujo queda fijo. */
+const moving = (phase: Phase, seconds: number) => ({ duration: breathMoves(phase) ? seconds : 0.2, ease });
+
 function Balloon({ phase, seconds }: P) {
-  const big = phase === 'in' || phase === 'hold';
+  const big = breathFull(phase);
   return (
     <svg viewBox="0 0 200 260" className="h-full" aria-hidden>
-      <m.g animate={{ scale: big ? 1 : 0.62 }} transition={{ duration: seconds, ease }} style={{ originX: '100px', originY: '150px' }}>
+      <m.g animate={{ scale: big ? 1 : 0.62 }} transition={moving(phase, seconds)} style={{ originX: '100px', originY: '150px' }}>
         <ellipse cx="100" cy="100" rx="70" ry="82" className="fill-kid-paint-sky" />
         <ellipse cx="74" cy="66" rx="14" ry="22" className="fill-kid-surface" opacity="0.45" />
         <path d="M92 180 L100 192 L108 180Z" className="fill-kid-paint-sky" />
@@ -128,11 +131,12 @@ function Balloon({ phase, seconds }: P) {
 }
 
 function FlowerCandle({ phase, seconds }: P) {
-  const inhaling = phase === 'in';
+  const full = breathFull(phase);
+  const blowing = phase === 'out';
   return (
     <svg viewBox="0 0 300 220" className="h-full w-full" aria-hidden>
       {/* flor */}
-      <m.g animate={{ scale: inhaling ? 1.12 : 1, opacity: inhaling ? 1 : 0.55 }} transition={{ duration: seconds, ease }} style={{ originX: '80px', originY: '110px' }}>
+      <m.g animate={{ scale: full ? 1.12 : 1, opacity: full ? 1 : 0.55 }} transition={moving(phase, seconds)} style={{ originX: '80px', originY: '110px' }}>
         <path d="M80 120 V200" className="stroke-kid-paint-leaf" strokeWidth="6" strokeLinecap="round" />
         <path d="M80 170 C60 160 54 146 56 140 C68 142 78 152 80 170Z" className="fill-kid-paint-leaf" />
         {Array.from({ length: 6 }, (_, i) => {
@@ -142,14 +146,16 @@ function FlowerCandle({ phase, seconds }: P) {
         <circle cx="80" cy="95" r="15" className="fill-kid-paint-sun" />
       </m.g>
       {/* vela */}
-      <m.g animate={{ opacity: inhaling ? 0.55 : 1 }} transition={{ duration: 0.6 }}>
+      <m.g animate={{ opacity: full ? 0.55 : 1 }} transition={{ duration: 0.6 }}>
         <rect x="200" y="110" width="36" height="90" rx="8" className="fill-kid-paint-lavender" />
         <path d="M218 110 V98" className="stroke-kid-ink" strokeWidth="3" strokeLinecap="round" />
         <m.path
           d="M218 96 C206 82 212 66 218 56 C224 66 230 82 218 96Z"
           className="fill-kid-paint-orange"
-          animate={phase === 'out' ? { skewX: [-4, -18, -10, -20, -6], scaleY: [1, 0.8, 0.9, 0.75, 0.95] } : { skewX: 0, scaleY: 1 }}
-          transition={{ duration: seconds, ease }}
+          // Al soltar el aire la llama se inclina despacio y de forma pareja, sin sacudidas:
+          // así se ve «soplar suave», como dice la consigna.
+          animate={blowing ? { skewX: -16, scaleY: 0.82 } : { skewX: 0, scaleY: 1 }}
+          transition={blowing ? { duration: seconds, ease: 'easeOut' } : { duration: 0.8, ease }}
           style={{ originX: '218px', originY: '96px' }}
         />
         <path d="M218 92 C213 85 215 78 218 73 C221 78 223 85 218 92Z" className="fill-kid-paint-sun" />
@@ -174,8 +180,9 @@ function StarTrace({ phase, seconds, cycle }: P) {
   const from = STAR[k * 2];
   const tip = STAR[k * 2 + 1];
   const to = STAR[(k * 2 + 2) % 10];
-  const target = phase === 'in' ? tip : to;
-  const start = phase === 'in' ? from : tip;
+  // Sube al tomar aire, queda en la punta al guardarlo, baja al soltarlo y espera abajo.
+  const start = phase === 'in' ? from : phase === 'rest' ? to : tip;
+  const target = phase === 'in' || phase === 'hold' ? tip : to;
   return (
     <svg viewBox="0 0 240 240" className="h-full" aria-hidden>
       <path d={`M${STAR.map((p) => `${p.x} ${p.y}`).join(' L')}Z`} className="fill-kid-tint-sun stroke-kid-paint-sun" strokeWidth="6" strokeLinejoin="round" />
@@ -185,7 +192,7 @@ function StarTrace({ phase, seconds, cycle }: P) {
         className="fill-kid-primary"
         initial={{ cx: start.x, cy: start.y }}
         animate={{ cx: target.x, cy: target.y }}
-        transition={{ duration: seconds, ease }}
+        transition={moving(phase, seconds)}
       />
     </svg>
   );
@@ -211,10 +218,10 @@ function SquareTrace({ phase, seconds }: P) {
 }
 
 function Wave({ phase, seconds }: P) {
-  const up = phase === 'in';
+  const up = breathFull(phase);
   return (
     <svg viewBox="0 0 320 240" className="h-full w-full" aria-hidden>
-      <m.g animate={{ y: up ? -40 : 30 }} transition={{ duration: seconds, ease }}>
+      <m.g animate={{ y: up ? -40 : 30 }} transition={moving(phase, seconds)}>
         <path d="M0 150 C40 120 80 120 120 150 S200 180 240 150 S300 120 320 140 V260 H0Z" className="fill-kid-paint-sky" />
         <path d="M0 175 C40 150 80 150 120 175 S200 200 240 175 S300 150 320 165 V260 H0Z" className="fill-kid-tint-sky" opacity="0.7" />
         {/* barquito */}

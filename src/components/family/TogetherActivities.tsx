@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { activitiesFor, pathProgress, pathsFor, stickersOf, type KidActivityLog, type KidProfile } from '@/domain/kids';
 import { useKidsStore } from '@/store/useKidsStore';
 import { Button } from '@/components/ui/Button';
-import { Sticker } from '@/components/kids/KidArt';
+import { ActivityIcon } from '@/components/kids/ActivityIcon';
 
 /**
  * 0 a 3 años: actividades que el adulto hace con el chico, sin pantalla para él o ella.
@@ -73,7 +73,7 @@ export function TogetherActivities({ kid, logs }: { kid: KidProfile; logs: KidAc
                 onClick={() => setOpen(expanded ? null : a.id)}
                 className="flex w-full items-center gap-4 p-4 text-left"
               >
-                <Sticker skill={a.skill} earned={n > 0} size={48} className="shrink-0" />
+                <ActivityIcon activity={a} done={n > 0} size={48} />
                 <span className="min-w-0 flex-1">
                   <span className="block font-medium text-stone-800">{a.title}</span>
                   <span className="block text-sm text-stone-600">

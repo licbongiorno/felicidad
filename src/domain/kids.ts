@@ -116,6 +116,17 @@ export interface KidStep {
   choice?: KidChoice;
 }
 
+export type BreathPhase = 'in' | 'hold' | 'out' | 'rest';
+
+/**
+ * Regla común a todos los dibujos de respiración, para que el movimiento diga lo mismo que
+ * la consigna: crece al tomar aire, queda quieto al guardarlo, baja despacio al soltarlo y
+ * descansa quieto.
+ */
+export const breathFull = (phase: BreathPhase) => phase === 'in' || phase === 'hold';
+/** Sólo se mueve al tomar y al soltar el aire; en las pausas el dibujo queda fijo. */
+export const breathMoves = (phase: BreathPhase) => phase === 'in' || phase === 'out';
+
 export type BreathShape = 'globo' | 'flor' | 'estrella' | 'cuadrado' | 'ola';
 
 interface ActivityBase {
@@ -277,7 +288,7 @@ export const KID_ACTIVITIES: KidActivity[] = [
       { text: 'Cuando las tortugas se enojan o se asustan, se meten en su caparazón.', mood: 'feliz' },
       { text: 'Primero, para. Quédate quieto como una piedra.', mood: 'sorpresa' },
       { text: 'Ahora métete en tu caparazón: cruza los brazos, baja la cabeza y cierra los ojos.', mood: 'calma' },
-      { text: 'Adentro del caparazón, respira tres veces despacio.', mood: 'calma', seconds: 15 },
+      { text: 'Adentro del caparazón, respira tres veces despacio.', mood: 'calma', seconds: 24 },
       { text: 'Piensa: ¿qué puedo hacer ahora? Puedo pedir ayuda, decir lo que siento o irme un ratito.', mood: 'piensa' },
       { text: 'Sal del caparazón cuando estés más tranquilo. ¡Lo hiciste muy bien!', mood: 'orgullo' },
     ],
@@ -442,7 +453,7 @@ export const KID_ACTIVITIES: KidActivity[] = [
         },
       },
       { text: 'Para enfriar el volcán, primero para. No hagas nada todavía.', mood: 'calma' },
-      { text: 'Respira hondo tres veces, soltando el aire como vapor que sale del volcán.', mood: 'calma', seconds: 15 },
+      { text: 'Respira hondo tres veces, soltando el aire como vapor que sale del volcán.', mood: 'calma', seconds: 24 },
       { text: 'Cuando estés más fresco, dilo con palabras: «Me enojé porque…».', mood: 'piensa' },
       { text: 'El enojo está permitido. Lastimar a otros, a ti o a las cosas, no. ¡Tú puedes enfriar tu volcán!', mood: 'orgullo' },
     ],
@@ -1358,7 +1369,7 @@ export const KID_ACTIVITIES: KidActivity[] = [
     minutes: 3,
     steps: [
       { text: 'Muchos chicos tienen miedo a la noche. Es muy común, y se puede hacer más chiquito.', mood: 'calma' },
-      { text: 'Primero, respira como el oso: lento y por la panza, tres veces.', mood: 'calma', seconds: 15 },
+      { text: 'Primero, respira como el oso: lento y por la panza, tres veces.', mood: 'calma', seconds: 24 },
       { text: 'Abraza tu peluche o tu almohada y siente que está suave y calentito.', mood: 'calma', seconds: 10 },
       { text: 'Piensa en un lugar lindo donde te gusta estar: la plaza, la playa o la casa de tus abuelos.', mood: 'feliz', seconds: 20 },
       { text: 'Dite: «Estoy seguro en mi cama. Mi familia está cerca».', mood: 'orgullo' },

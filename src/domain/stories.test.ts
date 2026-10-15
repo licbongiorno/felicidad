@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { AGE_BANDS, KID_ACTIVITY_BY_ID, KID_FEELINGS } from './kids';
 import { STORIES, STORY_THEMES, storiesFor, storyLogId, storyOfLog, themesFor } from './stories';
 import { inflesz, longestSentenceWords } from './readability';
+import { STORY_CAST } from './story-cast';
 
 const ALL_TEXT = (s: (typeof STORIES)[number]) => s.pages.map((p) => p.text).join(' ');
 const YOUNG = new Set(['0-3', '4-6']);
@@ -82,6 +83,15 @@ describe('cuentos', () => {
         expect(p.text, s.id).not.toMatch(/\w\/[ao]s?\b/);
       }
     }
+  });
+
+  it('cada cuento tiene su propio elenco ilustrado (y no sobran elencos de cuentos que no existen)', () => {
+    for (const s of STORIES) expect(STORY_CAST[s.id]?.length, s.id).toBeGreaterThan(0);
+    const ids = new Set(STORIES.map((s) => s.id));
+    for (const id of Object.keys(STORY_CAST)) expect(ids.has(id), id).toBe(true);
+    // Dos cuentos no comparten exactamente el mismo elenco.
+    const keys = STORIES.map((s) => JSON.stringify(STORY_CAST[s.id]));
+    expect(new Set(keys).size).toBe(keys.length);
   });
 
   it('las franjas de cada cuento son contiguas (no salta edades)', () => {

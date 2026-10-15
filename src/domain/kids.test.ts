@@ -94,6 +94,25 @@ describe('actividades para chicos', () => {
     for (const id of ['tipp-rapido', 'stop', 'accion-opuesta', 'pedir-y-decir-que-no', 'redes-y-yo']) expect(teen.map((a) => a.id)).toContain(id);
   });
 
+  it('los dibujos de respiración se mueven sólo al tomar y soltar el aire, y quedan quietos en las pausas', async () => {
+    const { breathFull, breathMoves } = await import('./kids');
+    expect([breathFull('in'), breathFull('hold'), breathFull('out'), breathFull('rest')]).toEqual([true, true, false, false]);
+    expect([breathMoves('in'), breathMoves('hold'), breathMoves('out'), breathMoves('rest')]).toEqual([true, false, true, false]);
+  });
+
+  it('los pasos que piden respirar despacio varias veces dan al menos 6 segundos por respiración', () => {
+    const times: Record<string, number> = { dos: 2, tres: 3, cuatro: 4, cinco: 5 };
+    for (const a of KID_ACTIVITIES)
+      if (a.kind === 'pasos' || a.kind === 'mision' || a.kind === 'juntos')
+        for (const s of a.steps) {
+          const m = s.text.match(/(despacio|lento|hondo).*\b(dos|tres|cuatro|cinco) veces|\b(dos|tres|cuatro|cinco) veces.*(despacio|lento|hondo)/i);
+          if (m && s.seconds) {
+            const n = times[(m[2] ?? m[3]).toLowerCase()];
+            expect(s.seconds / n, `${a.id}: ${s.text}`).toBeGreaterThanOrEqual(6);
+          }
+        }
+  });
+
   it('las respiraciones tienen la exhalación igual o más larga que la inhalación', () => {
     for (const a of KID_ACTIVITIES) if (a.kind === 'respirar') expect(a.exhale, a.id).toBeGreaterThanOrEqual(a.inhale);
   });
