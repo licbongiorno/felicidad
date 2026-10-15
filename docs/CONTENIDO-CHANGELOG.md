@@ -19,6 +19,21 @@ entrada en este registro.
 
 ---
 
+## 2026-10-15 · Terapias breves e integrativas, etapas de la vida, salud y trabajo; píldoras, desafíos y dibujo
+
+Todo el contenido nuevo queda en estado `pendiente` de revisión clínica.
+
+- **Paquetes de contenido** (`src/domain/packs/`): cada tema reúne prácticas, artículos, programas, píldoras, glosario y guías en un solo archivo.
+  - Terapia centrada en soluciones, terapia narrativa y entrevista motivacional.
+  - Terapia metacognitiva, focalizada en la emoción, interpersonal (TIP) y mentalización.
+  - Sueño (programa de TCC-I de 6 semanas; la ventana de sueño es de riesgo 2 con alternativa), activación conductual completa (6 semanas) y rutinas de movimiento y respiración guiadas por texto.
+  - Pareja (Gottman, con aviso de violencia), duelo profundo (Worden, proceso dual, perinatal y por mascota), embarazo y posparto, y personas mayores.
+  - Burnout, dolor crónico con ACT, psicoeducación en neurodiversidad (TDAH y autismo, sin diagnosticar) y cuatro guías nuevas para familias.
+- **Módulos nuevos del Gimnasio:** pareja, duelo, sueño, trabajo, etapas de la vida, salud y neurodiversidad.
+- **Píldoras** (`/biblioteca/pildoras`): ideas clave en 4 a 7 tarjetas, con pruebas de legibilidad y referencias.
+- **Desafíos de 7, 21 y 30 días** (`/desafios`): una tarea por día; cuenta por registro o a mano y no se reinicia al saltar días.
+- **Dibujo para chicos:** tres actividades (cómo me siento, mi lugar tranquilo, achicar el miedo). El dibujo no se guarda en la app.
+
 ## 2026-10-15 · Respiraciones coherentes con la consigna e ilustraciones propias
 
 - **Respiración (chicos):** los dibujos se mueven sólo al tomar y al soltar el aire, y quedan quietos al guardarlo y al descansar. Antes, la ola, la flor y la estrella bajaban durante «guarda el aire», y la llama de la vela se sacudía rápido al «soltar suave». Ahora la llama se inclina despacio y de forma pareja.
