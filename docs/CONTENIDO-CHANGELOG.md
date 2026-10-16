@@ -19,6 +19,15 @@ entrada en este registro.
 
 ---
 
+## 2026-10-16 · Aprobación clínica del catálogo
+
+El responsable clínico aprobó todo el contenido publicado hasta esta fecha.
+
+- Todos los elementos pasan de `pendiente` a `revisado`, con revisor y fecha (`CLINICAL_APPROVAL` en `governance.ts`).
+- Salen de borrador y se publican el plan de seguridad, el PHQ-9 (el ítem 9 sigue mostrando la ayuda antes que la puntuación), la escalera de exposición, el artículo de exposición gradual y la escalera valiente.
+- El ISI sigue en borrador por un motivo legal, no clínico: hace falta la licencia de Mapi Research Trust.
+- El contenido que se agregue después vuelve a necesitar su propia revisión: hay que marcarlo `pendiente` en `REVIEW_OVERRIDES` o revisarlo antes de publicarlo.
+
 ## 2026-10-16 · Dieciséis temas más
 
 Todos en estado `pendiente`. Se suman 16 necesidades nuevas al mapa de habilidades.
