@@ -121,3 +121,38 @@ test('tarjeta diaria DBT: la tarjeta de hoy aparece en la planilla semanal, impr
   await page.getByRole('button', { name: '← Semana anterior' }).click();
   await expect(page.getByText('No hay tarjetas esta semana.')).toBeVisible();
 });
+
+test('patrones del ánimo: muestra la asociación con su confianza y abre un experimento ya armado', async ({ page }) => {
+  await page.goto('/dashboard');
+  // Datos de demostración: 16 días de ánimo, con práctica los días de ánimo alto.
+  await page.evaluate(() => {
+    const day = (i: number) => {
+      const d = new Date();
+      d.setHours(20, 0, 0, 0);
+      d.setDate(d.getDate() - i);
+      return d;
+    };
+    const key = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    const days = Array.from({ length: 16 }, (_, i) => day(i + 1));
+    const data = {
+      sessions: days
+        .filter((_, i) => i % 2 === 0)
+        .map((d, i) => ({ id: `s${i}`, practiceId: 'atencion-respiracion', family: 'attentional', skills: ['attention'], source: 'gym', startedAt: d.toISOString(), durationSec: 600, completed: true, moodPre: null, moodPost: null })),
+      afflictions: [],
+      checkins: days.map((d, i) => ({ date: key(d), mood: i % 2 === 0 ? 8 : 5, perma: null, updatedAt: d.toISOString() })),
+      journal: [],
+      assessments: [],
+      applications: [],
+    };
+    localStorage.clear();
+    localStorage.setItem('eudaimonia-demo', JSON.stringify(data));
+  });
+  await page.goto('/dashboard');
+  await expect(page.getByText(/Los días que practicaste una habilidad, tu ánimo ese mismo día fue en promedio 3 puntos más alto/)).toBeVisible();
+  await expect(page.getByText('Confianza media').first()).toBeVisible();
+  await expect(page.getByText(/Son asociaciones, no causas/)).toBeVisible();
+  await page.getByRole('link', { name: 'Comprobarlo con un experimento' }).first().click();
+  await page.waitForURL('**/diario?**');
+  await expect(page.getByLabel('La creencia que quiero poner a prueba')).toHaveValue('Cuando hago una práctica corta, me siento mejor ese mismo día.');
+  await expect(page.getByLabel('Qué haré para comprobarla')).toHaveValue(/un día sí y otro no/);
+});

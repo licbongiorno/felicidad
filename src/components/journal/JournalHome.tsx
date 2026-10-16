@@ -24,6 +24,16 @@ export function JournalHome() {
   const initial = params.get('nuevo') as JournalType | null;
   const [view, setView] = useState<View>(initial && TEMPLATE_BY_TYPE[initial] ? { kind: 'edit', type: initial } : { kind: 'home' });
   const [direction, setDirection] = useState(1);
+  // Campos de texto propuestos por la app (p. ej. un experimento desde «Patrones»); se leen una sola vez.
+  const [prefill] = useState<Record<string, string> | undefined>(() => {
+    if (!initial || !TEMPLATE_BY_TYPE[initial]) return undefined;
+    const out: Record<string, string> = {};
+    for (const f of TEMPLATE_BY_TYPE[initial].fields) {
+      const v = params.get(f.id);
+      if (f.kind === 'text' && v) out[f.id] = v;
+    }
+    return Object.keys(out).length ? out : undefined;
+  });
   const journal = useProgressStore((s) => s.journal);
   const status = useProgressStore((s) => s.status);
 
@@ -42,6 +52,7 @@ export function JournalHome() {
         {view.kind === 'edit' ? (
           <JournalEditor
             template={TEMPLATE_BY_TYPE[view.type]}
+            initialValues={view.type === initial ? prefill : undefined}
             onCancel={() => go({ kind: 'home' }, -1)}
             onSaved={() => go({ kind: 'saved', type: view.type }, 1)}
           />
