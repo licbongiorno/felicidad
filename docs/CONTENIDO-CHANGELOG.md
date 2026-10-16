@@ -19,6 +19,42 @@ entrada en este registro.
 
 ---
 
+## 2026-10-16 · Dieciséis temas más
+
+Todos en estado `pendiente`. Se suman 16 necesidades nuevas al mapa de habilidades.
+
+**Segunda tanda**
+- **Ansiedad social** (`packs/ansiedad-social.ts`): modelo de Clark y Wells, atención hacia afuera, conductas de seguridad (riesgo 2), repaso posterior, vergüenza y hablar en público.
+- **TOC y pensamientos intrusivos** (`packs/toc-intrusivos.ts`):
+  - Psicoeducación: los intrusivos son universales, la fusión pensamiento-acción, no neutralizar.
+  - Prácticas de bajo nivel: posponer un ritual entre 2 y 5 minutos (riesgo 2) y una guía para familiares sobre la acomodación.
+  - La exposición con prevención de respuesta completa se deriva a un profesional.
+- **Conductas repetitivas centradas en el cuerpo** (`packs/conductas-repetitivas.ts`): inversión del hábito, control de estímulos y autocompasión.
+- **Autolesiones** (`packs/autolesiones.ts`):
+  - Nunca se nombran métodos, objetos ni partes del cuerpo.
+  - Incluye un plan para el momento difícil, alternativas según la función del impulso, demora del impulso (riesgo 2) y una guía para familias.
+  - Todas las prácticas preguntan por ideas de morir y derivan.
+- **Separación con hijos** (`packs/separacion-hijos.ts`): contarles, dejarlos fuera del conflicto, coparentalidad paralela y el método BIFF. Si hay violencia, nada cara a cara.
+- **Duelo perinatal e infertilidad** (`packs/duelo-perinatal.ts`): duelo no reconocido, rituales si se desea y la pareja. La interrupción del embarazo aparece sin juicio.
+- **Ecoansiedad** (`packs/ecoansiedad.ts`): se presenta como una respuesta comprensible, no como un trastorno. Afrontamiento centrado en el sentido, dosis de noticias y esperanza activa.
+- **Salud mental en varones** (`packs/varones.ts`): mandatos, depresión que no parece tristeza, pedir ayuda y violencia vista como responsabilidad, con orientación a buscar ayuda.
+
+**Tercera tanda**
+- **Duelo por suicidio** (`packs/duelo-suicidio.ts`): sigue las pautas de comunicación segura de la OMS y dice siempre «murió por suicidio». Trabaja el cuidado del propio riesgo.
+- **Desempleo** (`packs/desempleo.ts`): funciones latentes del empleo (Jahoda), estructura del día y búsqueda en lo que depende de uno.
+- **Acoso laboral** (`packs/acoso-laboral.ts`):
+  - Distinguir un conflicto del acoso y registrar los hechos.
+  - Menciona el Convenio 190 de la OIT. No es asesoramiento legal.
+- **Prevención de recaídas** (`packs/prevencion-recaidas.ts`): lapsus o recaída, firma de recaída, plan en tres colores y revisión mensual.
+- **Diagnósticos explicados** (`packs/diagnosticos.ts`): depresión y ansiedad, bipolaridad, trastorno límite y psicosis. No hay tests ni autodiagnóstico, y se explican los derechos de la Ley 26.657.
+- **TDAH en adultos** (`packs/tdah-adultos.ts`): estrategias de TCC de Safren y diagnóstico tardío. La sensibilidad al rechazo se presenta como algo descrito en la clínica, sin evidencia sólida.
+- **Perfeccionismo** (`packs/perfeccionismo.ts`): TCC de Shafran, Egan y Wade, experimentos de «suficientemente bien» y el pie de la autoestima.
+- **Enfermedad grave** (`packs/enfermedad-grave.ts`): diagnóstico, espera de resultados, miedo a la recaída, valores (ACT), cuidados paliativos y el final del tratamiento.
+
+**Otros cambios**
+- Los programas ya no invitan a escribir en plantillas ocultas del diario, como el plan de seguridad en borrador. Una prueba lo impide.
+- Pendiente: verificar todas las referencias nuevas con `npm run verify:refs`.
+
 ## 2026-10-16 · Trauma, fobias y ansiedad por la salud, apuestas, medicación, acoso escolar, cuidadores, sexualidad y espiritualidad
 
 Ocho paquetes nuevos, todos en estado `pendiente`. Se suman cinco necesidades nuevas al mapa de habilidades: trauma, cuidadores, vida sexual, acoso escolar y medicación. Fobias, apuestas y espiritualidad se agregan a necesidades que ya existían.
