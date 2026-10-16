@@ -1,4 +1,5 @@
 import { DEMO_MODE } from '@/lib/demo';
+import approved from './approved.json';
 
 /**
  * Gobernanza clínica del contenido (ficha de revisión por elemento).
@@ -12,8 +13,9 @@ import { DEMO_MODE } from '@/lib/demo';
  * - evidenceCheckedAt: fecha de la última verificación de referencias (npm run verify:refs).
  *   Un test falla si pasan más de 12 meses (E3): obliga a revisar la evidencia cada año.
  *
- * Para aprobar un elemento: cambiar su status a 'revisado' y completar reviewedBy/reviewedAt
- * en REVIEW_OVERRIDES, y anotar el cambio en docs/CONTENIDO-CHANGELOG.md.
+ * Para aprobar elementos: `APPROVE_KEYS=practica:x,articulo:y npm run approve` (o sin
+ * APPROVE_KEYS para aprobar todo lo pendiente) y anotarlo en docs/CONTENIDO-CHANGELOG.md.
+ * Para revocar: `APPROVE_MODE=revoke APPROVE_KEYS=... npm run approve`.
  */
 
 export type ReviewStatus = 'borrador' | 'pendiente' | 'revisado';
@@ -32,10 +34,17 @@ export interface ReviewRecord {
 /** Última verificación completa de referencias contra Crossref (72/72 DOI correctos). */
 export const EVIDENCE_LAST_CHECKED = '2026-10-13';
 
-/** Aprobación clínica general del catálogo, dada por el responsable clínico. */
-export const CLINICAL_APPROVAL = { reviewedBy: 'Responsable clínico (licbongiorno)', reviewedAt: '2026-10-16' } as const;
+/** Quién firma las aprobaciones clínicas. */
+export const CLINICAL_REVIEWER = 'Responsable clínico (licbongiorno)';
 
-const DEFAULT_RECORD: ReviewRecord = { version: 1, status: 'revisado', evidenceCheckedAt: EVIDENCE_LAST_CHECKED, ...CLINICAL_APPROVAL };
+/**
+ * Elementos aprobados, con la huella de su contenido y la fecha (approved.json). Lo que no
+ * está en la lista —contenido nuevo— queda `pendiente`. Si un elemento aprobado cambia, un
+ * test lo detecta y obliga a volver a aprobarlo o a revocar la aprobación (npm run approve).
+ */
+export const APPROVED: Record<string, { hash: string; at: string }> = approved;
+
+const DEFAULT_RECORD: ReviewRecord = { version: 1, status: 'pendiente', evidenceCheckedAt: EVIDENCE_LAST_CHECKED };
 
 /** Excepciones a la ficha por defecto. Clave: `${tipo}:${id}`. */
 export const REVIEW_OVERRIDES: Record<string, Partial<ReviewRecord>> = {
@@ -44,7 +53,10 @@ export const REVIEW_OVERRIDES: Record<string, Partial<ReviewRecord>> = {
 };
 
 export function reviewOf(kind: ContentKind, id: string): ReviewRecord {
-  return { ...DEFAULT_RECORD, ...REVIEW_OVERRIDES[`${kind}:${id}`] };
+  const key = `${kind}:${id}`;
+  const ok = APPROVED[key];
+  const base: ReviewRecord = ok ? { ...DEFAULT_RECORD, status: 'revisado', reviewedBy: CLINICAL_REVIEWER, reviewedAt: ok.at } : DEFAULT_RECORD;
+  return { ...base, ...REVIEW_OVERRIDES[key] };
 }
 
 /** Los borradores sólo se muestran en modo demo o con NEXT_PUBLIC_SHOW_DRAFTS=true. */

@@ -16,7 +16,8 @@
     "test:rules": "npx -y firebase-tools@13 emulators:exec --only firestore --project demo-eudaimonia \"vitest run --config vitest.rules.config.ts\"",
     "test:e2e": "playwright test",
     "check": "npm run typecheck && npm run lint && npm run test",
-    "verify:refs": "node scripts/verify-references.mjs src/domain referencias-informe.json"
+    "verify:refs": "node scripts/verify-references.mjs src/domain referencias-informe.json",
+    "approve": "APPROVE_CONTENT=1 vitest run src/domain/approval.test.ts"
   },
   "dependencies": {
     "firebase": "^11.1.0",

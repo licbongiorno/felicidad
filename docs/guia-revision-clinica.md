@@ -8,7 +8,9 @@ Todo el contenido de la app está en estado `pendiente`, o en `borrador` si nece
 2. **Filtrar por prioridad.** El panel tiene filtros de prioridad y ordena primero lo más sensible. Cada elemento dice por qué tiene esa prioridad.
 3. **Leer como lo verá un paciente.** El título abre el contenido en otra pestaña, tal como se muestra en la app.
 4. **Decidir.** Para cada elemento, «Aprobar» o «Pedir cambios», con un comentario. Las decisiones se guardan en el dispositivo hasta que las copias.
-5. **Enviar.** «Copiar decisiones» arma un texto listo para pasar. Con ese texto se actualiza `REVIEW_OVERRIDES` en `src/domain/governance.ts`, se corrige lo pedido y se registra en `docs/CONTENIDO-CHANGELOG.md`.
+5. **Enviar.** «Copiar decisiones» arma un texto listo para pasar. Con ese texto se corrige lo pedido, se aprueba lo aprobado con `APPROVE_KEYS=<claves> npm run approve` y se registra en `docs/CONTENIDO-CHANGELOG.md`.
+
+La aprobación queda atada al texto exacto de cada elemento (`src/domain/approved.json`). El contenido nuevo aparece como pendiente. Si se edita algo ya aprobado, las pruebas fallan hasta que se vuelva a aprobar o se revoque con `APPROVE_MODE=revoke APPROVE_KEYS=<claves> npm run approve`. Así nada llega a los usuarios como «revisado» sin que lo hayas visto.
 
 No hace falta hacerlo todo de una vez. Se puede ir por bloques y enviar las decisiones de cada bloque.
 

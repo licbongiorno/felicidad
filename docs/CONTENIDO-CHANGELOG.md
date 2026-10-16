@@ -19,6 +19,12 @@ entrada en este registro.
 
 ---
 
+## 2026-10-16 · La aprobación queda atada al contenido aprobado
+
+- `src/domain/approved.json` guarda, para cada uno de los 789 elementos aprobados hoy, una huella de su contenido y la fecha.
+- Lo que no está en la lista queda `pendiente`. Si un elemento aprobado cambia, `approval.test.ts` falla hasta que se vuelva a aprobar (`npm run approve`) o se revoque.
+- El ISI sigue fuera de la lista.
+
 ## 2026-10-16 · Aprobación clínica del catálogo
 
 El responsable clínico aprobó todo el contenido publicado hasta esta fecha.
