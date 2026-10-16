@@ -229,7 +229,7 @@ export interface JournalEntry {
   tz?: string | null;
 }
 
-export type InstrumentId = 'who5' | 'gad7' | 'phq9' | 'ders16' | 'isi' | 'pss10';
+export type InstrumentId = 'who5' | 'gad7' | 'phq9' | 'ders16' | 'isi' | 'pss10' | 'swls' | 'auditc';
 
 export interface Assessment {
   id: string;

@@ -52,7 +52,14 @@ service cloud.firestore {
         || (d.instrument == 'pss10' && d.items.size() == 10
           && i(d, 0, 4) && i(d, 1, 4) && i(d, 2, 4) && i(d, 3, 4) && i(d, 4, 4) && i(d, 5, 4) && i(d, 6, 4) && i(d, 7, 4) && i(d, 8, 4) && i(d, 9, 4)
           && d.score == d.items[0] + d.items[1] + d.items[2] + (4 - d.items[3]) + (4 - d.items[4]) + d.items[5]
-             + (4 - d.items[6]) + (4 - d.items[7]) + d.items[8] + d.items[9]);
+             + (4 - d.items[6]) + (4 - d.items[7]) + d.items[8] + d.items[9])
+        // SWLS: respuestas de 1 a 7.
+        || (d.instrument == 'swls' && d.items.size() == 5
+          && inRange(d.items[0], 1, 7) && inRange(d.items[1], 1, 7) && inRange(d.items[2], 1, 7) && inRange(d.items[3], 1, 7) && inRange(d.items[4], 1, 7)
+          && d.score == d.items[0] + d.items[1] + d.items[2] + d.items[3] + d.items[4])
+        || (d.instrument == 'auditc' && d.items.size() == 3
+          && i(d, 0, 4) && i(d, 1, 4) && i(d, 2, 4)
+          && d.score == d.items[0] + d.items[1] + d.items[2]);
     }
 
     function validJournalValues(type, v) {

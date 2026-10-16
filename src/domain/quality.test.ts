@@ -272,6 +272,15 @@ describe('instrumentos', () => {
     expect(pss.score([0, 0, 0, 4, 4, 0, 4, 4, 0, 0])).toBe(0);
   });
 
+  it('SWLS va de 5 a 35 y AUDIT-C de 0 a 12, con sus franjas', () => {
+    const swls = INSTRUMENTS.find((i) => i.id === 'swls')!;
+    expect(swls.score([1, 1, 1, 1, 1])).toBe(5);
+    expect([14, 15, 20, 21, 25, 26].map((s) => swls.interpret(s).band)).toEqual(['insatisfecho', 'algo-insatisfecho', 'algo-insatisfecho', 'algo-satisfecho', 'algo-satisfecho', 'satisfecho']);
+    const audit = INSTRUMENTS.find((i) => i.id === 'auditc')!;
+    expect([2, 3, 7, 8].map((s) => audit.interpret(s).band)).toEqual(['bajo', 'riesgo', 'riesgo', 'alto']);
+    expect(audit.interpret(9).body).toMatch(/no dejes de golpe/);
+  });
+
   it('el ISI sigue los puntos de corte de Morin et al. (2011)', () => {
     const isi = INSTRUMENTS.find((i) => i.id === 'isi')!;
     expect([7, 8, 14, 15, 21, 22].map((s) => isi.interpret(s).band)).toEqual(['sin-insomnio', 'subumbral', 'subumbral', 'moderado', 'moderado', 'grave']);
