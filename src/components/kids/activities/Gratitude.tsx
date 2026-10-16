@@ -66,7 +66,7 @@ export function Gratitude({ activity, onFinish }: { activity: GratitudeActivity;
         </label>
       )}
       <p className="mt-3 max-w-xl text-base text-kid-soft">
-        {isTeen(kid.band) ? 'Tu adulto no ve en la app lo que escribes aquí, pero queda guardado en su cuenta.' : 'Lo que guardes lo puede ver tu adulto.'}
+        {isTeen(kid.band) ? 'Tu adulto no ve esto en los resúmenes de la app, pero queda guardado en su cuenta: puede verlo, por ejemplo, si descarga sus datos.' : 'Lo que guardes lo puede ver tu adulto.'}
       </p>
       <button type="button" disabled={!note} onClick={() => onFinish({ note: note.slice(0, KID_NOTE_MAX) })} className={kidButton('primary', 'mt-5 min-w-44')}>
         Guardar en el frasco

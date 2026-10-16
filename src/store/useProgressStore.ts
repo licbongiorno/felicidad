@@ -5,7 +5,8 @@ import type { FirestoreError, Unsubscribe } from 'firebase/firestore';
 import type * as FirestoreRepo from '@/lib/firebase/repositories';
 import { DEMO_MODE } from '@/lib/demo';
 import { daysAgo, toDateKey } from '@/domain/metrics';
-import { EMPTY_PERSONAL, type AfflictionLog, type Application, type Assessment, type DailyCheckin, type JournalEntry, type PersonalSettings, type SessionRecord } from '@/domain/types';
+import { mergeLegacyProgress, takeLegacyProgress } from '@/lib/localData';
+import { EMPTY_PERSONAL,type AfflictionLog, type Application, type Assessment, type DailyCheckin, type JournalEntry, type PersonalSettings, type SessionRecord } from '@/domain/types';
 import { DBT_JOURNAL_TYPES, DBT_PRACTICE_IDS, type LifetimeCounts } from '@/domain/growth';
 
 /**
@@ -159,7 +160,15 @@ export const useProgressStore = create<ProgressState>()((set, get) => {
           const loaded = new Set<string>();
           const markLoaded = (source: string) => {
             loaded.add(source);
-            if (loaded.size === SOURCES && get().status === 'loading') set({ status: 'ready' });
+            if (loaded.size === SOURCES && get().status === 'loading') {
+              set({ status: 'ready' });
+              // Una sola vez: lo que versiones anteriores guardaban sólo en este dispositivo pasa a la cuenta.
+              const legacy = typeof window === 'undefined' ? null : takeLegacyProgress(uid);
+              if (legacy) {
+                const patch = mergeLegacyProgress(get().personal, legacy);
+                if (Object.keys(patch).length > 0) get().updatePersonal(patch);
+              }
+            }
           };
           const onError = (e: FirestoreError) => set({ status: 'error', syncError: describe(e) });
 

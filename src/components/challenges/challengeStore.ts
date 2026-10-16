@@ -1,36 +1,17 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback } from 'react';
 import type { ChallengeState } from '@/domain/challenges';
+import { useProgressStore } from '@/store/useProgressStore';
 
-/** Desafíos activos en este dispositivo (inicio y días marcados a mano). */
-const KEY = 'desafios';
-
-function load(): Record<string, ChallengeState> {
-  try {
-    return JSON.parse(localStorage.getItem(KEY) ?? '{}') as Record<string, ChallengeState>;
-  } catch {
-    return {};
-  }
-}
-
+/** Desafíos activos (inicio y días marcados a mano), sincronizados con la cuenta. */
 export function useChallenges() {
-  const [all, setAll] = useState<Record<string, ChallengeState>>({});
-  const [ready, setReady] = useState(false);
-  useEffect(() => {
-    setAll(load());
-    setReady(true);
-  }, []);
+  const all = useProgressStore((s) => s.personal.challenges) as Record<string, ChallengeState>;
+  const ready = useProgressStore((s) => s.status === 'ready');
   const save = useCallback((fn: (prev: Record<string, ChallengeState>) => Record<string, ChallengeState>) => {
-    setAll((prev) => {
-      const next = fn(prev);
-      try {
-        localStorage.setItem(KEY, JSON.stringify(next));
-      } catch {
-        // sin almacenamiento: el estado vive sólo en esta pestaña
-      }
-      return next;
-    });
+    const { status, personal, updatePersonal } = useProgressStore.getState();
+    if (status !== 'ready') return; // antes de cargar se pisarían los desafíos guardados
+    updatePersonal({ challenges: fn(personal.challenges) });
   }, []);
   return { all, ready, save };
 }

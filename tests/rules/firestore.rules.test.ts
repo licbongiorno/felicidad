@@ -154,6 +154,15 @@ describe('preferencias personales', () => {
     await assertFails(setDoc(doc(alice(), 'users/alice/settings/personal'), personal({ extra: true })));
     await assertFails(setDoc(doc(alice(), 'users/bob/settings/personal'), personal({ goals: [] })));
   });
+
+  it('sincroniza píldoras leídas, desafíos e hitos con límites', async () => {
+    const ref = doc(alice(), 'users/alice/settings/personal');
+    await assertSucceeds(setDoc(ref, personal({ pillsRead: ['p1'], challenges: { 'siete-dias': { start: '2026-10-16', manual: [] } }, milestones: ['primera-practica'] }), { merge: true }));
+    await assertFails(setDoc(ref, personal({ pillsRead: Array.from({ length: 401 }, (_, i) => `p${i}`) }), { merge: true }));
+    await assertFails(setDoc(ref, personal({ milestones: Array.from({ length: 61 }, (_, i) => `h${i}`) }), { merge: true }));
+    await assertFails(setDoc(ref, personal({ challenges: Object.fromEntries(Array.from({ length: 21 }, (_, i) => [`d${i}`, { start: '2026-10-16', manual: [] }])) }), { merge: true }));
+    await assertFails(setDoc(ref, personal({ challenges: ['no-es-un-mapa'] }), { merge: true }));
+  });
 });
 
 describe('aplicaciones en la vida cotidiana', () => {

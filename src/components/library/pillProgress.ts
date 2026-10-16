@@ -1,22 +1,15 @@
 'use client';
 
-/** Píldoras ya leídas en este dispositivo (sólo una comodidad visual; no es un dato clínico). */
-const KEY = 'pildoras-leidas';
+import { useProgressStore } from '@/store/useProgressStore';
 
-export function readPills(): Set<string> {
-  try {
-    return new Set(JSON.parse(localStorage.getItem(KEY) ?? '[]') as string[]);
-  } catch {
-    return new Set();
-  }
+/** Píldoras leídas hasta el final (sólo una comodidad visual). Se sincronizan con la cuenta. */
+export function markPillRead(id: string): void {
+  const { status, personal, updatePersonal } = useProgressStore.getState();
+  // Antes de cargar la cuenta no se escribe: se pisaría la lista guardada.
+  if (status !== 'ready' || personal.pillsRead.includes(id)) return;
+  updatePersonal({ pillsRead: [...personal.pillsRead, id] });
 }
 
-export function markPillRead(id: string): void {
-  try {
-    const s = readPills();
-    s.add(id);
-    localStorage.setItem(KEY, JSON.stringify([...s]));
-  } catch {
-    // sin almacenamiento disponible: no pasa nada
-  }
+export function usePillRead(id: string): boolean {
+  return useProgressStore((s) => s.personal.pillsRead.includes(id));
 }
