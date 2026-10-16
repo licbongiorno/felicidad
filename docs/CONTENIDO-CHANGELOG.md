@@ -19,6 +19,22 @@ entrada en este registro.
 
 ---
 
+## 2026-10-16 · Terapia de esquemas, psicología de Jung y genograma
+
+- **Paquete «Terapia de esquemas»** (`packs/esquemas.ts`), en estado `pendiente`:
+  - Seis prácticas: reconocer el modo, las tres formas de afrontar, la tarjeta del esquema, diálogo con el crítico (riesgo 2), cuidar a la parte vulnerable (riesgo 2, sin trabajar recuerdos) y dar lugar al niño feliz.
+  - Dos artículos, el programa «Salir del patrón» (4 semanas), cinco píldoras y siete términos del glosario.
+  - La reescritura de imágenes sólo se describe: no se automatiza.
+- **Mapa de esquemas y modos** (`/laboratorio/esquemas`, `src/domain/schemas.ts`): los 18 esquemas en cinco dominios y diez modos. No es un test ni da puntaje. No se usa el cuestionario de Young (YSQ), que tiene licencia y no está pensado para autodiagnóstico. Lo que se marca queda sólo en el dispositivo.
+- **Paquete «Psicología de Jung»** (`packs/jung.ts`), en estado `pendiente`:
+  - Ocho prácticas: proyección, complejos, tipos psicológicos sin MBTI, trabajar un sueño, imaginación activa breve (riesgo 2, excluida con antecedentes de psicosis o disociación), mandala en papel, figuras de la propia historia y la segunda mitad de la vida.
+  - Dos artículos, el programa «Encuentro con la sombra», seis píldoras y nueve términos del glosario.
+  - Cada ficha aclara que la evidencia empírica es escasa. Se cita evidencia afín cuando existe: Hill sobre sueños, Baumeister sobre proyección, Curry y Kasser sobre mandalas. No se usan citas atribuidas a Jung sin fuente.
+- **Paquete «Familia y sistema»** (`packs/sistemica.ts`), con el enfoque nuevo `sistemica`: genograma, mandatos familiares, lealtades invisibles (riesgo 1, con aviso) y diferenciación de Bowen. Incluye un artículo, el programa «Mi familia y yo», tres píldoras y cinco términos del glosario. Advierte que las «constelaciones familiares» no tienen evidencia.
+- **Genograma interactivo** (`/laboratorio/genograma`, `src/domain/genogram.ts`): tres generaciones, temas por persona, vínculos contigo y separaciones. Muestra los temas que se repiten en dos o más generaciones, con una pregunta, y siempre aclara que repetir no es destino. Por tener datos sensibles de terceros, se guarda sólo en el dispositivo (claves `genograma` y `esquemas-resuenan`), que se borra al cerrar sesión. Se puede imprimir o descargar en SVG.
+- **Diario:** tres plantillas nuevas, «Diario de esquemas» (riesgo 2), «Tarjeta del esquema» y «Diario de sueños». Las reglas de Firestore las validan, así que **hay que volver a publicar `firestore.rules`**.
+- **Pendiente de revisión:** todos los DOI nuevos se verifican con `npm run verify:refs` cuando haya red.
+
 ## 2026-10-16 · Tarjeta DBT semanal, patrones del ánimo, confianza por habilidad y temas de vida cotidiana
 
 - **Tarjeta diaria DBT, vista semanal** (`/diario/tarjeta-semanal`): planilla de siete días con las tarjetas del diario, imprimible y en CSV. No guarda datos nuevos.

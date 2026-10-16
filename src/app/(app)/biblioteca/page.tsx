@@ -18,6 +18,7 @@ const CATEGORY_ORDER: ArticleCategory[] = [
   'Hábitos y cuerpo',
   'Relaciones',
   'Terapias breves e integrativas',
+  'Autoconocimiento y patrones',
   'Etapas de la vida',
   'Salud y trabajo',
   'Uso responsable',

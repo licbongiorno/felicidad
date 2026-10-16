@@ -60,8 +60,9 @@ export const NEEDS: Need[] = [
     title: 'Tratarme con más amabilidad',
     description: 'Cuando la voz interna es dura y te exige sin descanso.',
     objective: 'Reconocer la autocrítica y practicar una forma de hablarte que acompañe en vez de castigar.',
-    practices: ['mano-en-el-pecho', 'pausa-autocompasion', 'ritmo-calmante', 'yo-compasivo', 'tonglen'],
+    practices: ['mano-en-el-pecho', 'pausa-autocompasion', 'ritmo-calmante', 'yo-compasivo', 'dialogo-con-el-critico', 'cuidar-a-la-parte-vulnerable', 'tonglen'],
     programs: ['autocompasion', 'compasion'],
+    pills: ['pildora-critico-interno'],
   },
   {
     id: 'relaciones',
@@ -128,9 +129,9 @@ export const NEEDS: Need[] = [
     title: 'Comprender mis patrones',
     description: 'Lo que se repite en tus reacciones y vínculos.',
     objective: 'Reconocer patrones personales y formular hipótesis prudentes sobre ellos, sin diagnosticarte.',
-    practices: ['darse-cuenta', 'linea-de-vida', 'externalizar-el-problema', 'adulto-sano', 'polaridades', 'persona-y-sombra'],
-    programs: ['conocerme'],
-    pills: ['pildora-externalizar'],
+    practices: ['darse-cuenta', 'linea-de-vida', 'externalizar-el-problema', 'tres-formas-de-afrontar', 'reconocer-el-modo', 'adulto-sano', 'mi-genograma', 'mandatos-familiares', 'botones-que-se-aprietan', 'lo-que-me-irrita-del-otro', 'polaridades', 'persona-y-sombra'],
+    programs: ['conocerme', 'salir-del-patron', 'encuentro-con-la-sombra', 'mi-familia-y-yo'],
+    pills: ['pildora-externalizar', 'pildora-que-es-un-esquema', 'pildora-modos', 'pildora-sombra', 'pildora-genograma'],
   },
   {
     id: 'incertidumbre',

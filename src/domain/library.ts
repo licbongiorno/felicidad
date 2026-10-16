@@ -23,6 +23,7 @@ export type ArticleCategory =
   | 'Terapias breves e integrativas'
   | 'Etapas de la vida'
   | 'Salud y trabajo'
+  | 'Autoconocimiento y patrones'
   | 'Uso responsable';
 
 export interface Article {

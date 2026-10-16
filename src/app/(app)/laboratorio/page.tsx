@@ -27,6 +27,18 @@ const TOOLS = [
     body: 'Un juego breve para separar lo que pasó de lo que la mente agrega. La base de comprobar los hechos.',
     tag: 'DBT · TCC',
   },
+  {
+    href: '/laboratorio/esquemas',
+    title: 'Mapa de esquemas y modos',
+    body: 'Los 18 esquemas de Jeffrey Young y las partes que se turnan dentro tuyo. Marca los que te resuenan, sin puntajes ni diagnósticos.',
+    tag: 'Terapia de esquemas',
+  },
+  {
+    href: '/laboratorio/genograma',
+    title: 'Tu genograma',
+    body: 'Dibuja tu familia en tres generaciones y mira qué se repite: dificultades y también fortalezas. Queda sólo en tu dispositivo.',
+    tag: 'Sistémica · familia',
+  },
 ];
 
 export default function LabPage() {
