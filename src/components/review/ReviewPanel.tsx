@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { m } from 'motion/react';
 import { useEffect, useMemo, useState } from 'react';
 import { REVIEW_LABEL, type ContentKind } from '@/domain/governance';
-import { exportDecisions, KIND_LABEL, reviewQueue, type Decision, type ReviewDecision } from '@/domain/reviewQueue';
+import { exportDecisions, KIND_LABEL, PRIORITY_LABEL, reviewQueue, type Decision, type Priority, type ReviewDecision } from '@/domain/reviewQueue';
 import { DEMO_MODE } from '@/lib/demo';
 import { useAuth } from '@/providers/AuthProvider';
 import { fadeUp, stagger } from '@/lib/motion';
@@ -39,6 +39,7 @@ export function ReviewPanel() {
   const items = useMemo(() => reviewQueue(), []);
   const [decisions, setDecisions] = useState<Record<string, ReviewDecision>>({});
   const [kind, setKind] = useState<ContentKind | 'pendientes'>('pendientes');
+  const [prio, setPrio] = useState<Priority | 0>(0);
   const [copied, setCopied] = useState(false);
   useEffect(() => setDecisions(load()), []);
 
@@ -64,7 +65,12 @@ export function ReviewPanel() {
   const comment = (key: string, text: string) =>
     persist({ ...decisions, [key]: { decision: decisions[key]?.decision ?? 'cambios', comment: text.slice(0, 500), at: new Date().toISOString() } });
 
-  const visible = items.filter((i) => (kind === 'pendientes' ? i.record.status !== 'revisado' : i.kind === kind));
+  // Lo más sensible primero; dentro de cada prioridad, el orden del catálogo.
+  const visible = items
+    .filter((i) => (kind === 'pendientes' ? i.record.status !== 'revisado' : i.kind === kind))
+    .filter((i) => !prio || i.priority === prio)
+    .sort((a, b) => a.priority - b.priority);
+  const countBy = (p: Priority) => items.filter((i) => i.priority === p && i.record.status !== 'revisado').length;
   const total = items.filter((i) => i.record.status !== 'revisado').length;
   const done = Object.keys(decisions).length;
 
@@ -116,6 +122,24 @@ export function ReviewPanel() {
         ))}
       </m.div>
 
+      <m.div variants={fadeUp} className="mt-4 flex flex-wrap items-center gap-1.5" role="group" aria-label="Prioridad">
+        {([0, 1, 2, 3] as const).map((p) => (
+          <button
+            key={p}
+            type="button"
+            aria-pressed={prio === p}
+            onClick={() => setPrio(p)}
+            className={`rounded-full px-3.5 py-1.5 text-sm ring-1 ring-inset ${prio === p ? 'bg-stone-800 text-stone-50 ring-stone-800' : 'bg-white text-stone-600 ring-stone-200 hover:text-stone-800'}`}
+          >
+            {p === 0 ? 'Todas las prioridades' : `${PRIORITY_LABEL[p]} (${countBy(p)})`}
+          </button>
+        ))}
+      </m.div>
+      <p className="mt-3 text-sm text-stone-500">
+        Empieza por la prioridad 1: crisis, autolesiones, duelo por suicidio, trauma, medicación, diagnósticos y apuestas. La guía con qué mirar en
+        cada nivel está en docs/guia-revision-clinica.md.
+      </p>
+
       <ul className="mt-6 space-y-3">
         {visible.map((i) => {
           const d = decisions[i.key];
@@ -125,6 +149,9 @@ export function ReviewPanel() {
                 <div className="min-w-0">
                   <p className="text-xs uppercase tracking-[0.14em] text-stone-500">
                     {KIND_LABEL[i.kind]} · v{i.record.version} · {REVIEW_LABEL[i.record.status]}
+                  </p>
+                  <p className={`mt-1 text-xs font-medium ${i.priority === 1 ? 'text-stone-800' : 'text-stone-600'}`}>
+                    {PRIORITY_LABEL[i.priority]} · {i.reason}
                   </p>
                   <Link href={i.href} target="_blank" className="mt-1 block font-serif text-xl text-stone-800 underline decoration-stone-300 underline-offset-4 hover:decoration-sage-600">
                     {i.title}

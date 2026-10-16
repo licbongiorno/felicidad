@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { exportDecisions, reviewQueue } from './reviewQueue';
+import { exportDecisions, reviewPriority, reviewQueue } from './reviewQueue';
 
 describe('cola de revisión clínica', () => {
   it('incluye todo el contenido una sola vez, con enlace', () => {
@@ -8,6 +8,19 @@ describe('cola de revisión clínica', () => {
     expect(items.some((i) => i.key === 'herramienta:plan-seguridad')).toBe(true);
     expect(items.some((i) => i.key === 'instrumento:phq9')).toBe(true);
     for (const i of items) expect(i.href.startsWith('/'), i.key).toBe(true);
+  });
+
+  it('ordena por riesgo: crisis y temas críticos primero', () => {
+    const items = reviewQueue();
+    const p = (key: string) => items.find((i) => i.key === key)!.priority;
+    expect(p('herramienta:plan-seguridad')).toBe(1);
+    expect(p('instrumento:phq9')).toBe(1);
+    expect(p('practica:plan-para-el-momento-dificil')).toBe(1);
+    expect(p('articulo:duelo-por-suicidio')).toBe(1);
+    expect(p('practica:tonglen')).toBe(2); // riesgo 2
+    expect(p('practica:tres-cosas-buenas')).toBe(3);
+    expect(reviewPriority('guia-familia', 'cualquiera').priority).toBe(2);
+    for (const i of items) expect(i.reason.trim(), i.key).toMatch(/\.$/);
   });
 
   it('exporta las decisiones agrupadas y con comentario', () => {
