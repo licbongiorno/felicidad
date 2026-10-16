@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-Genera las ilustraciones de los cuentos con la Inference API de Hugging Face
-(Stable Diffusion XL) y sobrescribe public/cuentos/<id>.webp.
+Genera las ilustraciones de los cuentos con Hugging Face Inference Providers (por defecto
+FLUX.1-schnell, con el proveedor que elija el router) y sobrescribe public/cuentos/<id>.webp.
+HF_MODEL y HF_PROVIDER permiten cambiar de modelo o de proveedor.
 
-Usa los prompts de docs/PROMPTS-ILUSTRACIONES.md, compactados para SDXL (su codificador
-de texto lee unas 75 palabras): escena principal + estilo según la edad del lector +
-paleta + calidad. El prompt negativo va aparte. Al terminar actualiza
+Usa los prompts de docs/PROMPTS-ILUSTRACIONES.md, compactados (unas 75 palabras): escena
+principal + estilo según la edad del lector + paleta + calidad. Al terminar actualiza
 src/domain/story-art.ts, así la web muestra las imágenes sin tocar el código.
 
 El token NUNCA va en el código: se lee de la variable de entorno HF_TOKEN.
@@ -16,19 +16,17 @@ El token NUNCA va en el código: se lee de la variable de entorno HF_TOKEN.
   python3 scripts/generate_story_images_hf.py --only pez-burbuja,el-faro
   python3 scripts/generate_story_images_hf.py --dry-run     # sólo ver los prompts
 
-Requiere Python 3.9+ y Pillow (pip install pillow).
+Requiere Python 3.9+, Pillow y huggingface_hub (pip install pillow huggingface_hub).
 """
 
 from __future__ import annotations
 
 import argparse
-import json
+import io
 import os
 import re
 import sys
 import time
-import urllib.error
-import urllib.request
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -37,7 +35,7 @@ from generate_story_images import OUT_DIR, ROOT, parse_prompts, save_webp, seed_
 # SDXL dejó de estar disponible en hf-inference (HTTP 410). FLUX.1-schnell sí lo está y genera en
 # 4 pasos; se puede probar otro modelo con la variable HF_MODEL sin tocar el código.
 MODEL = os.environ.get("HF_MODEL") or "black-forest-labs/FLUX.1-schnell"
-ENDPOINT = f"https://router.huggingface.co/hf-inference/models/{MODEL}"
+PROVIDER = os.environ.get("HF_PROVIDER") or "auto"
 IS_FLUX = "flux" in MODEL.lower()
 WIDTH, HEIGHT = 1344, 768  # cercano a 16:9 y múltiplo de 16; luego se lleva a 1600×900
 
@@ -72,47 +70,43 @@ def compact_prompt(age: str, block: str, max_words: int = 72) -> str:
 
 
 def fetch(token: str, prompt: str, seed: int, retries: int = 5) -> bytes:
-    body = json.dumps(
-        {
-            "inputs": prompt,
-            # FLUX.1-schnell no usa prompt negativo ni guía: está destilado para 4 pasos.
-            "parameters": (
-                {"width": WIDTH, "height": HEIGHT, "num_inference_steps": 4, "seed": seed}
-                if IS_FLUX
-                else {"negative_prompt": NEGATIVE, "width": WIDTH, "height": HEIGHT, "num_inference_steps": 30, "guidance_scale": 7.0, "seed": seed}
-            ),
-        }
-    ).encode()
+    """Pide la imagen con huggingface_hub, que elige un proveedor disponible para el modelo.
+
+    hf-inference dejó de servir SDXL y FLUX (HTTP 410); con provider="auto" el router usa otro
+    proveedor asociado (Together, fal, Nebius…) con los créditos de la cuenta.
+    """
+    from huggingface_hub import InferenceClient  # import tardío: --dry-run no lo necesita
+    from huggingface_hub.errors import HfHubHTTPError
+
+    client = InferenceClient(provider=PROVIDER, api_key=token, timeout=300)
+    params = {"width": WIDTH, "height": HEIGHT, "seed": seed}
+    params |= {"num_inference_steps": 4} if IS_FLUX else {"negative_prompt": NEGATIVE, "num_inference_steps": 30, "guidance_scale": 7.0}
     delay = 10
     for attempt in range(1, retries + 1):
-        req = urllib.request.Request(
-            ENDPOINT,
-            data=body,
-            method="POST",
-            headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json", "Accept": "image/png", "x-wait-for-model": "true"},
-        )
         try:
-            with urllib.request.urlopen(req, timeout=300) as res:
-                data = res.read()
-                if not res.headers.get("Content-Type", "").startswith("image/"):
-                    raise RuntimeError(f"respuesta no es imagen: {data[:200]!r}")
-                return data
-        except urllib.error.HTTPError as e:
-            detail = e.read()[:300].decode("utf-8", "replace")
-            # 503: el modelo se está cargando; 429: límite de pedidos. Se reintenta.
-            if e.code in (429, 500, 502, 503, 504) and attempt < retries:
-                print(f"    HTTP {e.code} ({detail.strip()[:120]}); reintento en {delay} s", flush=True)
+            img = client.text_to_image(prompt, model=MODEL, **params)
+            buf = io.BytesIO()
+            img.save(buf, format="PNG")
+            return buf.getvalue()
+        except HfHubHTTPError as e:
+            code = e.response.status_code if e.response is not None else 0
+            detail = str(e)[:300]
+            if code in (429, 500, 502, 503, 504) and attempt < retries:
+                print(f"    HTTP {code}; reintento en {delay} s", flush=True)
                 time.sleep(delay)
                 delay *= 2
                 continue
-            if e.code in (404, 410):
-                print(f"El modelo {MODEL} no está disponible (HTTP {e.code}). Prueba otro con HF_MODEL. Detalle: {detail}", file=sys.stderr)
-                sys.exit(3)  # error de configuración: no tiene sentido seguir con el resto
-            if e.code in (401, 403):
-                print(f"Token rechazado (HTTP {e.code}). Revisa HF_TOKEN. Detalle: {detail}", file=sys.stderr)
-                sys.exit(3)  # error de configuración: no se sigue con el resto
-            raise RuntimeError(f"HTTP {e.code}: {detail}")
-        except (urllib.error.URLError, TimeoutError) as e:
+            if code in (401, 403):
+                print(f"Token rechazado (HTTP {code}). Revisa HF_TOKEN y el permiso «Make calls to Inference Providers». Detalle: {detail}", file=sys.stderr)
+                sys.exit(3)
+            if code == 402:
+                print(f"Sin créditos de Inference Providers (HTTP 402). Detalle: {detail}", file=sys.stderr)
+                sys.exit(3)
+            if code in (404, 410):
+                print(f"El modelo {MODEL} no está disponible con el proveedor «{PROVIDER}» (HTTP {code}). Prueba otro con HF_MODEL. Detalle: {detail}", file=sys.stderr)
+                sys.exit(3)
+            raise RuntimeError(f"HTTP {code}: {detail}")
+        except (TimeoutError, ConnectionError) as e:
             if attempt == retries:
                 raise
             print(f"    {e}; reintento en {delay} s", flush=True)
@@ -153,7 +147,7 @@ def main() -> int:
         if out.exists() and not args.force:
             print(f"[{i}/{len(stories)}] {sid}: ya existe (usa --force para regenerar)")
             continue
-        print(f"[{i}/{len(stories)}] {sid}: generando con {MODEL}…", flush=True)
+        print(f"[{i}/{len(stories)}] {sid}: generando con {MODEL} ({PROVIDER})…", flush=True)
         try:
             size = save_webp(fetch(token, prompt, seed_for(sid)), out)
             print(f"    guardada {out.relative_to(ROOT)} ({size // 1024} KB)")
