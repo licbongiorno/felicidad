@@ -98,7 +98,8 @@ def fetch(token: str, prompt: str, seed: int, retries: int = 5) -> bytes:
                 delay *= 2
                 continue
             if e.code in (401, 403):
-                raise SystemExit(f"Token rechazado (HTTP {e.code}). Revisa HF_TOKEN. Detalle: {detail}")
+                print(f"Token rechazado (HTTP {e.code}). Revisa HF_TOKEN. Detalle: {detail}", file=sys.stderr)
+                sys.exit(3)  # error de configuración: no se sigue con el resto
             raise RuntimeError(f"HTTP {e.code}: {detail}")
         except (urllib.error.URLError, TimeoutError) as e:
             if attempt == retries:
