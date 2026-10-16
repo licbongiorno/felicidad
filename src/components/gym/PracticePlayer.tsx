@@ -22,7 +22,7 @@ import { GuidedSequence } from '@/components/practice/GuidedSequence';
 import { CountUp, DrawnCheck } from '@/components/motion/Reveal';
 import { growthNote } from '@/domain/growth';
 import { APPROACH_DESCRIPTION, APPROACH_LABEL, PRACTICE_RISK, practiceApproaches } from '@/domain/catalog';
-import { TRANSFER_SUGGESTIONS } from '@/domain/application';
+import { confidenceTrends, TRANSFER_SUGGESTIONS } from '@/domain/application';
 import { ApplicationForm } from '@/components/application/ApplicationForm';
 import { Sheet } from '@/components/ui/Sheet';
 import { FavoriteButton } from '@/components/personal/FavoriteButton';
@@ -62,6 +62,8 @@ export function PracticePlayer({ practice }: { practice: Practice }) {
   useEffect(() => setResume(loadResume(practice.id)), [practice.id]);
   const missing = useMemo(() => missingPrerequisites(practice.id, completedPracticeIds(sessions)), [practice.id, sessions]);
   const level = levelOf(practice.id).level;
+  const applications = useProgressStore((s) => s.applications);
+  const confidence = useMemo(() => confidenceTrends(applications.filter((a) => a.practiceId === practice.id))[0] ?? null, [applications, practice.id]);
   // Estable durante la práctica: GuidedSequence requiere pasos memoizados.
   const steps = useMemo(() => scaleSteps(practice.steps, variant), [practice.steps, variant]);
   const startedAtRef = useRef<Date>(new Date());
@@ -121,6 +123,12 @@ export function PracticePlayer({ practice }: { practice: Practice }) {
         <m.p variants={fadeUp} className="mt-4 text-lg leading-relaxed text-stone-600">
           {practice.summary}
         </m.p>
+        {confidence && (
+          <m.p variants={fadeUp} className="mt-3 text-sm text-stone-600">
+            Tu confianza para usarla: <span className="tabular-nums text-stone-800">{confidence.last} de 10</span>
+            {confidence.n > 1 && <span className="tabular-nums"> (empezaste en {confidence.first})</span>}
+          </m.p>
+        )}
         <m.p variants={fadeUp} className="mt-6 text-sm leading-relaxed text-stone-600">
           <span className="font-medium text-stone-600">Mecanismo. </span>
           {practice.mechanism}

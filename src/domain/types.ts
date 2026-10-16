@@ -142,6 +142,11 @@ export interface Application {
   usefulness: Usefulness | null;
   /** Qué aprendí o qué cambiaría (opcional). */
   note: string | null;
+  /**
+   * Confianza para usar la habilidad cuando haga falta, 0–10 (opcional). Mide aprendizaje
+   * percibido (autoeficacia), no síntomas ni mejoría clínica.
+   */
+  confidence?: number | null;
   createdAt: Date;
   tz?: string | null;
 }

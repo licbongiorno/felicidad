@@ -291,7 +291,9 @@ service cloud.firestore {
       match /applications/{id} {
         allow read: if canRead(uid);
         allow create: if isOwner(uid)
-          && request.resource.data.keys().hasOnly(['practiceId', 'sessionId', 'applied', 'usefulness', 'note', 'tz', 'createdAt'])
+          && request.resource.data.keys().hasOnly(['practiceId', 'sessionId', 'applied', 'usefulness', 'note', 'confidence', 'tz', 'createdAt'])
+          && (!('confidence' in request.resource.data) || request.resource.data.confidence == null
+              || (request.resource.data.confidence is int && request.resource.data.confidence >= 0 && request.resource.data.confidence <= 10))
           && validTz(request.resource.data)
           && request.resource.data.practiceId is string && request.resource.data.practiceId.size() <= 64
           && (request.resource.data.sessionId == null || (request.resource.data.sessionId is string && request.resource.data.sessionId.size() <= 64))

@@ -156,3 +156,21 @@ test('patrones del ánimo: muestra la asociación con su confianza y abre un exp
   await expect(page.getByLabel('La creencia que quiero poner a prueba')).toHaveValue('Cuando hago una práctica corta, me siento mejor ese mismo día.');
   await expect(page.getByLabel('Qué haré para comprobarla')).toHaveValue(/un día sí y otro no/);
 });
+
+test('confianza por habilidad: se registra al contar que la usaste y aparece en la práctica y en el panel', async ({ page }) => {
+  await open(page, '/gimnasio/dear-man');
+  await page.getByRole('button', { name: '¿Ya la usaste en tu vida? Cuéntalo' }).click();
+  const sheet = page.getByRole('dialog');
+  await sheet.getByRole('radio', { name: 'Sí, la usé' }).click();
+  await sheet.getByRole('radio', { name: 'Me sirvió' }).click();
+  await sheet.getByRole('radiogroup', { name: /cuánta confianza/i }).getByRole('radio', { name: '6', exact: true }).click();
+  await expectAccessible(page);
+  await sheet.getByRole('button', { name: 'Guardar' }).click();
+  await expect(sheet.getByRole('status')).toContainText('Guardado');
+  await page.keyboard.press('Escape');
+  await page.reload();
+  await expect(page.getByText('Tu confianza para usarla:')).toContainText('6 de 10');
+  await page.goto('/dashboard');
+  await expect(page.getByRole('link', { name: 'DEAR MAN: pedir lo que necesitas' }).first()).toBeVisible();
+  await expect(page.getByText('Confianza en tus habilidades')).toBeVisible();
+});

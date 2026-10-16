@@ -8,6 +8,7 @@ import { useProgressStore } from '@/store/useProgressStore';
 import { collapse, gentleSpring } from '@/lib/motion';
 import { haptic } from '@/lib/haptics';
 import { Button } from '@/components/ui/Button';
+import { IntensityScale } from '@/components/ui/IntensityScale';
 
 const OPTIONS: Usefulness[] = ['util', 'indiferente', 'no-apropiada'];
 
@@ -30,11 +31,12 @@ export function ApplicationForm({
   const [applied, setApplied] = useState<boolean | null>(null);
   const [usefulness, setUsefulness] = useState<Usefulness | null>(null);
   const [note, setNote] = useState('');
+  const [confidence, setConfidence] = useState<number | null>(null);
   const [saved, setSaved] = useState(false);
 
   function save() {
     if (applied === null) return;
-    logApplication({ practiceId, sessionId, applied, usefulness: applied ? usefulness : null, note: note.trim() || null });
+    logApplication({ practiceId, sessionId, applied, usefulness: applied ? usefulness : null, note: note.trim() || null, confidence });
     haptic('success');
     setSaved(true);
     onDone?.();
@@ -89,6 +91,16 @@ export function ApplicationForm({
                 className="w-full rounded-xl border border-stone-200 bg-stone-50/60 px-4 py-2.5 text-[15px] text-stone-800 placeholder:text-stone-500 focus:border-sage-400 focus:bg-white focus:outline-none"
               />
             </label>
+            <div>
+              <IntensityScale
+                label="¿Cuánta confianza tienes en poder usar esta habilidad cuando la necesites? (opcional)"
+                value={confidence}
+                onChange={setConfidence}
+                lowAnchor="0 · ninguna"
+                highAnchor="10 · total"
+              />
+              <p className="mt-2 text-xs text-stone-500">Mide cómo vas aprendiendo la habilidad, no cómo te sientes.</p>
+            </div>
             <div className={compact ? '' : 'flex justify-end'}>
               <Button onClick={save} disabled={applied && !usefulness}>
                 Guardar

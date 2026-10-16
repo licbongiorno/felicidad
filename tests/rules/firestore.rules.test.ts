@@ -163,6 +163,17 @@ describe('aplicaciones en la vida cotidiana', () => {
     await assertFails(addDoc(collection(alice(), 'users/bob/applications'), a()));
     await assertFails(addDoc(collection(alice(), 'users/alice/sessions'), { ...validSession(), transfer: 'x'.repeat(281) }));
   });
+
+  it('la confianza en la habilidad es opcional y va de 0 a 10', async () => {
+    const col = collection(alice(), 'users/alice/applications');
+    await assertSucceeds(addDoc(col, a({ confidence: 7 })));
+    await assertSucceeds(addDoc(col, a({ confidence: 0 })));
+    await assertSucceeds(addDoc(col, a({ confidence: null })));
+    await assertFails(addDoc(col, a({ confidence: 11 })));
+    await assertFails(addDoc(col, a({ confidence: -1 })));
+    await assertFails(addDoc(col, a({ confidence: 6.5 })));
+    await assertFails(addDoc(col, a({ confidence: 'mucha' })));
+  });
 });
 
 describe('evaluaciones DERS-16, ISI y PSS-10', () => {
