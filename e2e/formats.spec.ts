@@ -97,3 +97,27 @@ test('buscador: encuentra una necesidad y una píldora', async ({ page, isMobile
   await page.getByRole('option').filter({ hasText: '¿Es burnout o solo cansancio?' }).click();
   await expect(page).toHaveURL(/\/biblioteca\/pildoras\/que-es-el-burnout$/);
 });
+
+test('tarjeta diaria DBT: la tarjeta de hoy aparece en la planilla semanal, imprimible y en CSV', async ({ page }) => {
+  await open(page, '/diario?nuevo=tarjeta-diaria');
+  await page.getByLabel('El día en una frase').fill('Día largo pero lo pude manejar');
+  for (const [name, v] of [['Tristeza', '6'], ['Miedo o ansiedad', '3'], ['Ira', '1'], ['Vergüenza o culpa', '0'], ['Alegría', '4']] as const) {
+    await page.getByRole('radiogroup', { name }).getByRole('radio', { name: v, exact: true }).click();
+  }
+  await page.getByLabel('Habilidades que usaste').fill('TIPP, mente sabia');
+  await page.getByRole('button', { name: 'Guardar entrada' }).click();
+  await page.getByRole('link', { name: 'Ver la semana' }).click();
+  await page.waitForURL('**/diario/tarjeta-semanal');
+  const table = page.getByRole('table');
+  await expect(table.getByRole('row', { name: /^Tristeza/ })).toContainText('6');
+  await expect(table.getByRole('row', { name: /^Habilidades/ })).toContainText('TIPP, mente sabia');
+  await expect(page.getByText('Días con tarjeta: 1 de 7')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Semana siguiente →' })).toBeDisabled();
+  const download = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Descargar planilla (CSV)' }).click();
+  expect((await download).suggestedFilename()).toMatch(/^tarjeta-dbt-\d{4}-\d{2}-\d{2}\.csv$/);
+  await noSideScroll(page);
+  await expectAccessible(page);
+  await page.getByRole('button', { name: '← Semana anterior' }).click();
+  await expect(page.getByText('No hay tarjetas esta semana.')).toBeVisible();
+});

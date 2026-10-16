@@ -55,6 +55,7 @@ const SECTIONS: [string, string, string, string[]][] = [
   ['/gimnasio/temporizador', FREE_TIMER_TITLE, 'Práctica sin guía con campanas de intervalo', ['meditacion', 'silencio', 'campana', 'timer']],
   ['/antidotos', 'Antídotos', 'Trabajar ahora una emoción difícil', ['emocion', 'crisis', 'malestar']],
   ['/diario', 'Diario', 'Registros escritos estructurados', ['escribir', 'journal', 'notas']],
+  ['/diario/tarjeta-semanal', 'Tarjeta diaria DBT · semana', 'Tus tarjetas de la semana en una planilla para llevar a terapia', ['diary card', 'dbt', 'planilla', 'semana', 'imprimir']],
   ['/evaluaciones', 'Evaluaciones WHO-5', 'Mide tu bienestar cada dos semanas', ['cuestionario', 'test', 'bienestar']],
   ['/informe', 'Informe para tu terapeuta', 'Resumen imprimible o en PDF', ['pdf', 'imprimir', 'psicologo', 'sesion']],
   ['/programas', 'Programas', 'Recorridos guiados de varias semanas', ['curso', 'plan']],
