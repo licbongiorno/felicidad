@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { AnimatePresence, m } from 'motion/react';
 import { useState } from 'react';
 import { zoneOf, ZONES, type Zone } from '@/domain/lab';
-import { PRACTICE_BY_ID } from '@/domain/practices';
+import { PRACTICE_SUMMARY_BY_ID as PRACTICE_BY_ID } from '@/domain/practiceIndex';
 import { EASE_OUT, fadeUp, stagger } from '@/lib/motion';
 import { IntensityScale } from '@/components/ui/IntensityScale';
 import { CrisisResources } from '@/components/safety/CrisisResources';

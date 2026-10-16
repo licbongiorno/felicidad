@@ -10,7 +10,7 @@ import { TEMPLATE_BY_TYPE } from '@/domain/journal';
 import { compareScores, INSTRUMENTS } from '@/domain/instruments';
 import { practiceEffects } from '@/domain/insights';
 import { FREE_TIMER_ID, FREE_TIMER_TITLE } from '@/domain/freeTimer';
-import { PRACTICE_BY_ID } from '@/domain/practices';
+import { PRACTICE_SUMMARY_BY_ID as PRACTICE_BY_ID } from '@/domain/practiceIndex';
 import { computeStreak, daysAgo, moodSeries, recordDayKey, toDateKey } from '@/domain/metrics';
 import { fadeUp, gentleSpring, stagger } from '@/lib/motion';
 import { SAFETY_DISCLAIMER } from '@/config/safety';

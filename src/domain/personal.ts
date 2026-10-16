@@ -2,8 +2,9 @@ import { MODULE_BY_ID, type ModuleId, type SkillModule } from './catalog';
 import { isPublished } from './governance';
 import { weekStart } from './growth';
 import { toDateKey } from './metrics';
-import { PRACTICE_BY_ID } from './practices';
-import type { PersonalSettings, Practice, SessionRecord } from './types';
+import { PRACTICE_SUMMARY_BY_ID as PRACTICE_BY_ID } from './practiceIndex';
+import type { PersonalSettings, SessionRecord } from './types';
+import type { PracticeSummary as Practice } from './practiceIndex';
 
 /**
  * Personalización: objetivos, favoritas y plan semanal. No reemplaza la evaluación

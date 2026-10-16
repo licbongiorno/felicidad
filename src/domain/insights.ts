@@ -1,6 +1,6 @@
 import { ANTIDOTE_BY_EMOTION } from './antidotes';
 import { FREE_TIMER_ID, FREE_TIMER_TITLE } from './freeTimer';
-import { PRACTICE_BY_ID } from './practices';
+import { PRACTICE_SUMMARY_BY_ID as PRACTICE_BY_ID } from './practiceIndex';
 import type { AfflictionLog, SessionRecord } from './types';
 
 /**

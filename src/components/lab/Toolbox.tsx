@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { m } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { ZONES, type Zone } from '@/domain/lab';
-import { PRACTICES } from '@/domain/practices';
+import { PRACTICE_INDEX as PRACTICES } from '@/domain/practiceIndex';
 import { isPublished } from '@/domain/governance';
 import { useProgressStore } from '@/store/useProgressStore';
 import { fadeUp, stagger } from '@/lib/motion';

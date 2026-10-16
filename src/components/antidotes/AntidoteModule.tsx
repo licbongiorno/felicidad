@@ -10,7 +10,7 @@ import {
   STABILIZATION_THRESHOLD,
   buildAntidoteSequence,
 } from '@/domain/antidotes';
-import { PRACTICE_BY_ID } from '@/domain/practices';
+import { PRACTICE_SUMMARY_BY_ID as PRACTICE_BY_ID } from '@/domain/practiceIndex';
 import { reviewOf } from '@/domain/governance';
 import type { AfflictiveEmotionId } from '@/domain/types';
 import { useProgressStore } from '@/store/useProgressStore';

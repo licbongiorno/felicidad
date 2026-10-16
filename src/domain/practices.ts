@@ -623,6 +623,4 @@ export const PRACTICE_BY_ID: Record<string, Practice> = Object.fromEntries(
   PRACTICES.map((p) => [p.id, p]),
 );
 
-export function totalDurationSec(steps: { durationSec: number }[]): number {
-  return steps.reduce((sum, s) => sum + s.durationSec, 0);
-}
+export { totalDurationSec } from './stepDuration';

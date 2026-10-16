@@ -3,9 +3,10 @@
 import Link from 'next/link';
 import { m } from 'motion/react';
 import { useMemo } from 'react';
-import { PROGRAMS, programProgress, type Program } from '@/domain/programs';
-import { PRACTICE_BY_ID, totalDurationSec } from '@/domain/practices';
-import { ARTICLE_BY_ID } from '@/domain/library';
+import type { Program } from '@/domain/programs';
+import { programProgress } from '@/domain/programProgress';
+import { PROGRAM_INDEX as PROGRAMS } from '@/domain/practiceIndex';
+import { PRACTICE_SUMMARY_BY_ID as PRACTICE_BY_ID } from '@/domain/practiceIndex';
 import { TEMPLATE_BY_TYPE } from '@/domain/journal';
 import { completedPracticeIds } from '@/domain/metrics';
 import { useProgressStore } from '@/store/useProgressStore';
@@ -74,7 +75,8 @@ export function ProgramList() {
   );
 }
 
-export function ProgramDetail({ program }: { program: Program }) {
+/** `articleTitles`: títulos de los artículos de las semanas (los pasa la página, para no cargar la biblioteca). */
+export function ProgramDetail({ program, articleTitles }: { program: Program; articleTitles: Record<string, string> }) {
   const completed = useCompleted();
   const prog = programProgress(program, completed);
 
@@ -158,7 +160,7 @@ export function ProgramDetail({ program }: { program: Program }) {
                             )}
                           </span>
                           <span className={`flex-1 text-[15px] ${done ? 'text-stone-600' : 'text-stone-800'}`}>{p.title}</span>
-                          <span className="text-xs text-stone-500">{Math.round(totalDurationSec(p.steps) / 60)} min</span>
+                          <span className="text-xs text-stone-500">{Math.round(p.durationSec / 60)} min</span>
                           <span className="text-stone-500 transition-all group-hover:translate-x-0.5 group-hover:text-sage-600" aria-hidden>
                             →
                           </span>
@@ -172,7 +174,7 @@ export function ProgramDetail({ program }: { program: Program }) {
                   <div className="mt-5 flex flex-wrap gap-2 border-t border-stone-100 pt-4">
                     {w.articleIds.map((id) => (
                       <Link key={id} href={`/biblioteca/${id}`} className="rounded-full bg-stone-100 px-3 py-1.5 text-xs text-stone-600 transition-colors hover:bg-stone-200">
-                        Leer · {ARTICLE_BY_ID[id].title}
+                        Leer · {articleTitles[id] ?? id}
                       </Link>
                     ))}
                     {w.journalType && (

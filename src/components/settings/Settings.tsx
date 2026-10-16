@@ -20,7 +20,7 @@ import { SAFETY_DISCLAIMER } from '@/config/safety';
 import { Button } from '@/components/ui/Button';
 import { Sheet } from '@/components/ui/Sheet';
 import Link from 'next/link';
-import { canReview } from '@/components/review/ReviewPanel';
+import { canReview } from '@/lib/reviewers';
 
 const DAYS: { id: Weekday; label: string }[] = [
   { id: 'MO', label: 'L' },

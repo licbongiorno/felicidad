@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { m } from 'motion/react';
 import { useMemo, useState } from 'react';
 import { AGE_BANDS, hasKidMode, kidAlert, MAX_KIDS, weeklySummary, type KidProfile } from '@/domain/kids';
-import { KID_GUIDES } from '@/domain/kids-guides';
+import { KID_GUIDE_INDEX as KID_GUIDES } from '@/domain/practiceIndex';
 import { familyTip } from '@/domain/family-tips';
 import { STORIES } from '@/domain/stories';
 import { StoryScene } from '@/components/kids/StoryScene';

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { m } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { MODE_GROUP_LABEL, MODES, SCHEMA_BY_ID, SCHEMA_DOMAINS, SCHEMAS, type ModeGroup } from '@/domain/schemas';
-import { PRACTICE_BY_ID } from '@/domain/practices';
+import { PRACTICE_SUMMARY_BY_ID as PRACTICE_BY_ID } from '@/domain/practiceIndex';
 import { fadeUp, stagger } from '@/lib/motion';
 import { Tabs } from '@/components/ui/Tabs';
 import { buttonStyles } from '@/components/ui/Button';

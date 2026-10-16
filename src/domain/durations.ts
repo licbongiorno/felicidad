@@ -1,4 +1,4 @@
-import { totalDurationSec } from './practices';
+import { totalDurationSec } from './stepDuration';
 import type { GuidedStep } from './types';
 
 /**
