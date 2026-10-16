@@ -164,9 +164,18 @@ export interface PersonalSettings {
   plan: { week: string; practiceIds: string[] } | null;
   /** Preguntas o temas para llevar a la próxima sesión (máximo 10). */
   questions: string[];
+  /** Píldoras leídas hasta el final (máximo 400). */
+  pillsRead: string[];
+  /** Desafíos activos: fecha de inicio y días marcados a mano (máximo 20). */
+  challenges: Record<string, { start: string; manual: string[] }>;
+  /** Hitos ya alcanzados, para no celebrarlos dos veces (máximo 60). */
+  milestones: string[];
 }
 
-export const EMPTY_PERSONAL: PersonalSettings = { goals: [], favorites: [], plan: null, questions: [] };
+export const EMPTY_PERSONAL: PersonalSettings = { goals: [], favorites: [], plan: null, questions: [], pillsRead: [], challenges: {}, milestones: [] };
+
+/** Límites de las preferencias personales, iguales a los de firestore.rules. */
+export const PERSONAL_LIMITS = { pillsRead: 400, challenges: 20, challengeDays: 40, milestones: 60 } as const;
 
 export interface AfflictionLog {
   id: string;

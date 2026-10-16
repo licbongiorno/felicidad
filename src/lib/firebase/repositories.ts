@@ -24,6 +24,7 @@ import type { User } from 'firebase/auth';
 import { getDb } from './db';
 import { CONSENT_VERSION } from '@/lib/consent';
 import type { AfflictionLog, Application, Assessment, DailyCheckin, JournalEntry, PersonalSettings, Profile, SessionRecord } from '@/domain/types';
+import { PERSONAL_LIMITS } from '@/domain/types';
 import { currentTimeZone } from '@/domain/metrics';
 import type { LifetimeCounts } from '@/domain/growth';
 
@@ -329,7 +330,18 @@ const clampPersonal = (p: Partial<PersonalSettings>): Partial<PersonalSettings> 
   ...(p.favorites && { favorites: p.favorites.slice(0, 60) }),
   ...('plan' in p && { plan: p.plan ? { week: p.plan.week, practiceIds: p.plan.practiceIds.slice(0, 3) } : null }),
   ...(p.questions && { questions: p.questions.slice(0, 10).map((q) => q.slice(0, 280)) }),
+  ...(p.pillsRead && { pillsRead: p.pillsRead.slice(-PERSONAL_LIMITS.pillsRead) }),
+  ...(p.milestones && { milestones: p.milestones.slice(0, PERSONAL_LIMITS.milestones) }),
+  ...(p.challenges && {
+    challenges: Object.fromEntries(
+      Object.entries(p.challenges)
+        .slice(0, PERSONAL_LIMITS.challenges)
+        .map(([id, c]) => [id, { start: String(c.start).slice(0, 10), manual: c.manual.slice(-PERSONAL_LIMITS.challengeDays) }]),
+    ),
+  }),
 });
+
+const stringList = (v: unknown): string[] => (Array.isArray(v) ? v.filter((x): x is string => typeof x === 'string') : []);
 
 export function subscribePersonal(uid: string, onData: (p: PersonalSettings) => void, onError: (e: FirestoreError) => void): Unsubscribe {
   return onSnapshot(
@@ -341,6 +353,16 @@ export function subscribePersonal(uid: string, onData: (p: PersonalSettings) => 
         favorites: Array.isArray(v.favorites) ? v.favorites : [],
         plan: v.plan && Array.isArray(v.plan.practiceIds) ? { week: String(v.plan.week), practiceIds: v.plan.practiceIds } : null,
         questions: Array.isArray(v.questions) ? v.questions : [],
+        pillsRead: stringList(v.pillsRead),
+        milestones: stringList(v.milestones),
+        challenges:
+          v.challenges && typeof v.challenges === 'object'
+            ? Object.fromEntries(
+                Object.entries(v.challenges as Record<string, { start?: unknown; manual?: unknown }>)
+                  .filter(([, c]) => typeof c?.start === 'string')
+                  .map(([id, c]) => [id, { start: c.start as string, manual: stringList(c.manual) }]),
+              )
+            : {},
       });
     },
     onError,

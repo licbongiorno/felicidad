@@ -5,36 +5,23 @@ import { useAuth } from '@/providers/AuthProvider';
 import { useProgressStore } from '@/store/useProgressStore';
 import { mergeMilestones, reachedMilestones } from '@/domain/daily';
 
-const KEY = 'eudaimonia-hitos';
-
-function read(uid: string): string[] {
-  try {
-    const all = JSON.parse(localStorage.getItem(KEY) ?? '{}') as Record<string, string[]>;
-    return Array.isArray(all[uid]) ? all[uid] : [];
-  } catch {
-    return [];
-  }
-}
-
-function write(uid: string, ids: string[]) {
-  try {
-    const all = JSON.parse(localStorage.getItem(KEY) ?? '{}') as Record<string, string[]>;
-    localStorage.setItem(KEY, JSON.stringify({ ...all, [uid]: ids }));
-  } catch {
-    /* sin almacenamiento: los hitos se recalculan con los datos de la ventana local */
-  }
-}
-
 /**
  * Hitos alcanzados y los recién alcanzados (para celebrarlos una sola vez).
- * Lo alcanzado se recuerda en el dispositivo: un hito no se pierde aunque los registros
- * salgan de la ventana local de 90 días. Al cargar por primera vez no se celebra nada:
- * lo que ya estaba alcanzado se marca como visto en silencio.
+ * Lo alcanzado se guarda en la cuenta: un hito no se pierde aunque los registros salgan de
+ * la ventana local de 90 días ni al cambiar de dispositivo. Al cargar por primera vez no se
+ * celebra nada: lo que ya estaba alcanzado se marca como visto en silencio.
  */
 export function useMilestones() {
   const { user } = useAuth();
   const uid = user?.uid ?? 'demo';
   const status = useProgressStore((s) => s.status);
+  const storedMilestones = useProgressStore((s) => s.personal.milestones);
+  const read = (_uid: string) => storedMilestones;
+  // Se une con lo último guardado: nunca se pierde un hito ya registrado (p. ej. uno recién migrado).
+  const write = (_uid: string, ids: string[]) => {
+    const { personal, updatePersonal } = useProgressStore.getState();
+    updatePersonal({ milestones: [...new Set([...personal.milestones, ...ids])] });
+  };
   const sessions = useProgressStore((s) => s.sessions);
   const checkins = useProgressStore((s) => s.checkins);
   const journal = useProgressStore((s) => s.journal);
