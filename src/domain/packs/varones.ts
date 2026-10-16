@@ -322,8 +322,8 @@ export const VARONES_PACK: ContentPack = {
         body: 'No culpa a los varones ni dice cómo hay que ser. Habla de mandatos rígidos y de su costo, para que puedas elegir. No reemplaza una consulta. Si piensas en morir, llama al 135 o al 911. Si ejerces violencia, busca ayuda especializada. Si alguien está en peligro, llama al 911.',
       },
       related: {
-        practices: ['mandatos-que-me-pesan', 'mas-alla-del-enojo', 'senales-de-que-no-estoy-bien', 'pedir-ayuda-es-fuerza', 'amistad-que-cuida', 'padre-presente', 'emocion-primaria-secundaria'],
-        articles: ['depresion-que-no-parece-tristeza', 'granularidad-emocional', 'vinculos-y-soledad', 'mandatos-familiares', 'violencia-de-genero-informacion'],
+        practices: ['mandatos-que-me-pesan', 'mas-alla-del-enojo', 'senales-de-que-no-estoy-bien', 'pedir-ayuda-es-fuerza', 'amistad-que-cuida', 'padre-presente', 'emocion-primaria-secundaria', 'mandatos-familiares'],
+        articles: ['depresion-que-no-parece-tristeza', 'granularidad-emocional', 'vinculos-y-soledad', 'violencia-de-genero-informacion'],
       },
       references: [APA_2018, WONG_2017, COCHRAN_2000, SEIDLER_2016, ADDIS_2003],
     },

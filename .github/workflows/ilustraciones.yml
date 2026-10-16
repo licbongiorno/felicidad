@@ -19,6 +19,10 @@ on:
         type: choice
         options: [pollinations, huggingface]
         default: pollinations
+      model:
+        description: 'Modelo de Hugging Face (vacío = FLUX.1-schnell)'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -53,6 +57,7 @@ jobs:
           # Token de Hugging Face como secreto del repositorio (Settings → Secrets → Actions → HF_TOKEN).
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           ONLY: ${{ inputs.only }}
+          HF_MODEL: ${{ inputs.model }}
           FORCE: ${{ inputs.force }}
           PROVIDER: ${{ inputs.provider }}
         run: |

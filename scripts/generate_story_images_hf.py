@@ -34,9 +34,12 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from generate_story_images import OUT_DIR, ROOT, parse_prompts, save_webp, seed_for, write_manifest  # noqa: E402
 
-MODEL = os.environ.get("HF_MODEL", "stabilityai/stable-diffusion-xl-base-1.0")
+# SDXL dejó de estar disponible en hf-inference (HTTP 410). FLUX.1-schnell sí lo está y genera en
+# 4 pasos; se puede probar otro modelo con la variable HF_MODEL sin tocar el código.
+MODEL = os.environ.get("HF_MODEL") or "black-forest-labs/FLUX.1-schnell"
 ENDPOINT = f"https://router.huggingface.co/hf-inference/models/{MODEL}"
-WIDTH, HEIGHT = 1344, 768  # resolución nativa de SDXL cercana a 16:9; luego se lleva a 1600×900
+IS_FLUX = "flux" in MODEL.lower()
+WIDTH, HEIGHT = 1344, 768  # cercano a 16:9 y múltiplo de 16; luego se lleva a 1600×900
 
 STYLE = {
     "0-6": "children's picture book illustration, digital art, soft gouache texture, rounded cute shapes, pastel colors, cozy and gentle",
@@ -72,7 +75,12 @@ def fetch(token: str, prompt: str, seed: int, retries: int = 5) -> bytes:
     body = json.dumps(
         {
             "inputs": prompt,
-            "parameters": {"negative_prompt": NEGATIVE, "width": WIDTH, "height": HEIGHT, "num_inference_steps": 30, "guidance_scale": 7.0, "seed": seed},
+            # FLUX.1-schnell no usa prompt negativo ni guía: está destilado para 4 pasos.
+            "parameters": (
+                {"width": WIDTH, "height": HEIGHT, "num_inference_steps": 4, "seed": seed}
+                if IS_FLUX
+                else {"negative_prompt": NEGATIVE, "width": WIDTH, "height": HEIGHT, "num_inference_steps": 30, "guidance_scale": 7.0, "seed": seed}
+            ),
         }
     ).encode()
     delay = 10
@@ -97,6 +105,9 @@ def fetch(token: str, prompt: str, seed: int, retries: int = 5) -> bytes:
                 time.sleep(delay)
                 delay *= 2
                 continue
+            if e.code in (404, 410):
+                print(f"El modelo {MODEL} no está disponible (HTTP {e.code}). Prueba otro con HF_MODEL. Detalle: {detail}", file=sys.stderr)
+                sys.exit(3)  # error de configuración: no tiene sentido seguir con el resto
             if e.code in (401, 403):
                 print(f"Token rechazado (HTTP {e.code}). Revisa HF_TOKEN. Detalle: {detail}", file=sys.stderr)
                 sys.exit(3)  # error de configuración: no se sigue con el resto
