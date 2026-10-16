@@ -261,7 +261,7 @@ test('antídoto nuevo: soledad, desde el buscador hasta el registro', async ({ p
 test('gimnasio: herramientas rápidas de 1–3 minutos sin selector de duración', async ({ page }) => {
   await open(page, '/gimnasio');
   const quick = page.getByRole('region', { name: /Herramientas rápidas/ });
-  await expect(quick.getByRole('link')).toHaveCount(11);
+  await expect(quick.getByRole('link')).toHaveCount(15);
   await quick.getByRole('link', { name: /Pausa STOP/ }).click();
   await expect(page.getByRole('heading', { level: 1, name: 'Pausa STOP' })).toBeVisible();
   await expect(page.getByRole('radiogroup', { name: 'Duración' })).toHaveCount(0);
@@ -361,7 +361,7 @@ test('diario: preparar una conversación difícil (DEAR MAN)', async ({ page }) 
 test('ayuda: el botón está en todas las pantallas y llama a las líneas de crisis', async ({ page }) => {
   for (const path of ['/dashboard', '/gimnasio', '/laboratorio']) {
     await open(page, path);
-    await page.getByRole('button', { name: 'Ayuda' }).click();
+    await page.getByRole('button', { name: 'Ayuda', exact: true }).click();
     await expect(page.getByRole('link', { name: /Llamar a Línea Nacional de Salud Mental/ })).toHaveAttribute('href', 'tel:08009990091');
     await page.keyboard.press('Escape');
   }

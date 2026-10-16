@@ -19,6 +19,40 @@ entrada en este registro.
 
 ---
 
+## 2026-10-16 · Trauma, fobias y ansiedad por la salud, apuestas, medicación, acoso escolar, cuidadores, sexualidad y espiritualidad
+
+Ocho paquetes nuevos, todos en estado `pendiente`. Se suman cinco necesidades nuevas al mapa de habilidades: trauma, cuidadores, vida sexual, acoso escolar y medicación. Fobias, apuestas y espiritualidad se agregan a necesidades que ya existían.
+
+- **Trauma** (`packs/trauma.ts`): sólo psicoeducación y estabilización (ventana de tolerancia, anclaje, contenedor, lugar tranquilo, después de una pesadilla, acompañar).
+  - Ninguna práctica pide recordar ni escribir el hecho.
+  - Las dos de imaginación son de riesgo 2, con alternativa.
+  - Los tratamientos con evidencia (TCC focalizada, procesamiento cognitivo, exposición prolongada, EMDR, ensayo en imaginación) sólo se describen.
+- **Fobias específicas y ansiedad por la salud** (`packs/fobias-salud.ts`):
+  - Escalera de exposición autoguiada sólo para miedos leves a moderados.
+  - Tensión aplicada (riesgo 2) para la fobia a la sangre y las agujas, con contraindicaciones.
+  - Chequeos, búsqueda de síntomas y pedido de tranquilización. Ante un síntoma nuevo o intenso, consultar al médico.
+- **Apuestas en línea** (`packs/apuestas.ts`):
+  - Entrevista motivacional y TCC: señales, trampas del jugador, barreras al acceso, surfear la urgencia, deudas en familia.
+  - Una guía para familias sobre adolescentes.
+  - Aviso de riesgo suicida asociado a las deudas, con los teléfonos 135, 0800-999-0091, 911 y Línea 141.
+- **Medicación psiquiátrica** (`packs/medicacion.ts`): información para acompañar la consulta.
+  - No indica, cambia ni suspende nada, y no nombra remedios ni dosis.
+  - Explica por qué no suspender de golpe, las benzodiacepinas, el alcohol y el embarazo, y que hay que consultar si aparecen ideas de hacerse daño.
+- **Acoso escolar** (`packs/acoso-escolar.ts`):
+  - Dos guías para familias (si lo sufre; si acosa o mira) y prácticas para adultos.
+  - Todo se canaliza por la escuela (Ley 26.892). En el ciberacoso, guardar pruebas y llamar al 911 si hay amenazas.
+- **Familiares y cuidadores** (`packs/cuidadores.ts`):
+  - Carga del cuidador, CRAFT y LEAP simplificados, límites, duelo ambiguo y plan de crisis.
+  - La internación (Ley 26.657) aparece sólo como información.
+- **Sexualidad** (`packs/sexualidad.ts`):
+  - Deseo espontáneo y responsivo, ansiedad de desempeño, atención plena, hablar de sexo y consentimiento.
+  - La focalización sensorial, sólo en su primera etapa, es de riesgo 2.
+  - Nada explícito. Ante violencia sexual: Línea 144 y 911.
+- **Espiritualidad** (`packs/espiritualidad.ts`):
+  - Asombro, autotrascendencia, rituales, afrontamiento religioso sin juzgar creencias, preguntas en la crisis y legado.
+  - Respeta a creyentes y no creyentes y no promete sanación.
+- **Pendiente de revisión:** verificar los DOI y las referencias con `npm run verify:refs`, en especial Sturm y colaboradores (2022), Bisson y colaboradores (2013), Gaffney y colaboradores (2019) y Pharoah y colaboradores (2010).
+
 ## 2026-10-16 · Mentalización, análisis transaccional e imagen corporal
 
 - **Paquete «Mentalización»** (`packs/mentalizacion.ts`), en estado `pendiente`: amplía lo que ya había.

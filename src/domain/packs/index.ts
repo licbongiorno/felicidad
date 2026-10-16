@@ -11,9 +11,17 @@ import { SISTEMICA_PACK } from './sistemica';
 import { MENTALIZACION_PACK } from './mentalizacion';
 import { ANALISIS_TRANSACCIONAL_PACK } from './analisis-transaccional';
 import { IMAGEN_CORPORAL_PACK } from './imagen-corporal';
+import { TRAUMA_PACK } from './trauma';
+import { FOBIAS_SALUD_PACK } from './fobias-salud';
+import { APUESTAS_PACK } from './apuestas';
+import { MEDICACION_PACK } from './medicacion';
+import { ACOSO_ESCOLAR_PACK } from './acoso-escolar';
+import { CUIDADORES_PACK } from './cuidadores';
+import { SEXUALIDAD_PACK } from './sexualidad';
+import { ESPIRITUALIDAD_PACK } from './espiritualidad';
 
 /** Todos los paquetes de contenido. Para sumar uno: crear el archivo y agregarlo aquí. */
-export const PACKS: ContentPack[] = [SOLUCIONES_NARRATIVA_PACK, METACOGNICION_VINCULOS_PACK, SUENO_ACTIVACION_PACK, ETAPAS_VINCULOS_PACK, SALUD_TRABAJO_CRIANZA_PACK, VIDA_COTIDIANA_PACK, ESQUEMAS_PACK, JUNG_PACK, SISTEMICA_PACK, MENTALIZACION_PACK, ANALISIS_TRANSACCIONAL_PACK, IMAGEN_CORPORAL_PACK];
+export const PACKS: ContentPack[] = [SOLUCIONES_NARRATIVA_PACK, METACOGNICION_VINCULOS_PACK, SUENO_ACTIVACION_PACK, ETAPAS_VINCULOS_PACK, SALUD_TRABAJO_CRIANZA_PACK, VIDA_COTIDIANA_PACK, ESQUEMAS_PACK, JUNG_PACK, SISTEMICA_PACK, MENTALIZACION_PACK, ANALISIS_TRANSACCIONAL_PACK, IMAGEN_CORPORAL_PACK, TRAUMA_PACK, FOBIAS_SALUD_PACK, APUESTAS_PACK, MEDICACION_PACK, ACOSO_ESCOLAR_PACK, CUIDADORES_PACK, SEXUALIDAD_PACK, ESPIRITUALIDAD_PACK];
 
 export const PACK_PRACTICES = PACKS.flatMap((p) => p.practices);
 export const PACK_META: Record<string, PracticeMeta> = Object.assign({}, ...PACKS.map((p) => p.meta));
