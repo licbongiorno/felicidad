@@ -287,9 +287,8 @@ test('GAD-7: siete respuestas producen la puntuación y su interpretación', asy
   await expect(page.getByText('Ansiedad moderada')).toBeVisible();
 });
 
-test('PHQ-9 (borrador): el ítem de riesgo muestra la ayuda antes que la puntuación', async ({ page }) => {
+test('PHQ-9: el ítem de riesgo muestra la ayuda antes que la puntuación', async ({ page }) => {
   await open(page, '/evaluaciones');
-  await expect(page.getByText('Borrador · requiere revisión clínica').first()).toBeVisible();
   await page.getByRole('button', { name: /Responder ahora: Cuestionario de salud del paciente PHQ-9/ }).click();
   const groups = page.getByRole('radiogroup');
   for (let i = 0; i < 8; i++) await groups.nth(i).getByRole('radio', { name: 'Nunca' }).click();
@@ -303,9 +302,9 @@ test('PHQ-9 (borrador): el ítem de riesgo muestra la ayuda antes que la puntuac
   expect(alertBox!.y).toBeLessThan(scoreBox!.y);
 });
 
-test('plan de seguridad (borrador): se guarda como versión y se recupera', async ({ page }) => {
+test('plan de seguridad: se guarda como versión y se recupera', async ({ page }) => {
   await open(page, '/plan-de-seguridad');
-  await expect(page.getByText('Borrador · requiere revisión clínica')).toBeVisible();
+  await expect(page.getByText('Borrador · requiere revisión clínica')).toHaveCount(0);
   await page.getByLabel(/Mis señales de alerta/).fill('No dormir, aislarme');
   await page.getByLabel(/Personas a quienes puedo pedir ayuda/).fill('Ana 600 000 000');
   await page.getByRole('button', { name: 'Guardar plan' }).click();

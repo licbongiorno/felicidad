@@ -148,14 +148,18 @@ describe('gobernanza clínica', () => {
     }
   });
 
-  it('el contenido sensible está en borrador hasta la aprobación clínica', () => {
-    expect(reviewOf('herramienta', 'plan-seguridad').status).not.toBe('pendiente');
-    expect(reviewOf('instrumento', 'phq9').status).not.toBe('pendiente');
+  it('el contenido aprobado registra quién y cuándo lo revisó', () => {
+    for (const [kind, id] of [['herramienta', 'plan-seguridad'], ['instrumento', 'phq9'], ['practica', 'dear-man']] as const) {
+      const r = reviewOf(kind, id);
+      expect(r.status, `${kind}:${id}`).toBe('revisado');
+      expect(r.reviewedBy && r.reviewedAt, `${kind}:${id}`).toBeTruthy();
+    }
   });
 
   it('fuera del modo demo, los borradores no se publican', () => {
     expect(SHOW_DRAFTS).toBe(false); // los tests corren sin modo demo
-    expect(isPublished('instrumento', 'phq9')).toBe(reviewOf('instrumento', 'phq9').status !== 'borrador');
+    expect(isPublished('instrumento', 'isi')).toBe(false); // sin licencia de uso
+    expect(isPublished('instrumento', 'phq9')).toBe(true);
     expect(isPublished('instrumento', 'gad7')).toBe(true);
   });
 

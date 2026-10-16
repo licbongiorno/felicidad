@@ -32,17 +32,15 @@ export interface ReviewRecord {
 /** Última verificación completa de referencias contra Crossref (72/72 DOI correctos). */
 export const EVIDENCE_LAST_CHECKED = '2026-10-13';
 
-const DEFAULT_RECORD: ReviewRecord = { version: 1, status: 'pendiente', evidenceCheckedAt: EVIDENCE_LAST_CHECKED };
+/** Aprobación clínica general del catálogo, dada por el responsable clínico. */
+export const CLINICAL_APPROVAL = { reviewedBy: 'Responsable clínico (licbongiorno)', reviewedAt: '2026-10-16' } as const;
+
+const DEFAULT_RECORD: ReviewRecord = { version: 1, status: 'revisado', evidenceCheckedAt: EVIDENCE_LAST_CHECKED, ...CLINICAL_APPROVAL };
 
 /** Excepciones a la ficha por defecto. Clave: `${tipo}:${id}`. */
 export const REVIEW_OVERRIDES: Record<string, Partial<ReviewRecord>> = {
-  // Contenido sensible: requiere decisión clínica antes de mostrarse a usuarios reales.
-  'herramienta:plan-seguridad': { status: 'borrador', note: 'Plan de seguridad (Stanley-Brown): validar pasos y contactos con el equipo clínico.' },
-  'diario:escalera-exposicion': { status: 'borrador', note: 'Exposición autoguiada: definir salvaguardas y criterios de derivación.' },
-  'articulo:exposicion-gradual': { status: 'borrador', note: 'Acompaña a la escalera de exposición.' },
-  'instrumento:phq9': { status: 'borrador', note: 'PHQ-9: el ítem 9 (ideación suicida) exige un protocolo de respuesta aprobado.' },
-  'infantil:escalera-valiente': { status: 'borrador', note: 'Exposición gradual en la infancia guiada por el adulto: validar salvaguardas y criterios de derivación con un/a profesional infantojuvenil.' },
-  'instrumento:isi': { status: 'borrador', note: 'ISI: tiene derechos de autor (Morin) y su uso en una app requiere licencia de Mapi Research Trust. Verificar también la redacción con la versión española validada.' },
+  // Sin publicar por un motivo que no es clínico: falta la licencia de uso.
+  'instrumento:isi': { status: 'borrador', reviewedBy: undefined, reviewedAt: undefined, note: 'ISI: tiene derechos de autor (Morin) y su uso en una app requiere licencia de Mapi Research Trust. Verificar también la redacción con la versión española validada.' },
 };
 
 export function reviewOf(kind: ContentKind, id: string): ReviewRecord {
