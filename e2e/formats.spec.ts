@@ -81,7 +81,7 @@ test('mapa de habilidades: de la necesidad a la práctica, con su ficha', async 
   await page.locator('main a[href^="/gimnasio/"]').first().click();
   await page.waitForURL('**/gimnasio/dear-man');
   await page.getByRole('tab', { name: 'Ficha' }).click();
-  await expect(page.getByText('Revisión clínica pendiente', { exact: false })).toBeVisible();
+  await expect(page.getByText('Revisado clínicamente', { exact: false })).toBeVisible();
   await expect(page.getByRole('link', { name: 'Poner límites' })).toBeVisible();
 });
 
@@ -225,6 +225,8 @@ test('genograma: se suman personas, se dibuja y aparece lo que se repite entre g
 test('revisión clínica: filtra por prioridad y muestra primero lo crítico', async ({ page }) => {
   await open(page, '/revision');
   await expect(page.getByRole('heading', { name: 'Revisión clínica', level: 1 })).toBeVisible();
+  // Con el catálogo aprobado, «Por revisar» queda casi vacío: se recorre por tipo para volver a revisar.
+  await page.getByRole('tab', { name: 'Prácticas' }).click();
   const first = page.locator('main li').first();
   await expect(first.getByText(/^Prioridad 1 · crítica/)).toBeVisible();
   await page.getByRole('button', { name: /^Prioridad 3 · habitual/ }).click();
