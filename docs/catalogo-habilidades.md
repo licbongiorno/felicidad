@@ -319,7 +319,7 @@
 |---|---|---|---|
 | **Nombre** | Título en lenguaje cotidiano | Sí | `Practice.title` |
 | **Necesidad** | Una o varias de las 16 | Parcial: un módulo principal | `MODULE_OF_PRACTICE` / `PracticeMeta.module`. Propuesta: `needs: NeedId[]` |
-| **Objetivo de aprendizaje** | «Al terminar, podrás…» | **No** (lo más cercano es `summary`) | Propuesta: `learningObjective` (en curso: visible en la ficha) |
+| **Objetivo de aprendizaje** | «Al terminar, podrás…» | **No** (lo más cercano es `summary`) | Propuesta: `learningObjective` (resuelto: visible en la pestaña «Ficha»; objetivo por necesidad en `needs.ts`) |
 | **Fundamento** | Por qué funciona y de qué enfoque viene | Sí | `mechanism`, `howItWorks[]`, `PRACTICE_APPROACHES` / `PracticeMeta.approaches` |
 | **Evidencia** | Nivel y referencias | Sí | `evidenceLevel`, `evidence[]` (`Reference` con `doi`) |
 | **Indicaciones** | Para qué situaciones sirve | **No** explícito (`MODULES.purpose` es por módulo) | Propuesta: `indications[]` |
@@ -330,7 +330,7 @@
 | **Variantes accesibles** | Lectura fácil, sin audio, sin movimiento, con los ojos abiertos | **Parcial**: voz opcional, duración breve, movimiento reducido global | Propuesta: `accessibleVariants` (p. ej. pasos de lectura fácil) |
 | **Evaluación del aprendizaje** | ¿Lo aprendiste? ¿Lo usaste? | **Parcial**: `moodPre`/`moodPost` (ánimo, no aprendizaje), `applications.usefulness` | Propuesta: `learningCheck` (1–2 preguntas) y confianza 0–10 por habilidad (R33) |
 | **Fuentes** | Referencias completas | Sí | `evidence[]`; verificadas con `npm run verify:refs` |
-| **Fecha de revisión** | Última revisión clínica y de evidencia | Sí en datos, **no visible** | `ReviewRecord.evidenceCheckedAt`, `reviewedAt` (en curso: visible en la ficha). No duplicar en `Practice` |
+| **Fecha de revisión** | Última revisión clínica y de evidencia | Sí en datos, **no visible** | `ReviewRecord.evidenceCheckedAt`, `reviewedAt` (resuelto: visible en la pestaña «Ficha»; objetivo por necesidad en `needs.ts`). No duplicar en `Practice` |
 | Estado de revisión | borrador, pendiente o revisado | Sí | `reviewOf('practica', id).status`, `REVIEW_LABEL` |
 | Versión | Para saber qué guion se usó | Sí | `ReviewRecord.version` → `sessions.contentVersion` |
 
