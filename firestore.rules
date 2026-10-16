@@ -182,8 +182,10 @@ service cloud.firestore {
       allow create: if isOwner(uid)
         && request.resource.data.role == 'patient'          // el rol clínico se asigna desde backend
         && request.resource.data.keys().hasOnly(['displayName', 'role', 'timezone', 'consent', 'createdAt']);
+      // Sólo se actualizan los datos propios de la persona: nunca el rol ni campos nuevos
+      // (p. ej. un futuro plan pago), que se asignan desde backend.
       allow update: if isOwner(uid)
-        && !request.resource.data.diff(resource.data).affectedKeys().hasAny(['role', 'createdAt']);
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['displayName', 'timezone', 'consent']);
       allow delete: if isOwner(uid);                          // derecho de supresión
 
       // ------------------------------------------------------------ sesiones de práctica

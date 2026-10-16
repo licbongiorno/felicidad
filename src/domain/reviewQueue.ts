@@ -10,6 +10,7 @@ import { PROGRAMS } from './programs';
 import { KID_ACTIVITIES } from './kids';
 import { KID_GUIDES } from './kids-guides';
 import { PILLS } from './pills';
+import { STORIES } from './stories';
 
 /**
  * Cola de revisión clínica: todo el contenido publicable con su ficha de gobernanza, para
@@ -39,6 +40,7 @@ export const KIND_LABEL: Record<ContentKind, string> = {
   infantil: 'Actividades para chicos',
   'guia-familia': 'Guías para familias',
   pildora: 'Píldoras',
+  cuento: 'Cuentos',
 };
 
 const item = (kind: ContentKind, id: string, title: string, href: string, extra: Partial<ReviewItem> = {}): ReviewItem => ({
@@ -66,6 +68,7 @@ export function reviewQueue(): ReviewItem[] {
     ...KID_ACTIVITIES.map((a) => item('infantil', a.id, a.title, `/chicos/${a.id}`, { evidence: `${a.bands.join(', ')} años` })),
     ...KID_GUIDES.map((g) => item('guia-familia', g.id, g.title, `/familia/guia/${g.id}`)),
     ...PILLS.map((p) => item('pildora', p.id, p.title, `/biblioteca/pildoras/${p.id}`)),
+    ...STORIES.map((st) => item('cuento', st.id, st.title, `/familia/cuentos/${st.id}`, { evidence: `${st.bands.join(', ')} años` })),
   ];
 }
 

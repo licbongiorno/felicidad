@@ -12,6 +12,11 @@ import { EMOTION_FAMILIES } from './emotions';
 import { MODULES } from './catalog';
 import { SIMULATIONS } from './lab';
 import { isPublished } from './governance';
+import { PILLS } from './pills';
+import { CHALLENGES } from './challenges';
+import { STORIES } from './stories';
+import { KID_GUIDES } from './kids-guides';
+import { NEEDS } from './needs';
 
 /**
  * Buscador global (⌘K). Índice en memoria sobre todo el contenido, sin dependencias:
@@ -19,7 +24,7 @@ import { isPublished } from './governance';
  * título pesa más que el cuerpo.
  */
 
-export type ResultKind = 'Sección' | 'Práctica' | 'Antídoto' | 'Diario' | 'Programa' | 'Artículo' | 'Glosario' | 'Carta';
+export type ResultKind = 'Sección' | 'Práctica' | 'Antídoto' | 'Diario' | 'Programa' | 'Desafío' | 'Artículo' | 'Píldora' | 'Cuento' | 'Guía' | 'Glosario' | 'Carta';
 
 export interface SearchDoc {
   id: string;
@@ -53,6 +58,9 @@ const SECTIONS: [string, string, string, string[]][] = [
   ['/evaluaciones', 'Evaluaciones WHO-5', 'Mide tu bienestar cada dos semanas', ['cuestionario', 'test', 'bienestar']],
   ['/informe', 'Informe para tu terapeuta', 'Resumen imprimible o en PDF', ['pdf', 'imprimir', 'psicologo', 'sesion']],
   ['/programas', 'Programas', 'Recorridos guiados de varias semanas', ['curso', 'plan']],
+  ['/desafios', 'Desafíos', 'Una tarea corta por día durante 7, 21 o 30 días', ['reto', 'habito', 'rutina', 'dias']],
+  ['/biblioteca/pildoras', 'Píldoras', 'Ideas clave en tarjetas, para leer en un minuto', ['tarjetas', 'resumen', 'breve']],
+  ['/familia', 'Familia', 'Habilidades para chicos de 0 a 17 años, con tu supervisión', ['hijos', 'chicos', 'ninos', 'crianza', 'adolescentes']],
   ['/biblioteca', 'Biblioteca', 'Fundamentos científicos', ['articulos', 'ciencia', 'evidencia']],
   ['/cartas', 'Cartas filosóficas', 'Perspectivas para romper la rumiación', ['frases', 'citas', 'estoicismo']],
   ['/ajustes', 'Ajustes', 'Voz guía, recordatorios, exportar o borrar datos', ['configuracion', 'cuenta', 'privacidad', 'recordatorio']],
@@ -78,6 +86,20 @@ export function buildIndex(): SearchDoc[] {
     ),
     ...PROGRAMS.map((p) =>
       doc({ id: `g:${p.id}`, kind: 'Programa', title: p.title, subtitle: p.subtitle, href: `/programas/${p.id}` }, [p.description, ...p.weeks.map((w) => w.title)]),
+    ),
+    doc({ id: 's:/habilidades', kind: 'Sección', title: 'Mapa de habilidades', subtitle: 'Elige lo que necesitas y encuentra las habilidades que lo trabajan', href: '/habilidades' }, ['necesidad', 'que necesito', 'por donde empiezo', 'ayuda']),
+    ...NEEDS.map((n) => doc({ id: `n:${n.id}`, kind: 'Sección', title: n.title, subtitle: n.description, href: `/habilidades/${n.id}` }, [n.objective])),
+    ...CHALLENGES.map((c) =>
+      doc({ id: `r:${c.id}`, kind: 'Desafío', title: c.title, subtitle: `${c.days} días · ${c.subtitle}`, href: '/desafios' }, [c.why, ...c.tasks.map((t) => t.title)]),
+    ),
+    ...PILLS.filter((p) => isPublished('pildora', p.id)).map((p) =>
+      doc({ id: `i:${p.id}`, kind: 'Píldora', title: p.title, subtitle: p.subtitle, href: `/biblioteca/pildoras/${p.id}` }, p.slides.map((x) => x.heading)),
+    ),
+    ...STORIES.map((st) =>
+      doc({ id: `k:${st.id}`, kind: 'Cuento', title: st.title, subtitle: `${st.tagline} · para leer en familia`, href: `/familia/cuentos/${st.id}` }, st.themes),
+    ),
+    ...KID_GUIDES.filter((g) => isPublished('guia-familia', g.id)).map((g) =>
+      doc({ id: `f:${g.id}`, kind: 'Guía', title: g.title, subtitle: `Guía para familias · ${g.subtitle}`, href: `/familia/guia/${g.id}` }, g.keyPoints),
     ),
     ...ARTICLES.filter((a) => isPublished('articulo', a.id)).map((a) =>
       doc({ id: `b:${a.id}`, kind: 'Artículo', title: a.title, subtitle: a.subtitle, href: `/biblioteca/${a.id}` }, [a.category, ...a.keyPoints]),
@@ -121,7 +143,11 @@ const KIND_BOOST: Record<ResultKind, number> = {
   Práctica: 2,
   Diario: 1,
   Programa: 1,
+  Desafío: 1,
   Artículo: 0,
+  Píldora: 0,
+  Cuento: 0,
+  Guía: 0,
   Glosario: 0,
   Carta: 0,
 };

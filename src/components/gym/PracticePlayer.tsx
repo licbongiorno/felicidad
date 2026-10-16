@@ -29,6 +29,7 @@ import { FavoriteButton } from '@/components/personal/FavoriteButton';
 import { clearResume, loadResume, saveResume, type ResumePoint } from '@/lib/resume';
 import { useGrowth } from '@/hooks/useGrowth';
 import { GrowthNote } from '@/components/growth/GrowthNote';
+import { SkillSheet } from '@/components/skills/SkillSheet';
 
 type Phase = 'intro' | 'practice' | 'close' | 'done';
 const ORDER: Record<Phase, number> = { intro: 0, practice: 1, close: 2, done: 3 };
@@ -293,6 +294,11 @@ export function PracticePlayer({ practice }: { practice: Practice }) {
                 id: 'evidencia',
                 label: 'Evidencia',
                 content: <EvidencePanel level={practice.evidenceLevel} references={practice.evidence} />,
+              },
+              {
+                id: 'ficha',
+                label: 'Ficha',
+                content: <SkillSheet practice={practice} />,
               },
             ]}
           />

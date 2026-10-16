@@ -3,6 +3,7 @@
 import { m } from 'motion/react';
 import { useEffect, useState, type ReactNode } from 'react';
 import { deleteUser } from 'firebase/auth';
+import { clearPersonalLocalData } from '@/lib/localData';
 import { useAuth } from '@/providers/AuthProvider';
 import { useUiStore } from '@/store/useUiStore';
 import { loadRepo, useProgressStore } from '@/store/useProgressStore';
@@ -344,6 +345,9 @@ function Reminder() {
   );
 }
 
+/** Firebase pide reautenticar pasados 5 minutos del inicio de sesión; se deja margen. */
+const RECENT_LOGIN_MS = 4 * 60_000;
+
 function DataRights({ uid, onDeleted }: { uid: string; onDeleted: () => Promise<void> }) {
   const [exporting, setExporting] = useState(false);
   const [confirmOpen, setConfirmOpen] = useState(false);
@@ -371,8 +375,20 @@ function DataRights({ uid, onDeleted }: { uid: string; onDeleted: () => Promise<
     setDeleting(true);
     setError(null);
     try {
+      // Firebase exige un inicio de sesión reciente para eliminar el acceso. Se comprueba antes
+      // de borrar nada: así no quedan datos borrados con una cuenta que sigue existiendo.
+      if (!DEMO_MODE) {
+        const current = getFirebaseAuth().currentUser;
+        const last = Date.parse(current?.metadata.lastSignInTime ?? '');
+        if (!current || !Number.isFinite(last) || Date.now() - last > RECENT_LOGIN_MS) {
+          setError('Por seguridad, vuelve a iniciar sesión y repite este paso. No se borró nada.');
+          setDeleting(false);
+          return;
+        }
+      }
       await (await loadRepo()).deleteUserData(uid);
       useProgressStore.getState().disconnect();
+      clearPersonalLocalData();
       if (!DEMO_MODE) {
         const current = getFirebaseAuth().currentUser;
         if (current) await deleteUser(current);
@@ -382,7 +398,7 @@ function DataRights({ uid, onDeleted }: { uid: string; onDeleted: () => Promise<
       const code = (e as { code?: string })?.code;
       setError(
         code === 'auth/requires-recent-login'
-          ? 'Tus datos se borraron. Para eliminar también el acceso, vuelve a iniciar sesión y repite este paso.'
+          ? 'Tus datos se borraron, pero el acceso sigue activo. Vuelve a iniciar sesión y repite este paso para eliminarlo.'
           : 'No se pudo completar el borrado. Inténtalo de nuevo.',
       );
       setDeleting(false);

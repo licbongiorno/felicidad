@@ -210,6 +210,13 @@ describe('perfil y rol', () => {
     await assertSucceeds(updateDoc(doc(alice(), 'users/alice'), { consent: { version: 'x', acceptedAt: serverTimestamp() } }));
     await assertFails(updateDoc(doc(alice(), 'users/alice'), { role: 'clinician' }));
   });
+
+  it('no se pueden agregar campos nuevos al perfil (p. ej. un plan pago)', async () => {
+    await assertSucceeds(setDoc(doc(alice(), 'users/alice'), { displayName: null, role: 'patient', timezone: 'UTC', consent: null, createdAt: serverTimestamp() }));
+    await assertSucceeds(updateDoc(doc(alice(), 'users/alice'), { timezone: 'America/Argentina/Buenos_Aires' }));
+    await assertFails(updateDoc(doc(alice(), 'users/alice'), { premium: true }));
+    await assertFails(updateDoc(doc(alice(), 'users/alice'), { createdAt: serverTimestamp() }));
+  });
 });
 
 describe('vínculo clínico', () => {

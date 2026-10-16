@@ -1,5 +1,6 @@
 import type { AgeBand, KidFeelingId, MascotMood } from './kids';
 import type { Reference } from './types';
+import { isPublished } from './governance';
 import { STORIES_CLASSIC } from './stories-classic';
 import { STORIES_ORIGINAL } from './stories-original';
 
@@ -110,7 +111,7 @@ export function sourceYear(year: number): string {
 }
 
 export function storiesFor(band: AgeBand, theme?: StoryTheme | null): Story[] {
-  return STORIES.filter((s) => s.bands.includes(band) && (!theme || s.themes.includes(theme)));
+  return STORIES.filter((s) => s.bands.includes(band) && (!theme || s.themes.includes(theme)) && isPublished('cuento', s.id));
 }
 
 export function themesFor(band: AgeBand): typeof STORY_THEMES {

@@ -7,6 +7,7 @@ import { CONSENT_VERSION } from '@/lib/consent';
 import { useProgressStore } from '@/store/useProgressStore';
 import { useKidsStore } from '@/store/useKidsStore';
 import { exitKidMode } from '@/lib/kids/kidMode';
+import { claimLocalData, clearPersonalLocalData } from '@/lib/localData';
 import { CONFIG_MISSING, DEMO_MODE } from '@/lib/demo';
 import type { Profile } from '@/domain/types';
 import { ConfigError } from '@/components/layout/ConfigError';
@@ -43,6 +44,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setUser(DEMO_USER);
       setProfile(DEMO_PROFILE);
       setLoading(false);
+      claimLocalData(DEMO_USER.uid);
       useProgressStore.getState().connect(DEMO_USER.uid);
       return;
     }
@@ -57,6 +59,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setUser(u);
       setLoading(false);
       if (u) {
+        claimLocalData(u.uid);
         setProfile(undefined);
         // Firestore se carga bajo demanda: no forma parte del JS inicial de cada página.
         import('@/lib/firebase/repositories')
@@ -88,6 +91,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         useProgressStore.getState().disconnect();
         useKidsStore.getState().disconnect();
         exitKidMode();
+        clearPersonalLocalData();
         if (DEMO_MODE) return window.location.assign('/');
         await firebaseSignOut(getFirebaseAuth());
         // Privacidad en equipos compartidos: elimina la caché local de datos clínicos.

@@ -8,12 +8,14 @@
  * - Sólo peticiones GET del mismo origen. Firebase y los datos clínicos NO pasan por aquí:
  *   su persistencia offline la gestiona Firestore (IndexedDB) con sus propias garantías.
  */
-const VERSION = 'v2';
+const VERSION = 'v3';
 const PAGES = `pages-${VERSION}`;
 const STATIC = `static-${VERSION}`;
 
 // Rutas que deben funcionar sin conexión aunque no se hayan visitado.
-const PRECACHE = ['/', '/dashboard', '/gimnasio', '/gimnasio/temporizador', '/antidotos', '/diario', '/evaluaciones', '/cartas'];
+// El plan de seguridad y el modo chico van primero: son los que más se necesitan sin red.
+// (Si el plan de seguridad sigue en borrador, la respuesta no es 200 y no se guarda.)
+const PRECACHE = ['/', '/plan-de-seguridad', '/chicos', '/dashboard', '/gimnasio', '/gimnasio/temporizador', '/antidotos', '/diario', '/evaluaciones', '/cartas', '/desafios'];
 
 // Next.js referencia los archivos de dos formas: "/_next/static/…" en las etiquetas y
 // "static/chunks/…" (sin prefijo, con comillas escapadas) dentro de los datos de la página.

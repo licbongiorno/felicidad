@@ -165,7 +165,7 @@ test('adolescentes: líneas de salud mental en la ayuda y lo que escriben no se 
   await expect(page.getByRole('link', { name: /Llamar a Línea Nacional de Salud Mental/ })).toHaveAttribute('href', 'tel:08009990091');
   await page.keyboard.press('Escape');
   await page.goto('/chicos/frasco-de-gratitud');
-  await expect(page.getByText('La app no le muestra a tu adulto lo que escribes aquí.')).toBeVisible();
+  await expect(page.getByText(/Tu adulto no ve en la app lo que escribes aquí/)).toBeVisible();
   await page.getByRole('button', { name: 'Mis amigos' }).click();
   await page.getByPlaceholder('Hoy jugué con…').fill('Algo privado');
   await page.getByRole('button', { name: 'Guardar en el frasco' }).click();

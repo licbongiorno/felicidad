@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { PILLS } from './pills';
+import { STORY_BY_ID } from './stories';
 import { ANTIDOTES } from './antidotes';
 import { CARDS } from './cards';
 import { GLOSSARY } from './glossary';
@@ -139,6 +140,7 @@ describe('gobernanza clínica', () => {
       infantil: (id) => KID_ACTIVITIES.some((a) => a.id === id),
       'guia-familia': (id) => KID_GUIDES.some((g) => g.id === id),
       pildora: (id) => PILLS.some((p) => p.id === id),
+      cuento: (id) => !!STORY_BY_ID[id],
     };
     for (const key of Object.keys(REVIEW_OVERRIDES)) {
       const [kind, id] = key.split(':');

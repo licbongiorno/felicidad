@@ -54,3 +54,13 @@ describe('buscador', () => {
     expect(search(index, '   ')).toEqual([]);
   });
 });
+
+describe('formatos nuevos en el buscador', () => {
+  const index = buildIndex();
+  it('encuentra píldoras, desafíos, cuentos y guías para familias', () => {
+    expect(search(index, 'gratitud semana').some((r) => r.kind === 'Desafío')).toBe(true);
+    expect(search(index, 'burnout').some((r) => r.kind === 'Píldora')).toBe(true);
+    expect(search(index, 'patito feo').some((r) => r.kind === 'Cuento')).toBe(true);
+    expect(search(index, 'pantallas').some((r) => r.kind === 'Guía')).toBe(true);
+  });
+});

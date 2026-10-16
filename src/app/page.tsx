@@ -1,3 +1,4 @@
+import { isPublished } from '@/domain/governance';
 import Link from 'next/link';
 import { SAFETY_DISCLAIMER } from '@/config/safety';
 import { buttonStyles } from '@/components/ui/Button';
@@ -61,10 +62,10 @@ export default function Home() {
         <StaggerItem>
           <dl className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-5">
             {[
-              [PRACTICES.length, 'técnicas guiadas'],
+              [PRACTICES.filter((p) => isPublished('practica', p.id)).length, 'técnicas guiadas'],
               [ANTIDOTES.length, 'antídotos emocionales'],
-              [JOURNAL_TEMPLATES.filter((t) => !t.hidden).length, 'registros de diario'],
-              [ARTICLES.length, 'artículos de fondo'],
+              [JOURNAL_TEMPLATES.filter((t) => !t.hidden && isPublished('diario', t.type)).length, 'registros de diario'],
+              [ARTICLES.filter((a) => isPublished('articulo', a.id)).length, 'artículos de fondo'],
               [PROGRAMS.length, 'programas'],
             ].map(([n, label]) => (
               <div key={label as string}>
