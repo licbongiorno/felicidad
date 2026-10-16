@@ -166,7 +166,19 @@ service cloud.firestore {
         || (type == 'sentido'
           && v.keys().hasOnly(['situacion', 'pide', 'camino', 'respuesta', 'vivido', 'balance'])
           && shortText(v, 'situacion') && shortText(v, 'pide') && shortText(v, 'camino')
-          && shortText(v, 'respuesta') && shortText(v, 'vivido') && shortText(v, 'balance'));
+          && shortText(v, 'respuesta') && shortText(v, 'vivido') && shortText(v, 'balance'))
+        || (type == 'diario-esquemas'
+          && v.keys().hasOnly(['disparador', 'emocion', 'intensidad', 'pensamientos', 'esquema', 'modo', 'conducta', 'necesidad', 'adultoSano'])
+          && shortText(v, 'disparador') && shortText(v, 'emocion') && score(v, 'intensidad') && shortText(v, 'pensamientos')
+          && shortText(v, 'esquema') && shortText(v, 'modo') && shortText(v, 'conducta') && shortText(v, 'necesidad')
+          && shortText(v, 'adultoSano'))
+        || (type == 'tarjeta-esquema'
+          && v.keys().hasOnly(['esquema', 'siento', 'origen', 'hoy', 'hare'])
+          && shortText(v, 'esquema') && longText(v, 'siento') && shortText(v, 'origen') && longText(v, 'hoy') && longText(v, 'hare'))
+        || (type == 'sueno-nocturno'
+          && v.keys().hasOnly(['titulo', 'relato', 'emocion', 'imagen', 'parte', 'vida', 'gesto'])
+          && shortText(v, 'titulo') && longText(v, 'relato') && shortText(v, 'emocion') && shortText(v, 'imagen')
+          && shortText(v, 'parte') && shortText(v, 'vida') && shortText(v, 'gesto'));
     }
 
     function inRange(v, lo, hi) { return v is number && v >= lo && v <= hi; }
@@ -268,7 +280,8 @@ service cloud.firestore {
                'activacion', 'preocupacion', 'perdon', 'intencion', 'resolucion-problemas', 'diario-sueno',
                'experimento', 'escalera-exposicion', 'plan-seguridad', 'conversacion', 'tarjeta-diaria',
                'analisis-cadena', 'caja-herramientas', 'mis-roles', 'necesidades', 'patron-repetido',
-               'reflexion-carta', 'pregunta-del-dia', 'sentido']
+               'reflexion-carta', 'pregunta-del-dia', 'sentido', 'diario-esquemas',
+               'tarjeta-esquema', 'sueno-nocturno']
           && request.resource.data.values is map
           && validJournalValues(request.resource.data.type, request.resource.data.values)
           && request.resource.data.createdAt == request.time;

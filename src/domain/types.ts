@@ -217,7 +217,10 @@ export type JournalType =
   | 'patron-repetido'
   | 'reflexion-carta'
   | 'pregunta-del-dia'
-  | 'sentido';
+  | 'sentido'
+  | 'diario-esquemas'
+  | 'tarjeta-esquema'
+  | 'sueno-nocturno';
 
 export type JournalValue = string | number;
 

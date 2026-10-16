@@ -174,3 +174,50 @@ test('confianza por habilidad: se registra al contar que la usaste y aparece en 
   await expect(page.getByRole('link', { name: 'DEAR MAN: pedir lo que necesitas' }).first()).toBeVisible();
   await expect(page.getByText('Confianza en tus habilidades')).toBeVisible();
 });
+
+test('mapa de esquemas: se lee un esquema, se marca y queda guardado; los modos enlazan a prácticas', async ({ page }) => {
+  await open(page, '/laboratorio/esquemas');
+  await expect(page.getByRole('heading', { name: 'Mapa de esquemas y modos', level: 1 })).toBeVisible();
+  await noSideScroll(page);
+  await expectAccessible(page);
+  const card = page.locator('li').filter({ hasText: 'Abandono' }).first();
+  await card.getByText('Abandono').click();
+  await expect(card.getByText(/Tu adulto sano podría decirte/)).toBeVisible();
+  await card.getByRole('button', { name: 'Me resuena' }).click();
+  await expect(page.getByRole('heading', { name: 'Te resuenan un esquema' })).toBeVisible();
+  await page.reload();
+  await expect(page.getByRole('heading', { name: 'Te resuenan un esquema' })).toBeVisible();
+  await page.getByRole('tab', { name: 'Los modos' }).click();
+  await expect(page.getByRole('heading', { name: 'Crítico punitivo' })).toBeVisible();
+  await expectAccessible(page);
+});
+
+test('genograma: se suman personas, se dibuja y aparece lo que se repite entre generaciones', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await open(page, '/laboratorio/genograma');
+  await expect(page.getByRole('heading', { name: 'Tu genograma', level: 1 })).toBeVisible();
+  await expectAccessible(page);
+
+  async function addPerson(button: ReturnType<Page['getByRole']>, name: string, tag: string) {
+    await button.click();
+    const sheet = page.getByRole('dialog');
+    await sheet.getByLabel('Apodo o iniciales').fill(name);
+    await sheet.getByRole('button', { name: tag }).click();
+    await sheet.getByRole('button', { name: 'Guardar' }).click();
+    await expect(sheet).toBeHidden();
+  }
+  await addPerson(page.getByRole('button', { name: /Primera persona/ }), 'Mamá', 'Migración');
+  await expect(page.getByRole('heading', { name: 'Familia de Mamá' })).toBeVisible();
+  const branch = page.locator('section').filter({ has: page.getByRole('heading', { name: 'Familia de Mamá' }) });
+  await addPerson(branch.getByRole('button', { name: /Padre o madre/ }).first(), 'Abuela Rosa', 'Migración');
+
+  const chart = page.getByRole('img', { name: /Genograma con 3 personas/ });
+  await expect(chart).toBeVisible();
+  await expect(chart.locator('text').filter({ hasText: 'Abuela Rosa' })).toBeVisible();
+  await expect(page.getByText('«Migración» aparece en 2 personas de 2 generaciones: Abuela Rosa y Mamá.')).toBeVisible();
+  await noSideScroll(page);
+  await expectAccessible(page);
+
+  await page.reload();
+  await expect(page.getByRole('button', { name: /Abuela Rosa/ })).toBeVisible();
+});

@@ -1,10 +1,10 @@
 /**
- * Comodidades personales guardadas sólo en este dispositivo (localStorage): desafíos en curso,
- * píldoras leídas, hitos y «retomar». No son registros clínicos, pero son de una persona:
- * se borran al cerrar sesión o eliminar la cuenta, y si entra otra cuenta en el mismo equipo.
+ * Datos personales guardados sólo en este dispositivo (localStorage): desafíos en curso,
+ * píldoras leídas, hitos, «retomar», el genograma y los esquemas marcados. Son de una persona
+ * (el genograma, además, tiene datos sensibles de terceros): se borran al cerrar sesión o eliminar la cuenta, y si entra otra cuenta en el mismo equipo.
  * Las preferencias del dispositivo (tema, texto, voz, modo chico) no se tocan.
  */
-export const PERSONAL_LOCAL_KEYS = ['desafios', 'pildoras-leidas', 'eudaimonia-hitos', 'eudaimonia-resume'] as const;
+export const PERSONAL_LOCAL_KEYS = ['desafios', 'pildoras-leidas', 'eudaimonia-hitos', 'eudaimonia-resume', 'genograma', 'esquemas-resuenan'] as const;
 const OWNER_KEY = 'eudaimonia-local-owner';
 
 export function clearPersonalLocalData(): void {

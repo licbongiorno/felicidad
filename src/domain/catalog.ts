@@ -16,7 +16,7 @@ import { PACK_META } from './packs';
  *       ayuda humana (botón «Ayuda» en todas las pantallas, plan de seguridad).
  */
 
-export type Approach = 'dbt' | 'tcc' | 'act' | 'cft' | 'mindfulness' | 'positiva' | 'contemplativa' | 'relajacion' | 'escritura' | 'esquemas' | 'psicodinamica' | 'logoterapia' | 'humanista' | 'gestalt' | 'soluciones' | 'narrativa' | 'motivacional' | 'metacognitiva' | 'focalizada-emocion' | 'interpersonal' | 'mentalizacion' | 'gottman';
+export type Approach = 'dbt' | 'tcc' | 'act' | 'cft' | 'mindfulness' | 'positiva' | 'contemplativa' | 'relajacion' | 'escritura' | 'esquemas' | 'psicodinamica' | 'logoterapia' | 'humanista' | 'gestalt' | 'soluciones' | 'narrativa' | 'motivacional' | 'metacognitiva' | 'focalizada-emocion' | 'interpersonal' | 'mentalizacion' | 'gottman' | 'sistemica';
 
 export const APPROACH_LABEL: Record<Approach, string> = {
   dbt: 'DBT',
@@ -41,6 +41,7 @@ export const APPROACH_LABEL: Record<Approach, string> = {
   interpersonal: 'Interpersonal (TIP)',
   mentalizacion: 'Mentalización',
   gottman: 'Método Gottman',
+  sistemica: 'Sistémica · familia',
 };
 
 export const APPROACH_DESCRIPTION: Record<Approach, string> = {
@@ -66,6 +67,7 @@ export const APPROACH_DESCRIPTION: Record<Approach, string> = {
   interpersonal: 'Terapia interpersonal: el ánimo en relación con duelos, cambios de rol y conflictos con otros.',
   mentalizacion: 'Mentalización (Fonagy, Bateman): entender los estados mentales propios y ajenos detrás de las conductas.',
   gottman: 'Método Gottman para parejas: amistad, manejo del conflicto y sentido compartido, según décadas de investigación.',
+  sistemica: 'Enfoque sistémico (Bowen, McGoldrick, Boszormenyi-Nagy): la persona dentro de su familia; genograma, mandatos, lealtades y diferenciación.',
 };
 
 export const PRACTICE_APPROACHES: Record<string, Approach[]> = {
@@ -161,6 +163,9 @@ export const JOURNAL_APPROACHES: Partial<Record<JournalType, Approach[]>> = {
   necesidades: ['esquemas'],
   'patron-repetido': ['esquemas', 'psicodinamica'],
   sentido: ['logoterapia'],
+  'diario-esquemas': ['esquemas'],
+  'tarjeta-esquema': ['esquemas'],
+  'sueno-nocturno': ['psicodinamica'],
 };
 
 // ---------------------------------------------------------------- nivel de riesgo
@@ -196,6 +201,7 @@ export const JOURNAL_RISK: Partial<Record<JournalType, RiskLevel>> = {
   perdon: 2,
   'analisis-cadena': 2,
   'patron-repetido': 2,
+  'diario-esquemas': 2,
 };
 
 export const practiceRisk = (id: string): RiskLevel => PRACTICE_RISK[id]?.level ?? 1;
@@ -361,10 +367,15 @@ export const MODULES: SkillModule[] = [
     id: 'autoconocimiento',
     title: 'Autoconocimiento y patrones',
     purpose: 'Explorar tus roles, necesidades y patrones. Es reflexión, no diagnóstico.',
-    approaches: ['esquemas', 'psicodinamica', 'humanista', 'gestalt'],
+    approaches: ['esquemas', 'psicodinamica', 'sistemica', 'humanista', 'gestalt'],
     practices: ['linea-de-vida', 'persona-y-sombra', 'adulto-sano', 'darse-cuenta', 'yo-real-yo-ideal', 'polaridades'],
-    journal: ['mis-roles', 'necesidades', 'patron-repetido'],
+    journal: ['mis-roles', 'necesidades', 'patron-repetido', 'diario-esquemas', 'tarjeta-esquema', 'sueno-nocturno'],
     resources: [
+      { href: '/laboratorio/esquemas', label: 'Mapa de esquemas y modos' },
+      { href: '/laboratorio/genograma', label: 'Tu genograma' },
+      { href: '/biblioteca/terapia-de-esquemas', label: 'Terapia de esquemas' },
+      { href: '/biblioteca/psicologia-de-jung', label: 'Las ideas de Jung' },
+      { href: '/biblioteca/familia-como-sistema', label: 'La familia como sistema' },
       { href: '/biblioteca/autoconocimiento', label: 'Conocerte mejor' },
       { href: '/biblioteca/psicologia-humanista', label: 'Psicología humanista' },
       { href: '/biblioteca/gestalt', label: 'Gestalt: el darse cuenta' },

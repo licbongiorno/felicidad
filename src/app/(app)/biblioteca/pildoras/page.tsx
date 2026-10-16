@@ -5,6 +5,8 @@ import { Stagger, StaggerItem } from '@/components/motion/Reveal';
 import { PillReadMark } from '@/components/library/PillReadMark';
 
 const VISIBLE = PILLS.filter((p) => isPublished('pildora', p.id));
+/** La lista es larga: la entrada escalonada dura como máximo 0,6 s en total. */
+const STEP = Math.min(0.05, 0.6 / Math.max(VISIBLE.length, 1));
 
 export default function PillsPage() {
   return (
@@ -18,7 +20,7 @@ export default function PillsPage() {
         <h1 className="font-serif text-4xl text-stone-800 sm:text-5xl">Píldoras</h1>
         <p className="mt-3 leading-relaxed text-stone-600">Ideas clave en pocas tarjetas, para leer en un minuto. Desliza o toca «Siguiente» para avanzar.</p>
       </StaggerItem>
-      <Stagger as="ul" step={0.05} delay={0.1} className="mt-8 grid gap-4 md:grid-cols-2">
+      <Stagger as="ul" step={STEP} delay={0.1} className="mt-8 grid gap-4 md:grid-cols-2">
         {VISIBLE.map((p) => (
           <StaggerItem as="li" key={p.id}>
             <Link

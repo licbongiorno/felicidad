@@ -107,6 +107,16 @@ describe('diario', () => {
     await assertFails(addDoc(col, entry('necesidades', { juego: 11 })));
   });
 
+  it('acepta el diario de esquemas, la tarjeta del esquema y el diario de sueños', async () => {
+    const col = collection(alice(), 'users/alice/journal');
+    await assertSucceeds(addDoc(col, entry('diario-esquemas', { disparador: 'No me respondió', emocion: 'Miedo', intensidad: 7, modo: 'Niño vulnerable', necesidad: 'Calma', adultoSano: 'Esperar y preguntar' })));
+    await assertFails(addDoc(col, entry('diario-esquemas', { intensidad: 11 })));
+    await assertFails(addDoc(col, entry('diario-esquemas', { disparador: 'x', otro: 'y' })));
+    await assertSucceeds(addDoc(col, entry('tarjeta-esquema', { esquema: 'Me van a dejar', siento: 'Miedo porque no contesta', hoy: 'Contestó siempre', hare: 'Esperar' })));
+    await assertSucceeds(addDoc(col, entry('sueno-nocturno', { titulo: 'La casa', relato: 'Estoy en una casa con un cuarto nuevo.', emocion: 'Curiosidad' })));
+    await assertFails(addDoc(col, entry('sueno-nocturno', { titulo: 'x'.repeat(281) })));
+  });
+
   it('acepta el registro de sentido (logoterapia) y rechaza campos ajenos', async () => {
     const col = collection(alice(), 'users/alice/journal');
     await assertSucceeds(addDoc(col, entry('sentido', { situacion: 'Un día cansado', pide: 'Escuchar a mi hija', respuesta: 'Cenar sin pantallas', balance: 'Lo hice' })));
