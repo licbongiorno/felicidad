@@ -8,6 +8,7 @@ import { PACKS, PACK_PILLS } from '.';
 import { GLOSSARY } from '../glossary';
 import { KID_GUIDES } from '../kids-guides';
 import { PROGRAMS } from '../programs';
+import { JOURNAL_TEMPLATES } from '../journal';
 
 describe('paquetes de contenido', () => {
   it('sólo importan tipos (evita ciclos de importación entre registros)', () => {
@@ -45,6 +46,13 @@ describe('paquetes de contenido', () => {
       const dup = list.filter((id, i) => list.indexOf(id) !== i);
       expect(dup).toEqual([]);
     }
+  });
+});
+
+describe('programas de los paquetes', () => {
+  it('sólo invitan a escribir en plantillas visibles del diario', () => {
+    const hidden = new Set(JOURNAL_TEMPLATES.filter((t) => t.hidden).map((t) => t.type));
+    for (const p of PACKS.flatMap((x) => x.programs)) for (const w of p.weeks) if (w.journalType) expect(hidden.has(w.journalType), `${p.id} → ${w.journalType}`).toBe(false);
   });
 });
 

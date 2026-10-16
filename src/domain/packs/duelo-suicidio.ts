@@ -394,7 +394,6 @@ export const DUELO_SUICIDIO_PACK: ContentPack = {
           description: 'Revisarás cómo estás, dejarás listo a quién llamar y te tratarás con amabilidad.',
           practiceIds: ['mi-cuidado-en-este-duelo', 'mano-en-el-pecho'],
           articleIds: ['duelo-por-suicidio'],
-          journalType: 'plan-seguridad',
         },
         {
           title: 'Semana 2 · Las preguntas y la culpa',

@@ -333,7 +333,6 @@ export const CUIDADORES_PACK: ContentPack = {
           description: 'Revisarás cómo estás y armarás, en calma, un plan para una crisis.',
           practiceIds: ['termometro-del-cuidador', 'plan-de-crisis-en-familia'],
           articleIds: ['acompanar-a-un-familiar'],
-          journalType: 'plan-seguridad',
         },
         {
           title: 'Semana 2 · Hablar',
