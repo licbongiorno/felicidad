@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { m } from 'motion/react';
 import { useMemo, useState, type ReactNode } from 'react';
 import { useAuth } from '@/providers/AuthProvider';
@@ -126,6 +127,13 @@ export function TherapistReport() {
         <p className="mt-3 max-w-2xl leading-relaxed text-stone-600">
           Un resumen de tu práctica y tus registros para llevar a sesión. Se genera en este dispositivo y no se envía a
           ningún sitio: tú decides si lo imprimes, lo guardas como PDF o lo compartes.
+        </p>
+        <p className="mt-2 text-sm text-stone-600">
+          ¿Usas la tarjeta diaria DBT?{' '}
+          <Link href="/diario/tarjeta-semanal" className="text-sage-700 underline underline-offset-4">
+            Imprime la planilla de la semana
+          </Link>
+          .
         </p>
 
         <div className="mt-8 grid gap-6 rounded-2xl border border-stone-200 bg-white p-6 shadow-soft md:grid-cols-2">

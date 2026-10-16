@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { AnimatePresence, m } from 'motion/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useMemo, useState } from 'react';
@@ -11,7 +12,7 @@ import { useProgressStore } from '@/store/useProgressStore';
 import { fadeUp, phaseVariants, stagger } from '@/lib/motion';
 import { EvidenceBadge } from '@/components/ui/EvidencePanel';
 import { DrawnCheck } from '@/components/motion/Reveal';
-import { Button } from '@/components/ui/Button';
+import { Button, buttonStyles } from '@/components/ui/Button';
 import { JournalEditor } from './JournalEditor';
 import { JournalTimeline } from './JournalTimeline';
 
@@ -23,6 +24,16 @@ export function JournalHome() {
   const initial = params.get('nuevo') as JournalType | null;
   const [view, setView] = useState<View>(initial && TEMPLATE_BY_TYPE[initial] ? { kind: 'edit', type: initial } : { kind: 'home' });
   const [direction, setDirection] = useState(1);
+  // Campos de texto propuestos por la app (p. ej. un experimento desde «Patrones»); se leen una sola vez.
+  const [prefill] = useState<Record<string, string> | undefined>(() => {
+    if (!initial || !TEMPLATE_BY_TYPE[initial]) return undefined;
+    const out: Record<string, string> = {};
+    for (const f of TEMPLATE_BY_TYPE[initial].fields) {
+      const v = params.get(f.id);
+      if (f.kind === 'text' && v) out[f.id] = v;
+    }
+    return Object.keys(out).length ? out : undefined;
+  });
   const journal = useProgressStore((s) => s.journal);
   const status = useProgressStore((s) => s.status);
 
@@ -41,6 +52,7 @@ export function JournalHome() {
         {view.kind === 'edit' ? (
           <JournalEditor
             template={TEMPLATE_BY_TYPE[view.type]}
+            initialValues={view.type === initial ? prefill : undefined}
             onCancel={() => go({ kind: 'home' }, -1)}
             onSaved={() => go({ kind: 'saved', type: view.type }, 1)}
           />
@@ -55,7 +67,12 @@ export function JournalHome() {
             <m.p variants={fadeUp} className="mt-3 text-stone-600">
               Escribir es una forma de ordenar la experiencia. Lo que acabas de hacer cuenta.
             </m.p>
-            <m.div variants={fadeUp} className="mt-8">
+            <m.div variants={fadeUp} className="mt-8 flex flex-wrap justify-center gap-3">
+              {view.type === 'tarjeta-diaria' && (
+                <Link href="/diario/tarjeta-semanal" className={buttonStyles('primary')}>
+                  Ver la semana
+                </Link>
+              )}
               <Button variant="secondary" onClick={() => go({ kind: 'home' }, -1)}>
                 Volver al diario
               </Button>
@@ -75,6 +92,23 @@ export function JournalHome() {
                 <span className="font-serif text-2xl tabular-nums text-stone-700">{thisWeek}</span> entradas esta semana
               </p>
             </m.header>
+
+            {journal.some((j) => j.type === 'tarjeta-diaria') && (
+              <m.div variants={fadeUp} className="mt-8">
+                <Link
+                  href="/diario/tarjeta-semanal"
+                  className="group flex max-w-2xl items-center justify-between gap-6 rounded-2xl border border-stone-200 bg-white px-6 py-4 transition-[border-color,box-shadow] hover:border-sage-300 hover:shadow-soft"
+                >
+                  <span>
+                    <span className="block font-serif text-lg text-stone-800">Tarjeta diaria DBT · vista semanal</span>
+                    <span className="block text-sm text-stone-600">Tus tarjetas de la semana en una planilla para llevar a terapia.</span>
+                  </span>
+                  <span className="text-stone-500 transition-transform group-hover:translate-x-0.5" aria-hidden>
+                    →
+                  </span>
+                </Link>
+              </m.div>
+            )}
 
             <m.h2 variants={fadeUp} className="mb-4 mt-12 text-xs uppercase tracking-[0.2em] text-stone-500">
               Nueva entrada

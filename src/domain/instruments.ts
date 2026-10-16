@@ -12,6 +12,8 @@ import type { InstrumentId, Reference } from './types';
  * - DERS-16 (dificultades de regulación emocional, 16–80, más es peor). Bjureberg et al. (2016).
  * - ISI (insomnio, 0–28, más es peor). Bastien et al. (2001); Morin et al. (2011).
  * - PSS-10 (estrés percibido, 0–40, más es peor; 4 ítems invertidos). Cohen et al. (1983).
+ * - SWLS (satisfacción con la vida, 5–35, más es mejor). Diener et al. (1985). Uso libre.
+ * - AUDIT-C (consumo de alcohol, 0–12, más es peor). Bush et al. (1998), a partir del AUDIT de la OMS. Uso libre.
  */
 
 export interface Interpretation {
@@ -418,7 +420,128 @@ export const PSS10: Instrument = {
   ],
 };
 
-export const INSTRUMENTS: Instrument[] = [WHO5, GAD7, PHQ9, DERS16, ISI, PSS10];
+// ---------------------------------------------------------------- SWLS
+
+export const SWLS: Instrument = {
+  id: 'swls',
+  title: 'Escala de satisfacción con la vida (SWLS)',
+  short: 'Satisfacción',
+  purpose: 'Satisfacción con la vida · 5 preguntas · 1 minuto',
+  stem: '¿Cuánto estás de acuerdo con cada frase?',
+  items: [
+    'En la mayoría de los aspectos, mi vida es como quiero que sea.',
+    'Las circunstancias de mi vida son muy buenas.',
+    'Estoy satisfecho/a con mi vida.',
+    'Hasta ahora he conseguido las cosas importantes que quiero en la vida.',
+    'Si pudiera vivir mi vida otra vez, no cambiaría casi nada.',
+  ],
+  options: [
+    { value: 1, label: 'Totalmente en desacuerdo' },
+    { value: 2, label: 'En desacuerdo' },
+    { value: 3, label: 'Algo en desacuerdo' },
+    { value: 4, label: 'Ni de acuerdo ni en desacuerdo' },
+    { value: 5, label: 'Algo de acuerdo' },
+    { value: 6, label: 'De acuerdo' },
+    { value: 7, label: 'Totalmente de acuerdo' },
+  ],
+  intervalDays: 30,
+  minScore: 5,
+  maxScore: 35,
+  higherIsBetter: true,
+  // No hay un cambio mínimo publicado: valor orientativo (≈ 10 % del rango).
+  relevantChange: 3,
+  score: sum,
+  interpret: (score) => {
+    if (score >= 26) return { band: 'satisfecho', severity: 'ok', title: 'Satisfacción alta con tu vida', body: 'Sientes que tu vida, en general, va como quieres. No significa que todo esté bien: es una mirada de conjunto.' };
+    if (score >= 21) return { band: 'algo-satisfecho', severity: 'ok', title: 'Satisfacción media-alta', body: 'Hay más cosas que te conforman que cosas que no. Mirar tus valores puede ayudarte a ver qué área te gustaría mejorar.' };
+    if (score >= 15)
+      return { band: 'algo-insatisfecho', severity: 'atencion', title: 'Satisfacción media-baja', body: 'Hay áreas de tu vida que no van como quisieras. El programa «Vivir mis valores» puede ayudarte a elegir por dónde empezar.' };
+    return {
+      band: 'insatisfecho',
+      severity: 'alto',
+      title: 'Satisfacción baja con tu vida',
+      body: 'Sientes que tu vida está lejos de como la quieres. Si esto se mantiene o te pesa mucho, conviene hablarlo con un/a profesional.',
+    };
+  },
+  references: [
+    { citation: 'Diener, E., Emmons, R. A., Larsen, R. J., & Griffin, S. (1985). The Satisfaction With Life Scale. Journal of Personality Assessment, 49(1), 71–75.', doi: '10.1207/s15327752jpa4901_13' },
+    {
+      citation: 'Pavot, W., & Diener, E. (1993). Review of the Satisfaction With Life Scale. Psychological Assessment, 5(2), 164–172.',
+      doi: '10.1037/1040-3590.5.2.164',
+      note: 'Las franjas de la app agrupan los rangos descriptivos de este trabajo; no son puntos de corte clínicos.',
+    },
+  ],
+};
+
+// ---------------------------------------------------------------- AUDIT-C
+
+export const AUDITC: Instrument = {
+  id: 'auditc',
+  title: 'Consumo de alcohol AUDIT-C',
+  short: 'Alcohol',
+  purpose: 'Consumo de alcohol · 3 preguntas · 1 minuto',
+  stem: 'Pensando en el último año… (un trago es una lata de cerveza, una copa de vino o una medida de bebida blanca)',
+  items: ['¿Con qué frecuencia tomas alguna bebida con alcohol?', '¿Cuántos tragos tomas en un día típico en que tomas?', '¿Con qué frecuencia tomas seis tragos o más en una misma ocasión?'],
+  options: [],
+  itemOptions: [
+    [
+      { value: 0, label: 'Nunca' },
+      { value: 1, label: 'Una vez al mes o menos' },
+      { value: 2, label: 'De 2 a 4 veces al mes' },
+      { value: 3, label: 'De 2 a 3 veces por semana' },
+      { value: 4, label: '4 o más veces por semana' },
+    ],
+    [
+      { value: 0, label: '1 o 2' },
+      { value: 1, label: '3 o 4' },
+      { value: 2, label: '5 o 6' },
+      { value: 3, label: 'De 7 a 9' },
+      { value: 4, label: '10 o más' },
+    ],
+    [
+      { value: 0, label: 'Nunca' },
+      { value: 1, label: 'Menos de una vez al mes' },
+      { value: 2, label: 'Una vez al mes' },
+      { value: 3, label: 'Una vez por semana' },
+      { value: 4, label: 'A diario o casi a diario' },
+    ],
+  ],
+  intervalDays: 90,
+  maxScore: 12,
+  higherIsBetter: false,
+  relevantChange: 2,
+  score: sum,
+  interpret: (score) => {
+    if (score >= 8)
+      return {
+        band: 'alto',
+        severity: 'alto',
+        title: 'Consumo de alto riesgo',
+        body: 'Tu consumo puede estar dañando tu salud. Conviene consultar a un/a profesional. Si tomas todos los días, no dejes de golpe: dejar de golpe puede ser peligroso. Pide ayuda para hacerlo con cuidado. Línea 141 de SEDRONAR: gratuita, anónima y las 24 horas.',
+      };
+    if (score >= 3)
+      return {
+        band: 'riesgo',
+        severity: 'atencion',
+        title: 'Posible consumo de riesgo',
+        body: 'Tu puntuación sugiere un consumo que conviene revisar (el punto de corte habitual es 3 en mujeres y 4 en varones). La práctica «Balance del alcohol» y un plan de menor riesgo pueden ayudarte. Si te cuesta reducirlo, consulta.',
+      };
+    return { band: 'bajo', severity: 'ok', title: 'Consumo de bajo riesgo', body: 'Tu consumo está por debajo del punto de corte habitual. Ningún consumo es del todo sin riesgo, y menos es mejor para la salud.' };
+  },
+  references: [
+    {
+      citation:
+        'Bush, K., Kivlahan, D. R., McDonell, M. B., Fihn, S. D., & Bradley, K. A. (1998). The AUDIT alcohol consumption questions (AUDIT-C). Archives of Internal Medicine, 158(16), 1789–1795.',
+      doi: '10.1001/archinte.158.16.1789',
+    },
+    {
+      citation: 'Babor, T. F., Higgins-Biddle, J. C., Saunders, J. B., & Monteiro, M. G. (2001). AUDIT: The Alcohol Use Disorders Identification Test. Guidelines for use in primary care (2nd ed.). World Health Organization.',
+      note: 'Instrumento de la OMS de uso libre. La versión AUDIT-C usa las tres primeras preguntas.',
+    },
+  ],
+};
+
+export const INSTRUMENTS: Instrument[] = [WHO5, GAD7, PHQ9, DERS16, ISI, PSS10, SWLS, AUDITC];
 export const INSTRUMENT_BY_ID = Object.fromEntries(INSTRUMENTS.map((i) => [i.id, i])) as Record<InstrumentId, Instrument>;
 
 /** ¿Las respuestas activan el aviso de seguridad (ítem de riesgo > 0)? */

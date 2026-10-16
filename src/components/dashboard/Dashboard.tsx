@@ -22,6 +22,8 @@ import { CheckinForm } from './CheckinForm';
 import { MoodTrend } from './MoodTrend';
 import { Welcome } from './Welcome';
 import { WeeklyReview } from './WeeklyReview';
+import { MoodPatterns } from './MoodPatterns';
+import { SkillConfidence } from './SkillConfidence';
 import { WhatWorks } from './WhatWorks';
 import { TodayCard } from './TodayCard';
 import { suggestNext } from '@/domain/recommend';
@@ -257,6 +259,16 @@ export function Dashboard() {
       {/* Qué te funciona ------------------------------------------------------------ */}
       <Panel title="Qué te funciona" className="lg:col-span-3">
         <WhatWorks sessions={sessions} afflictions={afflictions} />
+      </Panel>
+
+      {/* Patrones del ánimo ---------------------------------------------------------- */}
+      <Panel title="Patrones para comprobar" className="lg:col-span-3">
+        <MoodPatterns checkins={checkins} sessions={sessions} journal={journal} />
+      </Panel>
+
+      {/* Confianza por habilidad ------------------------------------------------------ */}
+      <Panel title="Confianza en tus habilidades" className="lg:col-span-3">
+        <SkillConfidence applications={applications} />
       </Panel>
 
       {/* Revisión semanal ---------------------------------------------------------- */}

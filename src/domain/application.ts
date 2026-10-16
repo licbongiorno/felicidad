@@ -80,3 +80,33 @@ export function applicationsByPractice(applications: Application[]): Record<stri
   }
   return out;
 }
+
+export interface ConfidenceTrend {
+  practiceId: string;
+  first: number;
+  last: number;
+  /** Registros con confianza. */
+  n: number;
+  change: number;
+  lastAt: Date;
+}
+
+/**
+ * Confianza para usar cada habilidad (autoeficacia autoinformada, 0–10): primera y última vez
+ * que se registró. Es aprendizaje percibido, no un resultado clínico.
+ */
+export function confidenceTrends(applications: Application[]): ConfidenceTrend[] {
+  const by = new Map<string, Application[]>();
+  for (const a of applications) {
+    if (typeof a.confidence !== 'number') continue;
+    (by.get(a.practiceId) ?? by.set(a.practiceId, []).get(a.practiceId)!).push(a);
+  }
+  return [...by.entries()]
+    .map(([practiceId, list]) => {
+      const sorted = [...list].sort((x, y) => x.createdAt.getTime() - y.createdAt.getTime());
+      const first = sorted[0].confidence as number;
+      const last = sorted[sorted.length - 1].confidence as number;
+      return { practiceId, first, last, n: sorted.length, change: last - first, lastAt: sorted[sorted.length - 1].createdAt };
+    })
+    .sort((a, b) => b.lastAt.getTime() - a.lastAt.getTime());
+}

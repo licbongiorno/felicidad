@@ -142,6 +142,11 @@ export interface Application {
   usefulness: Usefulness | null;
   /** Qué aprendí o qué cambiaría (opcional). */
   note: string | null;
+  /**
+   * Confianza para usar la habilidad cuando haga falta, 0–10 (opcional). Mide aprendizaje
+   * percibido (autoeficacia), no síntomas ni mejoría clínica.
+   */
+  confidence?: number | null;
   createdAt: Date;
   tz?: string | null;
 }
@@ -224,7 +229,7 @@ export interface JournalEntry {
   tz?: string | null;
 }
 
-export type InstrumentId = 'who5' | 'gad7' | 'phq9' | 'ders16' | 'isi' | 'pss10';
+export type InstrumentId = 'who5' | 'gad7' | 'phq9' | 'ders16' | 'isi' | 'pss10' | 'swls' | 'auditc';
 
 export interface Assessment {
   id: string;

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { applicationsByPractice, applicationStats, pendingReviews } from './application';
+import { applicationsByPractice, applicationStats, confidenceTrends, pendingReviews } from './application';
 import type { Application, SessionRecord } from './types';
 
 const now = new Date('2026-10-14T12:00:00');
@@ -56,5 +56,28 @@ describe('indicadores de aplicación', () => {
     expect(s).toMatchObject({ applied: 3, notApplied: 1, useful: 2, neutral: 1, notSuitable: 0 });
     expect(s.topUseful).toEqual([{ practiceId: 'pausa-stop', n: 2 }]);
     expect(applicationsByPractice(rows)).toEqual({ 'pausa-stop': { applied: 2, useful: 2 }, tipp: { applied: 1, useful: 0 }, 'dear-man': { applied: 1, useful: 1 } });
+  });
+});
+
+describe('confianza por habilidad', () => {
+  const app = (practiceId: string, confidence: number | null, day: number): Application => ({
+    id: `${practiceId}-${day}`,
+    practiceId,
+    sessionId: null,
+    applied: true,
+    usefulness: 'util',
+    note: null,
+    confidence,
+    createdAt: new Date(2026, 9, day),
+  });
+
+  it('toma la primera y la última confianza registrada de cada habilidad', () => {
+    const t = confidenceTrends([app('dear-man', 7, 10), app('dear-man', 3, 1), app('dear-man', null, 12), app('pausa-stop', 5, 5)]);
+    expect(t[0]).toMatchObject({ practiceId: 'dear-man', first: 3, last: 7, n: 2, change: 4 });
+    expect(t[1]).toMatchObject({ practiceId: 'pausa-stop', first: 5, last: 5, n: 1, change: 0 });
+  });
+
+  it('ignora los registros sin confianza (versiones anteriores)', () => {
+    expect(confidenceTrends([app('tipp', null, 1)])).toEqual([]);
   });
 });

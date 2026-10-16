@@ -19,9 +19,11 @@ interface Props {
   template: JournalTemplate;
   onSaved: () => void;
   onCancel: () => void;
+  /** Valores iniciales para campos de texto (p. ej. un experimento propuesto desde un patrón). */
+  initialValues?: Record<string, string>;
 }
 
-export function JournalEditor({ template, onSaved, onCancel }: Props) {
+export function JournalEditor({ template, onSaved, onCancel, initialValues }: Props) {
   const logJournal = useProgressStore((s) => s.logJournal);
   const draftKey = `eudaimonia-draft-${template.type}`;
   const [values, setValues] = useState<Record<string, JournalValue | undefined>>({});
@@ -38,10 +40,16 @@ export function JournalEditor({ template, onSaved, onCancel }: Props) {
       if (raw) {
         setValues(JSON.parse(raw));
         setRestored(true);
+        return;
       }
     } catch {
       /* sin almacenamiento de sesión */
     }
+    if (initialValues) {
+      const textIds = new Set(template.fields.filter((f) => f.kind === 'text').map((f) => f.id));
+      setValues(Object.fromEntries(Object.entries(initialValues).filter(([k, v]) => textIds.has(k) && v.trim()).map(([k, v]) => [k, v.slice(0, MAX_TEXT)])));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [draftKey]);
 
   useEffect(() => {

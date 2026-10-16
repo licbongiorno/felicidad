@@ -19,6 +19,21 @@ entrada en este registro.
 
 ---
 
+## 2026-10-16 · Tarjeta DBT semanal, patrones del ánimo, confianza por habilidad y temas de vida cotidiana
+
+- **Tarjeta diaria DBT, vista semanal** (`/diario/tarjeta-semanal`): planilla de siete días con las tarjetas del diario, imprimible y en CSV. No guarda datos nuevos.
+- **Patrones para comprobar** (Panel): compara el ánimo de días con y sin práctica, diario o gratitud, el mismo día y el siguiente, en los últimos 90 días. Se muestra sólo con tres días o más por grupo y diferencias de al menos medio punto, con su nivel de confianza. Siempre aclara que es una asociación y no una causa, y abre un experimento conductual ya armado.
+- **Confianza por habilidad** (autoeficacia 0–10, opcional) al contar que usaste una habilidad. Mide aprendizaje, no síntomas. Las reglas aceptan el campo `confidence` en `applications`.
+- **Paquete «Vida cotidiana»** (`packs/vida-cotidiana.ts`), en estado `pendiente`:
+  - Uso del celular a propósito.
+  - Alcohol con reducción de daños: no dejar de golpe si hay dependencia; Línea 141 de SEDRONAR.
+  - Estrés económico.
+  - Diversidad sexual y de género con enfoque afirmativo: las terapias de conversión se presentan como rechazadas y dañinas.
+  - Migración y desarraigo.
+  - Violencia de género: sólo información y derivación (Línea 144 y 911). La única práctica es de estabilización, de riesgo 2 y con alternativa.
+- **Evaluaciones nuevas** (uso libre): SWLS, satisfacción con la vida (Diener et al., 1985), y AUDIT-C, consumo de alcohol (Bush et al., 1998; OMS). Las reglas validan rangos y puntuación.
+- **Pendiente de revisión:** los DOI del paquete nuevo y las fichas de las líneas 141 y 144 se verifican con `npm run verify:refs` cuando haya red.
+
 ## 2026-10-15 · Mapa de habilidades por necesidad, ficha de habilidad y cuentos en la revisión clínica
 
 - **Mapa de habilidades** (`/habilidades`, `src/domain/needs.ts`): 18 necesidades cotidianas, cada una con objetivo de aprendizaje, prácticas de distintos enfoques, programas y píldoras. Una prueba exige que la primera sugerencia de cada necesidad sea de iniciación y sin riesgo 2.

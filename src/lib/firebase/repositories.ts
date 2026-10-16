@@ -362,6 +362,7 @@ export function addApplication(uid: string, a: NewApplication) {
     applied: a.applied,
     usefulness: a.usefulness,
     note: a.note ? a.note.slice(0, 280) : null,
+    confidence: typeof a.confidence === 'number' ? Math.max(0, Math.min(10, Math.round(a.confidence))) : null,
     tz: a.tz ?? currentTimeZone(),
     createdAt: serverTimestamp(),
   });
@@ -383,6 +384,7 @@ export function subscribeApplications(uid: string, onData: (rows: Application[])
             applied: v.applied === true,
             usefulness: v.usefulness ?? null,
             note: v.note ?? null,
+            confidence: typeof v.confidence === 'number' ? v.confidence : null,
             createdAt: toDate(v.createdAt),
             tz: v.tz ?? null,
           };
