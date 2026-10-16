@@ -11,6 +11,7 @@ import { KID_ACTIVITIES } from './kids';
 import { KID_GUIDES } from './kids-guides';
 import { PILLS } from './pills';
 import { STORIES } from './stories';
+import { PACKS } from './packs';
 
 /**
  * Cola de revisión clínica: todo el contenido publicable con su ficha de gobernanza, para
@@ -27,6 +28,72 @@ export interface ReviewItem {
   record: ReviewRecord;
   evidence?: string;
   risk?: 1 | 2;
+  /** 1 = crítica, 2 = alta, 3 = habitual: el orden sugerido para revisar. */
+  priority: Priority;
+  /** Por qué tiene esa prioridad, en una frase. */
+  reason: string;
+}
+
+export type Priority = 1 | 2 | 3;
+
+export const PRIORITY_LABEL: Record<Priority, string> = { 1: 'Prioridad 1 · crítica', 2: 'Prioridad 2 · alta', 3: 'Prioridad 3 · habitual' };
+
+/**
+ * Temas donde un error puede dañar: riesgo suicida, autolesiones, trauma, medicación,
+ * diagnósticos y juego con deudas. Todo lo que pertenece a estos paquetes va primero.
+ */
+const CRITICAL_PACKS: Record<string, string> = {
+  autolesiones: 'autolesiones',
+  'duelo-suicidio': 'duelo por suicidio',
+  trauma: 'trauma',
+  medicacion: 'medicación',
+  diagnosticos: 'diagnósticos',
+  apuestas: 'apuestas y riesgo por deudas',
+};
+
+/** Temas sensibles: clínicos específicos, menores, violencia, cuerpo o sexualidad. */
+const SENSITIVE_PACKS: Record<string, string> = {
+  'toc-intrusivos': 'TOC',
+  'imagen-corporal': 'imagen corporal y trastornos alimentarios',
+  'fobias-salud': 'exposición y ansiedad por la salud',
+  sexualidad: 'sexualidad',
+  'acoso-escolar': 'acoso escolar',
+  cuidadores: 'crisis familiares',
+  varones: 'violencia y riesgo suicida en varones',
+  'duelo-perinatal': 'duelo perinatal',
+  'separacion-hijos': 'separación y violencia',
+  'conductas-repetitivas': 'conductas repetitivas',
+  'ansiedad-social': 'exposición social',
+  esquemas: 'terapia de esquemas (modos e imágenes)',
+  jung: 'psicología de Jung (incluye imaginación activa)',
+  'prevencion-recaidas': 'recaídas',
+  'enfermedad-grave': 'enfermedad grave',
+  'vida-cotidiana': 'alcohol y violencia de género',
+  'acoso-laboral': 'acoso laboral',
+  'tdah-adultos': 'TDAH',
+};
+
+const PACK_KINDS: [ContentKind, (p: (typeof PACKS)[number]) => string[]][] = [
+  ['practica', (p) => p.practices.map((x) => x.id)],
+  ['articulo', (p) => p.articles.map((x) => x.id)],
+  ['programa', (p) => p.programs.map((x) => x.id)],
+  ['pildora', (p) => p.pills.map((x) => x.id)],
+  ['guia-familia', (p) => (p.kidGuides ?? []).map((x) => x.id)],
+];
+
+const PACK_OF: Record<string, string> = Object.fromEntries(PACKS.flatMap((p) => PACK_KINDS.flatMap(([kind, ids]) => ids(p).map((id) => [`${kind}:${id}`, p.id]))));
+
+/** Prioridad sugerida de revisión según el riesgo del tema y del formato. */
+export function reviewPriority(kind: ContentKind, id: string, risk?: 1 | 2): { priority: Priority; reason: string } {
+  const pack = PACK_OF[`${kind}:${id}`];
+  if (kind === 'herramienta') return { priority: 1, reason: 'Herramienta de crisis.' };
+  if (kind === 'instrumento' && id === 'phq9') return { priority: 1, reason: 'Incluye una pregunta sobre ideas de muerte.' };
+  if (pack && CRITICAL_PACKS[pack]) return { priority: 1, reason: `Tema crítico: ${CRITICAL_PACKS[pack]}.` };
+  if (risk === 2) return { priority: 2, reason: 'Contenido de riesgo 2, con precauciones.' };
+  if (kind === 'instrumento') return { priority: 2, reason: 'Evaluación con puntaje e interpretación.' };
+  if (kind === 'infantil' || kind === 'guia-familia' || kind === 'cuento') return { priority: 2, reason: 'Contenido para chicos o sus familias.' };
+  if (pack && SENSITIVE_PACKS[pack]) return { priority: 2, reason: `Tema sensible: ${SENSITIVE_PACKS[pack]}.` };
+  return { priority: 3, reason: 'Contenido de uso habitual.' };
 }
 
 export const KIND_LABEL: Record<ContentKind, string> = {
@@ -50,6 +117,7 @@ const item = (kind: ContentKind, id: string, title: string, href: string, extra:
   title,
   href,
   record: reviewOf(kind, id),
+  ...reviewPriority(kind, id, extra.risk),
   ...extra,
 });
 

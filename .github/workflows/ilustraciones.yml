@@ -1,4 +1,4 @@
-# Genera las ilustraciones de los cuentos con Pollinations.ai (scripts/generate_story_images.py)
+# Genera las ilustraciones de los cuentos (Cloudflare Workers AI, Hugging Face o Pollinations.ai)
 # y las sube a la rama «ilustraciones-cuentos» para revisarlas antes de publicarlas.
 # Se ejecuta a mano desde la pestaña Actions (o desde la API).
 name: Generar ilustraciones de cuentos
@@ -17,8 +17,12 @@ on:
       provider:
         description: 'Servicio de imágenes'
         type: choice
-        options: [pollinations, huggingface]
-        default: pollinations
+        options: [pollinations, huggingface, cloudflare]
+        default: cloudflare
+      model:
+        description: 'Modelo (vacío = FLUX.1-schnell del servicio elegido)'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -47,12 +51,17 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install pillow
+      - run: pip install pillow huggingface_hub
       - name: Generar
         env:
           # Token de Hugging Face como secreto del repositorio (Settings → Secrets → Actions → HF_TOKEN).
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           ONLY: ${{ inputs.only }}
+          HF_MODEL: ${{ inputs.model }}
+          CF_MODEL: ${{ inputs.model }}
+          # Cloudflare Workers AI: ID de la cuenta y token con permiso Workers AI.
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           FORCE: ${{ inputs.force }}
           PROVIDER: ${{ inputs.provider }}
         run: |
@@ -60,6 +69,10 @@ jobs:
           if [ "$PROVIDER" = "huggingface" ]; then
             if [ -z "$HF_TOKEN" ]; then echo "::error::Falta el secreto HF_TOKEN"; exit 1; fi
             SCRIPT=scripts/generate_story_images_hf.py
+          fi
+          if [ "$PROVIDER" = "cloudflare" ]; then
+            if [ -z "$CF_ACCOUNT_ID" ] || [ -z "$CF_API_TOKEN" ]; then echo "::error::Faltan los secretos CF_ACCOUNT_ID y CF_API_TOKEN"; exit 1; fi
+            SCRIPT=scripts/generate_story_images_cf.py
           fi
           if [ ! -f "$SCRIPT" ]; then echo "::error::No existe $SCRIPT"; exit 1; fi
           ARGS=""

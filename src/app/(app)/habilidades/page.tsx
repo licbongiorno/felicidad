@@ -4,6 +4,9 @@ import { Stagger, StaggerItem } from '@/components/motion/Reveal';
 
 export const metadata = { title: 'Mapa de habilidades' };
 
+// Con muchas necesidades, la cascada no debe pasar de ~0,6 s en total.
+const STEP = Math.min(0.03, 0.6 / Math.max(NEEDS.length, 1));
+
 export default function SkillsMapPage() {
   return (
     <Stagger step={0.04}>
@@ -21,7 +24,7 @@ export default function SkillsMapPage() {
           o llama a una línea de ayuda.
         </p>
       </StaggerItem>
-      <Stagger as="ul" step={0.03} delay={0.1} className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      <Stagger as="ul" step={STEP} delay={0.1} className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {NEEDS.map((n) => (
           <StaggerItem as="li" key={n.id}>
             <Link
