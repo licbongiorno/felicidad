@@ -1,7 +1,7 @@
 import { ANTIDOTE_BY_EMOTION } from './antidotes';
 import { FAMILY_LABEL } from './evidence';
 import { daysAgo, recordDayKey, toDateKey } from './metrics';
-import { PRACTICES, PRACTICE_BY_ID } from './practices';
+import { PRACTICE_INDEX as PRACTICES, PRACTICE_SUMMARY_BY_ID as PRACTICE_BY_ID } from './practiceIndex';
 import type { AfflictionLog, AfflictiveEmotionId, Assessment, JournalEntry, PracticeFamily, SessionRecord } from './types';
 import { WHO5 } from './instruments';
 import { levelOf, missingPrerequisites } from './levels';

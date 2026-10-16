@@ -5,7 +5,6 @@ import { m } from 'motion/react';
 import { useEffect, useMemo, useState } from 'react';
 import { REVIEW_LABEL, type ContentKind } from '@/domain/governance';
 import { exportDecisions, KIND_LABEL, PRIORITY_LABEL, reviewQueue, type Decision, type Priority, type ReviewDecision } from '@/domain/reviewQueue';
-import { DEMO_MODE } from '@/lib/demo';
 import { useAuth } from '@/providers/AuthProvider';
 import { fadeUp, stagger } from '@/lib/motion';
 import { Button } from '@/components/ui/Button';
@@ -13,13 +12,9 @@ import { Button } from '@/components/ui/Button';
 const KEY = 'eudaimonia-review';
 const KINDS: ContentKind[] = ['herramienta', 'instrumento', 'practica', 'antidoto', 'diario', 'articulo', 'programa', 'infantil', 'guia-familia', 'cuento', 'pildora'];
 
-/** Correos autorizados a revisar (variable de Vercel NEXT_PUBLIC_REVIEWER_EMAILS, separados por comas). */
-const REVIEWERS = (process.env.NEXT_PUBLIC_REVIEWER_EMAILS ?? '')
-  .split(',')
-  .map((e) => e.trim().toLowerCase())
-  .filter(Boolean);
+import { canReview } from '@/lib/reviewers';
 
-export const canReview = (email: string | null | undefined) => DEMO_MODE || (!!email && REVIEWERS.includes(email.toLowerCase()));
+export { canReview };
 
 function load(): Record<string, ReviewDecision> {
   try {

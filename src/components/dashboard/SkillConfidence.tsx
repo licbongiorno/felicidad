@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useMemo } from 'react';
 import { confidenceTrends } from '@/domain/application';
-import { PRACTICE_BY_ID } from '@/domain/practices';
+import { PRACTICE_SUMMARY_BY_ID as PRACTICE_BY_ID } from '@/domain/practiceIndex';
 import type { Application } from '@/domain/types';
 
 const signed = (x: number) => (x > 0 ? `+${x}` : x < 0 ? `−${Math.abs(x)}` : '±0');

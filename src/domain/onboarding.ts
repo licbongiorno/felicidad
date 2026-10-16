@@ -1,6 +1,6 @@
 import type { ModuleId } from './catalog';
-import { PRACTICE_BY_ID } from './practices';
-import { PROGRAMS } from './programs';
+import { PRACTICE_SUMMARY_BY_ID as PRACTICE_BY_ID } from './practiceIndex';
+import { PROGRAM_INDEX as PROGRAMS } from './practiceIndex';
 
 /**
  * Primer uso: tres preguntas que convierten «¿por dónde empiezo?» en una ruta concreta.

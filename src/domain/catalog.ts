@@ -1,5 +1,5 @@
 import type { JournalType } from './types';
-import { PACK_META } from './packs';
+import { PACK_META_INDEX as PACK_META } from './practiceIndex';
 
 /**
  * Catálogo clínico: enfoque terapéutico de origen y nivel de riesgo de cada contenido.

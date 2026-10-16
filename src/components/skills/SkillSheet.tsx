@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { Practice } from '@/domain/types';
-import { totalDurationSec } from '@/domain/practices';
+import { totalDurationSec } from '@/domain/stepDuration';
 import { LEVEL_LABEL, levelOf } from '@/domain/levels';
 import { APPROACH_LABEL, MODULE_BY_ID, MODULE_OF_PRACTICE, practiceApproaches, practiceRisk, RISK_LABEL } from '@/domain/catalog';
 import { EVIDENCE_LABEL } from '@/domain/evidence';

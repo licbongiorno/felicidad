@@ -1,5 +1,8 @@
 import { isTeen, kidAlert, weeklySummary, type KidActivityLog, type KidProfile } from './kids';
-import { KID_GUIDE_BY_ID, type KidGuide } from './kids-guides';
+import { KID_GUIDE_INDEX } from './practiceIndex';
+
+type KidGuide = (typeof KID_GUIDE_INDEX)[number];
+const KID_GUIDE_BY_ID: Record<string, KidGuide> = Object.fromEntries(KID_GUIDE_INDEX.map((g) => [g.id, g]));
 
 /**
  * Sugerencia semanal para el adulto: una acción concreta y la guía que la explica,

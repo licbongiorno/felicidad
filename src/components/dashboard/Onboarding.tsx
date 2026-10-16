@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { AnimatePresence, m } from 'motion/react';
 import { useState } from 'react';
 import { CONCERNS, DAY_MOMENTS, planFor, TIME_BUDGETS, type ConcernId, type DayMoment, type TimeBudget } from '@/domain/onboarding';
-import { PRACTICE_BY_ID } from '@/domain/practices';
+import { PRACTICE_SUMMARY_BY_ID as PRACTICE_BY_ID } from '@/domain/practiceIndex';
 import { useProgressStore } from '@/store/useProgressStore';
 import { buildReminderIcs, downloadFile } from '@/lib/ics';
 import { haptic } from '@/lib/haptics';

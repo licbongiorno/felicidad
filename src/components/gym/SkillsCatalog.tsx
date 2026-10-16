@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { AnimatePresence, m } from 'motion/react';
 import { useMemo, useState } from 'react';
-import { PRACTICE_BY_ID, totalDurationSec } from '@/domain/practices';
+import { PRACTICE_SUMMARY_BY_ID as PRACTICE_BY_ID, type PracticeSummary as Practice } from '@/domain/practiceIndex';
 import { TEMPLATE_BY_TYPE } from '@/domain/journal';
 import { LEVEL_LABEL, levelOf } from '@/domain/levels';
 import { isPublished } from '@/domain/governance';
@@ -13,7 +13,6 @@ import { fadeUp, gentleSpring, stagger } from '@/lib/motion';
 import { ModuleIcon } from './ModuleIcons';
 import { FavoriteButton } from '@/components/personal/FavoriteButton';
 import { useProgressStore } from '@/store/useProgressStore';
-import type { Practice } from '@/domain/types';
 
 const FILTERS: (Approach | 'todas')[] = ['todas', 'dbt', 'tcc', 'act', 'cft', 'mindfulness', 'esquemas', 'psicodinamica', 'positiva', 'contemplativa', 'relajacion', 'logoterapia', 'humanista', 'gestalt'];
 
@@ -143,7 +142,7 @@ export function SkillsCatalog() {
                           {practiceRisk(p.id) === 2 && <span className="rounded-full bg-stone-800 px-2 py-0.5 text-[11px] text-stone-50">Con precauciones</span>}
                         </span>
                         <span className="mt-4 flex items-center justify-between gap-3 border-t border-stone-100 pt-4 text-xs text-stone-500">
-                          <span>{Math.max(1, Math.round(totalDurationSec(p.steps) / 60))} min</span>
+                          <span>{Math.max(1, Math.round(p.durationSec / 60))} min</span>
                           <span className="flex items-center gap-2">
                             <span className="rounded-full px-2 py-0.5 ring-1 ring-stone-200">{LEVEL_LABEL[levelOf(p.id).level]}</span>
                             <EvidenceBadge level={p.evidenceLevel} />

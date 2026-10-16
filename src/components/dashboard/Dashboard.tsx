@@ -32,7 +32,7 @@ import { GrowthCard } from '@/components/growth/GrowthCard';
 import { WeeklyChallenge } from '@/components/growth/WeeklyChallenge';
 import { daysThisMonth } from '@/domain/growth';
 import { applicationStats, USEFULNESS_LABEL } from '@/domain/application';
-import { PRACTICE_BY_ID } from '@/domain/practices';
+import { PRACTICE_SUMMARY_BY_ID as PRACTICE_BY_ID } from '@/domain/practiceIndex';
 import { PendingReviews } from '@/components/application/PendingReviews';
 import { GoalsCard } from '@/components/personal/GoalsCard';
 import { WeeklyPlan } from '@/components/personal/WeeklyPlan';

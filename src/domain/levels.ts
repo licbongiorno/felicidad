@@ -4,7 +4,7 @@
  * desestabilizar (p. ej. conciencia no dual, tonglen) sin la base atencional o afectiva.
  */
 
-import { PACK_META } from './packs';
+import { PACK_META_INDEX as PACK_META } from './practiceIndex';
 
 export type Level = 'iniciacion' | 'intermedio' | 'avanzado';
 

@@ -3,7 +3,7 @@
 import { AnimatePresence, m } from 'motion/react';
 import { useMemo } from 'react';
 import { pendingReviews } from '@/domain/application';
-import { PRACTICE_BY_ID } from '@/domain/practices';
+import { PRACTICE_SUMMARY_BY_ID as PRACTICE_BY_ID } from '@/domain/practiceIndex';
 import { useProgressStore } from '@/store/useProgressStore';
 import { fadeUp } from '@/lib/motion';
 import { ApplicationForm } from './ApplicationForm';
