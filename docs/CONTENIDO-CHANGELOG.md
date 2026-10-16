@@ -19,6 +19,22 @@ entrada en este registro.
 
 ---
 
+## 2026-10-16 · Mentalización, análisis transaccional e imagen corporal
+
+- **Paquete «Mentalización»** (`packs/mentalizacion.ts`), en estado `pendiente`: amplía lo que ya había.
+  - Cinco prácticas: qué pasa en mí, tres explicaciones posibles, cuando dejo de mentalizar (los tres modos no mentalizantes), preguntar en vez de suponer y la mente de tu hijo (función reflexiva parental).
+  - Dos artículos, el programa «Entender mentes», tres píldoras y seis términos del glosario.
+- **Paquete «Análisis transaccional»** (`packs/analisis-transaccional.ts`, enfoque nuevo `analisis-transaccional`), en estado `pendiente`:
+  - Cinco prácticas: estados del yo, la conversación que se trabó, el triángulo dramático y el del ganador (Choy), dar y pedir caricias, e impulsores (Kahler).
+  - Un artículo, el programa «Conversaciones sin juegos», cuatro píldoras y siete términos del glosario.
+  - Se declara que la investigación controlada es escasa. El triángulo aclara que la violencia no es un «juego» y remite a la Línea 144.
+- **Paquete «Imagen corporal»** (`packs/imagen-corporal.ts`, módulo nuevo `imagen-corporal` y necesidad nueva en el mapa de habilidades), en estado `pendiente`:
+  - Seis prácticas: funcionalidad corporal, autocompasión hacia el cuerpo, redes y comparación, chequeos y evitaciones, espejo con palabras neutras (riesgo 2, con alternativa) y cómo se habla de los cuerpos en casa.
+  - Un artículo, el programa «En paz con mi cuerpo», cuatro píldoras y cinco términos del glosario.
+  - No hay dietas, metas ni números de peso o talle. Cada práctica avisa sobre las señales de un trastorno alimentario y remite a consulta; mareos o desmayos se tratan como urgencia.
+- Sin cambios en `firestore.rules`.
+- **Pendiente de revisión:** los DOI nuevos se verifican con `npm run verify:refs` cuando haya red.
+
 ## 2026-10-16 · Terapia de esquemas, psicología de Jung y genograma
 
 - **Paquete «Terapia de esquemas»** (`packs/esquemas.ts`), en estado `pendiente`:

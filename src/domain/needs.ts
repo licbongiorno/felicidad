@@ -69,9 +69,9 @@ export const NEEDS: Need[] = [
     title: 'Comunicarme mejor',
     description: 'Decir lo que necesito, escuchar y cuidar el vínculo.',
     objective: 'Pedir y responder con claridad y respeto, y entender lo que puede estar sintiendo la otra persona.',
-    practices: ['give-fast', 'necesidades-que-pido', 'pausar-y-rebobinar', 'inventario-interpersonal', 'ofertas-de-conexion', 'amor-altruista'],
-    programs: ['mente-y-vinculos', 'pareja-cuatro-semanas'],
-    pills: ['curiosidad-por-las-mentes', 'cuatro-areas-interpersonales'],
+    practices: ['give-fast', 'tres-explicaciones', 'necesidades-que-pido', 'pausar-y-rebobinar', 'preguntar-en-vez-de-suponer', 'conversacion-que-se-trabo', 'inventario-interpersonal', 'ofertas-de-conexion', 'dar-y-pedir-caricias', 'amor-altruista'],
+    programs: ['mente-y-vinculos', 'pareja-cuatro-semanas', 'entender-mentes', 'conversaciones-sin-juegos'],
+    pills: ['curiosidad-por-las-mentes', 'cuatro-areas-interpersonales', 'pildora-no-saber', 'pildora-transaccion-cruzada'],
   },
   {
     id: 'limites',
@@ -172,9 +172,18 @@ export const NEEDS: Need[] = [
     title: 'Reparar después de un conflicto',
     description: 'Volver a acercarse después de una discusión.',
     objective: 'Calmarte, entender qué pasó de cada lado y dar un paso de reparación.',
-    practices: ['pausa-stop', 'pausar-y-rebobinar', 'inicio-suave', 'reparar-tras-discusion', 'perdon-reach'],
+    practices: ['pausa-stop', 'pausar-y-rebobinar', 'inicio-suave', 'cuando-dejo-de-mentalizar', 'salir-del-triangulo-dramatico', 'reparar-tras-discusion', 'perdon-reach'],
     programs: ['pareja-cuatro-semanas'],
-    pills: ['pildora-cuatro-jinetes'],
+    pills: ['pildora-cuatro-jinetes', 'pildora-modos-no-mentalizantes', 'pildora-triangulo-dramatico'],
+  },
+  {
+    id: 'imagen-corporal',
+    title: 'Llevarme mejor con mi cuerpo',
+    description: 'Cuando la apariencia ocupa mucho lugar y duele.',
+    objective: 'Mirar tu cuerpo por lo que hace, hablarte con amabilidad y reducir comparaciones y chequeos.',
+    practices: ['lo-que-mi-cuerpo-hace', 'carta-compasiva-a-mi-cuerpo', 'mi-feed-y-mi-cuerpo', 'chequeos-y-evitaciones', 'hablar-del-cuerpo-en-casa', 'espejo-con-palabras-neutras'],
+    programs: ['en-paz-con-mi-cuerpo'],
+    pills: ['pildora-imagen-corporal', 'pildora-redes-y-cuerpo', 'pildora-chequeos', 'pildora-cuerpos-en-casa'],
   },
 ];
 

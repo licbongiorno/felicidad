@@ -157,6 +157,15 @@ const icons: Record<ModuleId, Icon> = {
       <path d="M4 15h7v5H4z" />
     </svg>
   ),
+  // Una silueta dentro de un óvalo de espejo.
+  'imagen-corporal': (p) => (
+    <svg {...base} {...p}>
+      <ellipse cx="12" cy="11" rx="6.5" ry="8.5" />
+      <circle cx="12" cy="8" r="2" />
+      <path d="M8.5 15.5c.7-2 2-3 3.5-3s2.8 1 3.5 3" />
+      <path d="M9 21.5h6" />
+    </svg>
+  ),
 };
 
 export function ModuleIcon({ id, ...p }: { id: ModuleId } & SVGProps<SVGSVGElement>) {

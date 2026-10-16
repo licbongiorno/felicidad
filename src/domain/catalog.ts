@@ -16,7 +16,7 @@ import { PACK_META } from './packs';
  *       ayuda humana (botón «Ayuda» en todas las pantallas, plan de seguridad).
  */
 
-export type Approach = 'dbt' | 'tcc' | 'act' | 'cft' | 'mindfulness' | 'positiva' | 'contemplativa' | 'relajacion' | 'escritura' | 'esquemas' | 'psicodinamica' | 'logoterapia' | 'humanista' | 'gestalt' | 'soluciones' | 'narrativa' | 'motivacional' | 'metacognitiva' | 'focalizada-emocion' | 'interpersonal' | 'mentalizacion' | 'gottman' | 'sistemica';
+export type Approach = 'dbt' | 'tcc' | 'act' | 'cft' | 'mindfulness' | 'positiva' | 'contemplativa' | 'relajacion' | 'escritura' | 'esquemas' | 'psicodinamica' | 'logoterapia' | 'humanista' | 'gestalt' | 'soluciones' | 'narrativa' | 'motivacional' | 'metacognitiva' | 'focalizada-emocion' | 'interpersonal' | 'mentalizacion' | 'gottman' | 'sistemica' | 'analisis-transaccional';
 
 export const APPROACH_LABEL: Record<Approach, string> = {
   dbt: 'DBT',
@@ -42,6 +42,7 @@ export const APPROACH_LABEL: Record<Approach, string> = {
   mentalizacion: 'Mentalización',
   gottman: 'Método Gottman',
   sistemica: 'Sistémica · familia',
+  'analisis-transaccional': 'Análisis transaccional · Berne',
 };
 
 export const APPROACH_DESCRIPTION: Record<Approach, string> = {
@@ -68,6 +69,7 @@ export const APPROACH_DESCRIPTION: Record<Approach, string> = {
   mentalizacion: 'Mentalización (Fonagy, Bateman): entender los estados mentales propios y ajenos detrás de las conductas.',
   gottman: 'Método Gottman para parejas: amistad, manejo del conflicto y sentido compartido, según décadas de investigación.',
   sistemica: 'Enfoque sistémico (Bowen, McGoldrick, Boszormenyi-Nagy): la persona dentro de su familia; genograma, mandatos, lealtades y diferenciación.',
+  'analisis-transaccional': 'Análisis transaccional (Eric Berne): estados del yo Padre, Adulto y Niño, transacciones, juegos psicológicos y caricias. Un lenguaje útil con poca investigación controlada.',
 };
 
 export const PRACTICE_APPROACHES: Record<string, Approach[]> = {
@@ -233,7 +235,8 @@ export type ModuleId =
   | 'trabajo'
   | 'etapas'
   | 'salud'
-  | 'neurodiversidad';
+  | 'neurodiversidad'
+  | 'imagen-corporal';
 
 export interface SkillModule {
   id: ModuleId;
@@ -443,6 +446,15 @@ export const MODULES: SkillModule[] = [
     practices: [],
     journal: [],
     resources: [],
+  },
+  {
+    id: 'imagen-corporal',
+    title: 'Imagen corporal',
+    purpose: 'Una relación más amable con tu cuerpo: por lo que hace, no sólo por cómo se ve. Sin dietas ni metas de peso.',
+    approaches: ['tcc', 'cft', 'positiva'],
+    practices: [],
+    journal: [],
+    resources: [{ href: '/biblioteca/imagen-corporal', label: 'Imagen corporal' }],
   },
 ];
 

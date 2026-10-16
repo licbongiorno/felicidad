@@ -8,9 +8,12 @@ import { VIDA_COTIDIANA_PACK } from './vida-cotidiana';
 import { ESQUEMAS_PACK } from './esquemas';
 import { JUNG_PACK } from './jung';
 import { SISTEMICA_PACK } from './sistemica';
+import { MENTALIZACION_PACK } from './mentalizacion';
+import { ANALISIS_TRANSACCIONAL_PACK } from './analisis-transaccional';
+import { IMAGEN_CORPORAL_PACK } from './imagen-corporal';
 
 /** Todos los paquetes de contenido. Para sumar uno: crear el archivo y agregarlo aquí. */
-export const PACKS: ContentPack[] = [SOLUCIONES_NARRATIVA_PACK, METACOGNICION_VINCULOS_PACK, SUENO_ACTIVACION_PACK, ETAPAS_VINCULOS_PACK, SALUD_TRABAJO_CRIANZA_PACK, VIDA_COTIDIANA_PACK, ESQUEMAS_PACK, JUNG_PACK, SISTEMICA_PACK];
+export const PACKS: ContentPack[] = [SOLUCIONES_NARRATIVA_PACK, METACOGNICION_VINCULOS_PACK, SUENO_ACTIVACION_PACK, ETAPAS_VINCULOS_PACK, SALUD_TRABAJO_CRIANZA_PACK, VIDA_COTIDIANA_PACK, ESQUEMAS_PACK, JUNG_PACK, SISTEMICA_PACK, MENTALIZACION_PACK, ANALISIS_TRANSACCIONAL_PACK, IMAGEN_CORPORAL_PACK];
 
 export const PACK_PRACTICES = PACKS.flatMap((p) => p.practices);
 export const PACK_META: Record<string, PracticeMeta> = Object.assign({}, ...PACKS.map((p) => p.meta));
