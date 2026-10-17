@@ -182,6 +182,14 @@ describe('idea semanal para la familia', () => {
     expect(familyTip(kid('7-9'), [log('alegria', 2)], TODAY).guide.id).toBe('entrenador-emocional');
   });
 
+  it('para 0 a 3 años la idea cambia de semana en semana y responde al cansancio y a la constancia', () => {
+    const week = (n: number) => new Date(TODAY.getTime() + n * 7 * 86_400_000);
+    const ids = new Set([0, 1, 2, 3].map((n) => familyTip(kid('0-3'), [{ ...log('alegria', 1), createdAt: week(n) }], week(n)).guide.id));
+    expect(ids.size).toBe(4);
+    expect(familyTip(kid('7-9'), [log('cansancio', 2)], TODAY).guide.id).toBe('dormir-mejor');
+    expect(familyTip(kid('7-9'), [0, 1, 2, 3].map((d) => log('alegria', 1, d)), TODAY).text).toMatch(/4 días/);
+  });
+
   it('los textos nombran al chico o son generales, sin dobles espacios', () => {
     for (const b of ['0-3', '4-6', '7-9', '10-12', '13-17'] as const)
       for (const logs of [[], [log('miedo', 1)], [log('enojo', 1)], [log('tristeza', 1)], [log('alegria', 1)]]) {
