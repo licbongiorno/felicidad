@@ -19,6 +19,35 @@ entrada en este registro.
 
 ---
 
+## 2026-10-17 · Cuatro enfoques ampliados: metacognitiva, Gottman, gestalt y análisis transaccional
+
+Se suman 16 prácticas, cada una con su píldora, repartidas en dos paquetes: `enfoques-metacognitiva-gottman` y `enfoques-gestalt-transaccional`. Todo entra en estado `pendiente`.
+
+- **Metacognitiva:**
+  - `reenfoque-de-la-atencion`
+  - `preocuparme-me-sirve`
+  - `poner-a-prueba-el-descontrol`
+  - `soltar-la-vigilancia`
+- **Gottman:**
+  - `charla-del-estres-del-dia`
+  - `cultivar-admiracion`
+  - `mi-jinete-y-su-antidoto`
+  - `suenos-dentro-del-conflicto`
+
+  Todas llevan el aviso de que la violencia no es un problema de comunicación (Línea 144, 911).
+- **Gestalt:**
+  - `veo-e-imagino`
+  - `de-tengo-que-a-elijo`
+  - `ciclo-de-la-necesidad`
+  - `amplificar-un-gesto` (riesgo 2)
+- **Análisis transaccional:**
+  - `mi-posicion-existencial`
+  - `contrato-de-cambio`
+  - `salir-de-un-juego`
+  - `mandatos-y-permisos` (riesgo 2)
+
+Cada práctica se suma a la necesidad donde mejor encaja: ansiedad, relaciones, reparar conflictos, valores, patrones, emociones, autoestima o hábitos.
+
 ## 2026-10-17 · Ocho necesidades más ampliadas
 
 Se suman 18 prácticas nuevas, cada una con su píldora, repartidas en tres paquetes: `necesidades-cuerpo-atencion`, `necesidades-acoso-medicacion` y `necesidades-separacion-perinatal`. Todas quedan en estado `pendiente`.
