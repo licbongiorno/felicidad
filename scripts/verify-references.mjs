@@ -6,7 +6,8 @@ import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const dir = process.argv[2];
-const files = readdirSync(dir).filter((f) => f.endsWith('.ts') && !f.endsWith('.test.ts'));
+// Recursivo: los paquetes de contenido (src/domain/packs/) también tienen referencias.
+const files = readdirSync(dir, { recursive: true }).filter((f) => f.endsWith('.ts') && !f.endsWith('.test.ts'));
 const refs = new Map(); // doi -> citation
 for (const f of files) {
   const src = readFileSync(join(dir, f), 'utf8');

@@ -99,7 +99,6 @@ export const PROGRAM_ARTICLES: Article[] = [
     references: [
       {
         citation: 'Fennell, M. J. V. (1997). Low self-esteem: A cognitive perspective. Behavioural and Cognitive Psychotherapy, 25(1), 1–26.',
-        doi: '10.1017/S1352465800015332',
       },
       {
         citation:
