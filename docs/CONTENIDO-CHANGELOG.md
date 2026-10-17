@@ -19,6 +19,19 @@ entrada en este registro.
 
 ---
 
+## 2026-10-17 · Ocho necesidades más ampliadas
+
+Se suman 18 prácticas nuevas, cada una con su píldora, repartidas en tres paquetes: `necesidades-cuerpo-atencion`, `necesidades-acoso-medicacion` y `necesidades-separacion-perinatal`. Todas quedan en estado `pendiente`.
+
+- `atencion-plena`: `atencion-en-lo-cotidiano` y `practica-rain`.
+- `habitos-del-cuerpo`: `cadena-del-habito` y `sostener-el-cambio-del-habito`.
+- `vida-sexual`: `mensajes-que-aprendi-sobre-el-sexo` y `menu-de-cercania`.
+- `acoso-escolar`: `ciberacoso-plan-en-familia` y `volver-a-confiar-despues-del-acoso`.
+- `acoso-laboral`: `despues-de-una-reunion-hostil` y `preparar-una-denuncia-formal`.
+- `medicacion`: `estigma-interno-y-medicacion` y `hablar-de-mi-medicacion-en-casa`. Ninguna da indicaciones de dosis ni sugiere cambiar el tratamiento.
+- `separacion`: `mi-vida-despues-de-separarme`, `primeras-fiestas-tras-la-separacion` y `presentar-una-nueva-pareja`.
+- `perdida-perinatal`: `responder-comentarios-que-duelen`, `volver-al-trabajo-tras-la-perdida` y `el-duelo-de-quien-no-gesto`.
+
 ## 2026-10-17 · Seis necesidades ampliadas y ocho desafíos nuevos
 
 Todo lo nuevo queda en estado `pendiente`.
