@@ -6,6 +6,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Pill } from '@/domain/pills';
 import { haptic } from '@/lib/haptics';
 import { markPillRead } from './pillProgress';
+import { ShareButton } from '@/components/ui/ShareButton';
 import { buttonStyles } from '@/components/ui/Button';
 
 /**
@@ -115,9 +116,12 @@ export function PillReader({
                   ))}
                 </ul>
               )}
-              <button type="button" onClick={() => go(-total)} className="mt-6 self-start text-sm text-sage-700 underline-offset-4 hover:underline">
-                Volver a empezar
-              </button>
+              <div className="mt-6 flex flex-wrap items-center gap-4">
+                <ShareButton title={pill.title} path={`/biblioteca/pildoras/${pill.id}`} />
+                <button type="button" onClick={() => go(-total)} className="text-sm text-sage-700 underline-offset-4 hover:underline">
+                  Volver a empezar
+                </button>
+              </div>
             </m.section>
           )}
         </AnimatePresence>

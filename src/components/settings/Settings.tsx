@@ -21,6 +21,7 @@ import { Button } from '@/components/ui/Button';
 import { Sheet } from '@/components/ui/Sheet';
 import Link from 'next/link';
 import { canReview } from '@/lib/reviewers';
+import { ProgramFinder } from '@/components/programs/ProgramFinder';
 
 const DAYS: { id: Weekday; label: string }[] = [
   { id: 'MO', label: 'L' },
@@ -71,6 +72,13 @@ export function Settings() {
           }}
         />
         <Toggle label="Campana" description="Un sonido suave marca el cambio de paso y el final." checked={chime} onChange={(v) => setPref('chime', v)} />
+      </Section>
+
+      <Section title="Tu punto de partida">
+        <p className="text-sm leading-relaxed text-stone-600">
+          Si cambió lo que te pasa, vuelve a responder las tres preguntas del inicio y te sugerimos otro programa para empezar.
+        </p>
+        <ProgramFinder />
       </Section>
 
       <Section title="Recordatorio">

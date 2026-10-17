@@ -122,3 +122,32 @@ export const IconGear = (p: SVGProps<SVGSVGElement>) => (
     <path d="M12 3.5v2M12 18.5v2M20.5 12h-2M5.5 12h-2M18 6l-1.4 1.4M7.4 16.6L6 18M18 18l-1.4-1.4M7.4 7.4L6 6" />
   </svg>
 );
+
+export const IconFlag = (p: SVGProps<SVGSVGElement>) => (
+  <svg {...base} {...p}>
+    <path d="M5.5 20.5v-16" />
+    <path d="M5.5 4.5h11l-2.5 4 2.5 4h-11" />
+  </svg>
+);
+
+export const IconHome = (p: SVGProps<SVGSVGElement>) => (
+  <svg {...base} {...p}>
+    <path d="M4 10.5 12 4l8 6.5" />
+    <path d="M6 9v10.5h12V9" />
+    <path d="M10 19.5v-5h4v5" />
+  </svg>
+);
+
+export const IconShield = (p: SVGProps<SVGSVGElement>) => (
+  <svg {...base} {...p}>
+    <path d="M12 3.5 19 6v5.5c0 4.2-2.9 7.6-7 9-4.1-1.4-7-4.8-7-9V6z" />
+    <path d="m9 12 2 2 4-4" />
+  </svg>
+);
+
+export const IconReport = (p: SVGProps<SVGSVGElement>) => (
+  <svg {...base} {...p}>
+    <rect x="5" y="3.5" width="14" height="17" rx="2" />
+    <path d="M8.5 16v-3M12 16v-6M15.5 16v-4" />
+  </svg>
+);

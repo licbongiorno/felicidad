@@ -85,6 +85,8 @@ interface ProgressState {
   logApplication: (a: FirestoreRepo.NewApplication) => void;
   updatePersonal: (patch: Partial<PersonalSettings>) => void;
   clearError: () => void;
+  /** Cierra el aviso y, si la carga había fallado, vuelve a conectarse. */
+  retry: () => void;
 }
 
 const initialData = {
@@ -106,12 +108,17 @@ let unsubscribers: Unsubscribe[] = [];
 // Invalida conexiones en curso si se desconecta (o cambia de usuario) mientras carga el repositorio.
 let generation = 0;
 
-function describe(e: unknown): string {
+/** Mensaje para la persona: qué pasó y qué puede hacer. */
+export function describeSyncError(e: unknown): string {
   const code = (e as FirestoreError)?.code;
   if (code === 'permission-denied') return 'El servidor rechazó el registro. Revisa tu sesión e inténtalo de nuevo.';
+  if (code === 'unauthenticated') return 'Tu sesión expiró. Vuelve a iniciar sesión para guardar tu progreso.';
   if (code === 'unavailable') return 'Sin conexión. Tus registros se sincronizarán al reconectar.';
-  return 'No se pudo sincronizar un registro.';
+  if (code === 'resource-exhausted') return 'Hubo demasiados registros seguidos. Espera un momento y vuelve a intentarlo.';
+  if (code === 'deadline-exceeded') return 'El servidor tardó demasiado en responder. Revisa tu conexión y vuelve a intentarlo.';
+  return 'No se pudo sincronizar un registro. Vuelve a intentarlo en un momento.';
 }
+const describe = describeSyncError;
 
 export const useProgressStore = create<ProgressState>()((set, get) => {
   /** Ejecuta una escritura en segundo plano y captura su error. */
@@ -215,5 +222,14 @@ export const useProgressStore = create<ProgressState>()((set, get) => {
     },
 
     clearError: () => set({ syncError: null }),
+
+    retry: () => {
+      const { uid, status } = get();
+      set({ syncError: null });
+      if (uid && status === 'error') {
+        get().disconnect();
+        get().connect(uid);
+      }
+    },
   };
 });
