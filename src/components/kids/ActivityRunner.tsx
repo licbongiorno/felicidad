@@ -17,6 +17,8 @@ import { FeelingCheck } from './activities/FeelingCheck';
 import { Gratitude } from './activities/Gratitude';
 import { Mission } from './activities/Mission';
 import { Drawing } from './activities/Drawing';
+import { Thermometer } from './activities/Thermometer';
+import { Ladder } from './activities/Ladder';
 
 export interface FinishPayload {
   feeling?: KidActivityLog['feeling'];
@@ -87,6 +89,10 @@ function Body({ activity, onFinish }: { activity: KidActivity; onFinish: (p?: Fi
       return <Mission activity={activity} onFinish={onFinish} />;
     case 'dibujar':
       return <Drawing activity={activity} onFinish={onFinish} />;
+    case 'termometro':
+      return <Thermometer activity={activity} onFinish={onFinish} />;
+    case 'escalera':
+      return <Ladder activity={activity} onFinish={onFinish} />;
   }
 }
 

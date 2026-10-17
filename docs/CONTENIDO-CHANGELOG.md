@@ -19,6 +19,26 @@ entrada en este registro.
 
 ---
 
+## 2026-10-17 · Chicos: termómetro y escalera interactivos, y seis cuentos para 0 a 3 años
+
+Los formatos y los cuentos nuevos entran en estado `pendiente`.
+
+- **Formatos interactivos nuevos:**
+  - `termometro`: cinco niveles de una emoción, con qué hacer en cada uno. Los niveles 4 y 5 se registran como «muchísimo» y cuentan para el aviso al adulto.
+  - `escalera`: escalones de valentía hasta una meta. El chico elige el próximo escalón y el adulto lo ve en el registro.
+- **Actividades nuevas:**
+  - `termometro-del-enojo` (7–12 años)
+  - `termometro-de-los-nervios` (10–17 años)
+  - `escalones-para-dormir` (4–9 años)
+  - `escalones-para-hablar` (7–17 años)
+- **Cuentos para 0 a 3 años:** la franja pasa de 6 a 12.
+  - `hora-del-bano`
+  - `la-pelota-roja`
+  - `el-perro-grande`
+  - `a-la-mesa`
+  - `primer-dia-jardin`
+  - `a-guardar`
+
 ## 2026-10-17 · Chicos: 22 actividades nuevas y 11 caminos por situación
 
 Todo entra en estado `pendiente` y se suma a `kids.ts`.

@@ -68,6 +68,8 @@ export const FEELING_BY_ID = Object.fromEntries(KID_FEELINGS.map((f) => [f.id, f
 
 /** Intensidad en el termómetro: 1 un poco, 2 bastante, 3 muchísimo. */
 export type KidIntensity = 1 | 2 | 3;
+/** Los cinco niveles del termómetro se registran como las tres intensidades del check-in. */
+export const levelIntensity = (level: number): KidIntensity => (level <= 2 ? 1 : level === 3 ? 2 : 3);
 export const INTENSITY_LABEL: Record<KidIntensity, string> = { 1: 'Un poco', 2: 'Bastante', 3: 'Muchísimo' };
 
 // ---------------------------------------------------------------- avatares
@@ -170,6 +172,10 @@ export type KidActivity = ActivityBase &
     | { kind: 'dibujar'; intro: string; prompts: string[]; question: string }
     /** 0 a 3 años: pasos para el adulto, que se muestran en Familia (sin modo chico). */
     | { kind: 'juntos'; steps: KidStep[] }
+    /** Termómetro: cinco niveles de una emoción, del más suave al más fuerte, con qué hacer en cada uno. */
+    | { kind: 'termometro'; intro: string; feeling: KidFeelingId; levels: { label: string; tip: string }[] }
+    /** Escalera de valentía: escalones del más fácil al más difícil hasta la meta; el chico elige el próximo. */
+    | { kind: 'escalera'; intro: string; goal: string; rungs: string[] }
   );
 
 /** Franjas con modo chico. */
@@ -2406,6 +2412,88 @@ export const KID_ACTIVITIES: KidActivity[] = [
     ],
     forAdult: 'No le pidas que te muestre lo que escribe: es suyo. Si quieren, compartan en la cena una cosa buena cada uno, sin obligar.',
     evidence: 'En el estudio de Seligman y colaboradores (2005), anotar tres cosas buenas y su causa durante una semana se asoció con más felicidad y menos síntomas depresivos en adultos, hasta seis meses después.',
+  },
+  // ------------------------------------------------------------ termómetros y escaleras (interactivas)
+  {
+    id: 'termometro-del-enojo',
+    kind: 'termometro',
+    title: 'El termómetro del enojo',
+    tagline: '¿Qué tan fuerte es el enojo ahora?',
+    skill: 'emociones',
+    bands: ['7-9', '10-12'],
+    minutes: 2,
+    feeling: 'enojo',
+    intro: 'Piensa en algo que te enojó hoy. ¿Qué tan fuerte es el enojo ahora?',
+    levels: [
+      { label: 'Calma', tip: 'Estás en calma. Es un buen momento para hablar de lo que pasó.' },
+      { label: 'Una molestia chiquita', tip: 'Nota dónde la sientes en el cuerpo. Respira hondo una vez.' },
+      { label: 'Enojo mediano', tip: 'Haz la tortuga: frena, respira tres veces y después piensa qué hacer.' },
+      { label: 'Enojo grande', tip: 'Aléjate un momento a un lugar tranquilo. Aprieta los puños y suéltalos.' },
+      { label: 'Volcán a punto de explotar', tip: 'Busca a tu adulto. Primero se calma el cuerpo. Las palabras vienen después.' },
+    ],
+    forAdult: 'Medir la emoción ayuda a darse cuenta antes de que explote. Úsenlo también en momentos tranquilos, para practicar. Si marca 4 o 5, no es momento de sermones: acompaña a calmar el cuerpo.',
+    evidence: 'Los «termómetros de emociones» son una herramienta habitual de la TCC con chicos para reconocer la intensidad de una emoción y elegir qué hacer en cada nivel.',
+  },
+  {
+    id: 'termometro-de-los-nervios',
+    kind: 'termometro',
+    title: 'El termómetro de los nervios',
+    tagline: '¿Qué tan fuertes son los nervios ahora?',
+    skill: 'valentia',
+    bands: ['10-12', '13-17'],
+    minutes: 2,
+    feeling: 'preocupacion',
+    intro: 'Piensa en algo que te pone nervioso o nerviosa. ¿Qué tan fuertes son los nervios ahora?',
+    levels: [
+      { label: 'Calma', tip: 'Los nervios están quietos. Aprovecha para preparar lo que viene.' },
+      { label: 'Cosquillas en la panza', tip: 'Es normal antes de algo importante. Un poco de nervios te ayuda a prestar atención.' },
+      { label: 'Nervios medianos', tip: 'Respira lento. Suelta el aire más despacio de lo que lo tomas.' },
+      { label: 'Muchos nervios', tip: 'Nombra cinco cosas que ves. Después elige un paso chico para empezar.' },
+      { label: 'No puedo pensar', tip: 'Para un momento y pide ayuda. Cuando el cuerpo se calma, se piensa mejor.' },
+    ],
+    forAdult: 'Pregunta por el número sin juzgarlo: «¿En cuánto estás?». Con nervios altos, primero calmar el cuerpo y después hablar del problema. Si los nervios son muy altos casi todos los días, consulten con un profesional.',
+    evidence: 'Calificar la intensidad del miedo o la ansiedad es parte de los programas de TCC para la ansiedad infantil, como Coping Cat.',
+  },
+  {
+    id: 'escalones-para-dormir',
+    kind: 'escalera',
+    title: 'Escalones para dormir en mi cama',
+    tagline: 'Un paso chico cada noche.',
+    skill: 'valentia',
+    bands: ['4-6', '7-9'],
+    minutes: 3,
+    intro: 'Las cosas difíciles se suben de a un escalón. ¿Cuál quieres probar esta noche?',
+    goal: 'dormir en mi cama toda la noche',
+    rungs: [
+      'Dormir con la puerta abierta y la luz del pasillo prendida.',
+      'Que mi adulto se quede sentado al lado un ratito.',
+      'Que mi adulto me venga a ver cada cinco minutos.',
+      'Que mi adulto me venga a ver una sola vez.',
+      'Dormirme con mi peluche y la luz bajita.',
+    ],
+    forAdult: 'Elijan juntos el escalón y repítanlo varias noches antes de subir al siguiente. Si un escalón cuesta mucho, bajen uno: no es retroceder. Elogia el esfuerzo de cada noche, no solo el resultado.',
+    evidence: 'La exposición gradual, de a pasos chicos, es la base de la TCC para los miedos infantiles, también los de la noche.',
+    caution: 'Si el miedo empezó después de algo que lo asustó de verdad, o si aparecen pesadillas todas las noches, consulten con un profesional.',
+  },
+  {
+    id: 'escalones-para-hablar',
+    kind: 'escalera',
+    title: 'Escalones para hablar',
+    tagline: 'Animarse a hablar, de a poco.',
+    skill: 'valentia',
+    bands: ['7-9', '10-12', '13-17'],
+    minutes: 3,
+    intro: 'Hablar con otros a veces da vergüenza. Se aprende de a un escalón. ¿Cuál quieres probar esta semana?',
+    goal: 'decir algo en clase',
+    rungs: [
+      'Saludar con la mano a alguien que conozco.',
+      'Decir «hola» en voz alta a alguien de mi grupo.',
+      'Hacerle una pregunta corta a un compañero o compañera.',
+      'Pedir algo en un kiosco o en un negocio.',
+      'Levantar la mano en clase para decir una cosa corta.',
+    ],
+    forAdult: 'No hables por tu hijo o hija, aunque cueste ver la espera. Repitan cada escalón hasta que sea más fácil. Si casi no habla fuera de casa o la vergüenza le impide ir a la escuela, consulten con un profesional.',
+    evidence: 'La exposición gradual con apoyo del adulto es el tratamiento con más evidencia para la ansiedad social en chicos y adolescentes, según la guía NICE de 2013.',
   },
 ];
 

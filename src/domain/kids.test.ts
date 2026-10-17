@@ -24,6 +24,8 @@ const textsOf = (a: (typeof KID_ACTIVITIES)[number]) => {
   if ('intro' in a) t.push(a.intro);
   if (a.kind === 'pasos' || a.kind === 'mision' || a.kind === 'juntos') t.push(...a.steps.map((s) => s.text));
   if (a.kind === 'juego') t.push(...a.rounds.map((r) => r.situation));
+  if (a.kind === 'termometro') t.push(...a.levels.map((l) => l.tip));
+  if (a.kind === 'escalera') t.push(...a.rungs);
   return t;
 };
 
@@ -77,6 +79,11 @@ describe('actividades para chicos', () => {
           }
       if (a.kind === 'juego') for (const r of a.rounds) expect(r.options, a.id).toContain(r.answer);
       if (a.kind === 'mision') expect(a.missions.length, a.id).toBeGreaterThanOrEqual(4);
+      if (a.kind === 'termometro') expect(a.levels.length, a.id).toBe(5);
+      if (a.kind === 'escalera') {
+        expect(a.rungs.length, a.id).toBeGreaterThanOrEqual(4);
+        for (const r of a.rungs) expect(`Escalón elegido: ${r}`.length, a.id).toBeLessThanOrEqual(140);
+      }
     }
   });
 
@@ -111,6 +118,11 @@ describe('actividades para chicos', () => {
             expect(s.seconds / n, `${a.id}: ${s.text}`).toBeGreaterThanOrEqual(6);
           }
         }
+  });
+
+  it('el termómetro registra los niveles 4 y 5 como «muchísimo», para que cuenten en el aviso al adulto', async () => {
+    const { levelIntensity } = await import('./kids');
+    expect([1, 2, 3, 4, 5].map(levelIntensity)).toEqual([1, 1, 2, 3, 3]);
   });
 
   it('las respiraciones tienen la exhalación igual o más larga que la inhalación', () => {

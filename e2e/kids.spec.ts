@@ -263,3 +263,22 @@ test('dibujo: se dibuja con el dedo, se termina y se gana el sticker', async ({ 
   await page.getByRole('button', { name: 'Listo', exact: true }).click();
   await expect(page.getByText(/Ganaste un sticker nuevo/)).toBeVisible();
 });
+
+test('termómetro y escalera: se marca un nivel y se elige un escalón, y el adulto lo ve en su panel', async ({ page }) => {
+  await enterAsKid(page);
+  await page.goto('/chicos/termometro-del-enojo');
+  await page.getByRole('radio', { name: /Volcán a punto de explotar/ }).click();
+  await expect(page.getByText(/Busca a tu adulto/)).toBeVisible();
+  await expectAccessible(page);
+  await page.getByRole('button', { name: '¡Listo!' }).click();
+  await expect(page.getByRole('heading', { name: /Ganaste un sticker nuevo/ })).toBeVisible();
+
+  await page.goto('/chicos/escalones-para-hablar');
+  await page.getByRole('radio', { name: /Saludar con la mano/ }).click();
+  await expectAccessible(page);
+  await page.getByRole('button', { name: '¡Ya lo hice!' }).click();
+  await expect(page.getByRole('heading', { name: /Ganaste un sticker nuevo/ })).toBeVisible();
+
+  await openPanel(page);
+  await expect(page.getByText('Enojo · muchísimo')).toBeVisible();
+});
