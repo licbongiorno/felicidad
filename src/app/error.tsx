@@ -4,14 +4,16 @@ import Link from 'next/link';
 import { useEffect } from 'react';
 import { LogoMark } from '@/components/ui/icons';
 import { Button, buttonStyles } from '@/components/ui/Button';
+import { reportError } from '@/lib/errorReport';
 
 /**
  * Error inesperado en una sección. Mensaje tranquilo, sin detalles técnicos para el
- * usuario; el detalle va a la consola (y, en el futuro, a un sistema de monitorización).
+ * usuario; el detalle va a la consola y, sin datos personales, a los logs del servidor.
  */
 export default function ErrorPage({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   useEffect(() => {
     console.error(error);
+    reportError(error, 'seccion');
   }, [error]);
 
   return (

@@ -1,6 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { readFileSync } from 'node:fs';
+import { settled } from './helpers';
 
 /** Cada test empieza con almacenamiento limpio (usuario demo nuevo) y sin animaciones. */
 test.use({ reducedMotion: 'reduce' });
@@ -228,7 +229,8 @@ test('accesibilidad WCAG 2.1 AA: buscador abierto', async ({ page }) => {
   await open(page, '/dashboard');
   await page.getByRole('button', { name: /^Buscar/ }).click();
   await page.getByRole('combobox', { name: /Buscar/ }).fill('respiracion');
-  await page.waitForTimeout(800);
+  await page.getByRole('option').first().waitFor();
+  await settled(page);
   const results = await new AxeBuilder({ page }).include('[role="dialog"]').withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();
   expect(results.violations.map((v) => `${v.id}: ${v.nodes[0]?.target.join(' ')}`)).toEqual([]);
 });
@@ -415,14 +417,12 @@ test('favoritas: se marcan desde el catálogo y aparecen arriba', async ({ page 
   await expect(page.getByRole('heading', { name: 'Tus favoritas' })).toBeVisible();
 });
 
-for (const path of ['/', '/dashboard', '/gimnasio', '/gimnasio/espacio-tres-minutos', '/gimnasio/amor-altruista', '/gimnasio/relajacion-progresiva', '/biblioteca/glosario', '/biblioteca/estres-y-agotamiento', '/plan-de-seguridad', '/biblioteca/trampas-del-pensamiento', '/biblioteca/ataques-de-panico', '/gimnasio/tipp', '/gimnasio/temporizador', '/antidotos', '/diario', '/evaluaciones', '/informe', '/biblioteca/rumiacion', '/biblioteca/autocompasion', '/programas/fundamentos', '/programas/desanimo', '/cartas', '/ajustes', '/crecimiento', '/laboratorio', '/laboratorio/semaforo', '/laboratorio/caja', '/laboratorio/conversaciones/decir-no-trabajo', '/laboratorio/hecho-o-interpretacion', '/biblioteca/rueda-de-emociones', '/biblioteca/autoconocimiento', '/gimnasio/aceptacion-radical', '/privacidad', '/programas']) {
+for (const path of ['/', '/dashboard', '/gimnasio', '/gimnasio/espacio-tres-minutos', '/gimnasio/amor-altruista', '/gimnasio/relajacion-progresiva', '/biblioteca/glosario', '/biblioteca/estres-y-agotamiento', '/plan-de-seguridad', '/biblioteca/trampas-del-pensamiento', '/biblioteca/ataques-de-panico', '/gimnasio/tipp', '/gimnasio/temporizador', '/antidotos', '/diario', '/evaluaciones', '/informe', '/biblioteca/rumiacion', '/biblioteca/autocompasion', '/programas/fundamentos', '/programas/desanimo', '/cartas', '/ajustes', '/crecimiento', '/laboratorio', '/laboratorio/semaforo', '/laboratorio/caja', '/laboratorio/conversaciones/decir-no-trabajo', '/laboratorio/hecho-o-interpretacion', '/biblioteca/rueda-de-emociones', '/biblioteca/autoconocimiento', '/gimnasio/aceptacion-radical', '/privacidad', '/programas', '/biblioteca', '/biblioteca/pildoras', '/habilidades', '/habilidades/emociones-intensas', '/desafios', '/familia']) {
   test(`accesibilidad WCAG 2.1 AA: ${path}`, async ({ page }) => {
     await open(page, path);
-    await page.waitForLoadState('networkidle');
     // Las entradas escalonadas animan la opacidad: auditar a mitad del fundido daría falsos
-    // positivos de contraste. Se espera a que no quede ninguna animación en curso.
-    await page.waitForFunction(() => document.getAnimations().every((a) => a.playState !== 'running'), null, { timeout: 5_000 }).catch(() => undefined);
-    await page.waitForTimeout(1_500);
+    // positivos de contraste. Se espera a que la página quede quieta.
+    await settled(page);
     const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();
     const summary = results.violations.map((v) => `${v.id} (${v.nodes.length}): ${v.nodes[0]?.target.join(' ')}`);
     expect(summary).toEqual([]);
@@ -432,12 +432,10 @@ for (const path of ['/', '/dashboard', '/gimnasio', '/gimnasio/espacio-tres-minu
 test.describe('modo oscuro', () => {
   test.use({ colorScheme: 'dark' });
 
-  for (const path of ['/', '/dashboard', '/gimnasio/amor-altruista', '/antidotos', '/diario', '/evaluaciones', '/informe', '/biblioteca/rumiacion', '/programas/fundamentos', '/cartas', '/ajustes', '/privacidad']) {
+  for (const path of ['/', '/dashboard', '/gimnasio', '/habilidades', '/gimnasio/amor-altruista', '/antidotos', '/diario', '/evaluaciones', '/informe', '/biblioteca/rumiacion', '/programas/fundamentos', '/cartas', '/ajustes', '/privacidad']) {
     test(`accesibilidad WCAG 2.1 AA en oscuro: ${path}`, async ({ page }) => {
       await open(page, path);
-      await page.waitForLoadState('networkidle');
-      await page.waitForFunction(() => document.getAnimations().every((a) => a.playState !== 'running'), null, { timeout: 5_000 }).catch(() => undefined);
-      await page.waitForTimeout(1_500);
+      await settled(page);
       // El tema del sistema se aplica de verdad: fondo oscuro.
       const bg = await page.evaluate(() => getComputedStyle(document.documentElement).backgroundColor);
       expect(bg).toBe('rgb(22, 20, 18)');

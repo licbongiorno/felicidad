@@ -1,5 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import { settled } from './helpers';
 
 /** Sección para chicos (modo demo): perfiles, modo chico con código y actividades. */
 test.use({ reducedMotion: 'reduce' });
@@ -41,9 +42,7 @@ async function openPanel(page: Page) {
 }
 
 async function expectAccessible(page: Page) {
-  await page.waitForLoadState('networkidle');
-  await page.waitForFunction(() => document.getAnimations().every((a) => a.playState !== 'running' || a.effect?.getTiming().iterations === Infinity), null, { timeout: 5_000 }).catch(() => undefined);
-  await page.waitForTimeout(1_200);
+  await settled(page);
   const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();
   expect(results.violations.map((v) => `${v.id} (${v.nodes.length}): ${v.nodes[0]?.target.join(' ')}`)).toEqual([]);
 }

@@ -8,7 +8,10 @@ export default defineConfig({
   testDir: 'e2e',
   timeout: 60_000,
   expect: { timeout: 10_000 },
-  fullyParallel: false,
+  // Cada prueba usa su propio contexto de navegador y empieza con almacenamiento limpio:
+  // pueden correr en paralelo sin compartir estado.
+  fullyParallel: true,
+  workers: process.env.CI ? 3 : undefined,
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? 'github' : 'list',
   use: {

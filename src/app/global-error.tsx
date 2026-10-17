@@ -1,10 +1,14 @@
 'use client';
 
+import { useEffect } from 'react';
+import { reportError } from '@/lib/errorReport';
+
 /**
  * Último recurso si falla el propio layout raíz: no puede depender de estilos ni fuentes
  * de la app, así que usa estilos en línea mínimos.
  */
-export default function GlobalError({ reset }: { error: Error & { digest?: string }; reset: () => void }) {
+export default function GlobalError({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
+  useEffect(() => reportError(error, 'global'), [error]);
   return (
     <html lang="es">
       <body style={{ margin: 0, background: '#fafaf9', color: '#292524', fontFamily: 'Georgia, serif' }}>
