@@ -19,6 +19,53 @@ entrada en este registro.
 
 ---
 
+## 2026-10-17 · Chicos: 22 actividades nuevas y 11 caminos por situación
+
+Todo entra en estado `pendiente` y se suma a `kids.ts`.
+
+**0 a 3 años, 12 actividades para hacer juntos.** Ahora la franja tiene 32 actividades y por primera vez incluye la habilidad *pensar*.
+- `cancion-para-lavarse`
+- `el-comentarista`
+- `esconder-el-juguete`
+- `pelota-por-turnos`
+- `caras-en-el-espejo`
+- `hora-de-guardar`
+- `agua-y-arena`
+- `album-de-la-familia`
+- `munecos-que-sienten`
+- `ayudar-en-casa`
+- `cuento-de-hoy`
+- `juego-con-cajas`
+
+Las que tienen riesgo de ahogamiento, asfixia o atragantamiento llevan un aviso (`caution`).
+
+**Pensar, 5 actividades:**
+- `plan-b`
+- `hecho-o-pensamiento`
+- `problema-en-cuatro-pasos`
+- `abogado-de-mis-pensamientos`
+- `lupa-o-telescopio`
+
+**Gratitud, 5 actividades:**
+- `carta-de-gracias`
+- `paseo-de-cosas-lindas`
+- `gracias-a-mi-cuerpo`
+- `cadena-de-gracias`
+- `tres-cosas-buenas`
+
+**Caminos por situación:**
+- Rutinas del día (0–3)
+- Pequeños exploradores (0–3)
+- Miedo a la noche (4–6)
+- Cuando me enojo (4–6)
+- Miedo a la noche (7–9)
+- Cuando me enojo (7–9)
+- Escuela nueva (7–9)
+- Antes de una prueba (10–12)
+- Cuando algo cambia en casa (10–12)
+- Redes y pantallas (13–17)
+- Época de exámenes (13–17)
+
 ## 2026-10-17 · Familia: nueve guías nuevas y consejo semanal más variado
 
 - **Guías nuevas** (`kids-guides-a/b/c.ts`), en estado `pendiente`:
