@@ -27,7 +27,6 @@ const VON_FRANZ_1996: Reference = { citation: 'von Franz, M.-L. (1996). The inte
 const HILL_1996: Reference = { citation: 'Hill, C. E. (1996). Working with dreams in psychotherapy. Guilford Press.', note: 'Modelo cognitivo-experiencial de trabajo con sueños: explorar, comprender y actuar.' };
 const HILL_KNOX_2010: Reference = {
   citation: 'Hill, C. E., & Knox, S. (2010). The use of dreams in modern psychotherapy. International Review of Neurobiology, 92, 291–317.',
-  doi: '10.1016/S0074-7742(10)92013-X',
 };
 const SCHREDL_2003: Reference = {
   citation: 'Schredl, M., & Hofmann, F. (2003). Continuity between waking activities and dream activities. Consciousness and Cognition, 12(2), 298–308.',

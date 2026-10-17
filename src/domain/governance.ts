@@ -31,8 +31,8 @@ export interface ReviewRecord {
   note?: string;
 }
 
-/** Última verificación completa de referencias contra Crossref (72/72 DOI correctos). */
-export const EVIDENCE_LAST_CHECKED = '2026-10-13';
+/** Última verificación completa de referencias contra Crossref (263/263 DOI correctos, paquetes incluidos). */
+export const EVIDENCE_LAST_CHECKED = '2026-10-17';
 
 /** Quién firma las aprobaciones clínicas. */
 export const CLINICAL_REVIEWER = 'Responsable clínico (licbongiorno)';

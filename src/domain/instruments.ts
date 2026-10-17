@@ -531,7 +531,7 @@ export const AUDITC: Instrument = {
   references: [
     {
       citation:
-        'Bush, K., Kivlahan, D. R., McDonell, M. B., Fihn, S. D., & Bradley, K. A. (1998). The AUDIT alcohol consumption questions (AUDIT-C). Archives of Internal Medicine, 158(16), 1789–1795.',
+        'Bush, K., Kivlahan, D. R., McDonell, M. B., Fihn, S. D., & Bradley, K. A. (1998). The AUDIT alcohol consumption questions (AUDIT-C): An effective brief screening test for problem drinking. Archives of Internal Medicine, 158(16), 1789–1795.',
       doi: '10.1001/archinte.158.16.1789',
     },
     {

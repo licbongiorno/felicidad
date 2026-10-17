@@ -144,7 +144,6 @@ const KRAMER_2010: Reference = {
 const FABER_1987: Reference = { citation: 'Faber, A., & Mazlish, E. (1987). Siblings without rivalry: How to help your children live together so you can live too. Norton.' };
 const SPEECE_1984: Reference = {
   citation: 'Speece, M. W., & Brent, S. B. (1984). Children’s understanding of death: A review of three components of a death concept. Child Development, 55(5), 1671–1686.',
-  doi: '10.2307/1130002',
 };
 const DYREGROV_2008: Reference = { citation: 'Dyregrov, A. (2008). Grief in children: A handbook for adults (2.ª ed.). Jessica Kingsley.' };
 const CHRONIS_2006: Reference = {
