@@ -19,6 +19,16 @@ entrada en este registro.
 
 ---
 
+## 2026-10-17 · Verificación completa de referencias contra Crossref
+
+- **Verificador.** Ahora lee también `src/domain/packs/`; antes revisaba 141 DOI y salteaba los 124 de los paquetes. También se corrigió una falsa alarma: Crossref escribe «&amp;» y antepone «The» al nombre de algunas revistas.
+- **Resultado final:** 263 de 263 DOI coinciden en título, año y revista (corrida del workflow «Referencias científicas» del 17/10).
+- **Correcciones:**
+  - **Fennell (1997), Hill y Knox (2010), Speece y Brent (1984):** se quitó el DOI. Llevaba a otra publicación o no existía, y no se reemplazó por uno sin verificar. La cita completa se mantiene.
+  - **Bush et al. (1998), AUDIT-C:** se agregó el subtítulo que faltaba.
+  - **Hobfoll et al. (2007):** se completó el nombre de la revista, *Psychiatry: Interpersonal and Biological Processes*.
+- **A revisión (`pendiente`)**, porque cambió su texto: articulo:autoestima, instrumento:auditc, articulo:suenos-y-simbolos, articulo:trauma-y-estres-postraumatico, guia-familia:hablar-de-la-muerte, practica:acompanar-tras-un-trauma y practica:trabajar-un-sueno. El cambio es solo bibliográfico.
+
 ## 2026-10-16 · La aprobación queda atada al contenido aprobado
 
 - `src/domain/approved.json` guarda, para cada uno de los 789 elementos aprobados hoy, una huella de su contenido y la fecha.
