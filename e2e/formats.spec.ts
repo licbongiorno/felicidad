@@ -1,18 +1,13 @@
 import { expect, test, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import { open, settled } from './helpers';
 
 /** Formatos nuevos: píldoras, desafíos y dibujo (modo demo, almacenamiento limpio). */
 test.use({ reducedMotion: 'reduce' });
 
-async function open(page: Page, path: string) {
-  await page.goto(path);
-  await page.evaluate(() => localStorage.clear());
-  await page.goto(path);
-}
 
 async function expectAccessible(page: Page) {
-  await page.waitForLoadState('networkidle');
-  await page.waitForTimeout(800);
+  await settled(page);
   const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();
   expect(results.violations.map((v) => `${v.id} (${v.nodes.length}): ${v.nodes[0]?.target.join(' ')}`)).toEqual([]);
 }
