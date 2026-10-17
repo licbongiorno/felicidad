@@ -205,7 +205,12 @@ describe('caminos de aprendizaje', () => {
   it('cada franja tiene al menos 3 caminos con actividades existentes de su edad', async () => {
     const { KID_PATHS, pathsFor } = await import('./kids');
     expect(new Set(KID_PATHS.map((p) => p.id)).size).toBe(KID_PATHS.length);
-    for (const b of AGE_BANDS) expect(pathsFor(b.id).length, b.id).toBeGreaterThanOrEqual(3);
+    for (const b of AGE_BANDS) {
+      expect(pathsFor(b.id).length, b.id).toBeGreaterThanOrEqual(3);
+      // Cada camino de la franja empieza con una actividad distinta: el botón «Empezar» no se repite.
+      const firsts = pathsFor(b.id).map((p) => p.activities[0]);
+      expect(new Set(firsts).size, b.id).toBe(firsts.length);
+    }
     for (const p of KID_PATHS) {
       expect(p.activities.length, p.id).toBeGreaterThanOrEqual(5);
       for (const id of p.activities) {
