@@ -21,8 +21,11 @@ import {
   IconLeave,
   IconMore,
   IconPanel,
-  IconJournal as IconReport,
+  IconReport,
   IconPath,
+  IconFlag,
+  IconHome,
+  IconShield,
   IconPulse,
   IconSprout,
   IconFlask,
@@ -40,21 +43,21 @@ const SECONDARY = [
   { href: '/crecimiento', label: 'Tu jardín', Icon: IconSprout, description: 'Lo que cultivaste y tus habilidades DBT' },
   { href: '/laboratorio', label: 'Laboratorio', Icon: IconFlask, description: 'Simulaciones y ejercicios interactivos' },
   { href: '/programas', label: 'Programas', Icon: IconPath, description: 'Recorridos guiados de varias semanas' },
-  { href: '/desafios', label: 'Desafíos', Icon: IconPath, description: 'Una tarea corta por día durante 7, 21 o 30 días' },
-  { href: '/familia', label: 'Familia', Icon: IconSprout, description: 'Habilidades para chicos de 0 a 17 años, con tu supervisión' },
+  { href: '/desafios', label: 'Desafíos', Icon: IconFlag, description: 'Una tarea corta por día durante 7, 21 o 30 días' },
+  { href: '/familia', label: 'Familia', Icon: IconHome, description: 'Habilidades para chicos de 0 a 17 años, con tu supervisión' },
   { href: '/evaluaciones', label: 'Evaluaciones', Icon: IconPulse, description: 'Cuestionarios validados para seguir tu evolución' },
   { href: '/biblioteca', label: 'Biblioteca', Icon: IconBook, description: 'Fundamentos científicos en lenguaje claro' },
   { href: '/cartas', label: 'Cartas', Icon: IconCards, description: 'Perspectivas para romper la rumiación' },
   { href: '/informe', label: 'Informe', Icon: IconReport, description: 'Resumen imprimible para tu terapeuta' },
   { href: '/ajustes', label: 'Ajustes', Icon: IconGear, description: 'Voz guía, recordatorios y tus datos' },
   ...(isPublished('herramienta', 'plan-seguridad')
-    ? [{ href: '/plan-de-seguridad', label: 'Plan de seguridad', Icon: IconAntidote, description: 'Tu plan para los momentos de crisis' }]
+    ? [{ href: '/plan-de-seguridad', label: 'Plan de seguridad', Icon: IconShield, description: 'Tu plan para los momentos de crisis' }]
     : []),
 ];
 
 // Ajustes no va en la barra de escritorio: tiene su propio icono.
 const bySecondary = (href: string) => SECONDARY.find((l) => l.href === href)!;
-const ALL = [PRIMARY[0], bySecondary('/crecimiento'), ...PRIMARY.slice(1), bySecondary('/laboratorio'), bySecondary('/programas'), bySecondary('/evaluaciones'), bySecondary('/familia')];
+const ALL = [PRIMARY[0], bySecondary('/crecimiento'), ...PRIMARY.slice(1), bySecondary('/laboratorio'), bySecondary('/programas'), bySecondary('/evaluaciones'), bySecondary('/biblioteca'), bySecondary('/familia')];
 
 /**
  * Escritorio (lg+): barra superior con todas las secciones y un indicador que se desliza.
@@ -119,6 +122,15 @@ export function AppNav() {
                 </Link>
               );
             })}
+            {/* El resto de las secciones (desafíos, cartas, informe…) en la misma hoja que en el celular. */}
+            <button
+              type="button"
+              onClick={() => setMoreOpen(true)}
+              aria-haspopup="dialog"
+              className={`whitespace-nowrap rounded-full px-3 py-1.5 transition-colors ${moreActive && !ALL.some((l) => isActive(l.href)) ? 'text-stone-900' : 'text-stone-600 hover:text-stone-800'}`}
+            >
+              Más
+            </button>
             <Link
               href="/ajustes"
               aria-label="Ajustes"

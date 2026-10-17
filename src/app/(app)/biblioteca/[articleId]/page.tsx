@@ -7,6 +7,7 @@ import { Stagger, StaggerItem } from '@/components/motion/Reveal';
 import { ArticleAudio } from '@/components/library/ArticleAudio';
 import { CycleDiagram } from '@/components/library/CycleDiagram';
 import { isPublished, reviewOf, REVIEW_LABEL } from '@/domain/governance';
+import { ShareButton } from '@/components/ui/ShareButton';
 
 export function generateStaticParams() {
   return ARTICLES.map((a) => ({ articleId: a.id }));
@@ -40,6 +41,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ articl
           <p className="mt-4 text-lg leading-relaxed text-stone-600">{article.subtitle}</p>
           <div className="mt-6 flex flex-wrap items-center gap-3">
             <ArticleAudio paragraphs={listen} />
+            <ShareButton title={article.title} path={`/biblioteca/${article.id}`} />
             {review.status === 'borrador' && <span className="rounded-full bg-stone-800 px-3 py-1 text-xs text-stone-50">{REVIEW_LABEL.borrador}</span>}
           </div>
         </StaggerItem>

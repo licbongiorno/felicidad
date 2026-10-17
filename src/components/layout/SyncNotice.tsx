@@ -9,6 +9,7 @@ import { collapse } from '@/lib/motion';
 export function SyncNotice() {
   const syncError = useProgressStore((s) => s.syncError);
   const clearError = useProgressStore((s) => s.clearError);
+  const retry = useProgressStore((s) => s.retry);
   const online = useOnline();
 
   return (
@@ -25,9 +26,14 @@ export function SyncNotice() {
           <m.div key="error" variants={collapse} initial="hidden" animate="show" exit="exit" className="overflow-hidden">
             <div role="status" className="mt-4 flex items-center justify-between gap-4 rounded-xl bg-stone-200/60 px-4 py-3 text-sm text-stone-700">
               <span>{syncError}</span>
-              <button type="button" onClick={clearError} className="rounded-full px-2 py-1 text-stone-600 transition-colors hover:bg-stone-300/50 hover:text-stone-800">
-                Cerrar
-              </button>
+              <span className="flex shrink-0 gap-1">
+                <button type="button" onClick={retry} className="rounded-full px-2 py-1 font-medium text-sage-800 transition-colors hover:bg-stone-300/50">
+                  Reintentar
+                </button>
+                <button type="button" onClick={clearError} className="rounded-full px-2 py-1 text-stone-600 transition-colors hover:bg-stone-300/50 hover:text-stone-800">
+                  Cerrar
+                </button>
+              </span>
             </div>
           </m.div>
         ) : DEMO_MODE ? (

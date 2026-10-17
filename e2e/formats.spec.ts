@@ -233,3 +233,48 @@ test('revisión clínica: filtra por prioridad y muestra primero lo crítico', a
   await expect(page.locator('main li').first().getByText(/^Prioridad 3 · habitual/)).toBeVisible();
   await expectAccessible(page);
 });
+
+test('compartir: una píldora se comparte sólo con su enlace público', async ({ page }) => {
+  // Sin menú de compartir del sistema: se copia el enlace.
+  await page.addInitScript(() => {
+    Object.defineProperty(navigator, 'share', { value: undefined, configurable: true });
+    Object.defineProperty(navigator, 'clipboard', {
+      value: { writeText: async (t: string) => void ((window as unknown as { __copied: string }).__copied = t) },
+      configurable: true,
+    });
+  });
+  await open(page, '/biblioteca/pildoras');
+  const first = page.locator('main a[href^="/biblioteca/pildoras/"]').first();
+  const href = (await first.getAttribute('href'))!;
+  await first.click();
+  await page.waitForURL(`**${href}`);
+  for (let i = 0; i < 8; i++) {
+    const next = page.getByRole('button', { name: /^(Siguiente →|Terminar)$/ });
+    const label = (await next.innerText()).trim();
+    await next.click();
+    if (label === 'Terminar') break;
+  }
+  await page.getByRole('button', { name: 'Compartir' }).click();
+  await expect(page.getByText('Enlace copiado')).toBeVisible();
+  expect(await page.evaluate(() => (window as unknown as { __copied: string }).__copied)).toBe(new URL(href, page.url()).toString());
+});
+
+test('navegación de escritorio: «Más» abre el resto de las secciones', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'La barra superior es de escritorio');
+  await open(page, '/dashboard');
+  const bar = page.getByRole('banner');
+  await expect(bar.getByRole('link', { name: 'Biblioteca' })).toBeVisible();
+  await bar.getByRole('button', { name: 'Más' }).click();
+  const sheet = page.getByRole('dialog', { name: 'Más' });
+  await expect(sheet.getByRole('link', { name: /Desafíos/ })).toBeVisible();
+  await expect(sheet.getByRole('link', { name: /Informe/ })).toBeVisible();
+  await expectAccessible(page);
+});
+
+test('ajustes: se puede volver a hacer el test inicial', async ({ page }) => {
+  await open(page, '/ajustes');
+  await expect(page.getByRole('heading', { name: 'Tu punto de partida' })).toBeVisible();
+  await page.getByRole('button', { name: 'Ayúdame a elegir (3 preguntas)' }).click();
+  await expect(page.getByRole('button', { name: 'Ayúdame a elegir (3 preguntas)' })).toHaveCount(0);
+  await expectAccessible(page);
+});
