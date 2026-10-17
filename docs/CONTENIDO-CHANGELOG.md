@@ -19,6 +19,25 @@ entrada en este registro.
 
 ---
 
+## 2026-10-17 · Familia: nueve guías nuevas y consejo semanal más variado
+
+- **Guías nuevas** (`kids-guides-a/b/c.ts`), en estado `pendiente`:
+  - `despues-de-un-susto-grave`
+  - `timidez-y-ansiedad-social`
+  - `rituales-y-pensamientos-que-se-repiten`
+  - `enfermedad-grave-en-la-familia`
+  - `cuando-un-adulto-de-la-casa-esta-mal`
+  - `llega-un-hermanito`
+  - `dormir-mejor`
+  - `cuidar-el-propio-cuerpo`
+  - `mudanza-o-migracion`
+
+  Cada una trae consejos por edad, frases listas, actividades para chicos y un aviso de cuándo consultar (911 y Línea 102). Los DOI nuevos se verifican contra Crossref; donde no había certeza, la referencia va sin DOI.
+- **Consejo semanal** (`family-tips.ts`):
+  - Para 0 a 3 años, rota entre cuatro ideas en lugar de repetir siempre la misma.
+  - Si el chico o la chica marca cansancio, remite a `dormir-mejor`.
+  - Si practicó 4 días o más en la semana, lo reconoce sin hablar de rachas.
+
 ## 2026-10-17 · Verificación completa de referencias contra Crossref
 
 - **Verificador.** Ahora lee también `src/domain/packs/`; antes revisaba 141 DOI y salteaba los 124 de los paquetes. También se corrigió una falsa alarma: Crossref escribe «&amp;» y antepone «The» al nombre de algunas revistas.
