@@ -1,14 +1,12 @@
 import { expect, test, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-import { settled } from './helpers';
+import { open, settled } from './helpers';
 
 /** Sección para chicos (modo demo): perfiles, modo chico con código y actividades. */
 test.use({ reducedMotion: 'reduce' });
 
 async function freshFamily(page: Page) {
-  await page.goto('/familia');
-  await page.evaluate(() => localStorage.clear());
-  await page.goto('/familia');
+  await open(page, '/familia');
 }
 
 async function pressPin(page: Page, digits: string) {

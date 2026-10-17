@@ -1,16 +1,11 @@
 import { expect, test, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { readFileSync } from 'node:fs';
-import { settled } from './helpers';
+import { open, settled } from './helpers';
 
 /** Cada test empieza con almacenamiento limpio (usuario demo nuevo) y sin animaciones. */
 test.use({ reducedMotion: 'reduce' });
 
-async function open(page: Page, path: string) {
-  await page.goto(path);
-  await page.evaluate(() => localStorage.clear());
-  await page.goto(path);
-}
 
 test('un usuario nuevo ve la bienvenida en el panel', async ({ page }) => {
   await open(page, '/dashboard');

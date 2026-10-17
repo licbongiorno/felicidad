@@ -1,15 +1,10 @@
 import { expect, test, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-import { settled } from './helpers';
+import { open, settled } from './helpers';
 
 /** Formatos nuevos: píldoras, desafíos y dibujo (modo demo, almacenamiento limpio). */
 test.use({ reducedMotion: 'reduce' });
 
-async function open(page: Page, path: string) {
-  await page.goto(path);
-  await page.evaluate(() => localStorage.clear());
-  await page.goto(path);
-}
 
 async function expectAccessible(page: Page) {
   await settled(page);
