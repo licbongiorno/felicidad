@@ -19,6 +19,29 @@ entrada en este registro.
 
 ---
 
+## 2026-10-17 · Seis necesidades ampliadas y ocho desafíos nuevos
+
+Todo lo nuevo queda en estado `pendiente`.
+
+- **Prácticas nuevas para seis necesidades.** Son 18 prácticas, cada una con su píldora, repartidas en tres paquetes: `necesidades-limites-diagnostico`, `necesidades-autoestima-recaidas` y `necesidades-cambios-problemas`.
+  - `limites`: `limites-en-el-celular`, `el-no-amable` y `limites-con-la-familia-de-origen`.
+  - `entender-un-diagnostico`: `registro-para-la-proxima-consulta`, `segunda-opinion-sin-culpa` y `contar-lo-justo`.
+  - `autoestima`: `aceptar-un-elogio`, `registro-de-datos-positivos` y `mi-regla-valgo-si`.
+  - `no-recaer`: `debo-y-quiero`, `decisiones-que-parecen-irrelevantes` y `mi-red-para-no-recaer`. También se suma `surfear-impulso`, que ya existía.
+  - `perdidas-cambios`: `ola-de-duelo`, `ayuda-en-el-duelo` y `quien-soy-despues-del-cambio`.
+  - `problemas`: `pasos-de-diez-minutos`, `consejo-de-amigo` y `pedir-consejo`.
+
+  Las prácticas de límites que pueden traer conflicto llevan un aviso de seguridad, con la Línea 144 y el 911. Las de recaídas remiten a la Línea 141 y las de duelo, al 135.
+- **Desafíos: de 4 a 12.** Los nuevos son:
+  - Sueño
+  - Preocuparse menos
+  - Límites
+  - Menos pantalla
+  - Movimiento
+  - Conexión
+  - Autoestima
+  - 21 días con tus valores
+
 ## 2026-10-17 · Chicos: termómetro y escalera interactivos, y seis cuentos para 0 a 3 años
 
 Los formatos y los cuentos nuevos entran en estado `pendiente`.

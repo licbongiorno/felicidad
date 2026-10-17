@@ -27,7 +27,6 @@ const SPEED_2018: Reference = {
   citation: 'Speed, B. C., Goldstein, B. L., & Goldfried, M. R. (2018). Assertiveness training: A forgotten evidence-based treatment. Clinical Psychology: Science and Practice, 25(1), e12216.',
   doi: '10.1111/cpsp.12216',
 };
-const LINEHAN_2015: Reference = { citation: 'Linehan, M. M. (2015). DBT skills training manual (2.ª ed.). Guilford Press.' };
 const BOWEN_1978: Reference = { citation: 'Bowen, M. (1978). Family therapy in clinical practice. Jason Aronson.' };
 const SKOWRON_1998: Reference = {
   citation: 'Skowron, E. A., & Friedlander, M. L. (1998). The Differentiation of Self Inventory: Development and initial validation. Journal of Counseling Psychology, 45(3), 235–246.',
