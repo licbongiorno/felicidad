@@ -92,4 +92,32 @@ export const STORY_CAST: Record<string, CastMember[]> = {
   'el-ruisenor': [A('pajaro', '#9b7a5a')],
   'el-abeto': [A('abeto')],
   'las-tres-preguntas': [P('adulto', 'corto', NEGRO, 'morena', 'coral', 'corona'), P('mayor', 'pelado', CANOSO, 'morena', 'leaf', 'barba')],
+  // 0 a 3 años: rutinas, turnos y primeros días
+  'hora-del-bano': [
+    { kind: 'persona', age: 'bebe', hair: 'colitas', hairColor: '#d9a441', skin: 'morena', shirt: 'coral' },
+    { kind: 'persona', age: 'adulto', hair: 'corto', hairColor: '#2b2420', skin: 'morena', shirt: 'sky', extra: 'barba' },
+    { kind: 'animal', species: 'pato', color: '#f2c94c' },
+  ],
+  'la-pelota-roja': [
+    { kind: 'persona', age: 'nino', hair: 'corto', hairColor: '#7a4b2a', skin: 'clara', shirt: 'sun' },
+    { kind: 'persona', age: 'nino', hair: 'rulos', hairColor: '#2b2420', skin: 'oscura', shirt: 'pink' },
+  ],
+  'el-perro-grande': [
+    { kind: 'persona', age: 'nino', hair: 'colitas', hairColor: '#2b2420', skin: 'media', shirt: 'mint' },
+    { kind: 'persona', age: 'mayor', hair: 'rodete', hairColor: '#cfcac4', skin: 'media', shirt: 'lavender', extra: 'anteojos' },
+    { kind: 'animal', species: 'perro', color: '#f4efe6' },
+  ],
+  'a-la-mesa': [
+    { kind: 'persona', age: 'nino', hair: 'corto', hairColor: '#d9a441', skin: 'media', shirt: 'orange' },
+    { kind: 'persona', age: 'adulto', hair: 'largo', hairColor: '#7a4b2a', skin: 'media', shirt: 'leaf' },
+  ],
+  'primer-dia-jardin': [
+    { kind: 'persona', age: 'nino', hair: 'colitas', hairColor: '#b5532a', skin: 'clara', shirt: 'lavender' },
+    { kind: 'persona', age: 'adulto', hair: 'corto', hairColor: '#7a4b2a', skin: 'clara', shirt: 'mint', extra: 'anteojos' },
+    { kind: 'persona', age: 'adulto', hair: 'rodete', hairColor: '#2b2420', skin: 'oscura', shirt: 'sun' },
+  ],
+  'a-guardar': [
+    { kind: 'persona', age: 'nino', hair: 'corto', hairColor: '#2b2420', skin: 'clara', shirt: 'sky' },
+    { kind: 'persona', age: 'adulto', hair: 'cola', hairColor: '#d9a441', skin: 'clara', shirt: 'pink' },
+  ],
 };

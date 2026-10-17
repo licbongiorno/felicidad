@@ -84,6 +84,8 @@ export function glyphFor(a: KidActivity): Glyph {
   if (a.kind === 'gratitud') return 'frasco';
   if (a.kind === 'juego') return 'cartas';
   if (a.kind === 'dibujar') return 'pincel';
+  if (a.kind === 'termometro') return 'semaforo';
+  if (a.kind === 'escalera') return 'escalera';
   const hit = BY_WORD.find(([re]) => re.test(a.id));
   if (hit) return hit[1];
   if (a.kind === 'mision') return 'bandera';
