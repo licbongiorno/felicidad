@@ -47,7 +47,9 @@ for (const [doi, { citation, file }] of refs) {
   const year = (w.issued?.['date-parts']?.[0]?.[0]) ?? (w.published?.['date-parts']?.[0]?.[0]);
   const citedYear = (citation.match(/\((\d{4})\)/) ?? [])[1];
   const titleScore = overlap(title, citation);
-  const journalOk = journal ? norm(citation).includes(norm(journal).slice(0, 18)) : true;
+  // Crossref a veces escapa «&» como «&amp;» y antepone «The» al nombre de la revista.
+  const journalName = journal.replace(/&amp;/g, '&').replace(/^the\s+/i, '');
+  const journalOk = journalName ? norm(citation).includes(norm(journalName).slice(0, 18)) : true;
   const yearOk = !citedYear || Math.abs(Number(citedYear) - Number(year)) <= 1;
   const status = titleScore >= 0.6 && yearOk ? (journalOk ? 'OK' : 'REVISAR_REVISTA') : 'DISCREPANCIA';
   out.push({ doi, file, status, citedYear, year, titleScore: Math.round(titleScore * 100), crossrefTitle: title, crossrefJournal: journal, citation });
