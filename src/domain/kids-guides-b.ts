@@ -86,7 +86,7 @@ export const KID_GUIDES_B: KidGuide[] = [
         heading: 'Por qué conviene hablar',
         paragraphs: [
           'Cuando un adulto de la casa tiene depresión o ansiedad, los chicos ven cambios. Puede estar más cansado, más irritable o pasar mucho tiempo en la cama. Si nadie explica nada, muchos chicos creen que hicieron algo mal.',
-          'La depresión de una madre o un padre se asocia con más dificultades en los hijos e hijas (Goodman y colaboradores, 2011). Pero eso no es un destino. Los programas que ayudan a la familia a hablar del tema reducen ese riesgo (Siegenthaler y colaboradores, 2012).',
+          'La depresión de una madre o un padre se asocia con más dificultades en los hijos (Goodman y colaboradores, 2011). Pero eso no es un destino. Los programas que ayudan a la familia a hablar del tema reducen ese riesgo (Siegenthaler y colaboradores, 2012).',
         ],
       },
       {

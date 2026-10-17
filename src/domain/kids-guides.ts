@@ -1,5 +1,8 @@
 import type { Reference } from './types';
 import { PACK_KID_GUIDES } from './packs';
+import { KID_GUIDES_A } from './kids-guides-a';
+import { KID_GUIDES_B } from './kids-guides-b';
+import { KID_GUIDES_C } from './kids-guides-c';
 
 /**
  * Guías para madres, padres y tutores: cómo acompañar las emociones de chicos de 0 a 17 años.
@@ -426,6 +429,6 @@ const BASE_KID_GUIDES: KidGuide[] = [
   },
 ];
 
-export const KID_GUIDES: KidGuide[] = [...BASE_KID_GUIDES, ...PACK_KID_GUIDES];
+export const KID_GUIDES: KidGuide[] = [...BASE_KID_GUIDES, ...KID_GUIDES_A, ...KID_GUIDES_B, ...KID_GUIDES_C, ...PACK_KID_GUIDES];
 
 export const KID_GUIDE_BY_ID = Object.fromEntries(KID_GUIDES.map((g) => [g.id, g])) as Record<string, KidGuide>;
