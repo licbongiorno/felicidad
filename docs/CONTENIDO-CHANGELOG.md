@@ -19,6 +19,25 @@ entrada en este registro.
 
 ---
 
+## 2026-10-17 · Cuatro temas nuevos: demencia, alta sensibilidad, duelo por una mascota y exámenes
+
+Hay cuatro paquetes completos nuevos, cada uno con su necesidad en el mapa de habilidades. Todo queda en estado `pendiente`.
+
+- **`demencia-mayores`**, necesidad `familiar-con-demencia`:
+  - 6 prácticas, 2 artículos, el programa `cuidar-cuando-la-memoria-se-va`, 4 píldoras y 5 términos de glosario.
+  - La guía para familias `abuelos-con-demencia`.
+  - No da indicaciones médicas. Ante un cambio brusco, indica ir al médico ese mismo día.
+- **`alta-sensibilidad`**, necesidad `soy-muy-sensible`:
+  - 5 prácticas, 2 artículos, un programa, 4 píldoras y 5 términos de glosario.
+  - La guía `chicos-muy-sensibles`.
+  - Repite que no es un diagnóstico ni un trastorno, y no incluye ningún test.
+- **`duelo-mascota`**, necesidad `duelo-mascota`:
+  - 6 prácticas, un artículo, un programa, 4 píldoras y 4 términos de glosario.
+  - La guía `cuando-muere-la-mascota`.
+- **`estudiantes-examenes`**, necesidad `examenes-y-estudio`:
+  - 5 prácticas, un artículo, el programa `temporada-de-examenes`, 4 píldoras y 5 términos de glosario.
+  - Aclara que la escritura antes del examen tiene réplicas mixtas.
+
 ## 2026-10-17 · Cuatro enfoques ampliados: metacognitiva, Gottman, gestalt y análisis transaccional
 
 Se suman 16 prácticas, cada una con su píldora, repartidas en dos paquetes: `enfoques-metacognitiva-gottman` y `enfoques-gestalt-transaccional`. Todo entra en estado `pendiente`.

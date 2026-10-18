@@ -377,6 +377,42 @@ export const NEEDS: Need[] = [
     programs: ['atravesar-una-enfermedad'],
     pills: ['pildora-recibir-un-diagnostico', 'pildora-escanxiedad', 'pildora-cuidados-paliativos', 'pildora-cuando-termina-el-tratamiento'],
   },
+  {
+    id: 'familiar-con-demencia',
+    title: 'Acompañar a un familiar con demencia',
+    description: 'Cuando alguien que quieres tiene Alzheimer u otra demencia y no sabes cómo responder.',
+    objective: 'Entender los cambios, responder sin discutir, prevenir la agitación y pedir relevo a tiempo.',
+    practices: ['es-la-enfermedad-no-la-persona', 'validar-y-redirigir', 'detective-de-la-agitacion', 'manual-para-el-relevo', 'despedirse-de-a-poco', 'lo-que-quiere-mi-familiar'],
+    programs: ['cuidar-cuando-la-memoria-se-va', 'acompanar-sin-perderte'],
+    pills: ['pildora-no-es-a-proposito', 'pildora-validar-y-redirigir', 'pildora-ocaso', 'pildora-duelo-anticipado'],
+  },
+  {
+    id: 'soy-muy-sensible',
+    title: 'Vivir con alta sensibilidad',
+    description: 'Cuando el ruido, la gente o el apuro te saturan y sientes que eres «demasiado».',
+    objective: 'Bajar la sobreestimulación, dosificar tu día y tratarte con amabilidad, sin verlo como un trastorno.',
+    practices: ['pausa-de-descompresion', 'mi-dia-en-estimulos', 'mi-sensibilidad-como-recurso', 'limites-a-la-estimulacion', 'cuando-siento-que-soy-demasiado'],
+    programs: ['sensible-sin-desbordarme'],
+    pills: ['pildora-alta-sensibilidad', 'pildora-sobreestimulacion', 'pildora-no-es-un-diagnostico', 'pildora-ser-demasiado'],
+  },
+  {
+    id: 'duelo-mascota',
+    title: 'Cuando muere mi mascota',
+    description: 'El duelo por un animal querido, la culpa y la casa vacía.',
+    objective: 'Darle a esta pérdida el lugar que merece, aflojar la culpa y reacomodar la vida diaria.',
+    practices: ['lo-que-era-para-mi', 'despedida-de-mi-mascota', 'cuando-dicen-era-solo-un-perro', 'la-decision-que-tome', 'la-casa-sin-mi-mascota', 'otra-mascota-cuando'],
+    programs: ['despues-de-mi-mascota'],
+    pills: ['pildora-mas-que-una-mascota', 'pildora-eutanasia-y-culpa', 'pildora-chicos-y-mascota', 'pildora-otra-mascota'],
+  },
+  {
+    id: 'examenes-y-estudio',
+    title: 'Estudiar y rendir exámenes',
+    description: 'Estudio mejor, nervios antes y durante el examen, sueño y qué hacer si te fue mal.',
+    objective: 'Estudiar con técnicas que funcionan y rendir con menos ansiedad.',
+    practices: ['nervios-que-preparan', 'repasar-sin-mirar', 'semana-de-examenes-y-sueno', 'cinco-minutos', 'escribir-antes-del-examen', 'despues-de-un-mal-examen'],
+    programs: ['temporada-de-examenes', 'dejar-de-postergar'],
+    pills: ['pildora-estudiar-recordando', 'pildora-nervios-del-examen', 'pildora-dormir-o-estudiar', 'pildora-despues-del-examen'],
+  },
 ];
 
 export const NEED_BY_ID: Record<string, Need> = Object.fromEntries(NEEDS.map((n) => [n.id, n]));
