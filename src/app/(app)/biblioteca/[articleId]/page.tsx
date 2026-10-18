@@ -8,6 +8,7 @@ import { ArticleAudio } from '@/components/library/ArticleAudio';
 import { CycleDiagram } from '@/components/library/CycleDiagram';
 import { isPublished, reviewOf, REVIEW_LABEL } from '@/domain/governance';
 import { ShareButton } from '@/components/ui/ShareButton';
+import { EASY_READ_BY_ARTICLE } from '@/domain/easy-read';
 
 export function generateStaticParams() {
   return ARTICLES.map((a) => ({ articleId: a.id }));
@@ -18,6 +19,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ articl
   const article = ARTICLE_BY_ID[articleId];
   if (!article || !isPublished('articulo', article.id)) notFound();
   const review = reviewOf('articulo', article.id);
+  const easy = EASY_READ_BY_ARTICLE[article.id] && isPublished('lectura-facil', article.id) ? EASY_READ_BY_ARTICLE[article.id] : null;
   const listen = [article.title, article.subtitle, ...article.keyPoints, ...article.sections.flatMap((s) => [s.heading, ...s.paragraphs])];
 
   const practices = (article.related.practices ?? []).map((id) => PRACTICE_BY_ID[id]).filter(Boolean);
@@ -45,6 +47,25 @@ export default async function ArticlePage({ params }: { params: Promise<{ articl
             {review.status === 'borrador' && <span className="rounded-full bg-stone-800 px-3 py-1 text-xs text-stone-50">{REVIEW_LABEL.borrador}</span>}
           </div>
         </StaggerItem>
+
+        {easy && (
+          <StaggerItem as="div" className="mt-8">
+            <details id="lectura-facil" className="group rounded-2xl border border-stone-200 bg-white px-6 py-4">
+              <summary className="cursor-pointer list-none text-[15px] font-medium text-sage-800 marker:hidden">
+                <span className="mr-2 inline-block transition-transform group-open:rotate-90" aria-hidden>›</span>
+                Versión fácil de leer
+                <span className="ml-2 text-sm font-normal text-stone-500">Frases cortas, en un minuto</span>
+              </summary>
+              <div className="mt-4 space-y-3">
+                {easy.paragraphs.map((p, i) => (
+                  <p key={i} className="text-lg leading-relaxed text-stone-700">
+                    {p}
+                  </p>
+                ))}
+              </div>
+            </details>
+          </StaggerItem>
+        )}
 
         <StaggerItem as="section" className="mt-10 rounded-2xl bg-sage-50 px-6 py-5">
           <h2 className="text-xs uppercase tracking-[0.2em] text-sage-700">En síntesis</h2>
