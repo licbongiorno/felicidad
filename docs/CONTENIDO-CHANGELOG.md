@@ -19,6 +19,24 @@ entrada en este registro.
 
 ---
 
+## 2026-10-18 · Cuatro temas nuevos: migración, dolor crónico, redes en adultos y soledad en mayores
+
+Se suman cuatro paquetes completos, cada uno con su necesidad. Todo queda en estado `pendiente`.
+
+- **`migracion-desarraigo`** (necesidad `vivir-lejos-de-mi-pais`):
+  - 6 prácticas, un artículo, el programa `echar-raices-sin-perder-las-propias`, 4 píldoras y 5 términos de glosario.
+  - No da asesoramiento legal: remite a Migraciones o al consulado.
+  - La práctica sobre la discriminación es de riesgo 2 y tiene alternativa.
+- **`dolor-cronico`** (necesidad `convivir-con-dolor-cronico`):
+  - 6 prácticas, 2 artículos, el programa `convivir-con-el-dolor`, 4 píldoras y 5 términos de glosario.
+  - No indica fármacos ni ejercicios.
+  - Avisa los signos de alarma que requieren guardia.
+- **`pantallas-adultos`** (necesidad `redes-sin-anzuelo`):
+  - 6 prácticas, un artículo, el programa `redes-con-menos-anzuelo`, 4 píldoras y 5 términos de glosario.
+  - Aclara que la evidencia es mixta y que no se habla de «adicción».
+- **`soledad-mayores`** (necesidad `soledad-mayores`):
+  - 6 prácticas, un artículo, el programa `acompanado-de-a-poco`, 4 píldoras y 4 términos de glosario.
+
 ## 2026-10-17 · Cuatro temas nuevos: demencia, alta sensibilidad, duelo por una mascota y exámenes
 
 Hay cuatro paquetes completos nuevos, cada uno con su necesidad en el mapa de habilidades. Todo queda en estado `pendiente`.
