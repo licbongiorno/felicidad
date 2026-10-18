@@ -318,6 +318,11 @@ test('biblioteca: glosario, diagrama del ciclo y lectura en voz alta', async ({ 
   await page.goto('/biblioteca/activacion-conductual');
   await expect(page.getByRole('img', { name: /El círculo del desánimo/ })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Escuchar' })).toBeVisible();
+  // Versión de lectura fácil: cerrada al entrar, se abre con un toque.
+  const easy = page.locator('#lectura-facil');
+  await expect(easy.locator('p').first()).toBeHidden();
+  await page.getByText('Versión fácil de leer').click();
+  await expect(easy.locator('p').first()).toBeVisible();
 });
 
 test('kit de crisis: a intensidad 9 el antídoto sugiere TIPP, con sus contraindicaciones', async ({ page }) => {

@@ -54,10 +54,10 @@ export const EASY_READ_B: EasyRead[] = [
   {
     articleId: 'ejercicio-y-animo',
     paragraphs: [
-      'Moverte ayuda a tu ánimo. Baja la tristeza y los nervios en los adultos. Esto está bien probado.',
-      'No hace falta hacer deporte duro. Caminar también cuenta. Hacerlo seguido importa más que hacerlo fuerte.',
-      'Elige algo que puedas sostener. Por ejemplo, caminar 20 minutos, subir escaleras o bailar en casa. En la app está la práctica «Caminar con atención». Si estás sin ánimo, una caminata corta es un buen primer paso.',
-      'Moverte suma, pero no reemplaza el tratamiento de una depresión fuerte. Si tienes un problema de salud, consulta antes de hacer ejercicio duro.',
+      'Moverte te hace bien. Baja la pena y los nervios. Esto se vio en muchos estudios con adultos.',
+      'No hace falta un deporte duro. Caminar ya cuenta. Lo que más importa es hacerlo seguido. Eso vale más que hacerlo fuerte.',
+      'Elige algo que puedas hacer seguido. Por ejemplo, caminar 20 minutos o subir la escalera. También puedes bailar en casa. En la app está «Caminar con atención». Si no tienes ganas, sal a dar una vuelta corta. Es un buen primer paso.',
+      'Moverte suma, pero no basta solo. No quita el tratamiento de una depresión fuerte. Si tienes un mal de salud, ve al médico antes. Hazlo antes de un ejercicio duro.',
     ],
   },
   {

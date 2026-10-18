@@ -19,6 +19,21 @@ entrada en este registro.
 
 ---
 
+## 2026-10-18 · Lectura fácil de 20 artículos centrales
+
+Cada artículo trae una versión breve y sencilla en un desplegable «Versión fácil de leer». Está pensada para un mal día, para cuando cuesta concentrarse o para quien tiene menos práctica lectora.
+- Está escrita en frases de 15 palabras como máximo y con legibilidad INFLESZ de 75 o más. Un test lo controla en `easy-read.test.ts`.
+- Es un resumen fiel: no agrega datos, cifras ni referencias.
+- Es un tipo de contenido nuevo para revisar (`lectura-facil`) y entra en estado `pendiente`. Como vive aparte (`easy-read*.ts`), no cambia la huella de los artículos ya aprobados.
+- Artículos incluidos: rumiación, autocompasión, sueño, preocupación y ansiedad, duelo, estrés y agotamiento, ataques de pánico, insomnio, kit de crisis, práctica segura, autoestima, ansiedad social, asertividad y límites, cuidar sin agotarse, activación conductual, ejercicio y ánimo, vínculos y soledad, procrastinación y perfeccionismo, granularidad emocional, y sentido y valores.
+
+Las evaluaciones nuevas no se suman por ahora:
+- **PCL-5:** es de dominio público.
+- **ASRS de 6 preguntas:** es de uso libre si se cita la fuente y no se modifica.
+- **Mini-SPIN:** no tiene una licencia confirmada.
+
+Sumar PCL-5 y ASRS exige ampliar las reglas de Firestore, que publica el responsable del proyecto, y conseguir la redacción oficial en español. Quedan para una tanda aparte.
+
 ## 2026-10-18 · Cuatro temas nuevos: migración, dolor crónico, redes en adultos y soledad en mayores
 
 Se suman cuatro paquetes completos, cada uno con su necesidad. Todo queda en estado `pendiente`.
