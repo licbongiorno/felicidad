@@ -413,6 +413,42 @@ export const NEEDS: Need[] = [
     programs: ['temporada-de-examenes', 'dejar-de-postergar'],
     pills: ['pildora-estudiar-recordando', 'pildora-nervios-del-examen', 'pildora-dormir-o-estudiar', 'pildora-despues-del-examen'],
   },
+  {
+    id: 'vivir-lejos-de-mi-pais',
+    title: 'Vivo lejos de mi país',
+    description: 'Para quien llegó a la Argentina o se fue a vivir afuera y siente el peso del desarraigo.',
+    objective: 'Echar raíces nuevas sin perder las propias y manejar la culpa, los trámites y la discriminación.',
+    practices: ['un-pedazo-de-casa', 'red-nueva-de-a-poco', 'mi-lengua-y-mis-rituales', 'mapa-de-dos-orillas', 'un-tramite-por-vez', 'culpa-por-los-que-quedaron', 'despues-de-un-trato-xenofobo'],
+    programs: ['echar-raices-sin-perder-las-propias'],
+    pills: ['pildora-lazos-debiles', 'pildora-culpa-a-la-distancia', 'pildora-cansancio-de-tramites', 'pildora-discriminacion-por-origen', 'pildora-duelo-migratorio'],
+  },
+  {
+    id: 'convivir-con-dolor-cronico',
+    title: 'Convivir con dolor crónico',
+    description: 'Tienes un dolor que dura meses, como lumbalgia, fibromialgia o migraña, y te limita.',
+    objective: 'Entender tu dolor, cuidar el sueño y el ritmo, y que ocupe menos lugar en tu vida.',
+    practices: ['el-volumen-del-dolor', 'preparar-la-consulta-del-dolor', 'lupa-sobre-el-dolor', 'hacer-lugar-al-dolor', 'ritmo-de-actividad', 'plan-para-el-brote', 'dormir-con-dolor', 'valores-pese-al-dolor', 'contar-mi-dolor-en-casa'],
+    programs: ['convivir-con-el-dolor'],
+    pills: ['pildora-el-dolor-es-una-alarma', 'pildora-auge-y-caida', 'pildora-lupa-del-dolor', 'pildora-dolor-y-sueno', 'dolor-y-aceptacion'],
+  },
+  {
+    id: 'redes-sin-anzuelo',
+    title: 'Usar las redes sin que me usen',
+    description: 'Cuando el celular y las redes te quitan sueño, ánimo o tiempo con tu gente.',
+    objective: 'Notar cómo te enganchan y cómo te dejan las redes, y elegir cuándo, dónde y para qué usarlas.',
+    practices: ['el-anzuelo-del-feed', 'el-celular-duerme-afuera', 'mesa-sin-celulares', 'auditoria-de-pantallas', 'lo-que-no-sale-en-la-foto', 'aburrirme-sin-pantalla', 'ayuno-digital-breve'],
+    programs: ['redes-con-menos-anzuelo', 'usar-el-celular-a-proposito'],
+    pills: ['pildora-el-anzuelo', 'pildora-vidriera', 'pildora-celular-en-la-cama', 'pildora-phubbing'],
+  },
+  {
+    id: 'soledad-mayores',
+    title: 'Sentirme menos solo con los años',
+    description: 'Cuando con la edad faltan compañía, contactos o personas queridas.',
+    objective: 'Distinguir soledad de aislamiento y dar pasos chicos y fijos para volver a estar con otros.',
+    practices: ['soledad-o-aislamiento', 'contactos-de-a-poco', 'videollamada-con-ayuda', 'un-dia-con-sentido', 'los-que-ya-no-estan', 'ensenar-lo-que-se'],
+    programs: ['acompanado-de-a-poco'],
+    pills: ['pildora-soledad-o-aislamiento', 'pildora-videollamada', 'pildora-los-que-ya-no-estan', 'pildora-ensenar-lo-que-sabes'],
+  },
 ];
 
 export const NEED_BY_ID: Record<string, Need> = Object.fromEntries(NEEDS.map((n) => [n.id, n]));
