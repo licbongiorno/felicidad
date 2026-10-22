@@ -1,8 +1,9 @@
 /**
- * Laboratorio de comunicación no violenta (Rosenberg, 2003): dos entrenamientos breves.
+ * Laboratorio de comunicación no violenta (Rosenberg, 2003): entrenamientos breves y un vocabulario.
  *
- * - Distinguir: tres juegos de dos opciones, uno por cada componente que más cuesta
- *   (observación o evaluación, sentimiento o pseudosentimiento, pedido o exigencia).
+ * - Distinguir: juegos de dos opciones sobre lo que más cuesta (observación o evaluación,
+ *   sentimiento o pseudosentimiento, pedido o exigencia, necesidad o estrategia, pedido de
+ *   conexión o de acción). Los dos últimos se inspiran en el cuaderno de Van Stappen (2017).
  * - Reescribir: una frase en «lenguaje chacal» (la metáfora es de Rosenberg) para pasar a
  *   «lenguaje jirafa» con sus cuatro partes. Lo que la persona escribe no se guarda ni se envía.
  *
@@ -78,6 +79,40 @@ export const NVC_SORT_SETS: NvcSortSet[] = [
       { text: '¿Me contarías qué entendiste de lo que te dije?', nvc: true, why: 'Es concreto y ayuda a comprobar que se entendió.' },
       { text: 'Deja de hacerme sentir mal.', nvc: false, why: 'Pide dejar de hacer algo, sin decir qué hacer en cambio.' },
       { text: '¿Podemos hablar media hora el sábado sobre los gastos?', nvc: true, why: 'Propone algo concreto que se puede aceptar o cambiar.' },
+    ],
+  },
+  {
+    id: 'necesidad',
+    title: '¿Necesidad o estrategia?',
+    intro:
+      'Una necesidad es algo que toda persona necesita, como descanso o compañía, y no depende de alguien en particular. Una estrategia es una forma concreta de cubrirla: «que vengas», «que te calles».',
+    yes: 'Necesidad',
+    no: 'Estrategia',
+    items: [
+      { text: 'Necesito compañía.', nvc: true, why: 'Es algo que cualquiera puede necesitar, y hay muchas formas de cubrirlo.' },
+      { text: 'Necesito que vengas a verme.', nvc: false, why: 'Pide una acción de una persona. Detrás puede estar la necesidad de compañía o de cercanía.' },
+      { text: 'Necesito tranquilidad.', nvc: true, why: 'No nombra a nadie ni una acción: es la necesidad misma.' },
+      { text: 'Necesito que te calles cuando hablo.', nvc: false, why: 'Es una estrategia. Detrás puede haber necesidad de ser escuchado o de concentración.' },
+      { text: 'Necesito más tiempo para hablar.', nvc: false, why: 'Es una forma de cubrir algo, como ser escuchada o comprender. Está cerca, pero es una estrategia.' },
+      { text: 'Necesito sentirme tenida en cuenta.', nvc: true, why: 'Nombra algo universal: consideración.' },
+      { text: 'Necesito que me pidas perdón.', nvc: false, why: 'Pide un acto concreto. Detrás puede estar la necesidad de reconocimiento o de reparar el vínculo.' },
+      { text: 'Necesito descanso.', nvc: true, why: 'Es una necesidad del cuerpo que todos compartimos.' },
+    ],
+  },
+  {
+    id: 'conexion',
+    title: '¿Pedido de conexión o de acción?',
+    intro:
+      'Rosenberg distingue dos tipos de pedido. Uno busca saber cómo le llegó al otro lo que dijiste. El otro pide que haga algo concreto. Casi siempre conviene empezar por el de conexión.',
+    yes: 'Conexión',
+    no: 'Acción',
+    items: [
+      { text: '¿Me cuentas qué entendiste de lo que te dije?', nvc: true, why: 'Busca saber cómo le llegó lo que dijiste.' },
+      { text: '¿Podrías lavar los platos antes de las diez?', nvc: false, why: 'Pide algo concreto para hacer.' },
+      { text: '¿Cómo te cae lo que te acabo de decir?', nvc: true, why: 'Invita a la otra persona a contar qué le pasa.' },
+      { text: '¿Miramos juntos la agenda para elegir un día?', nvc: false, why: 'Propone una acción concreta.' },
+      { text: '¿Qué es lo más importante para ti de todo esto?', nvc: true, why: 'Abre la charla a lo que necesita el otro.' },
+      { text: '¿Me avisas por mensaje cuando llegues?', nvc: false, why: 'Pide una acción clara y posible.' },
     ],
   },
 ];
@@ -166,3 +201,30 @@ export const NVC_PART_LABEL: Record<keyof NvcRewrite['parts'], string> = {
   need: 'Necesidad',
   request: 'Pedido',
 };
+
+/** Vocabulario para ponerle nombre a lo que pasa. Listas propias, orientativas. */
+export const NVC_FEELINGS_MET = [
+  'aliviado', 'agradecido', 'animado', 'calmo', 'cariñoso', 'confiado', 'contento', 'curioso', 'emocionado', 'entusiasmado',
+  'esperanzado', 'inspirado', 'liviano', 'orgulloso', 'relajado', 'satisfecho', 'sereno', 'tierno', 'tranquilo', 'vital',
+];
+
+export const NVC_FEELINGS_UNMET = [
+  'abrumado', 'agotado', 'angustiado', 'ansioso', 'asustado', 'avergonzado', 'cansado', 'confundido', 'decepcionado', 'desanimado',
+  'frustrado', 'impaciente', 'incómodo', 'inquieto', 'irritado', 'nervioso', 'preocupado', 'solo', 'tenso', 'triste',
+];
+
+/** Palabras que suenan a sentimiento pero dicen lo que creemos que otro nos hizo. */
+export const NVC_PSEUDO_FEELINGS = [
+  'abandonado', 'acorralado', 'atacado', 'criticado', 'engañado', 'ignorado', 'incomprendido', 'manipulado', 'presionado', 'rechazado',
+  'traicionado', 'usado',
+];
+
+export const NVC_NEEDS: { group: string; needs: string[] }[] = [
+  { group: 'Cuerpo y descanso', needs: ['descanso', 'alimento', 'movimiento', 'salud', 'abrigo', 'contacto físico'] },
+  { group: 'Seguridad', needs: ['protección', 'estabilidad', 'previsibilidad', 'confianza', 'orden'] },
+  { group: 'Conexión', needs: ['compañía', 'cercanía', 'ser escuchado', 'comprensión', 'apoyo', 'reconocimiento', 'pertenencia', 'respeto'] },
+  { group: 'Autonomía', needs: ['elegir', 'libertad', 'espacio propio', 'tiempo propio', 'decidir a mi ritmo'] },
+  { group: 'Sentido', needs: ['aportar', 'aprender', 'crecer', 'claridad', 'coherencia', 'esperanza'] },
+  { group: 'Juego y disfrute', needs: ['alegría', 'humor', 'diversión', 'belleza', 'placer'] },
+  { group: 'Integridad', needs: ['autenticidad', 'honestidad', 'ser fiel a mis valores', 'respeto por mí'] },
+];
