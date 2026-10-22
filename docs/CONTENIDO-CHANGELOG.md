@@ -19,6 +19,16 @@ entrada en este registro.
 
 ---
 
+## 2026-10-22 · Asertividad: las técnicas de Manuel Smith
+
+Paquete nuevo `asertividad-smith`, en estado `pendiente`. Completa lo que ya había (DEAR MAN, GIVE, FAST y «El no amable» con disco rayado y banco de niebla) sin repetirlo. La evidencia es la del entrenamiento asertivo en conjunto (Speed y colaboradores, 2018), no de cada técnica por separado.
+- Prácticas: derechos asertivos y culpa manipulativa, aserción negativa, interrogación negativa, compromiso viable y abrir una conversación (información gratuita y autorrevelación).
+- Artículo «Derechos asertivos y culpa», con ejemplos pasivo, agresivo y asertivo de cada técnica.
+- Programa «Asertividad en seis semanas», 6 píldoras y 5 términos de glosario.
+- Simulaciones nuevas: «Cuando la culpa te pide que vayas» y «Una crítica que no es justa».
+- La necesidad «Poner límites» suma las prácticas, el programa y las píldoras nuevas.
+- Seguridad: con violencia no se negocia; primero la Línea 144, el 911 o el botón Ayuda.
+
 ## 2026-10-22 · Comunicación no violenta (Rosenberg)
 
 Paquete nuevo `cnv`, en estado `pendiente`. La evidencia de la CNV es escasa y de baja calidad metodológica: se declara en cada artículo, sin citar estudios de eficacia. Ante violencia, la prioridad es la seguridad (Línea 144, 911).

@@ -78,9 +78,9 @@ export const NEEDS: Need[] = [
     title: 'Poner límites',
     description: 'Decir que no sin culpa y sostenerlo.',
     objective: 'Formular un pedido o una negativa clara y sostenerla sin atacar ni ceder por miedo.',
-    practices: ['dear-man', 'necesidades-que-pido', 'give-fast', 'pros-y-contras', 'limites-en-el-celular', 'el-no-amable', 'limites-con-la-familia-de-origen'],
-    programs: ['poner-limites'],
-    pills: ['pildora-limites-en-el-celular', 'pildora-el-no-amable', 'pildora-limites-familia-de-origen'],
+    practices: ['dear-man', 'necesidades-que-pido', 'give-fast', 'pros-y-contras', 'limites-en-el-celular', 'el-no-amable', 'limites-con-la-familia-de-origen', 'mis-derechos-asertivos', 'admitir-un-error-sin-hundirme', 'preguntar-por-la-critica', 'un-acuerdo-que-me-respete'],
+    programs: ['poner-limites', 'asertividad-en-seis-semanas'],
+    pills: ['pildora-limites-en-el-celular', 'pildora-el-no-amable', 'pildora-limites-familia-de-origen', 'pildora-culpa-manipulativa', 'pildora-asercion-negativa', 'pildora-interrogacion-negativa', 'pildora-compromiso-viable', 'pildora-dear-man-smith'],
   },
   {
     id: 'problemas',
