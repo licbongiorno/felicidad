@@ -19,6 +19,14 @@ entrada en este registro.
 
 ---
 
+## 2026-10-22 · Evaluación de los cinco grandes rasgos (Mini-IPIP)
+
+Nueva evaluación en Evaluaciones: el Mini-IPIP de Donnellan y otros (2006), con 20 ítems del IPIP, que es de dominio público. Entra en estado `pendiente`.
+- Da un perfil de cinco rasgos de 4 a 20 cada uno, no una puntuación única. Las franjas bajo, medio y alto son tercios del rango, no normas poblacionales.
+- La traducción es propia y no está validada en castellano; la app lo aclara en el resultado.
+- No entra en el informe para terapeutas, porque no sigue síntomas. Se sugiere repetirla cada seis meses.
+- Queda en `borrador` (sólo visible en modo demo) hasta que se publiquen las reglas de Firestore actualizadas (`bigfive`, 20 respuestas de 1 a 5). Al publicarlas, quitar su línea en `REVIEW_OVERRIDES`.
+
 ## 2026-10-22 · Tipologías para autoexplorarse: eneagrama, preferencias junguianas y sombra
 
 Tres ejercicios nuevos en el Laboratorio. Las respuestas quedan sólo en el dispositivo y no se envían. Entra en estado `pendiente`.

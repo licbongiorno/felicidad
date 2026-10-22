@@ -75,7 +75,8 @@ export function TherapistReport() {
     const c = checkins.filter((x) => x.date >= sinceKey);
     const a = afflictions.filter((x) => x.createdAt >= since);
     // Por instrumento: registros del periodo y el último anterior (para calcular el cambio).
-    const instruments = INSTRUMENTS.map((ins) => {
+    // Los perfiles de rasgos (Mini-IPIP) no siguen síntomas: quedan fuera del informe.
+    const instruments = INSTRUMENTS.filter((ins) => !ins.traits).map((ins) => {
       const all = assessments.filter((x) => x.instrument === ins.id);
       return { ins, inPeriod: all.filter((x) => x.createdAt >= since), before: all.find((x) => x.createdAt < since) };
     }).filter((x) => x.inPeriod.length > 0);

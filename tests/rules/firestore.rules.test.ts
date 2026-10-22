@@ -195,7 +195,7 @@ describe('aplicaciones en la vida cotidiana', () => {
   });
 });
 
-describe('evaluaciones DERS-16, ISI, PSS-10, SWLS y AUDIT-C', () => {
+describe('evaluaciones DERS-16, ISI, PSS-10, SWLS, AUDIT-C y Mini-IPIP', () => {
   const a = (instrument: string, items: number[], score: number) => ({ instrument, items, score, createdAt: serverTimestamp() });
 
   it('acepta puntuaciones coherentes', async () => {
@@ -205,6 +205,7 @@ describe('evaluaciones DERS-16, ISI, PSS-10, SWLS y AUDIT-C', () => {
     await assertSucceeds(addDoc(col, a('pss10', [4, 4, 4, 0, 0, 4, 0, 0, 4, 4], 40)));
     await assertSucceeds(addDoc(col, a('swls', [7, 6, 5, 4, 1], 23)));
     await assertSucceeds(addDoc(col, a('auditc', [2, 1, 0], 3)));
+    await assertSucceeds(addDoc(col, a('bigfive', Array(20).fill(3), 0)));
   });
 
   it('rechaza rangos y puntuaciones inválidos', async () => {
@@ -216,6 +217,9 @@ describe('evaluaciones DERS-16, ISI, PSS-10, SWLS y AUDIT-C', () => {
     await assertFails(addDoc(col, a('swls', [7, 6, 5, 4, 1], 24)));
     await assertFails(addDoc(col, a('auditc', [5, 1, 0], 6)));
     await assertFails(addDoc(col, a('auditc', [2, 1], 3)));
+    await assertFails(addDoc(col, a('bigfive', Array(20).fill(3), 60)));
+    await assertFails(addDoc(col, a('bigfive', [0, ...Array(19).fill(3)], 0)));
+    await assertFails(addDoc(col, a('bigfive', Array(19).fill(3), 0)));
   });
 });
 

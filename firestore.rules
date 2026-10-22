@@ -28,7 +28,7 @@ service cloud.firestore {
     function score(v, k) { return !(k in v) || (v[k] is int && v[k] >= 0 && v[k] <= 10); }
 
     function i(d, k, max) { return inRange(d.items[k], 0, max); }
-    // DERS-16: respuestas de 1 a 5.
+    // DERS-16 y Mini-IPIP: respuestas de 1 a 5.
     function d1(d, k) { return inRange(d.items[k], 1, 5); }
     function validAssessment(d) {
       return (d.instrument == 'who5' && d.items.size() == 5
@@ -59,7 +59,11 @@ service cloud.firestore {
           && d.score == d.items[0] + d.items[1] + d.items[2] + d.items[3] + d.items[4])
         || (d.instrument == 'auditc' && d.items.size() == 3
           && i(d, 0, 4) && i(d, 1, 4) && i(d, 2, 4)
-          && d.score == d.items[0] + d.items[1] + d.items[2]);
+          && d.score == d.items[0] + d.items[1] + d.items[2])
+        // Mini-IPIP: 20 respuestas de 1 a 5. Es un perfil de rasgos sin puntuación única: score es 0.
+        || (d.instrument == 'bigfive' && d.items.size() == 20 && d.score == 0
+          && d1(d, 0) && d1(d, 1) && d1(d, 2) && d1(d, 3) && d1(d, 4) && d1(d, 5) && d1(d, 6) && d1(d, 7) && d1(d, 8) && d1(d, 9)
+          && d1(d, 10) && d1(d, 11) && d1(d, 12) && d1(d, 13) && d1(d, 14) && d1(d, 15) && d1(d, 16) && d1(d, 17) && d1(d, 18) && d1(d, 19));
     }
 
     function validJournalValues(type, v) {

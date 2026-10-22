@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { AnimatePresence, m } from 'motion/react';
 import { useMemo, useState } from 'react';
-import { compareScores, hasRiskResponse, INSTRUMENTS, type Instrument } from '@/domain/instruments';
+import { compareScores, hasRiskResponse, INSTRUMENTS, traitScores, type Instrument } from '@/domain/instruments';
 import { isPublished, reviewOf, REVIEW_LABEL } from '@/domain/governance';
 import { daysAgo } from '@/domain/metrics';
 import type { Assessment } from '@/domain/types';
@@ -16,7 +16,7 @@ import { CrisisResources } from '@/components/safety/CrisisResources';
 
 const DATE = new Intl.DateTimeFormat('es', { day: 'numeric', month: 'short', year: 'numeric' });
 
-type View = { kind: 'home' } | { kind: 'form'; instrument: Instrument } | { kind: 'result'; instrument: Instrument; score: number; previous?: number; risk: boolean };
+type View = { kind: 'home' } | { kind: 'form'; instrument: Instrument } | { kind: 'result'; instrument: Instrument; score: number; items: number[]; previous?: number; risk: boolean };
 
 /**
  * Evaluaciones con instrumentos validados (WHO-5, GAD-7 y, en borrador, PHQ-9).
@@ -40,7 +40,7 @@ export function Assessments() {
     const previous = byInstrument.get(instrument.id)?.[0]?.score;
     logAssessment({ instrument: instrument.id, items: answers, score });
     haptic('success');
-    setView({ kind: 'result', instrument, score, previous, risk: hasRiskResponse(instrument, answers) });
+    setView({ kind: 'result', instrument, score, items: answers, previous, risk: hasRiskResponse(instrument, answers) });
   }
 
   const key = view.kind === 'home' ? 'home' : `${view.kind}-${view.instrument.id}`;
@@ -89,7 +89,12 @@ function InstrumentCard({ instrument, history, onStart }: { instrument: Instrume
       </div>
       <h2 className="mt-3 font-serif text-2xl text-stone-800">{instrument.title}</h2>
 
-      {history.length > 0 ? (
+      {instrument.traits && last ? (
+        <div className="mt-5">
+          <p className="text-sm text-stone-600">Última vez: {DATE.format(last.createdAt)}</p>
+          <TraitBars instrument={instrument} items={last.items} />
+        </div>
+      ) : history.length > 0 ? (
         <ul className="mt-5 divide-y divide-stone-100">
           {history.slice(0, 4).map((a, i) => {
             const cmp = compareScores(instrument, a.score, history[i + 1]?.score);
@@ -116,7 +121,13 @@ function InstrumentCard({ instrument, history, onStart }: { instrument: Instrume
       )}
 
       <p className="mt-4 text-xs leading-relaxed text-stone-500">
-        Escala {instrument.minScore ?? 0}–{instrument.maxScore}, {instrument.higherIsBetter ? 'más es mejor' : 'más indica más síntomas'}. Cambio relevante: {instrument.relevantChange} puntos (•).
+        {instrument.traits ? (
+          'Cada rasgo va de 4 a 20. No hay respuestas mejores ni peores.'
+        ) : (
+          <>
+            Escala {instrument.minScore ?? 0}–{instrument.maxScore}, {instrument.higherIsBetter ? 'más es mejor' : 'más indica más síntomas'}. Cambio relevante: {instrument.relevantChange} puntos (•).
+          </>
+        )}
       </p>
 
       <div className="mt-6 flex flex-wrap items-center gap-4">
@@ -150,7 +161,9 @@ function Form({ instrument, onBack, onSubmit }: { instrument: Instrument; onBack
       </button>
       <p className="mt-6 text-xs uppercase tracking-[0.2em] text-stone-500">{instrument.title}</p>
       <h1 className="mt-2 font-serif text-3xl text-stone-800 sm:text-4xl">{instrument.stem}</h1>
-      <p className="mt-3 text-stone-600">Elige la opción que mejor describa cómo te has sentido. No hay respuestas correctas.</p>
+      <p className="mt-3 text-stone-600">
+        {instrument.traits ? 'Elige la opción que mejor te describa.' : 'Elige la opción que mejor describa cómo te has sentido.'} No hay respuestas correctas.
+      </p>
 
       <ol className="mt-10 space-y-8">
         {instrument.items.map((item, i) => (
@@ -200,8 +213,66 @@ function Form({ instrument, onBack, onSubmit }: { instrument: Instrument; onBack
   );
 }
 
-function Result({ instrument, score, previous, risk, onDone }: { instrument: Instrument; score: number; previous?: number; risk: boolean; onDone: () => void }) {
+/** Barras de un perfil de rasgos (Mini-IPIP). */
+function TraitBars({ instrument, items, detailed = false }: { instrument: Instrument; items: number[]; detailed?: boolean }) {
+  return (
+    <ul className="mt-3 space-y-4 text-left">
+      {traitScores(instrument, items).map(({ trait, score, min, max, band }, i) => (
+        <li key={trait.key}>
+          <div className="flex items-baseline justify-between gap-3 text-sm">
+            <span className="font-medium text-stone-800">{trait.label}</span>
+            <span className="tabular-nums text-stone-600">
+              {score} de {max}
+            </span>
+          </div>
+          <div className="relative mt-1.5 h-1.5 overflow-hidden rounded-full bg-stone-100" aria-hidden>
+            <m.div
+              className="h-full rounded-full bg-sage-500"
+              style={{ originX: 0 }}
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: (score - min) / (max - min) }}
+              transition={{ duration: 0.8, ease: EASE_OUT, delay: 0.2 + i * 0.05 }}
+            />
+          </div>
+          {detailed && (
+            <p className="mt-2 text-[15px] leading-relaxed text-stone-600">
+              {band === 'alto' ? trait.high : band === 'bajo' ? trait.low : `Estás en un punto medio: según la situación, te acercas a un lado o al otro.`}
+            </p>
+          )}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function Result({ instrument, score, items, previous, risk, onDone }: { instrument: Instrument; score: number; items: number[]; previous?: number; risk: boolean; onDone: () => void }) {
   const info = instrument.interpret(score);
+  if (instrument.traits)
+    return (
+      <m.section variants={stagger(0.1, 0.1)} initial="hidden" animate="show" className="mx-auto max-w-xl">
+        <m.p variants={fadeUp} className="text-center text-xs uppercase tracking-[0.2em] text-stone-500">
+          Tu perfil · {instrument.short}
+        </m.p>
+        <m.h1 variants={fadeUp} className="mt-3 text-center font-serif text-4xl text-stone-800">
+          {info.title}
+        </m.h1>
+        <m.p variants={fadeUp} className="mt-4 text-center leading-relaxed text-stone-600">
+          {info.body}
+        </m.p>
+        <m.div variants={fadeUp} className="mt-8 rounded-2xl border border-stone-200 bg-white p-6 shadow-soft">
+          <TraitBars instrument={instrument} items={items} detailed />
+        </m.div>
+        <m.p variants={fadeUp} className="mt-6 text-sm leading-relaxed text-stone-600">
+          Es una versión breve, con una traducción propia que todavía no está validada en castellano. Úsala para conocerte, no para
+          decidir por ti ni para etiquetar a otros.
+        </m.p>
+        <m.div variants={fadeUp} className="mt-8 flex flex-wrap justify-center gap-3">
+          <Button variant="secondary" onClick={onDone}>
+            Volver a evaluaciones
+          </Button>
+        </m.div>
+      </m.section>
+    );
   const cmp = compareScores(instrument, score, previous);
   return (
     <m.section variants={stagger(0.1, 0.1)} initial="hidden" animate="show" className="mx-auto max-w-xl text-center">

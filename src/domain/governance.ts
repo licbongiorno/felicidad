@@ -50,6 +50,8 @@ const DEFAULT_RECORD: ReviewRecord = { version: 1, status: 'pendiente', evidence
 export const REVIEW_OVERRIDES: Record<string, Partial<ReviewRecord>> = {
   // Sin publicar por un motivo que no es clínico: falta la licencia de uso.
   'instrumento:isi': { status: 'borrador', reviewedBy: undefined, reviewedAt: undefined, note: 'ISI: tiene derechos de autor (Morin) y su uso en una app requiere licencia de Mapi Research Trust. Verificar también la redacción con la versión española validada.' },
+  // Sin publicar hasta que estén desplegadas las reglas de Firestore que aceptan 'bigfive'. Al publicarlas, quitar esta línea.
+  'instrumento:bigfive': { status: 'borrador', reviewedBy: undefined, reviewedAt: undefined, note: 'Mini-IPIP: falta publicar las reglas de Firestore que aceptan sus respuestas.' },
 };
 
 export function reviewOf(kind: ContentKind, id: string): ReviewRecord {
