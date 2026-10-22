@@ -25,7 +25,7 @@ Nueva evaluación en Evaluaciones: el Mini-IPIP de Donnellan y otros (2006), con
 - Da un perfil de cinco rasgos de 4 a 20 cada uno, no una puntuación única. Las franjas bajo, medio y alto son tercios del rango, no normas poblacionales.
 - La traducción es propia y no está validada en castellano; la app lo aclara en el resultado.
 - No entra en el informe para terapeutas, porque no sigue síntomas. Se sugiere repetirla cada seis meses.
-- Requiere publicar las reglas de Firestore actualizadas (`bigfive`, 20 respuestas de 1 a 5).
+- Queda en `borrador` (sólo visible en modo demo) hasta que se publiquen las reglas de Firestore actualizadas (`bigfive`, 20 respuestas de 1 a 5). Al publicarlas, quitar su línea en `REVIEW_OVERRIDES`.
 
 ## 2026-10-22 · Tipologías para autoexplorarse: eneagrama, preferencias junguianas y sombra
 
