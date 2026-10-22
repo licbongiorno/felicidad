@@ -164,6 +164,11 @@ function Form({ instrument, onBack, onSubmit }: { instrument: Instrument; onBack
       <p className="mt-3 text-stone-600">
         {instrument.traits ? 'Elige la opción que mejor te describa.' : 'Elige la opción que mejor describa cómo te has sentido.'} No hay respuestas correctas.
       </p>
+      {instrument.intro && (
+        <p role="note" className="mt-4 rounded-2xl border border-stone-200 bg-white p-4 text-sm leading-relaxed text-stone-700">
+          {instrument.intro}
+        </p>
+      )}
 
       <ol className="mt-10 space-y-8">
         {instrument.items.map((item, i) => (
