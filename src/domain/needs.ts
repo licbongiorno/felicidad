@@ -180,6 +180,15 @@ export const NEEDS: Need[] = [
     pills: ['pildora-cnv-que-es', 'pildora-cnv-observacion', 'pildora-cnv-pedido', 'pildora-cnv-limites'],
   },
   {
+    id: 'criar-con-menos-peleas',
+    title: 'Criar con menos gritos y peleas',
+    description: 'Cuando en casa los «no» terminan en gritos y criar te deja sin energía.',
+    objective: 'Poner límites firmes con cariño, bajar la tensión en las discusiones familiares y notar a tiempo el agotamiento de criar.',
+    practices: ['autoempatia-para-quien-cuida', 'pausa-autocompasion', 'cnv-escucha-empatica', 'el-no-amable', 'el-no-con-amor-a-un-hijo', 'reunion-familiar-20-minutos', 'reparar-tras-discusion'],
+    programs: ['familia-con-menos-peleas'],
+    pills: ['pildora-limites-con-amor', 'pildora-cnv-con-hijos', 'pildora-cuando-la-mesa-se-calienta', 'pildora-burnout-parental'],
+  },
+  {
     id: 'reparar-conflictos',
     title: 'Reparar después de un conflicto',
     description: 'Volver a acercarse después de una discusión.',

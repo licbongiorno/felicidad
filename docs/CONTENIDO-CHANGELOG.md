@@ -19,6 +19,15 @@ entrada en este registro.
 
 ---
 
+## 2026-10-22 · Familia: límites con amor, conflictos y quien cuida
+
+Paquete nuevo `familia-vinculos`, en estado `pendiente`. Enlaza lo que ya había (berrinches, validar, cuidadores, CNV, asertividad y Gottman) sin repetirlo.
+- Guías para familias: límites firmes con amor (por edad), CNV con hijos, cuando la mesa se vuelve discusión y el agotamiento de criar (burnout parental, modelo de Mikolajczak y Roskam).
+- Prácticas: autoempatía para quien cuida, el «no» con amor a un hijo y reunión familiar de 20 minutos.
+- Artículo «Criar sin gritos ni culpa», programa de 4 semanas, 4 píldoras y 4 términos de glosario.
+- Necesidad nueva: «Criar con menos gritos y peleas» (`criar-con-menos-peleas`).
+- Seguridad: ante violencia, la Línea 144, la 102 o el 911; ante ideas de escapar o de dañar, el 135, el 0800-999-0091, el 911 y el botón Ayuda. Sin castigo físico (art. 647 del Código Civil y Comercial).
+
 ## 2026-10-22 · Asertividad: las técnicas de Manuel Smith
 
 Paquete nuevo `asertividad-smith`, en estado `pendiente`. Completa lo que ya había (DEAR MAN, GIVE, FAST y «El no amable» con disco rayado y banco de niebla) sin repetirlo. La evidencia es la del entrenamiento asertivo en conjunto (Speed y colaboradores, 2018), no de cada técnica por separado.
