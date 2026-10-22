@@ -52,6 +52,9 @@ export const REVIEW_OVERRIDES: Record<string, Partial<ReviewRecord>> = {
   'instrumento:isi': { status: 'borrador', reviewedBy: undefined, reviewedAt: undefined, note: 'ISI: tiene derechos de autor (Morin) y su uso en una app requiere licencia de Mapi Research Trust. Verificar también la redacción con la versión española validada.' },
   // Sin publicar hasta que estén desplegadas las reglas de Firestore que aceptan 'bigfive'. Al publicarlas, quitar esta línea.
   'instrumento:bigfive': { status: 'borrador', reviewedBy: undefined, reviewedAt: undefined, note: 'Mini-IPIP: falta publicar las reglas de Firestore que aceptan sus respuestas.' },
+  'instrumento:pcl5': { status: 'borrador', reviewedBy: undefined, reviewedAt: undefined, note: 'PCL-5: falta publicar las reglas de Firestore que aceptan sus respuestas. Traducción propia: revisarla con una versión en castellano validada.' },
+  // La licencia del ASRS no permite modificar el texto: hay que usar la versión oficial en castellano.
+  'instrumento:asrs': { status: 'borrador', reviewedBy: undefined, reviewedAt: undefined, note: 'ASRS v1.1: reemplazar la redacción por la versión oficial en castellano (NYU y Harvard) y publicar las reglas de Firestore.' },
 };
 
 export function reviewOf(kind: ContentKind, id: string): ReviewRecord {

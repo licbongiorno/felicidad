@@ -16,6 +16,11 @@ import type { InstrumentId, Reference } from './types';
  * - AUDIT-C (consumo de alcohol, 0–12, más es peor). Bush et al. (1998), a partir del AUDIT de la OMS. Uso libre.
  * - Mini-IPIP (cinco grandes rasgos de personalidad, cada uno 4–20). Donnellan et al. (2006), con ítems del IPIP
  *   de dominio público. No mide síntomas: da un perfil (`traits`) y no una puntuación única.
+ * - PCL-5 (síntomas de estrés postraumático, 0–80, más es peor). Weathers et al. (2013), National Center for PTSD;
+ *   de dominio público.
+ * - ASRS v1.1, cribado de 6 preguntas (TDAH en adultos, 0–6 respuestas en la zona sombreada, más es peor).
+ *   Kessler et al. (2005). Uso libre con atribución y sin modificaciones: queda en borrador hasta usar la
+ *   versión oficial en castellano (ver governance.ts).
  */
 
 export interface Interpretation {
@@ -32,6 +37,8 @@ export interface Instrument {
   short: string;
   purpose: string;
   stem: string;
+  /** Aviso que se muestra antes de las preguntas (p. ej. PCL-5: puedes parar si te desbordas). */
+  intro?: string;
   items: string[];
   options: { value: number; label: string }[];
   /** Opciones distintas por ítem (p. ej. ISI); si falta, todos usan `options`. */
@@ -682,7 +689,150 @@ export const BIGFIVE: Instrument = {
   ],
 };
 
-export const INSTRUMENTS: Instrument[] = [WHO5, GAD7, PHQ9, DERS16, ISI, PSS10, SWLS, AUDITC, BIGFIVE];
+// ---------------------------------------------------------------- PCL-5
+
+export const PCL5: Instrument = {
+  id: 'pcl5',
+  title: 'Lista de síntomas de estrés postraumático (PCL-5)',
+  short: 'Estrés postraumático',
+  purpose: 'Síntomas después de una experiencia muy difícil · 20 preguntas · 5 minutos',
+  stem: 'Piensa en la experiencia más estresante que viviste. En el último mes, ¿cuánto te molestó cada uno de estos problemas?',
+  intro:
+    'No hace falta que escribas ni cuentes qué pasó. Si al responder te desbordas, puedes parar cuando quieras y volver más tarde. Si necesitas hablar con alguien ahora, usa el botón Ayuda.',
+  items: [
+    'Recuerdos repetidos, perturbadores y no deseados de esa experiencia.',
+    'Sueños repetidos y perturbadores sobre esa experiencia.',
+    'Sentir o actuar de repente como si esa experiencia estuviera pasando otra vez, como si volvieras a vivirla.',
+    'Sentirte muy mal cuando algo te recordó esa experiencia.',
+    'Tener reacciones fuertes en el cuerpo cuando algo te recordó esa experiencia, como palpitaciones, falta de aire o sudor.',
+    'Evitar recuerdos, pensamientos o sentimientos relacionados con esa experiencia.',
+    'Evitar lo que te la recuerda: personas, lugares, conversaciones, actividades, objetos o situaciones.',
+    'Dificultad para recordar partes importantes de esa experiencia.',
+    'Creencias muy negativas sobre ti, los demás o el mundo. Por ejemplo: «hay algo mal en mí», «no se puede confiar en nadie», «el mundo es muy peligroso».',
+    'Culparte a ti o a otra persona por esa experiencia o por lo que pasó después.',
+    'Sentimientos negativos fuertes, como miedo, horror, enojo, culpa o vergüenza.',
+    'Perder el interés en actividades que antes disfrutabas.',
+    'Sentir distancia o desconexión de otras personas.',
+    'Dificultad para sentir emociones positivas, como alegría o cariño por las personas cercanas.',
+    'Irritabilidad, arranques de enojo o actuar de forma agresiva.',
+    'Correr demasiados riesgos o hacer cosas que podrían dañarte.',
+    'Estar en alerta, vigilante o en guardia todo el tiempo.',
+    'Sobresaltarte o asustarte con facilidad.',
+    'Dificultad para concentrarte.',
+    'Dificultad para dormirte o para seguir durmiendo.',
+  ],
+  options: [
+    { value: 0, label: 'Nada' },
+    { value: 1, label: 'Un poco' },
+    { value: 2, label: 'Moderadamente' },
+    { value: 3, label: 'Bastante' },
+    { value: 4, label: 'Muchísimo' },
+  ],
+  intervalDays: 30,
+  maxScore: 80,
+  higherIsBetter: false,
+  // El National Center for PTSD considera clínicamente significativo un cambio de 10 a 20 puntos.
+  relevantChange: 10,
+  score: sum,
+  interpret: (score) => {
+    if (score >= 33)
+      return {
+        band: 'probable',
+        severity: 'alto',
+        title: 'Síntomas de estrés postraumático intensos',
+        body: 'Tu puntuación está por encima del punto de corte habitual (31 a 33). No es un diagnóstico, pero conviene consultar con un profesional de salud mental. El estrés postraumático tiene tratamientos eficaces, como la terapia cognitiva centrada en el trauma.',
+      };
+    if (score >= 20)
+      return {
+        band: 'moderado',
+        severity: 'atencion',
+        title: 'Algunos síntomas después de una experiencia difícil',
+        body: 'Hay síntomas presentes, aunque por debajo del punto de corte. Si te molestan en el día a día o no bajan con el tiempo, vale la pena consultar. Las prácticas para calmar el cuerpo pueden ayudarte mientras tanto.',
+      };
+    return {
+      band: 'bajo',
+      severity: 'ok',
+      title: 'Pocos síntomas en el último mes',
+      body: 'Tus respuestas muestran pocos síntomas de estrés postraumático. Si algo de esa experiencia todavía te pesa, puedes hablarlo con alguien de confianza o con un profesional.',
+    };
+  },
+  references: [
+    {
+      citation: 'Weathers, F. W., Litz, B. T., Keane, T. M., Palmieri, P. A., Marx, B. P., & Schnurr, P. P. (2013). The PTSD Checklist for DSM-5 (PCL-5). National Center for PTSD.',
+      note: 'Instrumento de dominio público. Traducción propia al castellano, no validada.',
+    },
+    {
+      citation:
+        'Blevins, C. A., Weathers, F. W., Davis, M. T., Witte, T. K., & Domino, J. L. (2015). The Posttraumatic Stress Disorder Checklist for DSM-5 (PCL-5): Development and initial psychometric evaluation. Journal of Traumatic Stress, 28(6), 489–498.',
+      doi: '10.1002/jts.22059',
+    },
+    {
+      citation:
+        'Bovin, M. J., Marx, B. P., Weathers, F. W., Gallagher, M. W., Rodriguez, P., Schnurr, P. P., & Keane, T. M. (2016). Psychometric properties of the PTSD Checklist for Diagnostic and Statistical Manual of Mental Disorders–Fifth Edition (PCL-5) in veterans. Psychological Assessment, 28(11), 1379–1391.',
+      doi: '10.1037/pas0000254',
+      note: 'Fuente del punto de corte de 31 a 33. La franja de 20 a 32 es orientativa.',
+    },
+  ],
+};
+
+// ---------------------------------------------------------------- ASRS v1.1 (cribado de 6 preguntas)
+
+/** Respuesta mínima que cae en la zona sombreada de cada ítem: «A veces» en los tres primeros, «A menudo» en los demás. */
+export const ASRS_SHADED_FROM = [2, 2, 2, 3, 3, 3];
+
+export const ASRS: Instrument = {
+  id: 'asrs',
+  title: 'Cribado de TDAH en adultos (ASRS v1.1)',
+  short: 'TDAH',
+  purpose: 'Atención e inquietud en adultos · 6 preguntas · 2 minutos',
+  stem: 'Pensando en los últimos seis meses, ¿con qué frecuencia te pasa lo siguiente?',
+  items: [
+    '¿Con qué frecuencia te cuesta terminar los detalles finales de un proyecto, una vez hechas las partes difíciles?',
+    '¿Con qué frecuencia te cuesta ordenar las cosas cuando haces una tarea que requiere organización?',
+    '¿Con qué frecuencia tienes problemas para recordar citas u obligaciones?',
+    'Cuando tienes una tarea que exige pensar mucho, ¿con qué frecuencia la evitas o demoras en empezarla?',
+    '¿Con qué frecuencia mueves las manos o los pies, o te retuerces, cuando tienes que pasar mucho tiempo en una silla?',
+    '¿Con qué frecuencia sientes demasiada energía y la necesidad de hacer cosas, como si te moviera un motor?',
+  ],
+  options: [
+    { value: 0, label: 'Nunca' },
+    { value: 1, label: 'Rara vez' },
+    { value: 2, label: 'A veces' },
+    { value: 3, label: 'A menudo' },
+    { value: 4, label: 'Muy a menudo' },
+  ],
+  intervalDays: 180,
+  maxScore: 6,
+  higherIsBetter: false,
+  relevantChange: 2,
+  // Puntuación del cribado: cuántas respuestas caen en la zona sombreada (Kessler et al., 2005).
+  score: (items) => items.reduce((acc, v, i) => acc + (v >= ASRS_SHADED_FROM[i] ? 1 : 0), 0),
+  interpret: (score) => {
+    if (score >= 4)
+      return {
+        band: 'compatible',
+        severity: 'atencion',
+        title: 'Respuestas compatibles con TDAH en adultos',
+        body: 'Cuatro o más respuestas en la zona marcada sugieren que vale la pena una evaluación profesional. Es un cribado, no un diagnóstico: la ansiedad, la depresión, el mal sueño o el estrés también afectan la atención.',
+      };
+    return {
+      band: 'no-compatible',
+      severity: 'ok',
+      title: 'Respuestas no compatibles con TDAH',
+      body: 'Tus respuestas no superan el umbral del cribado. Si igual sientes que la atención o la organización te traen problemas, puedes consultarlo con un profesional.',
+    };
+  },
+  references: [
+    {
+      citation:
+        'Kessler, R. C., Adler, L., Ames, M., Demler, O., Faraone, S., Hiripi, E., Howes, M. J., Jin, R., Secnik, K., Spencer, T., Ustun, T. B., & Walters, E. E. (2005). The World Health Organization Adult ADHD Self-Report Scale (ASRS): A short screening scale for use in the general population. Psychological Medicine, 35(2), 245–256.',
+      doi: '10.1017/S0033291704002892',
+      note: '© New York University and the President and Fellows of Harvard College. Uso libre con atribución; no admite modificaciones salvo la versión electrónica.',
+    },
+  ],
+};
+
+export const INSTRUMENTS: Instrument[] = [WHO5, GAD7, PHQ9, DERS16, ISI, PSS10, SWLS, AUDITC, BIGFIVE, PCL5, ASRS];
 export const INSTRUMENT_BY_ID = Object.fromEntries(INSTRUMENTS.map((i) => [i.id, i])) as Record<InstrumentId, Instrument>;
 
 /** ¿Las respuestas activan el aviso de seguridad (ítem de riesgo > 0)? */

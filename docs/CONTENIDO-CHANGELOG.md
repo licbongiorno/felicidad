@@ -19,6 +19,13 @@ entrada en este registro.
 
 ---
 
+## 2026-10-22 · Evaluaciones PCL-5 (estrés postraumático) y ASRS (TDAH en adultos)
+
+Dos evaluaciones nuevas, las dos en `borrador` (sólo visibles en modo demo) hasta publicar las reglas de Firestore que aceptan sus respuestas.
+- PCL-5: 20 preguntas de 0 a 4 (total de 0 a 80), del National Center for PTSD, de dominio público. Punto de corte de 31 a 33 según Bovin y otros (2016); la franja de 20 a 32 es orientativa. Antes de las preguntas, un aviso: no hace falta contar qué pasó y se puede parar en cualquier momento. La traducción es propia: conviene revisarla con una versión en castellano validada.
+- ASRS v1.1, cribado de 6 preguntas (Kessler y otros, 2005): cuenta las respuestas en la zona sombreada; cuatro o más sugieren consultar. La licencia (NYU y Harvard) permite el uso libre con atribución, pero no modificar el texto: antes de publicarlo hay que reemplazar la redacción por la versión oficial en castellano.
+- Nuevo campo `intro` en los instrumentos, para mostrar un aviso antes de las preguntas.
+
 ## 2026-10-22 · Evaluación de los cinco grandes rasgos (Mini-IPIP)
 
 Nueva evaluación en Evaluaciones: el Mini-IPIP de Donnellan y otros (2006), con 20 ítems del IPIP, que es de dominio público. Entra en estado `pendiente`.

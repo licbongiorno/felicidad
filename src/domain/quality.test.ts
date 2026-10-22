@@ -303,6 +303,18 @@ describe('instrumentos', () => {
     expect(bf.score(Array(20).fill(4))).toBe(0);
   });
 
+  it('el PCL-5 va de 0 a 80 con el corte de Bovin et al. (2016), y el ASRS cuenta la zona sombreada', () => {
+    const pcl = INSTRUMENTS.find((i) => i.id === 'pcl5')!;
+    expect(pcl.items).toHaveLength(20);
+    expect(pcl.score(Array(20).fill(4))).toBe(80);
+    expect([19, 20, 32, 33].map((s) => pcl.interpret(s).band)).toEqual(['bajo', 'moderado', 'moderado', 'probable']);
+    const asrs = INSTRUMENTS.find((i) => i.id === 'asrs')!;
+    expect(asrs.score([2, 2, 2, 3, 3, 3])).toBe(6);
+    expect(asrs.score([1, 1, 1, 2, 2, 2])).toBe(0);
+    expect(asrs.score([2, 1, 4, 2, 3, 0])).toBe(3);
+    expect([3, 4].map((s) => asrs.interpret(s).band)).toEqual(['no-compatible', 'compatible']);
+  });
+
   it('el ISI sigue los puntos de corte de Morin et al. (2011)', () => {
     const isi = INSTRUMENTS.find((i) => i.id === 'isi')!;
     expect([7, 8, 14, 15, 21, 22].map((s) => isi.interpret(s).band)).toEqual(['sin-insomnio', 'subumbral', 'subumbral', 'moderado', 'moderado', 'grave']);
