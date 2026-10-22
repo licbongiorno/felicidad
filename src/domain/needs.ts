@@ -171,6 +171,15 @@ export const NEEDS: Need[] = [
     pills: ['pildora-cama-para-dormir', 'desconectar-de-verdad'],
   },
   {
+    id: 'hablar-sin-herir',
+    title: 'Decir lo que me pasa sin pelear',
+    description: 'Cuando las charlas terminan en reproches, o callas para no discutir.',
+    objective: 'Separar hechos de juicios, nombrar lo que sientes y necesitas, y pedir algo concreto.',
+    practices: ['cnv-observar-sin-evaluar', 'cnv-nombrar-lo-que-siento', 'cnv-autoempatia', 'cnv-necesidad-detras', 'cnv-pedido-concreto', 'cnv-escucha-empatica', 'dear-man'],
+    programs: ['cnv-seis-semanas'],
+    pills: ['pildora-cnv-que-es', 'pildora-cnv-observacion', 'pildora-cnv-pedido', 'pildora-cnv-limites'],
+  },
+  {
     id: 'reparar-conflictos',
     title: 'Reparar después de un conflicto',
     description: 'Volver a acercarse después de una discusión.',

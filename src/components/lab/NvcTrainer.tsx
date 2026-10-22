@@ -193,11 +193,16 @@ export function NvcTrainer() {
       />
       <p className="mt-8 text-sm leading-relaxed text-stone-600">
         Si alguien te agrede o te sientes en peligro, la prioridad es tu seguridad, no la forma de hablar. Puedes llamar a la Línea 144 o
-        al 911.{' '}
-        <Link href="/biblioteca" className={buttonStyles('ghost')}>
-          Ir a la biblioteca
-        </Link>
+        al 911.
       </p>
+      <div className="mt-6 flex flex-wrap gap-3">
+        <Link href="/biblioteca/cnv-cuatro-componentes" className={buttonStyles('secondary')}>
+          Leer los cuatro componentes
+        </Link>
+        <Link href="/programas/cnv-seis-semanas" className={buttonStyles('ghost')}>
+          Programa de seis semanas
+        </Link>
+      </div>
     </div>
   );
 }
