@@ -476,6 +476,15 @@ export const NEEDS: Need[] = [
     programs: ['apego-mas-seguro'],
     pills: ['pildora-ansiedad-y-evitacion', 'pildora-perseguir-y-alejarse', 'pildora-seguridad-ganada', 'pildora-quizas-en-pareja'],
   },
+  {
+    id: 'ruptura-de-pareja',
+    title: 'Superar una ruptura de pareja',
+    description: 'Cuando termina un noviazgo o una pareja sin hijos en común, te hayan dejado o hayas dejado.',
+    objective: 'Manejar las ganas de escribirle, ordenar tus días y volver a lo tuyo sin culparte.',
+    practices: ['ganas-de-escribirle', 'quien-soy-sin-la-pareja', 'mis-dias-tras-la-ruptura', 'mi-plan-de-contacto', 'la-historia-de-la-ruptura', 'aprender-de-la-relacion'],
+    programs: ['despues-de-la-ruptura'],
+    pills: ['pildora-ganas-de-escribirle', 'pildora-el-por-que-de-la-ruptura', 'pildora-quien-soy-sin-ti', 'pildora-ya-tiene-otra-pareja'],
+  },
 ];
 
 export const NEED_BY_ID: Record<string, Need> = Object.fromEntries(NEEDS.map((n) => [n.id, n]));

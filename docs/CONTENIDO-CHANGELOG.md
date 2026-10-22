@@ -19,6 +19,14 @@ entrada en este registro.
 
 ---
 
+## 2026-10-22 · Duelo por una ruptura de pareja
+
+Paquete nuevo para rupturas de noviazgo o de pareja sin hijos en común; lo de separarse con hijos ya estaba en «Atravesar una separación» y se enlaza. Entra en estado `pendiente`.
+- Seis prácticas: «Las ganas de escribirle» (iniciación, breve), «Mi plan de contacto» (el contacto cero como opción elegida, no como regla), «La historia de la ruptura» (escritura expresiva con cierre), «Quién soy sin la pareja», «Mis días tras la ruptura» y «Aprender de la relación».
+- Artículo «Cuando una relación termina», programa «Después de la ruptura» (cuatro semanas), cuatro píldoras y cuatro términos de glosario.
+- Necesidad nueva: «Superar una ruptura de pareja».
+- Seguridad: si hubo violencia o control (144, 911), no se busca «tu parte»; ideas de no querer vivir (135, 0800-345-1435); alcohol para aguantar (141).
+
 ## 2026-10-22 · Apego adulto y mentalización en pareja
 
 Paquete nuevo y un ejercicio del Laboratorio. Entra en estado `pendiente`.
