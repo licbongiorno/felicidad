@@ -19,6 +19,15 @@ entrada en este registro.
 
 ---
 
+## 2026-10-22 · Comunicación no violenta (Rosenberg)
+
+Paquete nuevo `cnv`, en estado `pendiente`. La evidencia de la CNV es escasa y de baja calidad metodológica: se declara en cada artículo, sin citar estudios de eficacia. Ante violencia, la prioridad es la seguridad (Línea 144, 911).
+- Prácticas: observar sin evaluar, nombrar lo que siento, la necesidad detrás, pedido concreto, escucha empática y autoempatía.
+- Artículos: «Los cuatro componentes» y «CNV en el día a día» (enojo, gratitud y decir que no), con pares de frases «chacal» y «jirafa».
+- Programa de seis semanas, 12 píldoras y 6 términos de glosario.
+- Necesidad nueva: «Decir lo que me pasa sin pelear» (`hablar-sin-herir`).
+- Laboratorio: «Del chacal a la jirafa», con tres juegos para distinguir componentes y un ejercicio de reescritura que no guarda lo escrito.
+
 ## 2026-10-22 · Lectura fácil de otros 20 artículos
 
 Mismo formato y mismos controles que la tanda anterior: frases de 15 palabras como máximo, INFLESZ de 75 o más, sin datos ni referencias nuevas. Entra en estado `pendiente`.

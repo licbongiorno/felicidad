@@ -296,6 +296,7 @@ export const MODULES: SkillModule[] = [
     journal: ['conversacion', 'carta-gratitud', 'perdon'],
     resources: [
       { href: '/laboratorio/conversaciones', label: 'Simulador de conversaciones' },
+      { href: '/laboratorio/cnv', label: 'Del chacal a la jirafa' },
       { href: '/biblioteca/asertividad-y-limites', label: 'Asertividad y límites' },
     ],
   },
