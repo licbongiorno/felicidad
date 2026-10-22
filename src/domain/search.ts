@@ -120,6 +120,7 @@ export function buildIndex(): SearchDoc[] {
     doc({ id: 's:/laboratorio/semaforo', kind: 'Sección', title: 'Semáforo emocional', subtitle: 'Qué hacer según la intensidad de la emoción', href: '/laboratorio/semaforo' }, ['crisis', 'intensidad']),
     doc({ id: 's:/laboratorio/caja', kind: 'Sección', title: 'Mi caja de herramientas', subtitle: 'Lo que te ayuda en cada zona del semáforo', href: '/laboratorio/caja' }, ['kit', 'crisis']),
     doc({ id: 's:/laboratorio/hecho-o-interpretacion', kind: 'Sección', title: '¿Hecho o interpretación?', subtitle: 'Juego para comprobar los hechos', href: '/laboratorio/hecho-o-interpretacion' }, ['juego', 'pensamientos']),
+    doc({ id: 's:/laboratorio/cnv', kind: 'Sección', title: 'Del chacal a la jirafa', subtitle: 'Juego de comunicación no violenta', href: '/laboratorio/cnv' }, ['cnv', 'comunicacion no violenta', 'rosenberg', 'jirafa', 'chacal', 'pedido']),
     doc({ id: 's:/laboratorio/esquemas', kind: 'Sección', title: 'Mapa de esquemas y modos', subtitle: 'Los 18 esquemas de Young y los modos', href: '/laboratorio/esquemas' }, ['terapia de esquemas', 'young', 'modos', 'adulto sano', 'nino interior', 'critico']),
     doc({ id: 's:/laboratorio/genograma', kind: 'Sección', title: 'Tu genograma', subtitle: 'Tu familia en tres generaciones', href: '/laboratorio/genograma' }, ['familia', 'arbol genealogico', 'sistemica', 'patrones familiares', 'abuelos']),
     ...MODULES.filter((m) => m.practices.length > 0).map((m) =>

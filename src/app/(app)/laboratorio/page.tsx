@@ -28,6 +28,12 @@ const TOOLS = [
     tag: 'DBT · TCC',
   },
   {
+    href: '/laboratorio/cnv',
+    title: 'Del chacal a la jirafa',
+    body: 'Distingue observación de juicio, sentimiento de reproche y pedido de exigencia, y practica reescribir frases que lastiman.',
+    tag: 'Comunicación no violenta',
+  },
+  {
     href: '/laboratorio/esquemas',
     title: 'Mapa de esquemas y modos',
     body: 'Los 18 esquemas de Jeffrey Young y las partes que se turnan dentro tuyo. Marca los que te resuenan, sin puntajes ni diagnósticos.',
