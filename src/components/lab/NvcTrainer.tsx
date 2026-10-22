@@ -3,7 +3,17 @@
 import Link from 'next/link';
 import { AnimatePresence, m } from 'motion/react';
 import { useState } from 'react';
-import { NVC_PART_LABEL, NVC_REWRITES, NVC_SORT_SETS, type NvcRewrite, type NvcSortSet } from '@/domain/lab-cnv';
+import {
+  NVC_FEELINGS_MET,
+  NVC_FEELINGS_UNMET,
+  NVC_NEEDS,
+  NVC_PART_LABEL,
+  NVC_PSEUDO_FEELINGS,
+  NVC_REWRITES,
+  NVC_SORT_SETS,
+  type NvcRewrite,
+  type NvcSortSet,
+} from '@/domain/lab-cnv';
 import { collapse, EASE_OUT, fadeUp, stagger } from '@/lib/motion';
 import { haptic } from '@/lib/haptics';
 import { Button, buttonStyles } from '@/components/ui/Button';
@@ -165,6 +175,40 @@ function Rewrite() {
   );
 }
 
+function WordList({ title, hint, words }: { title: string; hint?: string; words: string[] }) {
+  return (
+    <section className="mt-6">
+      <h2 className="font-serif text-xl text-stone-800">{title}</h2>
+      {hint && <p className="mt-1 text-sm leading-relaxed text-stone-600">{hint}</p>}
+      <ul className="mt-3 flex flex-wrap gap-2">
+        {words.map((w) => (
+          <li key={w} className="rounded-full bg-stone-100 px-3 py-1 text-sm text-stone-700">
+            {w}
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+/** Vocabulario de sentimientos y necesidades, para buscar la palabra justa. */
+function Vocabulary() {
+  return (
+    <div className="mt-2">
+      <WordList title="Cuando lo que necesitas está cubierto" words={NVC_FEELINGS_MET} />
+      <WordList title="Cuando lo que necesitas falta" words={NVC_FEELINGS_UNMET} />
+      <WordList
+        title="Parecen sentimientos, pero no lo son"
+        hint="Estas palabras dicen lo que crees que el otro te hizo. Debajo suele haber tristeza, miedo o enojo."
+        words={NVC_PSEUDO_FEELINGS}
+      />
+      {NVC_NEEDS.map((g) => (
+        <WordList key={g.group} title={`Necesidades · ${g.group}`} words={g.needs} />
+      ))}
+    </div>
+  );
+}
+
 /**
  * Laboratorio de comunicación no violenta: distinguir los componentes y reescribir frases
  * reactivas. Nada de lo que se responde o escribe se guarda.
@@ -189,6 +233,7 @@ export function NvcTrainer() {
         tabs={[
           ...NVC_SORT_SETS.map((s) => ({ id: s.id, label: s.yes, content: <SortGame key={s.id} set={s} /> })),
           { id: 'reescribir', label: 'Reescribir', content: <Rewrite /> },
+          { id: 'vocabulario', label: 'Vocabulario', content: <Vocabulary /> },
         ]}
       />
       <p className="mt-8 text-sm leading-relaxed text-stone-600">

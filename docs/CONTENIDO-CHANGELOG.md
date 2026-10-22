@@ -19,6 +19,14 @@ entrada en este registro.
 
 ---
 
+## 2026-10-22 · CNV ampliada con el cuaderno de Anne van Stappen
+
+Primera prueba de enriquecer el contenido con un libro aportado por el responsable clínico: «Cuaderno de ejercicios de comunicación no violenta» (Van Stappen, 2017). Se tomaron ideas y estructuras de ejercicios, redactadas de nuevo y citadas; no se copiaron textos ni listas. Entra en estado `pendiente`.
+- Prácticas nuevas: «Mis formas de desconectarme» (inventario hacia uno y hacia otros), «Transformar el enojo» (seis pasos), «Un no que cuida a los dos» (cinco pasos) y «Agradecer y recibir un agradecimiento».
+- Píldora «CNV sin sonar a robot»: decir lo mismo con palabras propias.
+- Laboratorio: dos juegos nuevos («¿Necesidad o estrategia?» y «¿Pedido de conexión o de acción?») y una pestaña de vocabulario de sentimientos, pseudosentimientos y necesidades.
+- El programa de seis semanas y la necesidad «Decir lo que me pasa sin pelear» suman las prácticas nuevas.
+
 ## 2026-10-22 · Familia: límites con amor, conflictos y quien cuida
 
 Paquete nuevo `familia-vinculos`, en estado `pendiente`. Enlaza lo que ya había (berrinches, validar, cuidadores, CNV, asertividad y Gottman) sin repetirlo.
