@@ -19,6 +19,15 @@ entrada en este registro.
 
 ---
 
+## 2026-10-22 · Apego adulto y mentalización en pareja
+
+Paquete nuevo y un ejercicio del Laboratorio. Entra en estado `pendiente`.
+- Seis prácticas: «Mi alarma de apego» (iniciación), «Pausa de apego» (150 s), «El baile de los dos» (el ciclo perseguir y alejarse, sin culpables), «Su alarma, quizás» (mentalizar con hipótesis), «Pedir cercanía sin reclamo» y «Reparar desde el apego».
+- Artículos «Apego adulto» (con diagrama del ciclo) y «Mentalizar en pareja», programa «Hacia un vínculo más seguro» (cuatro semanas), cuatro píldoras y cinco términos de glosario. Enlaza lo que ya había de mentalización, Gottman, focalizada en la emoción y CNV.
+- Laboratorio «Mi forma de vincularme»: 14 ítems propios (ansiedad y evitación), sin copiar el ECR-R. La devolución describe tendencias de hoy, nunca «eres tal estilo», y aclara que no es un test validado. Las respuestas quedan sólo en el dispositivo.
+- Necesidad nueva: «Me angustio o me alejo en mis vínculos».
+- Seguridad: si hay violencia, control o miedo, no es un problema de estilos de apego (144, 911).
+
 ## 2026-10-22 · Evaluaciones PCL-5 (estrés postraumático) y ASRS (TDAH en adultos)
 
 Dos evaluaciones nuevas, las dos en `borrador` (sólo visibles en modo demo) hasta publicar las reglas de Firestore que aceptan sus respuestas.

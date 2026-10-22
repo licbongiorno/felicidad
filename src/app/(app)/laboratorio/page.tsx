@@ -52,6 +52,12 @@ const TOOLS = [
     tag: 'Autoexploración',
   },
   {
+    href: '/laboratorio/apego',
+    title: 'Mi forma de vincularme',
+    body: '14 afirmaciones sobre cómo vives la cercanía y la distancia. Describe tendencias de hoy, no un estilo fijo: el apego cambia.',
+    tag: 'Apego · autoexploración',
+  },
+  {
     href: '/laboratorio/preferencias',
     title: 'Preferencias junguianas',
     body: 'Hacia dónde te inclinas en energía, percepción, decisión y organización, y con qué fuerza. Con los usos y los límites del MBTI.',
