@@ -19,6 +19,14 @@ entrada en este registro.
 
 ---
 
+## 2026-10-22 · Habilidades sociales para adolescentes
+
+Contenido nuevo para la franja de 13 a 17 años y para las familias. Entra en estado `pendiente`.
+- Ocho actividades: «Una charla que fluye», «Sumarme a un grupo» (escalera), «Decir que no al grupo», «Un límite sin perder al amigo», «Volver a hablar después de una pelea», «Cuando un amigo está mal» (qué secretos hay que contarle a un adulto), «Antes de mandar» (redes y chats) y «Misiones con otros». La mayoría sirve también de 10 a 12 años.
+- Camino nuevo «Habilidades con otros» (13 a 17), que termina en «Pedir ayuda», que ya existía.
+- Paquete con dos guías para familias («Cuando a tu hijo o hija le cuesta hacer amigos» y «Presión del grupo: acompañar sin controlar»), un artículo, tres píldoras y cuatro términos de glosario. Las píldoras se suman a «Criar con menos peleas».
+- Seguridad: sólo se nombran la Línea 102, el 135 (0800-345-1435), el 911 y el botón Ayuda.
+
 ## 2026-10-22 · Duelo por una ruptura de pareja
 
 Paquete nuevo para rupturas de noviazgo o de pareja sin hijos en común; lo de separarse con hijos ya estaba en «Atravesar una separación» y se enlaza. Entra en estado `pendiente`.
