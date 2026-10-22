@@ -45,6 +45,24 @@ const TOOLS = [
     body: 'Dibuja tu familia en tres generaciones y mira qué se repite: dificultades y también fortalezas. Queda sólo en tu dispositivo.',
     tag: 'Sistémica · familia',
   },
+  {
+    href: '/laboratorio/eneagrama',
+    title: 'Eneagrama',
+    body: '45 afirmaciones para ver qué estilos de los nueve te resuenan más. Es para pensarte, no un test validado: no te pone una etiqueta.',
+    tag: 'Autoexploración',
+  },
+  {
+    href: '/laboratorio/preferencias',
+    title: 'Preferencias junguianas',
+    body: 'Hacia dónde te inclinas en energía, percepción, decisión y organización, y con qué fuerza. Con los usos y los límites del MBTI.',
+    tag: 'Jung · autoexploración',
+  },
+  {
+    href: '/laboratorio/sombra',
+    title: 'Preguntas para mirar tu sombra',
+    body: 'Diez preguntas abiertas para notar lo que proyectas en otras personas. Sin puntaje y sin guardar nada.',
+    tag: 'Jung · reflexión',
+  },
 ];
 
 export default function LabPage() {

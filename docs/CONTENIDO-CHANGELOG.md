@@ -19,6 +19,14 @@ entrada en este registro.
 
 ---
 
+## 2026-10-22 · Tipologías para autoexplorarse: eneagrama, preferencias junguianas y sombra
+
+Tres ejercicios nuevos en el Laboratorio. Las respuestas quedan sólo en el dispositivo y no se envían. Entra en estado `pendiente`.
+- Eneagrama: 45 ítems propios (cinco por tipo), sin copiar cuestionarios comerciales. Muestra los tres tipos más altos con su miedo, su deseo, su fijación, su defensa y sus líneas de integración y desintegración. Nunca dice «eres tal tipo». Para la revisión clínica: confirmar la defensa del tipo 3 (identificación) y la del tipo 9 (narcotización).
+- Preferencias junguianas: 16 pares de opciones, cuatro por cada dicotomía, con la fuerza de cada preferencia y los temperamentos de Keirsey (NT, NF, SJ y SP). No usa la marca MBTI como test.
+- Sombra: diez preguntas para reflexionar, sin puntaje.
+- Paquete con dos artículos sobre qué son estos modelos y cuáles son sus límites, ocho píldoras (entre ellas Persona, Anima y Animus, y Self) y glosario.
+
 ## 2026-10-22 · CNV ampliada con el cuaderno de Anne van Stappen
 
 Primera prueba de enriquecer el contenido con un libro aportado por el responsable clínico: «Cuaderno de ejercicios de comunicación no violenta» (Van Stappen, 2017). Se tomaron ideas y estructuras de ejercicios, redactadas de nuevo y citadas; no se copiaron textos ni listas. Entra en estado `pendiente`.
