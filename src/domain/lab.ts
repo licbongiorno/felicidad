@@ -390,6 +390,76 @@ export const SIMULATIONS: Simulation[] = [
     ],
     closing: 'Sostuviste un acuerdo con calma, validaste su enojo y terminaste con calidez. Los límites previsibles y amables son los que mejor funcionan en la adolescencia.',
   },
+  {
+    id: 'culpa-familiar',
+    title: 'Cuando la culpa te pide que vayas',
+    context: 'Tu padre te pide que vayas a almorzar el domingo, como todas las semanas. Este domingo ya tienes otro plan que te importa.',
+    goal: 'Decir que no a este domingo sin ceder por culpa y sin herir el vínculo.',
+    other: 'Tu padre',
+    skills: ['mis-derechos-asertivos', 'el-no-amable', 'un-acuerdo-que-me-respete'],
+    steps: [
+      {
+        line: '«El domingo te espero a almorzar, como siempre.»',
+        options: [
+          { text: '«Gracias, papá. Este domingo no voy a poder ir, ya tengo otro plan.»', style: 'asertivo', feedback: 'Agradeces y dices que no en una frase corta, sin excusas de más. No necesitas su permiso para decidir.' },
+          { text: '«Sí, sí, ahí estaré.»', style: 'pasivo', feedback: 'Evitas el mal momento, pero dejas tu plan de lado sin decirlo. Si se repite, el malestar se acumula.' },
+          { text: '«¿Otra vez? ¿No puedo tener ni un domingo libre?»', style: 'agresivo', feedback: 'Tu necesidad es válida, pero el reproche hace que se defienda. Puedes decir que no sin atacar.' },
+        ],
+      },
+      {
+        line: '«Después de todo lo que hicimos por ti, no puedes venir ni un domingo.»',
+        options: [
+          { text: '«Es verdad que hicieron mucho por mí, y lo agradezco. Igual este domingo no voy.»', style: 'asertivo', feedback: 'Das la razón en lo que es cierto (banco de niebla) y sostienes tu decisión. Notas la culpa sin dejar que decida por ti.' },
+          { text: '«Tienes razón, perdón. Cancelo lo otro y voy.»', style: 'pasivo', feedback: 'La culpa hizo su trabajo. Pregúntate si dañaste a alguien o si sólo ibas a elegir distinto.' },
+          { text: '«Siempre me sacas eso en cara. Así no dan ganas de ir nunca.»', style: 'agresivo', feedback: 'Es entendible que la frase te enoje. Pero la amenaza agranda el conflicto. Puedes nombrar la culpa con calma.' },
+        ],
+      },
+      {
+        line: '«Bueno… tu madre se va a poner triste.»',
+        options: [
+          { text: '«Entiendo que la extrañe. ¿Y si voy el domingo que viene, o paso el miércoles a tomar unos mates?»', style: 'asertivo', feedback: 'Validas lo que siente y ofreces un compromiso viable. Cedes en lo práctico, no en tu derecho a decidir.' },
+          { text: '«Ay, no quiero que esté mal. Bueno, voy.»', style: 'pasivo', feedback: 'Te haces cargo de la emoción de otra persona. Puedes cuidar el vínculo sin cambiar tu decisión.' },
+          { text: '«Ese no es mi problema.»', style: 'agresivo', feedback: 'Es un límite, pero dicho así lastima. Puedes ser firme y amable a la vez.' },
+        ],
+      },
+    ],
+    closing: 'Notaste la culpa, reconociste lo cierto y sostuviste tu decisión ofreciendo otra opción. Decir que no a un domingo no es decir que no a tu familia.',
+  },
+  {
+    id: 'critica-injusta',
+    title: 'Una crítica que no es justa',
+    context: 'Tu pareja te dice, molesta, que nunca haces nada en la casa. Esta semana cocinaste casi todos los días, pero es cierto que no sacaste la basura.',
+    goal: 'Saber qué le molesta, reconocer lo que es cierto y no aceptar lo que no lo es.',
+    other: 'Tu pareja',
+    skills: ['preguntar-por-la-critica', 'admitir-un-error-sin-hundirme', 'un-acuerdo-que-me-respete'],
+    steps: [
+      {
+        line: '«Nunca haces nada en esta casa.»',
+        options: [
+          { text: '«No entiendo bien. ¿Qué es lo que te molesta de lo que hago?»', style: 'asertivo', feedback: 'Preguntas con curiosidad en vez de defenderte (interrogación negativa). Así puede aparecer algo concreto.' },
+          { text: '«Perdón, tienes razón, soy un desastre.»', style: 'pasivo', feedback: 'Aceptas una crítica que no es del todo cierta y te etiquetas. No es justo contigo.' },
+          { text: '«¿Yo? ¡Si cociné toda la semana! Tú eres quien no hace nada.»', style: 'agresivo', feedback: 'Contraatacar vuelve la charla una pelea. Lo que molesta de verdad queda sin aclarar.' },
+        ],
+      },
+      {
+        line: '«Te pedí tres veces que sacaras la basura y sigue ahí.»',
+        options: [
+          { text: '«Es cierto, me olvidé de la basura. Fue un error. La saco ahora.»', style: 'asertivo', feedback: 'Reconoces el error real en pocas palabras, sin hundirte ni excusarte (aserción negativa).' },
+          { text: '«Sí, perdón, perdón, no sé qué me pasa, no sirvo para nada.»', style: 'pasivo', feedback: 'Pedir perdón de más y castigarte no repara nada. Alcanza con reconocer el hecho.' },
+          { text: '«Por una bolsa de basura armas este escándalo.»', style: 'agresivo', feedback: 'Minimizar su pedido lo invalida. Puedes reconocer lo cierto sin achicar lo que le pasa.' },
+        ],
+      },
+      {
+        line: '«Bueno, pero en general siento que hago todo yo.»',
+        options: [
+          { text: '«Esta semana cociné casi todos los días, así que decir que no hago nada no es justo. Pero hablemos de cómo nos repartimos las tareas. ¿Armamos una lista el sábado?»', style: 'asertivo', feedback: 'No aceptas lo que no es cierto y propones un acuerdo concreto (compromiso viable). Cuidas tu respeto propio y la relación.' },
+          { text: '«Sí, tienes razón, desde ahora hago yo todo.»', style: 'pasivo', feedback: 'Prometes más de lo que es justo para calmar el momento. Un reparto claro dura más que una promesa por culpa.' },
+          { text: '«Si tanto haces, hazlo tú entonces.»', style: 'agresivo', feedback: 'Suena a castigo y cierra la puerta al acuerdo. La necesidad de fondo, repartir mejor, es de los dos.' },
+        ],
+      },
+    ],
+    closing: 'Preguntaste antes de defenderte, admitiste lo cierto sin hundirte y no aceptaste lo que no lo era. Así una crítica se vuelve algo concreto para resolver.',
+  },
 ];
 
 // ---------------------------------------------------------------- ¿hecho o interpretación?
