@@ -1,5 +1,7 @@
 import { EASY_READ_A } from './easy-read-a';
 import { EASY_READ_B } from './easy-read-b';
+import { EASY_READ_C } from './easy-read-c';
+import { EASY_READ_D } from './easy-read-d';
 
 /**
  * Lectura fácil: una versión breve y sencilla de los artículos más usados, para leer en un
@@ -13,6 +15,6 @@ export interface EasyRead {
   paragraphs: string[];
 }
 
-export const EASY_READS: EasyRead[] = [...EASY_READ_A, ...EASY_READ_B];
+export const EASY_READS: EasyRead[] = [...EASY_READ_A, ...EASY_READ_B, ...EASY_READ_C, ...EASY_READ_D];
 
 export const EASY_READ_BY_ARTICLE: Record<string, EasyRead> = Object.fromEntries(EASY_READS.map((e) => [e.articleId, e]));

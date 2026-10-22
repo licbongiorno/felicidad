@@ -19,6 +19,12 @@ entrada en este registro.
 
 ---
 
+## 2026-10-22 · Lectura fácil de otros 20 artículos
+
+Mismo formato y mismos controles que la tanda anterior: frases de 15 palabras como máximo, INFLESZ de 75 o más, sin datos ni referencias nuevas. Entra en estado `pendiente`.
+- Artículos incluidos: trauma y estrés postraumático, autolesión («Cuando hacerte daño parece aliviar»), la depresión que no parece tristeza, depresión y ansiedad explicadas, prevenir recaídas, pensamientos intrusivos y TOC, ansiedad por la salud, fobias específicas, exposición gradual, violencia de género, burnout, estrés económico, perder el trabajo, alcohol, el celular, TDAH en adultos, imagen corporal, separarse con hijos, acompañar a un familiar y enfermedad grave.
+- En los temas de riesgo se conserva el aviso de pedir ayuda con los recursos que ya nombra el artículo.
+
 ## 2026-10-18 · Lectura fácil de 20 artículos centrales
 
 Cada artículo trae una versión breve y sencilla en un desplegable «Versión fácil de leer». Está pensada para un mal día, para cuando cuesta concentrarse o para quien tiene menos práctica lectora.
