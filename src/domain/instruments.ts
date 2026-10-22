@@ -14,6 +14,8 @@ import type { InstrumentId, Reference } from './types';
  * - PSS-10 (estrés percibido, 0–40, más es peor; 4 ítems invertidos). Cohen et al. (1983).
  * - SWLS (satisfacción con la vida, 5–35, más es mejor). Diener et al. (1985). Uso libre.
  * - AUDIT-C (consumo de alcohol, 0–12, más es peor). Bush et al. (1998), a partir del AUDIT de la OMS. Uso libre.
+ * - Mini-IPIP (cinco grandes rasgos de personalidad, cada uno 4–20). Donnellan et al. (2006), con ítems del IPIP
+ *   de dominio público. No mide síntomas: da un perfil (`traits`) y no una puntuación única.
  */
 
 export interface Interpretation {
@@ -45,7 +47,39 @@ export interface Instrument {
   riskItemIndex?: number;
   score: (items: number[]) => number;
   interpret: (score: number) => Interpretation;
+  /** Instrumentos de perfil (p. ej. Mini-IPIP): cada rasgo suma sus ítems y no hay puntuación única. */
+  traits?: Trait[];
   references: Reference[];
+}
+
+export interface Trait {
+  key: string;
+  label: string;
+  /** Ítems del rasgo (0-based). Los invertidos se puntúan 6 − respuesta (escala 1–5). */
+  items: number[];
+  reversed: number[];
+  low: string;
+  high: string;
+}
+
+export interface TraitScore {
+  trait: Trait;
+  score: number;
+  min: number;
+  max: number;
+  band: 'bajo' | 'medio' | 'alto';
+}
+
+/** Puntaje de cada rasgo. Las franjas son orientativas: tercios del rango, no normas poblacionales. */
+export function traitScores(instrument: Instrument, items: number[]): TraitScore[] {
+  return (instrument.traits ?? []).map((trait) => {
+    const score = trait.items.reduce((acc, i) => acc + (trait.reversed.includes(i) ? 6 - items[i] : items[i]), 0);
+    const min = trait.items.length;
+    const max = trait.items.length * 5;
+    const third = (max - min) / 3;
+    const band = score < min + third ? 'bajo' : score > max - third ? 'alto' : 'medio';
+    return { trait, score, min, max, band };
+  });
 }
 
 const sum = (xs: number[]) => xs.reduce((a, b) => a + b, 0);
@@ -541,7 +575,114 @@ export const AUDITC: Instrument = {
   ],
 };
 
-export const INSTRUMENTS: Instrument[] = [WHO5, GAD7, PHQ9, DERS16, ISI, PSS10, SWLS, AUDITC];
+// ---------------------------------------------------------------- Mini-IPIP
+
+export const BIGFIVE: Instrument = {
+  id: 'bigfive',
+  title: 'Cinco grandes rasgos de personalidad (Mini-IPIP)',
+  short: 'Personalidad',
+  purpose: 'Rasgos de personalidad · 20 frases · 4 minutos',
+  stem: '¿Cuánto te describe cada frase? Piensa en cómo eres en general, no en cómo te gustaría ser.',
+  items: [
+    'Soy el alma de las reuniones.',
+    'Comprendo lo que sienten los demás.',
+    'Hago las tareas enseguida.',
+    'Mi humor cambia seguido.',
+    'Tengo una imaginación muy viva.',
+    'No hablo mucho.',
+    'No me interesan los problemas de otras personas.',
+    'Seguido me olvido de guardar las cosas en su lugar.',
+    'Casi siempre me siento en calma.',
+    'No me interesan las ideas abstractas.',
+    'En las reuniones hablo con muchas personas distintas.',
+    'Siento las emociones de los demás.',
+    'Me gusta el orden.',
+    'Me altero con facilidad.',
+    'Me cuesta entender las ideas abstractas.',
+    'Me quedo en segundo plano.',
+    'En el fondo, no me interesan mucho los demás.',
+    'Dejo las cosas hechas un desorden.',
+    'Pocas veces me siento triste.',
+    'No tengo mucha imaginación.',
+  ],
+  options: [
+    { value: 1, label: 'Nada' },
+    { value: 2, label: 'Poco' },
+    { value: 3, label: 'Algo' },
+    { value: 4, label: 'Bastante' },
+    { value: 5, label: 'Mucho' },
+  ],
+  // La personalidad cambia poco: no tiene sentido repetirlo seguido.
+  intervalDays: 180,
+  maxScore: 0,
+  higherIsBetter: true,
+  relevantChange: 0,
+  // No hay puntuación única: se guarda 0 y el perfil se calcula de los ítems (traitScores).
+  score: () => 0,
+  interpret: () => ({
+    band: 'perfil',
+    severity: 'ok',
+    title: 'Tu perfil de cinco rasgos',
+    body: 'Ningún rasgo es mejor o peor: cada uno tiene ventajas y costos según la situación. Es una foto de cómo te ves hoy, no un diagnóstico.',
+  }),
+  traits: [
+    {
+      key: 'extraversion',
+      label: 'Extraversión',
+      items: [0, 5, 10, 15],
+      reversed: [5, 15],
+      low: 'Prefieres grupos chicos y momentos tranquilos. Recargas energía a solas.',
+      high: 'Te entusiasma estar con gente y hablar. Recargas energía en compañía.',
+    },
+    {
+      key: 'amabilidad',
+      label: 'Amabilidad',
+      items: [1, 6, 11, 16],
+      reversed: [6, 16],
+      low: 'Dices tus opiniones de forma directa y priorizas tus metas.',
+      high: 'Te importa mucho lo que sienten los demás y buscas la armonía.',
+    },
+    {
+      key: 'responsabilidad',
+      label: 'Responsabilidad',
+      items: [2, 7, 12, 17],
+      reversed: [7, 17],
+      low: 'Te mueves con flexibilidad y espontaneidad, aunque el orden te cuesta más.',
+      high: 'Te gusta el orden y cumples lo que planeas.',
+    },
+    {
+      key: 'neuroticismo',
+      label: 'Sensibilidad al malestar (neuroticismo)',
+      items: [3, 8, 13, 18],
+      reversed: [8, 18],
+      low: 'Las emociones difíciles te llegan con menos fuerza y se te pasan rápido.',
+      high: 'Sientes con intensidad la tristeza, el miedo o el enojo. Las habilidades de regulación pueden ayudarte.',
+    },
+    {
+      key: 'imaginacion',
+      label: 'Imaginación e intelecto (apertura)',
+      items: [4, 9, 14, 19],
+      reversed: [9, 14, 19],
+      low: 'Prefieres lo concreto, lo práctico y lo conocido.',
+      high: 'Disfrutas de las ideas nuevas, la fantasía y lo abstracto.',
+    },
+  ],
+  references: [
+    {
+      citation:
+        'Donnellan, M. B., Oswald, F. L., Baird, B. M., & Lucas, R. E. (2006). The Mini-IPIP scales: Tiny-yet-effective measures of the Big Five factors of personality. Psychological Assessment, 18(2), 192–203.',
+      doi: '10.1037/1040-3590.18.2.192',
+      note: 'Traducción propia al castellano, no validada. Las franjas bajo, medio y alto son tercios del rango, no normas poblacionales.',
+    },
+    {
+      citation:
+        'Goldberg, L. R. (1999). A broad-bandwidth, public domain, personality inventory measuring the lower-level facets of several five-factor models. En I. Mervielde, I. Deary, F. De Fruyt y F. Ostendorf (Eds.), Personality Psychology in Europe (Vol. 7, pp. 7–28). Tilburg University Press.',
+      note: 'Los ítems del IPIP son de dominio público.',
+    },
+  ],
+};
+
+export const INSTRUMENTS: Instrument[] = [WHO5, GAD7, PHQ9, DERS16, ISI, PSS10, SWLS, AUDITC, BIGFIVE];
 export const INSTRUMENT_BY_ID = Object.fromEntries(INSTRUMENTS.map((i) => [i.id, i])) as Record<InstrumentId, Instrument>;
 
 /** ¿Las respuestas activan el aviso de seguridad (ítem de riesgo > 0)? */

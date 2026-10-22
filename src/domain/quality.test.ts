@@ -5,7 +5,7 @@ import { ANTIDOTES } from './antidotes';
 import { CARDS } from './cards';
 import { GLOSSARY } from './glossary';
 import { EVIDENCE_LAST_CHECKED, isPublished, REVIEW_OVERRIDES, reviewOf, SHOW_DRAFTS } from './governance';
-import { INSTRUMENTS } from './instruments';
+import { INSTRUMENTS, traitScores } from './instruments';
 import { JOURNAL_TEMPLATES } from './journal';
 import { PRACTICE_LEVELS, levelOf } from './levels';
 import { ARTICLES, ARTICLE_BY_ID } from './library';
@@ -283,6 +283,24 @@ describe('instrumentos', () => {
     const audit = INSTRUMENTS.find((i) => i.id === 'auditc')!;
     expect([2, 3, 7, 8].map((s) => audit.interpret(s).band)).toEqual(['bajo', 'riesgo', 'riesgo', 'alto']);
     expect(audit.interpret(9).body).toMatch(/no dejes de golpe/);
+  });
+
+  it('el Mini-IPIP da cinco rasgos de 4 a 20, con los ítems invertidos de Donnellan et al. (2006)', () => {
+    const bf = INSTRUMENTS.find((i) => i.id === 'bigfive')!;
+    const traits = bf.traits!;
+    expect(bf.items).toHaveLength(20);
+    // Cada ítem pertenece a un solo rasgo, y hay cuatro por rasgo.
+    expect(traits.flatMap((t) => t.items).sort((x, y) => x - y)).toEqual([...Array(20).keys()]);
+    expect(traits.every((t) => t.items.length === 4 && t.reversed.every((r) => t.items.includes(r)))).toBe(true);
+    expect(traits.flatMap((t) => t.reversed).length).toBe(11);
+    // Todo en 5: los rasgos sin invertidos suman 20; los invertidos restan.
+    const all5 = traitScores(bf, Array(20).fill(5));
+    expect(all5.map((t) => t.score)).toEqual([12, 12, 12, 12, 8]);
+    expect(traitScores(bf, Array(20).fill(3)).every((t) => t.score === 12 && t.band === 'medio')).toBe(true);
+    // Franjas: hasta 9 bajo, desde 15 alto.
+    const e = (a: number, b: number) => traitScores(bf, [a, 3, 3, 3, 3, 6 - b, 3, 3, 3, 3, a, 3, 3, 3, 3, 6 - b, 3, 3, 3, 3])[0];
+    expect([e(2, 2).score, e(2, 2).band, e(2, 3).band, e(4, 3).band, e(4, 4).score, e(4, 4).band]).toEqual([8, 'bajo', 'medio', 'medio', 16, 'alto']);
+    expect(bf.score(Array(20).fill(4))).toBe(0);
   });
 
   it('el ISI sigue los puntos de corte de Morin et al. (2011)', () => {
