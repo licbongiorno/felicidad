@@ -10,7 +10,7 @@ import { fadeUp, stagger } from '@/lib/motion';
 import { Button } from '@/components/ui/Button';
 
 const KEY = 'eudaimonia-review';
-const KINDS: ContentKind[] = ['herramienta', 'instrumento', 'practica', 'antidoto', 'diario', 'articulo', 'programa', 'infantil', 'guia-familia', 'cuento', 'pildora'];
+const KINDS: ContentKind[] = ['herramienta', 'instrumento', 'practica', 'antidoto', 'diario', 'articulo', 'programa', 'infantil', 'guia-familia', 'cuento', 'pildora', 'lectura-facil'];
 
 import { canReview } from '@/lib/reviewers';
 

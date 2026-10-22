@@ -20,7 +20,7 @@ import approved from './approved.json';
 
 export type ReviewStatus = 'borrador' | 'pendiente' | 'revisado';
 
-export type ContentKind = 'practica' | 'antidoto' | 'diario' | 'articulo' | 'instrumento' | 'herramienta' | 'programa' | 'infantil' | 'guia-familia' | 'pildora' | 'cuento';
+export type ContentKind = 'practica' | 'antidoto' | 'diario' | 'articulo' | 'instrumento' | 'herramienta' | 'programa' | 'infantil' | 'guia-familia' | 'pildora' | 'cuento' | 'lectura-facil';
 
 export interface ReviewRecord {
   version: number;

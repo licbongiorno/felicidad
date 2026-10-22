@@ -4,7 +4,8 @@ import { EVIDENCE_LABEL } from './evidence';
 import { reviewOf, type ContentKind, type ReviewRecord } from './governance';
 import { INSTRUMENTS } from './instruments';
 import { JOURNAL_TEMPLATES } from './journal';
-import { ARTICLES } from './library';
+import { ARTICLES, ARTICLE_BY_ID } from './library';
+import { EASY_READS } from './easy-read';
 import { PRACTICES } from './practices';
 import { PROGRAMS } from './programs';
 import { KID_ACTIVITIES } from './kids';
@@ -108,6 +109,7 @@ export const KIND_LABEL: Record<ContentKind, string> = {
   'guia-familia': 'Guías para familias',
   pildora: 'Píldoras',
   cuento: 'Cuentos',
+  'lectura-facil': 'Lectura fácil',
 };
 
 const item = (kind: ContentKind, id: string, title: string, href: string, extra: Partial<ReviewItem> = {}): ReviewItem => ({
@@ -137,6 +139,7 @@ export function reviewQueue(): ReviewItem[] {
     ...KID_GUIDES.map((g) => item('guia-familia', g.id, g.title, `/familia/guia/${g.id}`)),
     ...PILLS.map((p) => item('pildora', p.id, p.title, `/biblioteca/pildoras/${p.id}`)),
     ...STORIES.map((st) => item('cuento', st.id, st.title, `/familia/cuentos/${st.id}`, { evidence: `${st.bands.join(', ')} años` })),
+    ...EASY_READS.map((e) => item('lectura-facil', e.articleId, `${ARTICLE_BY_ID[e.articleId]?.title ?? e.articleId} · versión fácil`, `/biblioteca/${e.articleId}#lectura-facil`)),
   ];
 }
 

@@ -9,6 +9,7 @@ import { KID_ACTIVITIES } from './kids';
 import { KID_GUIDES } from './kids-guides';
 import { PILLS } from './pills';
 import { STORIES } from './stories';
+import { EASY_READS } from './easy-read';
 import { CRISIS_RESOURCES } from '@/config/safety';
 
 /**
@@ -31,6 +32,7 @@ export function contentIndex(): Record<string, unknown> {
     ...KID_GUIDES.map((x) => ['guia-familia', x.id, x] as [ContentKind, string, unknown]),
     ...PILLS.map((x) => ['pildora', x.id, x] as [ContentKind, string, unknown]),
     ...STORIES.map((x) => ['cuento', x.id, x] as [ContentKind, string, unknown]),
+    ...EASY_READS.map((x) => ['lectura-facil', x.articleId, x] as [ContentKind, string, unknown]),
   ];
   return Object.fromEntries(entries.map(([kind, id, obj]) => [`${kind}:${id}`, obj]));
 }
