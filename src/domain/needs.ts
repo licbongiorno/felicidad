@@ -186,7 +186,7 @@ export const NEEDS: Need[] = [
     objective: 'Poner límites firmes con cariño, bajar la tensión en las discusiones familiares y notar a tiempo el agotamiento de criar.',
     practices: ['autoempatia-para-quien-cuida', 'pausa-autocompasion', 'cnv-escucha-empatica', 'el-no-amable', 'el-no-con-amor-a-un-hijo', 'reunion-familiar-20-minutos', 'reparar-tras-discusion'],
     programs: ['familia-con-menos-peleas'],
-    pills: ['pildora-limites-con-amor', 'pildora-cnv-con-hijos', 'pildora-cuando-la-mesa-se-calienta', 'pildora-burnout-parental'],
+    pills: ['pildora-limites-con-amor', 'pildora-cnv-con-hijos', 'pildora-cuando-la-mesa-se-calienta', 'pildora-burnout-parental', 'pildora-hacer-amigos-adolescencia', 'pildora-presion-del-grupo', 'pildora-amigo-que-esta-mal'],
   },
   {
     id: 'reparar-conflictos',
