@@ -485,6 +485,42 @@ export const NEEDS: Need[] = [
     programs: ['despues-de-la-ruptura'],
     pills: ['pildora-ganas-de-escribirle', 'pildora-el-por-que-de-la-ruptura', 'pildora-quien-soy-sin-ti', 'pildora-ya-tiene-otra-pareja'],
   },
+  {
+    id: 'menopausia-climaterio',
+    title: 'Atravesar la menopausia',
+    description: 'Sofocos, noches con sudores, ánimo cambiante y niebla mental en el climaterio.',
+    objective: 'Responder a los sofocos con calma, dormir mejor y hablar de esta etapa sin vergüenza.',
+    practices: ['pausa-ante-el-sofoco', 'esta-etapa-con-amabilidad', 'niebla-mental-con-apoyos', 'lo-que-me-digo-del-sofoco', 'noches-de-calor-y-desvelo', 'hablarlo-sin-verguenza'],
+    programs: ['atravesar-el-climaterio'],
+    pills: ['pildora-sofocos-y-pensamientos', 'pildora-niebla-mental', 'pildora-hablar-de-menopausia', 'pildora-menopausia-cuando-consultar'],
+  },
+  {
+    id: 'embarazo-y-posparto-salud-mental',
+    title: 'Mi salud mental en el embarazo y el posparto',
+    description: 'Ansiedad, tristeza, pensamientos que asustan y cansancio con un bebé.',
+    objective: 'Cuidar tu mente en esta etapa, pedir ayuda y saber cuándo consultar.',
+    practices: ['respiro-con-el-bebe-en-brazos', 'cuidarte-mientras-cuidas', 'turnos-de-descanso', 'lista-de-ayudas-concretas', 'preocupaciones-del-embarazo', 'como-estas-tu-que-no-gestaste', 'ese-pensamiento-no-es-un-deseo'],
+    programs: ['primer-ano-con-mas-sosten'],
+    pills: ['pildora-senales-urgentes-posparto', 'pildora-intrusivos-posparto', 'pildora-tristeza-posparto', 'pildora-depresion-de-quien-no-gesta', 'pildora-parto-dificil', 'pildora-perfeccionismo-crianza'],
+  },
+  {
+    id: 'diversidad-sexual-genero',
+    title: 'Vivir mi orientación o mi identidad con bienestar',
+    description: 'Vergüenza aprendida, contarlo a tu ritmo, red y familia que acompaña.',
+    objective: 'Tratarte con amabilidad frente al estigma, decidir con seguridad a quién contarlo y cuidar a la gente que te acepta.',
+    practices: ['lo-que-valoro-de-ser-quien-soy', 'mi-red-afirmativa', 'cuando-te-lo-cuentan', 'la-voz-de-la-verguenza-aprendida', 'mapa-para-contarlo', 'mi-proceso-como-familia', 'cuidarte-frente-a-la-discriminacion'],
+    programs: ['ser-quien-soy'],
+    pills: ['pildora-verguenza-aprendida', 'pildora-contarlo-por-etapas', 'pildora-cuando-te-lo-cuentan', 'pildora-familia-que-acepta', 'pildora-estres-de-minorias'],
+  },
+  {
+    id: 'infidelidad-confianza',
+    title: 'Atravesar una infidelidad',
+    description: 'Si descubriste una infidelidad o la tuviste, y no sabes cómo seguir.',
+    objective: 'Cuidarme en el impacto, hablar sin herir más y elegir con calma entre reparar o separarme.',
+    practices: ['cuando-recien-te-enteras', 'no-decidir-en-caliente', 'preguntas-que-ayudan', 'hacerme-cargo', 'confianza-de-a-poco', 'celos-o-control'],
+    programs: ['despues-de-la-infidelidad'],
+    pills: ['pildora-primeros-dias', 'pildora-que-preguntar', 'pildora-reparar-o-separarse', 'pildora-celos-o-control'],
+  },
 ];
 
 export const NEED_BY_ID: Record<string, Need> = Object.fromEntries(NEEDS.map((n) => [n.id, n]));

@@ -19,6 +19,14 @@ entrada en este registro.
 
 ---
 
+## 2026-10-23 · Cuatro temas nuevos: infidelidad, menopausia, salud mental perinatal y diversidad
+
+Cuatro paquetes nuevos, cada uno con su necesidad. Todo entra en estado `pendiente`.
+- **Infidelidad y confianza** («Atravesar una infidelidad»): seis prácticas para quien la descubrió y para quien la tuvo, desde el impacto inicial hasta reparar o separarse con dignidad, y una sobre celos y control. Dos artículos, programa de cuatro semanas, cuatro píldoras y glosario. Si hay violencia, control o miedo, no es un tema de infidelidad (144, 911); la terapia de pareja sólo se recomienda cuando no la hay.
+- **Menopausia y climaterio** («Atravesar la menopausia»): seis prácticas (sofocos, sueño, niebla mental, autocompasión y hablarlo sin vergüenza), artículo, programa, cuatro píldoras y glosario. Sin indicaciones médicas; dice cuándo consultar, por ejemplo ante un sangrado inesperado.
+- **Salud mental perinatal** («Mi salud mental en el embarazo y el posparto»): seis prácticas, incluidas una con el bebé en brazos, una sobre pensamientos intrusivos de daño y otra para quien no gestó. Dos artículos, programa, cuatro píldoras y glosario. Las señales de posible psicosis posparto llevan a guardia o al 911 ya; no se nombran medicamentos.
+- **Diversidad sexual y de género** («Vivir mi orientación o mi identidad con bienestar»): enfoque afirmativo, seis prácticas para la persona y para la familia, dos artículos, programa, cuatro píldoras, glosario y una guía para acompañar a un adolescente LGBTIQ+. Las «terapias de conversión» sólo se nombran para decir que hacen daño.
+
 ## 2026-10-22 · Habilidades sociales para adolescentes
 
 Contenido nuevo para la franja de 13 a 17 años y para las familias. Entra en estado `pendiente`.
