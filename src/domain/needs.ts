@@ -467,6 +467,15 @@ export const NEEDS: Need[] = [
     programs: ['acompanado-de-a-poco'],
     pills: ['pildora-soledad-o-aislamiento', 'pildora-videollamada', 'pildora-los-que-ya-no-estan', 'pildora-ensenar-lo-que-sabes'],
   },
+  {
+    id: 'apego-y-pareja',
+    title: 'Me angustio o me alejo en mis vínculos',
+    description: 'Cuando siento lejos a mi pareja me desespero, o cuando se acerca mucho me cierro, y terminamos en el mismo círculo.',
+    objective: 'Reconocer tu alarma de apego, calmarte antes de buscar o alejarte y acercarte con pedidos claros en lugar de reclamos.',
+    practices: ['mi-alarma-de-apego', 'pausa-de-apego', 'el-baile-de-los-dos', 'su-alarma-quizas', 'pedir-cercania-sin-reclamo', 'reparar-desde-el-apego'],
+    programs: ['apego-mas-seguro'],
+    pills: ['pildora-ansiedad-y-evitacion', 'pildora-perseguir-y-alejarse', 'pildora-seguridad-ganada', 'pildora-quizas-en-pareja'],
+  },
 ];
 
 export const NEED_BY_ID: Record<string, Need> = Object.fromEntries(NEEDS.map((n) => [n.id, n]));
