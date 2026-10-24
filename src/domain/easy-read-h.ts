@@ -1,0 +1,276 @@
+import type { EasyRead } from './easy-read';
+
+export const EASY_READ_H: EasyRead[] = [
+  {
+    articleId: 'antidotos-y-regulacion',
+    paragraphs: [
+      'Un antídoto es un estado de la mente que calma a otro. La idea viene de la tradición budista. Por ejemplo, la bondad frente a la ira. O alegrarte por otros frente a la envidia.',
+      'No se trata de tapar lo que sientes. Tapar es como cerrar una olla a presión. El antídoto es más bien apagar el fuego.',
+      'La ciencia ve cosas parecidas. Ponerle nombre a lo que sientes baja su fuerza. Mirarlo desde lejos, como de afuera, también ayuda. Y sentir algo bueno te ayuda a reponerte antes.',
+      'Lo mejor es practicar en calma. Un antídoto que nunca usaste cuesta mucho en plena tormenta. Si cultivas la bondad en días tranquilos, la tienes a mano cuando llega la ira.',
+      'Hay un límite. La idea de que dos estados opuestos no van juntos viene de la tradición. No está probada. Tómala como una guía útil.',
+    ],
+  },
+  {
+    articleId: 'como-evaluamos-la-evidencia',
+    paragraphs: [
+      'Cada práctica de la app dice cuánta prueba la apoya. Hay cuatro niveles. Cada nivel sigue reglas claras.',
+      'Robusta: hay muchos estudios buenos con un formato como el de la app. Moderada: hay estudios, pero de algo más largo, como una terapia entera. Preliminar: hay pocos estudios o son chicos. Contemplativa: viene de una tradición y casi no hay estudios.',
+      'El nivel habla de la práctica tal como está aquí. Es breve y la haces por tu cuenta. Por eso a veces tiene menos prueba que la terapia de la que viene.',
+      'Un ejemplo. La activación conductual tiene mucha prueba contra la depresión. Pero el ejercicio de cinco minutos es solo una parte. Por eso dice moderada. Preferimos quedarnos cortos antes que exagerar.',
+      'Las fuentes se revisan solas contra un registro oficial. Se mira que existan y que los datos coincidan. Esto se repite al menos una vez al año.',
+    ],
+  },
+  {
+    articleId: 'autoconocimiento',
+    paragraphs: [
+      'Esta parte de la app te ayuda a conocerte. Mira roles, necesidades y formas de reaccionar. No es un diagnóstico ni una etiqueta.',
+      'A veces caes una y otra vez en lo mismo. Por ejemplo, cuidas a todos menos a ti. No es falta de voluntad. Esas formas de reaccionar te sirvieron alguna vez. Hoy siguen, aunque ya no ayuden.',
+      'La terapia de esquemas dice que nacen de necesidades que nadie cubrió. Sentirte a salvo y con cariño. Tener tu espacio. Decir lo que sientes. Disfrutar. Y tener límites justos.',
+      'También habla de partes tuyas. Una asustada, una enojada, una muy exigente. Y un adulto sano que cuida a las demás. Jung habló de la imagen que muestras y de lo que escondes. Es una idea para pensar, sin pruebas firmes.',
+      'Explora con cuidado. Empieza por cosas de fuerza media. Escribe con curiosidad, como si miraras a alguien que quieres. Si sale algo muy doloroso, para. No tienes que resolverlo a solas.',
+      'Lo que descubras sirve para llevar a terapia. Si sientes mucha angustia o ganas de hacerte daño, detente. Busca a tu terapeuta o usa el botón «Ayuda».',
+    ],
+  },
+  {
+    articleId: 'terapia-centrada-en-soluciones',
+    paragraphs: [
+      'Esta terapia mira lo que ya funciona. Habla menos del problema y más de lo que quieres que pase. No hace falta entender todo el problema para empezar a salir.',
+      'Tiene tres reglas simples. Si algo no está roto, no lo arregles. Si algo funciona, haz más de eso. Si no funciona, prueba algo distinto.',
+      'Parte de una idea: ya tienes recursos. La tarea es encontrarlos y usarlos más. Por eso pregunta mucho «¿cómo lo hiciste?».',
+      'Hay tres herramientas. Imagina el día después de que el problema se fue. ¿Qué notas primero? Busca los momentos en que el problema fue más leve. Y ponte una nota del 0 al 10. ¿Qué sería un punto más?',
+      'Una buena meta es chica, concreta y dicha en positivo. Tiene un primer paso claro. Y te importa a ti.',
+      'Tiene un apoyo moderado, con efectos chicos a medios. No pide pensar en positivo ni negar lo que duele. Si tienes un problema grave, lo primero es buscar ayuda profesional.',
+    ],
+  },
+  {
+    articleId: 'terapia-focalizada-emocion',
+    paragraphs: [
+      'Esta terapia dice que las emociones no son enemigas. Te dicen qué te importa y qué necesitas.',
+      'El miedo pide protección. La tristeza pide consuelo. El enojo pide un límite. Si las evitas, pierdes esa información.',
+      'Hay dos capas. La primera emoción es tu respuesta directa a algo. La segunda es una reacción a la primera. Por ejemplo, te enojas para no sentir miedo. O te da vergüenza llorar.',
+      'Una emoción que duele cambia mejor con otra emoción que con razones. Primero llegas al dolor de fondo. Luego notas qué necesitabas y no tuviste. Ahí puede nacer compasión por ti. O un enojo sano que protege.',
+      'Tiene buenos resultados en depresión y en pareja. En terapia a veces usa ejercicios muy intensos. Aquí usamos cartas y diálogos escritos. Así vas a tu ritmo y paras cuando quieras.',
+      'Si aparece algo muy doloroso, como un trauma, no sigas a solas. Trabájalo con un terapeuta.',
+    ],
+  },
+  {
+    articleId: 'activacion-conductual-a-fondo',
+    paragraphs: [
+      'Cuando el ánimo baja, hacemos menos. Al hacer menos, la vida nos da menos cosas buenas. Y el ánimo baja más. Es un círculo.',
+      'Evitar alivia un rato. Por ejemplo, llega un correo difícil, te angustias y te acuestas. Pero el correo sigue ahí y te sientes peor. Darle vueltas a los problemas también puede ser evitar.',
+      'La salida es probar otra respuesta. Ante el mismo correo, contesta solo la primera línea. Y si das vueltas, lleva la atención a lo que ves, oyes y haces.',
+      'El método tiene pasos. Anota unos días qué haces y cómo está tu ánimo. Piensa qué te importa en cada área de tu vida. Arma una escalera de tareas, de la más fácil a la más difícil. Y empieza por abajo, con día y hora.',
+      'No esperes a tener ganas. Haz lo que planeaste y luego mira cómo te sentiste. Las ganas suelen llegar después. Este método tiene buena prueba en la depresión.',
+      'Si tu ánimo está muy bajo hace semanas, consulta. Si piensas en hacerte daño, busca ayuda profesional. Esta app no la reemplaza.',
+    ],
+  },
+  {
+    articleId: 'embarazo-y-posparto',
+    paragraphs: [
+      'El embarazo y el primer año con un bebé cambian casi todo. El cuerpo, el sueño, la pareja y el trabajo. Es normal sentir alegría y también miedo o cansancio. Las dos cosas pueden ir juntas.',
+      'Muchas personas creen que deberían estar felices siempre. Si no lo están, llegan la culpa y la vergüenza. Saber que es una etapa difícil para casi todos ayuda a pedir apoyo.',
+      'En los primeros días tras el parto es común llorar fácil y cambiar de humor. Suele irse sola en unas dos semanas. Si la tristeza dura más, puede ser depresión. Es frecuente y tiene tratamiento.',
+      'Los padres y las parejas también pueden deprimirse. A veces se nota como enojo, aislarse o trabajar mucho. Cuidar a quien cuida también cuida al bebé.',
+      'Pide ayudas concretas, como comida, compras o unas horas de sueño. Trátate como tratarías a una amiga. No hace falta hacerlo perfecto. Alcanza con hacerlo bastante bien.',
+      'Si la tristeza dura más de dos semanas, consulta a tu médico. Hay señales que piden ayuda ese mismo día. Ideas de dañarte o de dañar al bebé. Confusión, o ver y oír cosas que otros no. O no dormir nada en días. En ese caso, ve a una guardia o llama a emergencias.',
+    ],
+  },
+  {
+    articleId: 'diversidad-y-estres-de-minorias',
+    paragraphs: [
+      'Ser lesbiana, gay, bisexual, trans o no binario no es un trastorno. No es algo que haya que corregir. Es parte de la variedad humana.',
+      'Muchas personas de la diversidad viven un estrés extra. Viene de afuera, como el rechazo o la violencia. Y también de adentro, como el miedo o tener que ocultarte. El riesgo viene del trato que recibes, no de quién eres.',
+      'Las llamadas «terapias de conversión» no sirven y hacen daño. En Argentina, la ley protege tu identidad. Nadie puede darte un diagnóstico por ella.',
+      'Salir del clóset es tu decisión. No hay un plazo. Empieza por alguien que creas que te va a responder con cariño. Si dependes de alguien para vivir, piensa en tu seguridad. Ten un lugar adonde ir y alguien a quien llamar.',
+      'Si sufres un trato injusto, llámalo por su nombre. Sé amable contigo y busca a tu gente. Si tu familia no te acepta, puedes armar una familia elegida.',
+      'Si buscas terapia, pregunta si el profesional tiene un enfoque afirmativo. Un buen profesional no intenta cambiarte. Si piensas en hacerte daño, llama a la Línea Nacional de Salud Mental. O al 911.',
+    ],
+  },
+  {
+    articleId: 'psicologia-de-jung',
+    paragraphs: [
+      'Carl Jung fue un psiquiatra suizo. Trabajó con Freud y luego armó su propia escuela. Le interesaban los sueños, los mitos y el arte.',
+      'La «persona» es la imagen que muestras para encajar. La «sombra» es lo que no aceptas de ti, como el enojo o el deseo. A menudo la ves primero en otros. Es lo que te irrita de más. Integrarla es reconocerla, no actuarla.',
+      'Los complejos son nudos de recuerdos y emociones. Son como botones que alguien aprieta. Todos los tenemos. Conocerlos ayuda a no quedar a su merced.',
+      'Los arquetipos son figuras que se repiten en los mitos. El héroe, el sabio, la gran madre. Sirven para pensar tu propia historia. Para Jung, la tarea de la vida es volverse más completo.',
+      'Jung también habló de tipos, como el introvertido y el extravertido. Los tests de 16 tipos que nacieron de ahí no son confiables. No los uses para decisiones importantes.',
+      'Toma estas ideas como preguntas para pensar. Hay poca investigación que las pruebe. No sirven para diagnosticar. Y desconfía de las frases de Jung que no tienen fuente.',
+    ],
+  },
+  {
+    articleId: 'mentalizar-en-la-crianza',
+    paragraphs: [
+      'Un berrinche o un portazo son conductas. Detrás hay emociones, deseos y necesidades. Pensar en eso es lo que llamamos mentalizar.',
+      'Esta forma de mirar ayuda a tu hijo o hija. Se une a vínculos más seguros. También a chicos que manejan mejor lo que sienten. Y se puede entrenar.',
+      'Dile en voz alta lo que crees que siente. «Me parece que estás triste porque se fue la abuela.» No hace falta acertar. Si te corrige, también aprende.',
+      'Con los más chicos, nombra la emoción. Con los más grandes, pregunta y escucha. Con los adolescentes, muestra interés sin invadir.',
+      'Comprender no es dejar hacer. El límite va junto con la comprensión. «Entiendo que estás enojado. Igual ahora vamos a cenar.» Si te ganan el cansancio o el enojo, cálmate primero.',
+      'Nadie lo hace bien todo el tiempo. Lo que ayuda es volver después. «Ayer te grité y no estuvo bien. ¿Cómo te sentiste?» Reparar le muestra que los errores se arreglan.',
+    ],
+  },
+  {
+    articleId: 'medicacion-sin-sorpresas',
+    paragraphs: [
+      'Todos los remedios pueden tener efectos no deseados. Los más comunes son leves, como náuseas o sueño. Muchos bajan en las primeras semanas. Anótalos y cuéntalos en la consulta.',
+      'Hay señales para consultar enseguida. Ideas de hacerte daño o mucha inquietud. Fiebre con rigidez o confusión. Una erupción en la piel que se extiende. Si es grave, llama al 911.',
+      'No dejes un remedio de golpe. Algunos antidepresivos dan mareos, malestar o insomnio al cortarlos. Otros remedios pueden dar dependencia, y cortarlos de golpe es peligroso. Si se deja, se hace de a poco y con el médico.',
+      'El alcohol puede sumar sueño y mareos con varios remedios. Pregunta a tu médico qué pasa en tu caso. Si te cuesta tomar menos, cuéntalo sin vergüenza.',
+      'Si estás embarazada, buscas un embarazo o das el pecho, habla pronto con tu médico. No cambies nada por tu cuenta. Muchas veces hay otras opciones.',
+      'Querer y no querer tomar un remedio es muy común. Escribe lo que te da y lo que te preocupa. Llévalo a la consulta. Si piensas en hacerte daño, llama al 135 o al 0800-345-1435. También al 0800-999-0091. Si hay peligro, llama al 911.',
+    ],
+  },
+  {
+    articleId: 'por-que-persiste-la-ansiedad-social',
+    paragraphs: [
+      'La timidez es común y no es un problema. La ansiedad social es otra cosa. Es un miedo fuerte a que te juzguen. Te hace sufrir mucho o evitar cosas.',
+      'En una charla, la atención se va hacia adentro. Notas el calor en la cara o el temblor. Con eso armas una imagen de cómo te ven. Esa imagen es peor que la real.',
+      'Para protegerte haces cosas. No mirar a los ojos. Ensayar cada frase. Hablar poco. Alivian, pero no te dejan ver que lo temido no pasa. Además, pueden hacerte parecer distante.',
+      'Antes, la mente imagina lo que puede salir mal. Después, repasas la charla buscando errores. Así la próxima vez da más miedo.',
+      'Hay cosas que ayudan. Lleva la atención hacia afuera. Prueba soltar una de esas conductas y mira qué pasa. Acércate de a poco a lo que temes, como en una escalera. Y corta el repaso de después.',
+      'Consulta si la ansiedad no te deja estudiar, trabajar o tener amigos. También si usas alcohol para animarte. La Línea Nacional de Salud Mental es el 0800-999-0091. Para consumos, llama a la Línea 141.',
+    ],
+  },
+  {
+    articleId: 'ecoansiedad-y-esperanza-activa',
+    paragraphs: [
+      'La ecoansiedad es angustia por el clima y el ambiente. Puede ser miedo, tristeza, enojo o culpa. Es una respuesta lógica ante algo real. No es un trastorno.',
+      'La angustia no es solo tuya. Crece cuando sientes que nadie escucha ni responde. Por eso importa sentir que te acompañan.',
+      'Algo de preocupación te ayuda a actuar. Otra preocupación da vueltas y te quita el sueño. Pregúntate: «¿Esto me lleva a un paso o solo me da vueltas?». Si da vueltas, pon un horario para las noticias. Y habla con alguien.',
+      'Busca sentido y actúa con otros, según lo que valoras. No hace falta hacer todo. Alcanza con algo que puedas sostener. Si te duele ver cambiar tu lugar, ponle nombre y un ritual.',
+      'Con chicos, pregunta primero qué saben y qué sienten. Responde simple y con la verdad. Cuéntales que mucha gente trabaja en esto. Y elijan juntos algo para hacer.',
+      'Si la angustia no te deja dormir ni disfrutar, consulta. Si no ves salida o piensas en morir, pide ayuda. Llama al 135 o al 0800-345-1435. También al 0800-999-0091 o al 911.',
+    ],
+  },
+  {
+    articleId: 'acoso-laboral-y-mobbing',
+    paragraphs: [
+      'El acoso laboral es un trato hostil hacia ti que se repite mucho tiempo. Con el tiempo, cuesta cada vez más defenderse. Una pelea suelta o un jefe exigente no es acoso.',
+      'Puede ir contra tu tarea, como quitarte funciones o darte metas imposibles. Puede ir contra ti, con burlas, rumores o gritos. O puede ser con amenazas. Se une a más ansiedad, tristeza y estrés. No es una debilidad tuya.',
+      'Anota cada hecho cerca del momento. Pon fecha, lugar, qué se dijo y quién estaba. Guarda capturas y correos fuera de las cuentas del trabajo.',
+      'Busca apoyo. Puede ser el delegado, el sindicato, recursos humanos o un abogado laboral. Poner un límite sirve a veces, pero solo si es seguro. Pedir apoyo también es actuar.',
+      'Fuera del trabajo, cuida tu descanso, tu cuerpo y tus vínculos. Si ves acoso a otra persona, no te rías ni te sumes. Acércate después y ofrécete como testigo.',
+      'Si te cuesta dormir o comer, consulta con tu médico o un psicólogo. Si hay acoso sexual o de género, llama a la Línea 144. Si piensas en hacerte daño, llama al 135 o al 0800-999-0091. Si hay peligro, llama al 911.',
+    ],
+  },
+  {
+    articleId: 'psicosis-y-esquizofrenia-explicadas',
+    paragraphs: [
+      'En una psicosis, la persona pierde en parte el contacto con la realidad. Puede oír voces que otros no oyen. O creer con firmeza cosas que no son, como que la siguen.',
+      'La psicosis puede tener varias causas. La esquizofrenia es una, pero no la única. También las drogas, la falta de sueño o una depresión grave. Por eso siempre hace falta ver a un médico.',
+      'La esquizofrenia no es tener dos personalidades. No es culpa de la persona ni de la familia. La gran mayoría no es violenta. De hecho, corren más riesgo de sufrir violencia.',
+      'Hay tratamiento y es posible recuperarse. Suele unir remedios que controla un médico con terapia y apoyo. Tratar pronto mejora mucho. También ayudan dormir bien y no usar cannabis ni otras drogas.',
+      'Si eres de la familia, no discutas lo que la persona cree. Tampoco le des la razón. Habla de lo que siente: «Veo que tienes miedo. Estoy contigo.» Bajar el ruido en casa ayuda.',
+      'Si alguien empieza a oír voces o se desordena mucho, consulta pronto. Si hay riesgo, llama al 911, al 135 o al 0800-999-0091.',
+    ],
+  },
+  {
+    articleId: 'acompanar-la-demencia',
+    paragraphs: [
+      'La demencia es un grupo de enfermedades que dañan el cerebro de a poco. La más común es el Alzheimer. Falla la memoria, cuesta ubicarse y cambia la conducta.',
+      'Lo difícil que hace tu familiar no es a propósito. La enfermedad daña justo lo que le dejaría darse cuenta. Saberlo no quita el cansancio. Pero baja el enojo y la culpa.',
+      'Corregir casi nunca sirve y suele angustiar más. Responde a la emoción, no a los hechos. Luego propón otra cosa, como un té o una canción. Habla despacio, con frases cortas.',
+      'La agitación casi siempre tiene un motivo. Puede ser dolor, hambre, ganas de ir al baño o ruido. Búscalo antes de discutir. Si se agita al caer la tarde, ayuda la luz de día. También una rutina estable.',
+      'Es normal sentir duelo aunque tu familiar siga vivo. Está, pero no como antes. Pide relevo antes de llegar al límite. Pregunta por centros de día y grupos para familias.',
+      'Consulta al médico ese mismo día si la conducta cambia de golpe. Puede ser una infección y tener tratamiento. No cambies remedios por tu cuenta. Si hay peligro, llama al 911. Si no das más, llama al 0800-999-0091. Si piensas en hacerte daño, llama al 135.',
+    ],
+  },
+  {
+    articleId: 'duelo-por-una-mascota',
+    paragraphs: [
+      'Con una mascota se forma un lazo fuerte, como con una persona cercana. Por eso su muerte puede doler mucho. También duele perder la rutina, como los paseos.',
+      'Muchas veces el entorno no ve este dolor. Te dicen «compra otro». Eso no lo hace menos real. Ten una frase corta, como «para mí era familia». Y busca a quienes entienden.',
+      'Después de una eutanasia, la culpa es muy común. La mente juzga con lo que sabes hoy, no con lo que sabías entonces. Si quedaron dudas, habla con el veterinario.',
+      'Una despedida propia ayuda. Puedes plantar algo, escribirle o guardar su collar y sus fotos. Seguir sintiendo el lazo con tu mascota es normal.',
+      'No hay un plazo para tener otra mascota. Conviene que no sea para tapar el dolor. Si hay chicos, cuéntales la verdad y déjalos despedirse. Si una persona mayor vivía sola con su animal, visítala o llámala.',
+      'Consulta si tras muchos meses la pena sigue igual o no puedes hacer tu vida. Si piensas en morir, llama al 135 o al 0800-345-1435. También puedes usar el botón Ayuda. Ante una urgencia, llama al 911.',
+    ],
+  },
+  {
+    articleId: 'hablar-del-dolor',
+    paragraphs: [
+      'El dolor crónico es real, aunque los estudios salgan normales. Muchas personas sienten que no les creen. Eso duele casi tanto como el dolor.',
+      'Lleva una hoja a la consulta. Anota cómo es el dolor y qué te impide hacer. Anota también cómo duermes y cómo está tu ánimo. Escribe tus tres preguntas más importantes.',
+      'Si algo cambió, dilo primero. Un dolor nuevo necesita revisión. Si sientes que no te escuchan, puedes pedir otra opinión.',
+      'En casa, lo que hace la familia también influye. Si hacen todo por ti, puedes dejar cosas que te importan. Si creen que exageras, crece la soledad.',
+      'Haz pedidos concretos. Por ejemplo: «En los días malos, pregúntame qué necesito antes de hacerlo por mí». Y agradece lo que te sirve.',
+      'Si el dolor te quita las ganas de vivir, pide ayuda hoy. Llama al 135 o al 0800-345-1435, o usa el botón Ayuda. Si hay violencia de género, llama a la Línea 144.',
+    ],
+  },
+  {
+    articleId: 'cnv-dia-a-dia',
+    paragraphs: [
+      'La comunicación no violenta, o CNV, es una forma de hablar. Sirve para agradecer, mostrar enojo sin herir y decir que no.',
+      'Para agradecer, di qué hizo la otra persona, qué te dio y cómo te sientes. Por ejemplo: «Ayer cuidaste a los chicos y pude descansar. Me siento aliviada.» Eso dice más que un «eres genial».',
+      'El enojo es una señal. Debajo hay algo que necesitas y no tienes. Para, respira y nota lo que piensas del otro. Luego di lo que sientes y lo que necesitas.',
+      'Un ejemplo. «Vi que la luz venció ayer. Estoy preocupado porque necesito calma con las cuentas. ¿Lo vemos juntos?» Si el enojo es muy fuerte, primero calma el cuerpo.',
+      'Decir que no es decir sí a algo que tú necesitas. Puedes nombrarlo y ofrecer otra opción. Y si te dicen que no, pregunta qué necesita la otra persona.',
+      'La CNV tiene pocas pruebas. Tómala como una guía. No sirve con alguien que te maltrata. Si vives violencia, lo primero es tu seguridad. Llama a la Línea 144 o, si hay peligro ya, al 911.',
+    ],
+  },
+  {
+    articleId: 'preferencias-junguianas-y-mbti',
+    paragraphs: [
+      'Jung habló de dos actitudes. En la extraversión, la energía va hacia afuera. En la introversión, va hacia adentro. También habló de cuatro funciones.',
+      'Dos sirven para percibir: la sensación y la intuición. Dos sirven para juzgar: el pensamiento y el sentimiento. Cada persona usa más unas que otras. Es como la mano con la que escribes.',
+      'Una madre y su hija armaron con eso un test llamado MBTI. Le sumaron una escala más. Así salen 16 tipos. Los cuatro temperamentos son de otros autores, no de Jung.',
+      'El MBTI tiene fallas. Mucha gente saca otro tipo al repetirlo semanas después. Además, parte en dos algo que es gradual. No sirve para elegir a quién contratar.',
+      'Hay un modelo con mucha más prueba: los cinco grandes rasgos. Mide cuánto tienes de cada rasgo, sin casilleros. Uno es la estabilidad emocional, que el MBTI deja afuera.',
+      'Usa estas ideas para charlar sobre estilos distintos. No sirven para diagnosticar ni para elegir carrera. El test de esta app se inspira en Jung y no está validado.',
+    ],
+  },
+  {
+    articleId: 'habilidades-sociales-adolescencia',
+    paragraphs: [
+      'En la adolescencia, los amigos pasan a ser un gran apoyo. Es parte de crecer. No es un rechazo a la familia, que sigue siendo una base segura.',
+      'Hacer amigos se puede aprender. Charlar, sumarse a un grupo, poner límites y reparar son habilidades. Se aprenden con práctica.',
+      'Con amigos cerca, los adolescentes se arriesgan más. Resistir al grupo es algo que crece con la edad. Por eso sirve preparar más que dar sermones. Ayuda tener una frase para decir que no. Y un plan para irse.',
+      'Sabes más de tu hijo o hija si te cuenta, no si vigilas. Cuenta más cuando no teme una reacción dura. Las reglas siguen siendo necesarias. Pero escucha primero y agradece que te contó. Después habla de lo que hay que cambiar.',
+      'Consulta si no tiene amigos hace mucho y lo sufre. También si la tristeza dura semanas. Si habla de morir, se lastima o sufre abuso, no esperes. Llama al 911 si hay peligro, a la Línea 102 o al 135. También está el botón Ayuda.',
+    ],
+  },
+  {
+    articleId: 'salud-mental-perinatal',
+    paragraphs: [
+      'En los primeros días tras el parto, es común llorar fácil. Suele pasar sola en dos semanas. Si la tristeza o la culpa duran más, consulta. Puede ser depresión y tiene tratamiento.',
+      'La ansiedad en el embarazo es tan común como la depresión. Lleva tus dudas al control, no a internet. Dale a la preocupación un horario fijo.',
+      'Muchos padres y madres tienen ideas de que el bebé sufre un daño. Asustan mucho, pero son comunes. Si te dan miedo y rechazo, no son un deseo ni un peligro.',
+      'Dormir poco es parte de los primeros meses. Armen turnos para que cada adulto duerma un rato seguido. Pide ayudas concretas, con día y hora. La madre perfecta no existe. Alcanza con estar, equivocarse y reparar.',
+      'Los padres y otras madres también pueden deprimirse. Si el parto fue muy duro y los recuerdos vuelven más de un mes, consulta. Hay tratamientos que sirven en el embarazo y la lactancia. No cambies una medicación por tu cuenta.',
+      'Ve a una guardia o llama al 911 si hay confusión. O si ves u oyes cosas que otros no. También si piensas en hacerte daño o en dañar al bebé con intención. O si pasas días sin dormir y sin sueño. Si piensas en quitarte la vida, llama al 135 o al 0800-345-1435. También al 0800-999-0091.',
+    ],
+  },
+  {
+    articleId: 'cannabis-sin-sermones',
+    paragraphs: [
+      'Mucha gente usa cannabis para dormir o calmar la ansiedad. Saber para qué lo usas te ayuda a buscar otras formas. El problema es cuando es la única forma.',
+      'Con el uso diario aparece la tolerancia. Necesitas más para sentir lo mismo. Algunas personas desarrollan dependencia. El riesgo sube si empezaste joven o lo usas a diario.',
+      'Al dejar un uso diario puedes sentir nervios, enojo y mal sueño. Suele bajar en una o dos semanas. Es incómodo, pero no es peligroso. Ten un plan para las noches.',
+      'Querer y no querer cambiar a la vez es normal. Tus razones pesan más que un sermón. Puedes hacer una pausa, usar menos días o dejar. Anotar cuándo usas y por qué ayuda a armar un plan.',
+      'Consulta si no logras usar menos aunque quieras. También si solo duermes con cannabis o si te trae problemas. Si tomas alcohol u otros calmantes a diario, no los dejes de golpe. Habla antes con un médico.',
+      'Si oyes voces, sientes mucha paranoia o no quieres vivir, es urgente. Llama al 911 o al 135. La Línea 141 orienta gratis y a toda hora.',
+    ],
+  },
+  {
+    articleId: 'autismo-en-adultos',
+    paragraphs: [
+      'El autismo es una forma distinta de funcionar del cerebro. Está desde la infancia, aunque a veces se nota más tarde. No es una enfermedad que haya que curar.',
+      'Puede incluir otra forma de comunicarse, intereses intensos y gusto por las rutinas. Los ruidos o las luces pueden sentirse más fuertes. Cada persona autista es distinta.',
+      'Muchas personas lo descubren de adultas. Suele traer alivio, porque por fin hay palabras. También puede traer duelo por los años de no entenderse. Todo eso es esperable.',
+      'El diagnóstico lo hace un profesional con experiencia. Esta app no diagnostica. La alta sensibilidad no es lo mismo que el autismo, aunque se parecen. Solo una evaluación puede orientar.',
+      'Tus rutinas e intereses no son caprichos. Te ayudan a cuidar tu sistema nervioso. Moverte o tocar algo para calmarte también vale. Desconfía de quien promete curar el autismo.',
+      'La ansiedad y la tristeza son más comunes en adultos autistas. Busca un profesional que conozca el autismo. Si piensas en no vivir, usa el botón Ayuda. O llama al 135 o al 0800-345-1435. Si hay riesgo ya, llama al 911.',
+    ],
+  },
+  {
+    articleId: 'buscar-un-embarazo-y-tratamientos',
+    paragraphs: [
+      'Cuando un embarazo no llega, la vida gira alrededor de la búsqueda. Pesa en el cuerpo, la pareja, el trabajo y la plata. Mucha gente siente vergüenza o tristeza cada mes.',
+      'La espera del resultado es muy dura. Planea esos días con algo amable para cada uno. Busca poco en internet y ten a alguien con quien hablar.',
+      'Un negativo es una pérdida, aunque nadie la vea. El estrés no hace fallar el tratamiento. Si no funciona, no es tu culpa. No hace falta decidir ese día qué sigue.',
+      'Cuida a tu pareja y tu red. Guarden un rato sin hablar del tratamiento. Decide qué contar y a quién. Ten una frase corta para cortar preguntas.',
+      'Decidir hasta cuándo seguir es cosa tuya, o de la pareja. Piénsalo en un día tranquilo, no tras un negativo. Hay muchas formas de formar una familia. Los chicos crecen bien en familias distintas.',
+      'Consulta si la tristeza no se va o la angustia no te deja dormir. Si piensas que no quieres vivir, llama al 135 o al 0800-345-1435. También puedes usar el botón Ayuda. Si hay peligro, llama al 911.',
+    ],
+  },
+];
