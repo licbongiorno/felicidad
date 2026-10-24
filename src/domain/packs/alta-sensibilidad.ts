@@ -176,7 +176,7 @@ export const ALTA_SENSIBILIDAD_PACK: ContentPack = {
       skills: ['resilience', 'compassion'],
       summary: 'Preparar un pedido concreto para el trabajo o la vida social: menos ruido, una pausa, irte antes o decir que no a un plan.',
       mechanism: 'Pedir lo que necesitas de forma clara y amable reduce la carga sin romper el vínculo. La asertividad se aprende con práctica.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [SPEED_2018, ARON_1996],
       howItWorks: [
         'Muchas personas muy sensibles aguantan de más para no molestar. Después llegan agotadas o se van de golpe. Aron sugiere planificar los entornos y hablar de lo que uno necesita (Aron, 1996).',

@@ -86,7 +86,7 @@ export const ACOSO_ESCOLAR_PACK: ContentPack = {
       skills: ['resilience', 'attention'],
       summary: 'Ordenar hechos, pruebas y pedidos concretos para ir a la escuela con calma y salir con un plan.',
       mechanism: 'Una reunión con hechos claros y pedidos concretos ayuda a que la escuela actúe como institución, que es lo que mejor funciona contra el acoso.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [GAFFNEY_2019, LEY_26892],
       howItWorks: [
         'Los programas que trabajan con toda la escuela reducen el acoso. Un metaanálisis encontró que bajan tanto el acoso como la victimización, aunque el efecto es moderado (Gaffney y colaboradores, 2019). Por eso conviene que la escuela intervenga, y no resolverlo solo entre familias.',

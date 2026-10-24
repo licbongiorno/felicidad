@@ -153,7 +153,7 @@ export const DUELO_SUICIDIO_PACK: ContentPack = {
       skills: ['attention', 'resilience'],
       summary: 'Preguntarte cómo estás de verdad, notar señales de alarma en ti y tener a mano a quién llamar.',
       mechanism: 'Quienes atraviesan este duelo tienen más riesgo. Preguntarse con honestidad y dejar listo un plan corto hace más fácil pedir ayuda a tiempo.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [PITMAN_2014, ANDRIESSEN_2017],
       howItWorks: [
         'Un estudio que revisó muchas investigaciones encontró que perder a alguien por suicidio se asocia con más riesgo de depresión y de suicidio en quienes quedan (Pitman y colaboradores, 2014). No es un destino. Es una razón para cuidarse más.',

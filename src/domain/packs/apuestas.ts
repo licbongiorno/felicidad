@@ -65,7 +65,11 @@ export const APUESTAS_PACK: ContentPack = {
       summary: 'Mirar con honestidad lo que te dan y lo que te cuestan las apuestas, y qué te gustaría cambiar, sin sermones.',
       mechanism: 'Poner en palabras tus propias razones, a favor y en contra, aclara la ambivalencia. Las razones dichas por uno mismo empujan más el cambio que las impuestas.',
       evidenceLevel: 'moderada',
-      evidence: [MILLER_2013, HODGINS_2011],
+      evidence: [
+        { citation: 'Miller, W. R., & Rose, G. S. (2015). Motivational interviewing and decisional balance: Contrasting responses to client ambivalence. Behavioural and Cognitive Psychotherapy, 43(2), 129–141.', note: 'En personas muy ambivalentes, el balance de pros y contras puede bajar el compromiso con el cambio.' },
+        MILLER_2013,
+        HODGINS_2011,
+      ],
       cautions: JUEGO,
       howItWorks: [
         'La entrevista motivacional parte de una idea simple: querer y no querer cambiar a la vez es normal. Los sermones suelen generar más resistencia. Escuchar las propias razones abre la puerta (Miller y Rollnick, 2013).',
@@ -73,6 +77,7 @@ export const APUESTAS_PACK: ContentPack = {
         'Las intervenciones breves de tipo motivacional tienen evidencia en los problemas con el juego, sobre todo como primer paso (Hodgins y colaboradores, 2011).',
       ],
       tips: [
+        'Si al anotar pros y contras sientes que te convences más de seguir igual, no fuerces la lista. Vuelve a lo que te importa y a lo que te gustaría distinto: eso suele ayudar más que sumar argumentos.',
         'Escribe con tus palabras, no con las que crees que deberías usar.',
         'Cuenta la plata en números concretos. Ver la cifra ayuda a ver claro.',
         'No hace falta decidir nada hoy. Este ejercicio es para mirar.',
@@ -97,7 +102,7 @@ export const APUESTAS_PACK: ContentPack = {
       skills: ['attention'],
       summary: 'Revisar con calma si aparecen las señales que indican que el juego se volvió un problema, y qué hacer con lo que encuentres.',
       mechanism: 'Nombrar conductas concretas, como perseguir pérdidas o mentir, saca el problema de la niebla. Ver el patrón es el primer paso para pedir ayuda a tiempo.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [HODGINS_2011, SEDRONAR],
       cautions: JUEGO,
       howItWorks: [

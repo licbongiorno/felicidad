@@ -97,7 +97,7 @@ export const PLUS_PRACTICES: Practice[] = [
     skills: ['resilience'],
     summary: 'Para la postergación: comprometerte solo a empezar durante cinco minutos.',
     mechanism: 'Empezar es lo más difícil. Bajar la exigencia a cinco minutos reduce el malestar anticipado, y una vez en marcha suele ser más fácil seguir.',
-    evidenceLevel: 'moderada',
+    evidenceLevel: 'preliminar',
     evidence: [STEEL_2007],
     micro: true,
     howItWorks: [
@@ -220,8 +220,11 @@ export const PLUS_PRACTICES: Practice[] = [
     skills: ['compassion'],
     summary: 'Imaginarte con las cualidades de la compasión: sabiduría, fortaleza y calidez.',
     mechanism: 'Ensayar en la imaginación una versión compasiva de ti fortalece la capacidad de tratarte con amabilidad en los momentos difíciles.',
-    evidenceLevel: 'preliminar',
-    evidence: [GILBERT_2009],
+    evidenceLevel: 'moderada',
+    evidence: [
+      { citation: 'Kirby, J. N., Tellegen, C. L., & Steindl, S. R. (2017). A meta-analysis of compassion-based interventions: Current state of knowledge and future directions. Behavior Therapy, 48(6), 778–792.', doi: '10.1016/j.beth.2017.06.003' },
+      GILBERT_2009,
+    ],
     howItWorks: [
       'En la terapia centrada en la compasión, el «yo compasivo» es una forma de ser que se entrena, como un actor que ensaya un papel. No hace falta sentirlo de verdad al principio: se practica imaginándolo.',
       'Sus cualidades son la sabiduría (entender que el sufrimiento es parte de la vida), la fortaleza (poder estar con lo difícil) y la calidez (el deseo de ayudar).',

@@ -260,7 +260,7 @@ export const NECESIDADES_SEPARACION_PACK: ContentPack = {
       skills: ['compassion', 'attention'],
       summary: 'Para la pareja que no llevó el embarazo: darte permiso para tu propio duelo, mirar si estás haciendo de «fuerte» todo el tiempo y buscar un apoyo para ti.',
       mechanism: 'Quien no gestó suele poner su dolor en segundo plano para sostener al otro. Reconocer ese duelo y buscar apoyo propio evita que quede escondido y se haga más pesado.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [OBST_2020, BADENHORST_2006, DOKA_1989],
       howItWorks: [
         'Una revisión de estudios encontró que muchos varones viven un duelo intenso tras una pérdida de embarazo o la muerte de un bebé. A la vez, sienten que su papel es sostener y que su dolor importa menos (Obst y colaboradores, 2020).',

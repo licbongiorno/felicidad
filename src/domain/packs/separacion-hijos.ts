@@ -55,7 +55,7 @@ export const SEPARACION_HIJOS_PACK: ContentPack = {
       skills: ['compassion', 'resilience'],
       summary: 'Nombrar lo que se terminó, lo que extrañas y lo que no, y empezar a preguntarte quién eres ahora.',
       mechanism: 'Una separación es una pérdida, aunque la hayas elegido. Ponerle palabras al duelo y mirar tu identidad más allá de la pareja ayuda a ordenar el después.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [SBARRA_2015, EMERY_2012],
       howItWorks: [
         'Separarse es uno de los cambios más estresantes de la vida adulta. La mayoría de las personas se recupera con el tiempo. Pero un grupo sufre más y por más tiempo, y eso también puede afectar la salud del cuerpo (Sbarra y colaboradores, 2015).',
@@ -89,7 +89,7 @@ export const SEPARACION_HIJOS_PACK: ContentPack = {
       skills: ['compassion', 'attention'],
       summary: 'Preparar la charla para contarles la separación a tus hijos e hijas: juntos si se puede, con palabras según la edad y sin culpas.',
       mechanism: 'Una charla preparada y tranquila baja la confusión de los chicos. Saber qué cambia y qué sigue igual les da seguridad.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [EMERY_2012, KELLY_EMERY_2003],
       howItWorks: [
         'Los chicos se adaptan mejor cuando entienden qué pasa y qué va a cambiar en su vida diaria. Si se puede, conviene que los dos adultos les cuenten juntos, con un mensaje acordado y sin culpar al otro (Emery, 2012).',
@@ -124,8 +124,13 @@ export const SEPARACION_HIJOS_PACK: ContentPack = {
       skills: ['attention', 'resilience'],
       summary: 'Revisar con honestidad si los chicos quedan en medio del conflicto y elegir un cambio: sin mensajeros, sin hablar mal del otro y, si hace falta, con coparentalidad paralela.',
       mechanism: 'El conflicto entre los adultos pesa más en los chicos que la separación en sí. Sacarlos del medio baja ese peso.',
-      evidenceLevel: 'robusta',
-      evidence: [AMATO_2010, KELLY_EMERY_2003, HETHERINGTON_KELLY_2002],
+      evidenceLevel: 'moderada',
+      evidence: [
+        { citation: 'Wolchik, S. A., Sandler, I. N., Millsap, R. E., et al. (2002). Six-year follow-up of preventive interventions for children of divorce: A randomized controlled trial. JAMA, 288(15), 1874–1881.', note: 'Programa para madres y padres separados (New Beginnings), centrado en reducir la exposición de los chicos al conflicto.' },
+        AMATO_2010,
+        KELLY_EMERY_2003,
+        HETHERINGTON_KELLY_2002,
+      ],
       howItWorks: [
         'La investigación muestra que la mayoría de los chicos de padres separados se adapta bien con el tiempo. Uno de los mayores riesgos no es el divorcio en sí, sino el conflicto intenso y sostenido entre los adultos, sobre todo cuando los chicos quedan en medio (Kelly y Emery, 2003; Amato, 2010).',
         'Quedar en medio es, por ejemplo, llevar mensajes, escuchar críticas al otro, guardar secretos o sentir que hay que elegir. Esto genera culpa y lealtades divididas.',

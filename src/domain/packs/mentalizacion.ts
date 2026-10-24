@@ -164,7 +164,7 @@ export const MENTALIZACION_PACK: ContentPack = {
       skills: ['compassion', 'attention'],
       summary: 'Ante una conducta difícil de tu hijo o hija, pensar qué podía estar sintiendo, necesitando o queriendo, antes de responder a la conducta.',
       mechanism: 'Ver la mente detrás de la conducta ayuda a responder a la necesidad. Los chicos que se sienten comprendidos aprenden a entenderse a sí mismos.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [SLADE_2005, CAMOIRANO_2017],
       howItWorks: [
         'Arietta Slade llamó función reflexiva parental a la capacidad de pensar en la mente del hijo: qué siente, qué quiere, qué entiende. Se asocia a vínculos más seguros y a chicos que regulan mejor sus emociones (Camoirano, 2017).',

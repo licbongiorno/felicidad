@@ -71,7 +71,7 @@ export const SOLEDAD_MAYORES_PACK: ContentPack = {
       skills: ['attention'],
       summary: 'Mirar tu semana para ver si te falta compañía, cercanía o las dos cosas. Es el primer paso para saber qué buscar.',
       mechanism: 'Soledad y aislamiento son cosas distintas y no siempre van juntas. Saber cuál te pasa ayuda a elegir el paso que sirve.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [STEPTOE_2013, HAWKLEY_CACIOPPO_2010],
       howItWorks: [
         'El aislamiento es un dato: cuántas personas ves y con qué frecuencia. La soledad es un sentimiento: la distancia entre la compañía que tienes y la que quisieras.',
@@ -238,7 +238,7 @@ export const SOLEDAD_MAYORES_PACK: ContentPack = {
       skills: ['compassion', 'resilience'],
       summary: 'Elegir un saber de tu vida, como una receta, un oficio o una historia, y buscar a quién enseñárselo o dónde ofrecerlo como voluntario.',
       mechanism: 'Dar a otros lo que uno sabe da sentido y crea vínculos nuevos. El voluntariado se asocia a más bienestar en personas mayores.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [ANDERSON_2014, ERIKSON_1982],
       howItWorks: [
         'Erik Erikson llamó generatividad al deseo de cuidar y dejar algo a quienes vienen después (Erikson, 1982). No hace falta algo grande. Puede ser la receta de los ñoquis, cómo arreglar una canilla o cómo era el barrio antes.',

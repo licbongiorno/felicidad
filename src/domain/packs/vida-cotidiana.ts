@@ -177,7 +177,7 @@ export const VIDA_COTIDIANA_PACK: ContentPack = {
       skills: ['attention'],
       summary: 'Mirar durante una semana cuándo, para qué y cómo te deja el celular, sin cambiar nada todavía.',
       mechanism: 'Registrar el uso lo saca del piloto automático. Ver los disparadores y el efecto en el ánimo muestra qué conviene cambiar.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [WOOD_2016, DUKE_2017, ORBEN_2019_ADULTOS],
       howItWorks: [
         'Gran parte del uso del celular es un hábito. Wendy Wood muestra que los hábitos se disparan solos ante una señal: el aburrimiento, una fila, una notificación. No pasan por la decisión (Wood y Rünger, 2016).',
@@ -280,7 +280,12 @@ export const VIDA_COTIDIANA_PACK: ContentPack = {
       summary: 'Mirar con honestidad lo que te da y lo que te cuesta el alcohol, y qué te gustaría cambiar, sin sermones.',
       mechanism: 'Poner en palabras tus propias razones, a favor y en contra, aclara la ambivalencia. Las razones dichas por uno mismo empujan más el cambio que las impuestas.',
       evidenceLevel: 'moderada',
-      evidence: [MILLER_2013, KANER_2018, MARLATT_2002],
+      evidence: [
+        { citation: 'Miller, W. R., & Rose, G. S. (2015). Motivational interviewing and decisional balance: Contrasting responses to client ambivalence. Behavioural and Cognitive Psychotherapy, 43(2), 129–141.', note: 'En personas muy ambivalentes, el balance de pros y contras puede bajar el compromiso con el cambio.' },
+        MILLER_2013,
+        KANER_2018,
+        MARLATT_2002,
+      ],
       cautions: ALCOHOL_CAUTION,
       howItWorks: [
         'La entrevista motivacional parte de una idea simple: querer y no querer cambiar a la vez es normal. Presionar suele generar más resistencia. Escuchar las propias razones abre la puerta (Miller y Rollnick, 2013).',
@@ -288,6 +293,7 @@ export const VIDA_COTIDIANA_PACK: ContentPack = {
         'Las intervenciones breves que usan esta lógica reducen el consumo en personas que toman de más (Kaner y colaboradores, 2018). El enfoque de reducción de daños acepta metas distintas: tomar menos, tomar menos seguido o dejar (Marlatt y Witkiewitz, 2002).',
       ],
       tips: [
+        'Si al anotar pros y contras sientes que te convences más de seguir igual, no fuerces la lista. Vuelve a lo que te importa y a lo que te gustaría distinto: eso suele ayudar más que sumar argumentos.',
         'Escribe con tus palabras, no con las que crees que deberías usar.',
         'Si te cuesta, imagina qué te diría alguien que te quiere y no te juzga.',
         'No hace falta decidir nada hoy. Este ejercicio es para ver claro.',

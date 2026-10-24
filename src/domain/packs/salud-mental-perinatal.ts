@@ -224,7 +224,7 @@ export const SALUD_MENTAL_PERINATAL_PACK: ContentPack = {
       skills: ['attention', 'compassion'],
       summary: 'Cuando aparece un pensamiento horrible de daño al bebé: notarlo, nombrarlo como intrusivo, ver el miedo que trae y diferenciarlo de una intención o de una señal de alarma.',
       mechanism: 'Los intrusivos de daño son muy frecuentes después del parto. Lo que los vuelve un problema es leerlos como un peligro. Nombrarlos, sin pelear con ellos, baja el miedo y la culpa.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [FAIRBROTHER_2008, ABRAMOWITZ_2003],
       howItWorks: [
         'Después del parto, muchísimas madres y padres tienen pensamientos o imágenes de que el bebé sufre un daño, a veces por su propia mano. En un estudio, la gran mayoría de las madres primerizas tenía pensamientos no deseados de daño accidental y casi la mitad, de daño intencional (Fairbrother y Woody, 2008).',

@@ -107,7 +107,7 @@ export const SEXUALIDAD_PACK: ContentPack = {
       skills: ['attention', 'resilience'],
       summary: 'Notar cuándo la atención se va a «cómo me está yendo» y practicar volver a las sensaciones y al vínculo.',
       mechanism: 'La preocupación por rendir lleva la atención hacia afuera y lejos de las sensaciones. Eso baja la excitación y aumenta la preocupación. Volver al presente corta el ciclo.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [BARLOW_1986, MASTERS_1970],
       howItWorks: [
         'Masters y Johnson describieron que muchas personas, en la intimidad, se miran desde afuera como un espectador que evalúa. En lugar de sentir, se preguntan si lo están haciendo bien (Masters y Johnson, 1970).',

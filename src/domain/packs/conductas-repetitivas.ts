@@ -151,7 +151,7 @@ export const CONDUCTAS_REPETITIVAS_PACK: ContentPack = {
       skills: ['attention', 'resilience'],
       summary: 'Una herramienta de dos minutos para el momento en que aparecen las ganas: notar la señal, ocupar las manos y dejar que el impulso baje.',
       mechanism: 'Observar las ganas sin seguirlas, mientras las manos hacen la respuesta competidora, debilita el lazo entre el impulso y el hábito.',
-      evidenceLevel: 'preliminar',
+      evidenceLevel: 'moderada',
       evidence: [WOODS_2008, AZRIN_1973],
       cautions: CONSULTA,
       micro: true,

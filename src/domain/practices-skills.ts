@@ -1,5 +1,12 @@
 import type { Practice, Reference } from './types';
 
+/** La evidencia de las habilidades DBT es la de la terapia completa, de la que cada habilidad forma parte. */
+const STOREBO_2020: Reference = {
+  citation: 'Storebø, O. J., Stoffers-Winterling, J. M., Völlm, B. A., et al. (2020). Psychological therapies for people with borderline personality disorder. Cochrane Database of Systematic Reviews, CD012955.',
+  doi: '10.1002/14651858.CD012955.pub2',
+  note: 'La evidencia es de la terapia dialéctica conductual completa, de la que esta habilidad forma parte.',
+};
+
 /**
  * Habilidades de la terapia dialéctico-conductual (DBT) y entrenamiento asertivo:
  * kit de crisis (TIPP), acción opuesta y DEAR MAN.
@@ -52,8 +59,9 @@ export const SKILL_PRACTICES: Practice[] = [
     summary: 'Cuando una emoción no se ajusta a los hechos, hacer justo lo contrario de lo que te impulsa a hacer, con todo el cuerpo.',
     mechanism:
       'Cada emoción trae un impulso de acción (huir, atacar, esconderse). Actuar en sentido opuesto, cuando la emoción no está justificada, interrumpe el ciclo que la mantiene.',
-    evidenceLevel: 'preliminar',
+    evidenceLevel: 'moderada',
     evidence: [
+      STOREBO_2020,
       LINEHAN_2015,
       {
         citation:

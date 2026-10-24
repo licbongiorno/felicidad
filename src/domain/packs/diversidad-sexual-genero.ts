@@ -219,7 +219,7 @@ export const DIVERSIDAD_SEXUAL_GENERO_PACK: ContentPack = {
       skills: ['compassion', 'attention'],
       summary: 'Para familias y personas cercanas: cómo responder en el momento en que un hijo, hija o hije, o alguien querido, te cuenta que es LGBTIQ+.',
       mechanism: 'La primera respuesta se recuerda. Agradecer la confianza, escuchar y decir que el cariño sigue protege el vínculo, aunque tengas dudas.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [RYAN_2009, RYAN_2010, APA_2015_TRANS],
       howItWorks: [
         'Caitlin Ryan y su equipo estudiaron a jóvenes LGB y sus familias. Quienes vivieron mucho rechazo familiar en la adolescencia tuvieron bastante más depresión, consumo de drogas e intentos de suicidio que quienes vivieron poco (Ryan y colaboradores, 2009).',

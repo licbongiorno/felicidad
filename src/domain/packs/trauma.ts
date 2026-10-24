@@ -248,7 +248,7 @@ export const TRAUMA_PACK: ContentPack = {
       summary: 'Prepararte para acompañar a un familiar o amigo después de un hecho traumático: dar calma, ayuda concreta y compañía, sin pedir detalles.',
       mechanism:
         'Después de un trauma ayudan cinco cosas: sentirse a salvo, calmarse, sentirse capaz, estar conectado con otros y tener esperanza. Quien acompaña puede aportar a todas.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [HOBFOLL_2007, BONANNO_2004],
       howItWorks: [
         'Stevan Hobfoll y un grupo de especialistas revisaron la evidencia sobre qué ayuda después de desastres y hechos traumáticos. Propusieron cinco elementos: seguridad, calma, sentido de eficacia propia y de la comunidad, conexión y esperanza (Hobfoll y colaboradores, 2007).',

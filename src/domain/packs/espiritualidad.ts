@@ -138,7 +138,7 @@ export const ESPIRITUALIDAD_PACK: ContentPack = {
       skills: ['resilience', 'compassion'],
       summary: 'Revisar, sin juzgar tus creencias, cómo te ayudan y cómo te pesan en un momento difícil. Sirve para creyentes, no creyentes y agnósticos.',
       mechanism: 'Las creencias pueden ser un gran apoyo en las crisis, o una fuente de culpa y soledad. Notar cuál es cuál ayuda a apoyarse en lo que sostiene.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [PARGAMENT_2000, KOENIG_2012],
       howItWorks: [
         'Kenneth Pargament estudió cómo las personas usan su fe en momentos difíciles. Encontró formas que suelen ayudar, como sentirse acompañado, buscar sentido o apoyarse en una comunidad. Y formas que suelen pesar, como sentirse castigado o abandonado (Pargament y colaboradores, 2000).',

@@ -244,7 +244,7 @@ export const FERTILIDAD_ADOPCION_PACK: ContentPack = {
       skills: ['compassion', 'attention'],
       summary: 'Para familias adoptivas: preparar con palabras simples la historia de adopción de tu hijo o hija, y ajustarla según la edad.',
       mechanism: 'Hablar de la adopción es un proceso de años, no una sola charla. Tener las palabras pensadas de antemano baja tu ansiedad y deja la puerta abierta a sus preguntas.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [BRODZINSKY_2011, GROTEVANT_2013],
       howItWorks: [
         'David Brodzinsky estudió cómo entienden la adopción los chicos. A los tres o cuatro años pueden repetir la palabra sin saber qué quiere decir. Hacia la escuela primaria entienden que, para llegar a su familia, hubo otra familia antes. Ahí pueden aparecer preguntas, tristeza o enojo (Brodzinsky, 2011).',

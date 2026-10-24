@@ -127,7 +127,7 @@ export const NECESIDADES_LIMITES_PACK: ContentPack = {
       skills: ['resilience', 'compassion'],
       summary: 'Decir que no en una frase corta y amable, repetirla con calma si insisten y responder a las críticas sin pelear ni ceder.',
       mechanism: 'Una negativa breve, sin justificarse de más, deja menos lugar a la discusión. Repetirla y dar la razón en lo que tenga de cierto la crítica baja la tensión sin cambiar la decisión.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [SMITH_1975, SPEED_2018],
       howItWorks: [
         'Muchas personas dicen que no con muchas disculpas y explicaciones. Cada explicación es algo más para discutir. Un «no» amable es corto: agradece, dice que no y, si quieres, ofrece otra cosa.',
@@ -195,7 +195,7 @@ export const NECESIDADES_LIMITES_PACK: ContentPack = {
       skills: ['attention'],
       summary: 'Anotar unos minutos por día qué notaste, cuánto te afectó y qué ayudó, y llevar un resumen corto a tu profesional.',
       mechanism: 'La memoria resume y olvida, sobre todo bajo estrés. Unos datos simples, anotados cerca del momento, dan al profesional una imagen más fiel de cómo estuviste.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [KOROTITSCH_1999, ELWYN_2012],
       howItWorks: [
         'En la consulta es común decir «estuve más o menos» y olvidar lo importante. Un registro corto ayuda a contar qué pasó, cuándo, cuánto y qué cambió en tu vida.',

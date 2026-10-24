@@ -54,7 +54,7 @@ export const VARONES_PACK: ContentPack = {
       skills: ['resilience', 'compassion'],
       summary: 'Revisar las frases que aprendiste sobre cómo debe ser un hombre, ver qué te dan y qué te cuestan, y elegir cuáles quieres seguir.',
       mechanism: 'Los mandatos se aprenden sin darse cuenta. Verlos con claridad permite quedarse con lo que sirve y soltar lo que hace daño.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [WONG_2017, APA_2018],
       howItWorks: [
         '«Los hombres no lloran.» «Arréglatelas solo.» «No muestres debilidad.» Muchos varones crecen con frases así. Nadie las elige: se aprenden en casa, en la escuela, en la cancha.',
@@ -83,7 +83,7 @@ export const VARONES_PACK: ContentPack = {
       skills: ['attention', 'compassion'],
       summary: 'Cuando aparece el enojo o la irritación, buscar qué otra emoción hay debajo y ponerle un nombre preciso.',
       mechanism: 'Nombrar con precisión lo que sientes ayuda a regularlo. A veces el enojo tapa tristeza, miedo, vergüenza o cansancio.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [COCHRAN_2000, APA_2018],
       howItWorks: [
         'A muchos varones se les permitió sólo una emoción: el enojo. La tristeza, el miedo o la ternura se escondían. Con los años, el enojo puede volverse la puerta de salida de todo.',
@@ -112,7 +112,7 @@ export const VARONES_PACK: ContentPack = {
       skills: ['attention', 'resilience'],
       summary: 'Revisar señales de malestar que no parecen tristeza, como irritabilidad, más alcohol, trabajar sin parar o buscar riesgo, y decidir qué hacer.',
       mechanism: 'En muchos varones la depresión se muestra hacia afuera. Reconocer esas señales permite pedir ayuda antes.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [COCHRAN_2000, SEIDLER_2016],
       cautions: CRISIS,
       howItWorks: [
@@ -143,7 +143,7 @@ export const VARONES_PACK: ContentPack = {
       skills: ['resilience', 'compassion'],
       summary: 'Preparar una conversación para pedir ayuda a alguien de confianza o a un profesional, con palabras que te queden cómodas.',
       mechanism: 'Pedir ayuda cuesta menos cuando el pedido es concreto y lo ves como algo que también harías por otro.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [ADDIS_2003, SEIDLER_2016],
       howItWorks: [
         'Michael Addis y James Mahalik mostraron que pedir ayuda depende del contexto. Cuesta más si el problema parece vergonzoso, si sientes que quedarás en deuda o si tu entorno lo ve mal. Cuesta menos si es algo común y se puede devolver (Addis y Mahalik, 2003).',

@@ -71,7 +71,7 @@ export const METACOGNICION_VINCULOS_PACK: ContentPack = {
       skills: ['attention', 'resilience'],
       summary: 'Notar que empieza la preocupación o la rumiación, dejarla para un momento fijo del día y volver a lo que estabas haciendo.',
       mechanism: 'Al aplazar la preocupación compruebas que puedes dejarla, y se debilita la creencia de que es incontrolable.',
-      evidenceLevel: 'preliminar',
+      evidenceLevel: 'moderada',
       evidence: [WELLS_2009, BORKOVEC_1983, MCGOWAN_2013, NORMANN_2018],
       howItWorks: [
         'Adrian Wells, creador de la terapia metacognitiva, propone que el problema no es tener pensamientos negativos. Todos los tenemos. El problema es quedarse enganchado a ellos durante mucho tiempo, dándoles vueltas.',
@@ -105,7 +105,7 @@ export const METACOGNICION_VINCULOS_PACK: ContentPack = {
       skills: ['attention', 'resilience'],
       summary: 'Ver un pensamiento como un hecho de la mente que viene y va, sin hacer nada con él: ni seguirlo, ni pelear, ni analizarlo.',
       mechanism: 'Separarte del pensamiento y no responderle corta la cadena de preocupación o rumiación desde su inicio.',
-      evidenceLevel: 'preliminar',
+      evidenceLevel: 'moderada',
       evidence: [WELLS_2005, WELLS_2009, NORMANN_2018],
       howItWorks: [
         'Wells llama «mindfulness desapegado» a dos cosas juntas. La primera es darte cuenta de que un pensamiento es solo un pensamiento. La segunda es no responderle: no seguirlo, no analizarlo y no intentar sacarlo de la mente.',
@@ -249,7 +249,7 @@ export const METACOGNICION_VINCULOS_PACK: ContentPack = {
       skills: ['attention', 'compassion'],
       summary: 'Repasar las personas importantes de tu vida y ver si tu ánimo se relaciona con una de cuatro áreas: un cambio de rol, un conflicto, un duelo o la soledad.',
       mechanism: 'Ver qué área de tus relaciones pesa más ayuda a elegir un foco concreto para mejorar el ánimo.',
-      evidenceLevel: 'preliminar',
+      evidenceLevel: 'moderada',
       evidence: [KLERMAN_1984, WEISSMAN_2000, CUIJPERS_2016],
       howItWorks: [
         'La terapia interpersonal nació para tratar la depresión. Sus creadores, Gerald Klerman y Myrna Weissman, partieron de una idea simple: el ánimo y los vínculos se afectan entre sí.',
