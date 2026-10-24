@@ -165,7 +165,7 @@ export const SALUD_TRABAJO_CRIANZA_PACK: ContentPack = {
       skills: ['resilience', 'attention'],
       summary: 'Revisar las seis áreas del trabajo que más pesan en el burnout y elegir un solo punto donde empezar.',
       mechanism: 'Ver de dónde viene el desgaste lo saca del terreno de la culpa personal y muestra qué se puede cambiar, pedir o soltar.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [MASLACH_2016, LEITER_2004, MASLACH_2001],
       howItWorks: [
         'Christina Maslach y Michael Leiter estudiaron el burnout durante décadas. Lo describen con tres caras: agotamiento, distancia o cinismo hacia el trabajo y sensación de que lo que haces no sirve.',

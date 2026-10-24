@@ -235,7 +235,7 @@ const practices: Practice[] = [
     skills: ['attention', 'resilience'],
     summary: 'Diez minutos antes de acostarte para cerrar el día, aflojar el cuerpo y bajar el ritmo, siempre fuera de la cama.',
     mechanism: 'Desactivación nocturna: un puente entre el día y el sueño reduce la activación física y mental que impide dormirse.',
-    evidenceLevel: 'moderada',
+    evidenceLevel: 'preliminar',
     evidence: [CARNEY_2006, EDINGER_2021, ZACCARO_2018],
     howItWorks: [
       'Pasar de golpe de la pantalla a la cama es como frenar un auto en seco. La mente sigue a toda velocidad. Una rutina de bajada da al cuerpo y a la mente un tiempo para cambiar de marcha.',
@@ -492,7 +492,7 @@ const practices: Practice[] = [
     skills: ['attention', 'resilience'],
     summary: 'Respirar con el abdomen mientras acompañas el aire con movimientos lentos de los brazos.',
     mechanism: 'La respiración lenta y abdominal activa la rama del sistema nervioso que calma; el movimiento marca el ritmo y sostiene la atención.',
-    evidenceLevel: 'moderada',
+    evidenceLevel: 'preliminar',
     evidence: [MA_2017, ZACCARO_2018],
     howItWorks: [
       'Cuando estamos tensos, respiramos rápido y con el pecho. La respiración diafragmática usa el músculo que está debajo de los pulmones: el abdomen sube al inhalar y baja al exhalar.',

@@ -65,7 +65,7 @@ export const ANSIEDAD_SOCIAL_PACK: ContentPack = {
         'Dibujar, con una situación reciente, el círculo que mantiene la ansiedad social: lo que temes, dónde pones la atención, qué haces para protegerte y cómo te imaginas que te ven.',
       mechanism:
         'Ver el círculo con un ejemplo propio muestra que la ansiedad no se mantiene por la situación, sino por lo que haces dentro de ella. Eso indica por dónde cortarlo.',
-      evidenceLevel: 'robusta',
+      evidenceLevel: 'moderada',
       evidence: [CLARK_WELLS_1995, CLARK_2006, MAYO_WILSON_2014],
       howItWorks: [
         'La timidez es un rasgo común y no es un problema en sí. La ansiedad social es cuando el miedo a quedar mal es tan fuerte que te hace evitar o sufrir mucho en situaciones con otras personas.',
@@ -135,7 +135,7 @@ export const ANSIEDAD_SOCIAL_PACK: ContentPack = {
       summary: 'Un experimento: anotar qué temes, entrar en una situación social dejando una conducta de seguridad y comparar después lo que pasó.',
       mechanism:
         'Las conductas de seguridad impiden comprobar que lo temido no pasa. Soltarlas a propósito, como un experimento, deja aprender algo nuevo.',
-      evidenceLevel: 'robusta',
+      evidenceLevel: 'moderada',
       evidence: [MCMANUS_2008, CLARK_2006, CLARK_WELLS_1995],
       howItWorks: [
         'Freda McManus y su equipo pidieron a personas con ansiedad social que conversaran usando y sin usar sus conductas de seguridad. Sin ellas, la ansiedad y las predicciones negativas bajaron más (McManus y colaboradores, 2008).',
@@ -203,8 +203,13 @@ export const ANSIEDAD_SOCIAL_PACK: ContentPack = {
       summary: 'Cuando sientes vergüenza por algo que dijiste o hiciste delante de otros, responderte con el tono que usarías con alguien que quieres.',
       mechanism:
         'La vergüenza activa la amenaza y la autocrítica. Un tono amable activa el sistema de calma y hace más fácil volver a intentar.',
-      evidenceLevel: 'preliminar',
-      evidence: [GILBERT_2009, NEFF_2003],
+      evidenceLevel: 'moderada',
+      evidence: [
+        { citation: 'Ferrari, M., Hunt, C., Harrysunker, A., Abbott, M. J., Beath, A. P., & Einstein, D. A. (2019). Self-compassion interventions and psychosocial outcomes: A meta-analysis of RCTs. Mindfulness, 10, 1455–1473.' },
+        { citation: 'Kirby, J. N., Tellegen, C. L., & Steindl, S. R. (2017). A meta-analysis of compassion-based interventions: Current state of knowledge and future directions. Behavior Therapy, 48(6), 778–792.', doi: '10.1016/j.beth.2017.06.003' },
+        GILBERT_2009,
+        NEFF_2003,
+      ],
       howItWorks: [
         'La vergüenza es la sensación de que hay algo malo en ti y que los demás lo ven. En la ansiedad social aparece mucho, y suele venir con una voz crítica dura.',
         'Paul Gilbert propone la terapia centrada en la compasión para la vergüenza y la autocrítica. Busca activar el sistema de calma y cuidado, no sólo discutir los pensamientos (Gilbert, 2009).',

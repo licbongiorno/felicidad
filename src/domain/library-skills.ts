@@ -73,7 +73,7 @@ export const SKILL_ARTICLES: Article[] = [
       {
         heading: 'Tres objetivos en cada conversación',
         paragraphs: [
-          'La terapia dialéctico-conductual distingue tres objetivos que conviene equilibrar. Conseguir lo que pides: la guía DEAR MAN. Cuidar la relación: ser amable, mostrar interés y validar al otro. Mantener el respeto propio: ser justo/a contigo, no disculparte de más y defender tus valores.',
+          'La terapia dialéctico-conductual distingue tres objetivos que conviene equilibrar. Conseguir lo que pides: la guía DEAR MAN. Cuidar la relación: ser amable, mostrar interés y validar al otro. Mantener el respeto propio: actuar con justicia contigo, no disculparte de más y defender tus valores.',
           'Antes de una conversación difícil, pregúntate cuál de los tres importa más esta vez. A veces conviene ceder en la petición para cuidar el vínculo; otras, sostener un límite aunque incomode.',
         ],
       },
@@ -219,7 +219,7 @@ export const SKILL_ARTICLES: Article[] = [
       {
         heading: 'Efectividad interpersonal',
         paragraphs: [
-          'Las relaciones son una fuente frecuente de emociones intensas. DEAR MAN ayuda a pedir lo que necesitas o a decir que no. GIVE cuida la relación: ser amable, mostrar interés y validar. FAST cuida tu respeto propio: ser justo/a contigo, no disculparte de más y mantener tus valores.',
+          'Las relaciones son una fuente frecuente de emociones intensas. DEAR MAN ayuda a pedir lo que necesitas o a decir que no. GIVE cuida la relación: ser amable, mostrar interés y validar. FAST cuida tu respeto propio: actuar con justicia contigo, no disculparte de más y mantener tus valores.',
         ],
       },
       {

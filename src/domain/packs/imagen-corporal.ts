@@ -124,7 +124,7 @@ export const IMAGEN_CORPORAL_PACK: ContentPack = {
       skills: ['attention'],
       summary: 'Revisar qué cuentas y contenidos te hacen sentir peor con tu cuerpo, y armar un entorno de redes que te trate mejor.',
       mechanism: 'Las comparaciones hacia arriba con imágenes retocadas empeoran la imagen corporal. Cambiar lo que miras cambia con qué te comparas.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [FARDOULY_2015, TIGGEMANN_2015],
       howItWorks: [
         'En un experimento, mirar redes sociales unos minutos aumentó el malestar con la apariencia en mujeres que tendían a compararse (Fardouly y colaboradores, 2015). Las imágenes de «inspiración fitness» también empeoraron la imagen corporal, aunque prometían lo contrario (Tiggemann y Zaccardo, 2015).',
@@ -216,7 +216,7 @@ export const IMAGEN_CORPORAL_PACK: ContentPack = {
       skills: ['compassion', 'attention'],
       summary: 'Revisar los comentarios sobre peso, comida y apariencia que circulan en tu casa y acordar una forma más cuidadosa de hablar.',
       mechanism: 'Los comentarios de la familia sobre el peso se asocian a más insatisfacción corporal y conductas alimentarias de riesgo en los chicos. Cambiar la conversación protege.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [NEUMARK_2010, TYLKA_2015],
       howItWorks: [
         'Dianne Neumark-Sztainer estudió durante años a adolescentes y sus familias. Encontró que los comentarios de los padres sobre el peso, propio o de los hijos, se asocian a más insatisfacción corporal y a más dietas y conductas alimentarias de riesgo (Neumark-Sztainer y colaboradores, 2010).',

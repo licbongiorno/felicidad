@@ -477,7 +477,7 @@ const BASE_ARTICLES: Article[] = [
       {
         heading: 'Señales para ajustar',
         paragraphs: [
-          'Si una práctica te deja más agitado/a de lo que empezaste de forma repetida, si aparecen recuerdos intrusivos, sensación de irrealidad o desconexión del cuerpo, o si el sueño empeora: reduce la duración, mantén los ojos abiertos, elige prácticas con ancla externa (sonidos, contacto de los pies) o constructivas, y coméntalo con un profesional.',
+          'Si una práctica te deja con más agitación que al empezar de forma repetida, si aparecen recuerdos intrusivos, sensación de irrealidad o desconexión del cuerpo, o si el sueño empeora: reduce la duración, mantén los ojos abiertos, elige prácticas con ancla externa (sonidos, contacto de los pies) o constructivas, y coméntalo con un profesional.',
         ],
       },
       {

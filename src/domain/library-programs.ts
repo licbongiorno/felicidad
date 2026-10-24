@@ -13,13 +13,13 @@ export const PROGRAM_ARTICLES: Article[] = [
       'La terapia cognitivo-conductual para el insomnio (TCC-I) es el tratamiento de primera elección, por delante de los fármacos.',
       'Sus claves: un horario fijo para levantarse, usar la cama sólo para dormir y no pelear con el sueño.',
       'Las primeras semanas pueden ser más cansadas antes de mejorar.',
-      'La restricción de sueño estricta conviene hacerla con un/a profesional.',
+      'La restricción de sueño estricta conviene hacerla con un profesional de la salud.',
     ],
     sections: [
       {
         heading: 'Por qué el insomnio se mantiene',
         paragraphs: [
-          'El insomnio suele empezar por algo concreto: un estrés, una enfermedad, un cambio de horario. Lo que hace que dure meses es otra cosa: lo que hacemos para compensarlo. Acostarse antes, quedarse en la cama despierto/a o dormir siesta parecen lógicos, pero debilitan la presión de sueño y enseñan al cerebro que la cama es un lugar de vigilia.',
+          'El insomnio suele empezar por algo concreto: un estrés, una enfermedad, un cambio de horario. Lo que hace que dure meses es otra cosa: lo que hacemos para compensarlo. Acostarse antes, quedarse en la cama sin dormir o dormir siesta parecen lógicos, pero debilitan la presión de sueño y enseñan al cerebro que la cama es un lugar de vigilia.',
           'A eso se suma la preocupación por dormir. «Si no duermo, mañana no rindo» activa el cuerpo justo cuando necesita calmarse. El sueño no se puede forzar: cuanto más se busca, más se escapa.',
         ],
       },
@@ -35,7 +35,7 @@ export const PROGRAM_ARTICLES: Article[] = [
       {
         heading: 'Lo que dice la evidencia',
         paragraphs: [
-          'El metaanálisis de Trauer y colaboradores (2015) encontró que la TCC-I reduce el tiempo que se tarda en dormirse y el tiempo despierto/a por la noche, y que sus efectos se mantienen en el tiempo. Por eso las guías clínicas la recomiendan como primer tratamiento para el insomnio crónico (Edinger et al., 2021).',
+          'El metaanálisis de Trauer y colaboradores (2015) encontró que la TCC-I reduce el tiempo que se tarda en dormirse y el tiempo de vigilia por la noche, y que sus efectos se mantienen en el tiempo. Por eso las guías clínicas la recomiendan como primer tratamiento para el insomnio crónico (Edinger et al., 2021).',
         ],
       },
     ],
@@ -93,7 +93,7 @@ export const PROGRAM_ARTICLES: Article[] = [
     ],
     caveat: {
       title: 'Cuándo pedir ayuda',
-      body: 'Si la autocrítica es constante, viene con tristeza profunda o con ganas de hacerte daño, este recorrido no basta: consulta a un/a profesional. Si alguien de tu entorno te desvaloriza a menudo, el problema no es tu autoestima: busca apoyo para protegerte.',
+      body: 'Si la autocrítica es constante, viene con tristeza profunda o con ganas de hacerte daño, este recorrido no basta: consulta a un profesional de la salud mental. Si alguien de tu entorno te desvaloriza a menudo, el problema no es tu autoestima: busca apoyo para protegerte.',
     },
     related: { practices: ['pausa-autocompasion', 'fortalezas', 'mano-en-el-pecho'], articles: ['autocompasion', 'procrastinacion-y-perfeccionismo'] },
     references: [
@@ -114,11 +114,11 @@ export const PROGRAM_ARTICLES: Article[] = [
   {
     id: 'ansiedad-social',
     title: 'Ansiedad social',
-    subtitle: 'El miedo a ser juzgado/a, qué lo mantiene y cómo se trata.',
+    subtitle: 'El miedo al juicio ajeno, qué lo mantiene y cómo se trata.',
     category: 'Relaciones',
     readingMin: 6,
     keyPoints: [
-      'La ansiedad social es el miedo intenso a ser evaluado/a de forma negativa por otros.',
+      'La ansiedad social es el miedo intenso a que otros te evalúen de forma negativa.',
       'Lo mantienen tres cosas: fijarse en uno mismo, las conductas de seguridad y la evitación.',
       'La terapia cognitivo-conductual es el tratamiento con más evidencia.',
       'Se mejora con experimentos: entrar en las situaciones, dejar las conductas de seguridad y comprobar qué pasa.',
@@ -135,13 +135,13 @@ export const PROGRAM_ARTICLES: Article[] = [
         heading: 'Cómo se trata',
         paragraphs: [
           'Un gran metaanálisis en red comparó los tratamientos para la ansiedad social en adultos: la terapia cognitivo-conductual individual fue la intervención psicológica más eficaz (Mayo-Wilson et al., 2014).',
-          'Sus herramientas principales: llevar la atención hacia fuera (a la conversación, a la otra persona), dejar las conductas de seguridad y hacer experimentos conductuales en situaciones reales, de menor a mayor dificultad. Las habilidades de comunicación, como DEAR MAN, ayudan a sentirse más preparado/a.',
+          'Sus herramientas principales: llevar la atención hacia fuera (a la conversación, a la otra persona), dejar las conductas de seguridad y hacer experimentos conductuales en situaciones reales, de menor a mayor dificultad. Las habilidades de comunicación, como DEAR MAN, ayudan a sentirse con más recursos.',
         ],
       },
     ],
     caveat: {
       title: 'Timidez no es lo mismo',
-      body: 'Sentir algo de nervios con gente nueva es normal. Si la ansiedad te impide estudiar, trabajar o tener relaciones, consulta a un/a profesional: la ansiedad social tiene tratamiento eficaz.',
+      body: 'Sentir algo de nervios con gente nueva es normal. Si la ansiedad te impide estudiar, trabajar o tener relaciones, consulta a un profesional de la salud mental: la ansiedad social tiene tratamiento eficaz.',
     },
     related: { practices: ['atencion-sonidos', 'respiracion-resonante', 'dear-man', 'give-fast'], articles: ['preocupacion-y-ansiedad', 'asertividad-y-limites'] },
     references: [
@@ -170,7 +170,7 @@ export const PROGRAM_ARTICLES: Article[] = [
         heading: 'Por qué repetimos',
         paragraphs: [
           'A veces terminamos una y otra vez en el mismo lugar: cuidando a todos menos a nosotros, alejándonos cuando alguien se acerca, exigiéndonos sin descanso. No es falta de voluntad. Esas formas de reaccionar se aprendieron en algún momento porque servían, y siguen apareciendo aunque hoy ya no ayuden.',
-          'La terapia de esquemas, creada por Jeffrey Young, llama «esquemas» a esos patrones profundos de creencias y emociones. Se forman cuando algunas necesidades emocionales básicas no se cubrieron: sentirse seguro/a y querido/a, tener autonomía, poder expresar lo que se siente, disfrutar y tener límites realistas.',
+          'La terapia de esquemas, creada por Jeffrey Young, llama «esquemas» a esos patrones profundos de creencias y emociones. Se forman cuando algunas necesidades emocionales básicas no se cubrieron: sentir seguridad y cariño, tener autonomía, poder expresar lo que se siente, disfrutar y tener límites realistas.',
         ],
       },
       {
@@ -183,7 +183,7 @@ export const PROGRAM_ARTICLES: Article[] = [
       {
         heading: 'Cómo explorar sin hacerte daño',
         paragraphs: [
-          'Empieza por situaciones de intensidad media. Escribe con curiosidad, como si investigaras a alguien que te importa. Si aparece algo muy doloroso, para: no hace falta resolverlo solo/a.',
+          'Empieza por situaciones de intensidad media. Escribe con curiosidad, como si investigaras a alguien que te importa. Si aparece algo muy doloroso, para: no hace falta resolverlo sin ayuda.',
           'La terapia de esquemas completa, con terapeuta, mostró buenos resultados en ensayos clínicos (Bamelis et al., 2014). Los ejercicios de la app no son esa terapia: son una forma de conocerte mejor y de llevar preguntas a tu proceso.',
         ],
       },

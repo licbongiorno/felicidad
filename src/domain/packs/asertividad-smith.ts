@@ -47,7 +47,7 @@ export const ASERTIVIDAD_SMITH_PACK: ContentPack = {
       skills: ['compassion', 'resilience'],
       summary: 'Repasar algunos derechos asertivos y aprender a notar cuándo te hacen sentir culpa para que digas que sí.',
       mechanism: 'Saber que tienes derecho a decidir por ti baja la culpa automática. Nombrar la culpa usada como presión permite elegir en lugar de ceder.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [SMITH_1975, SPEED_2018],
       howItWorks: [
         'Manuel Smith, psicólogo de Estados Unidos, escribió en 1975 un libro sobre decir que no sin culpa (Smith, 1975). Propuso que muchas personas ceden porque aprendieron en la infancia a sentir culpa, ansiedad o torpeza cuando eligen por sí mismas. Otras personas, a veces sin darse cuenta, usan esas emociones para que hagamos lo que quieren.',
@@ -79,7 +79,7 @@ export const ASERTIVIDAD_SMITH_PACK: ContentPack = {
       skills: ['compassion', 'resilience'],
       summary: 'Reconocer con calma un error real, sin pedir perdón de más, sin justificarte y sin decir que eres un desastre.',
       mechanism: 'Aceptar un error cierto en pocas palabras corta la discusión y la culpa. Separar el hecho de tu valor como persona baja la vergüenza.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [SMITH_1975, SPEED_2018],
       howItWorks: [
         'Cuando alguien señala un error tuyo, hay dos caminos comunes. Uno es hundirse: pedir perdón muchas veces y decir que no sirves para nada. El otro es defenderse: dar mil razones o atacar de vuelta.',
@@ -113,7 +113,7 @@ export const ASERTIVIDAD_SMITH_PACK: ContentPack = {
       skills: ['attention', 'resilience'],
       summary: 'Ante una crítica vaga, pedir con calma que te digan más, para saber si es útil o si sólo busca que cedas.',
       mechanism: 'Preguntar con curiosidad, en vez de defenderte, baja la tensión. La respuesta muestra si hay algo concreto que cambiar o si la crítica es una presión.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [SMITH_1975, SPEED_2018],
       howItWorks: [
         'Algunas críticas son vagas: «Siempre haces lo mismo», «No es manera». Cuesta saber qué quiere la otra persona. Si te defiendes enseguida, la discusión crece y nunca se aclara.',
@@ -146,7 +146,7 @@ export const ASERTIVIDAD_SMITH_PACK: ContentPack = {
       skills: ['resilience', 'compassion'],
       summary: 'Buscar un punto medio en un conflicto práctico, sabiendo de antemano qué cosas no negocias porque tocan tu respeto propio.',
       mechanism: 'Negociar lo práctico permite que las dos partes ganen algo. Separar antes lo negociable de lo que no lo es evita ceder por culpa.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [SMITH_1975, SPEED_2018, LINEHAN_2015],
       howItWorks: [
         'Decir que no siempre no es la meta. Muchos conflictos son prácticos: quién lleva a los chicos, cuándo se paga una deuda, cómo se reparten las tareas. Ahí suele convenir un acuerdo.',
@@ -179,7 +179,7 @@ export const ASERTIVIDAD_SMITH_PACK: ContentPack = {
       skills: ['attention', 'compassion'],
       summary: 'Escuchar los datos que la otra persona ofrece sin que preguntes, retomarlos y contar algo tuyo para que la charla siga.',
       mechanism: 'Retomar lo que el otro cuenta muestra interés. Contar algo propio, en pequeñas dosis, da confianza y hace que la charla sea de ida y vuelta.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [SMITH_1975, SPEED_2018],
       howItWorks: [
         'La asertividad no es sólo decir que no. También es animarse a hablar con otras personas, en una fiesta, en el trabajo o con una persona nueva.',

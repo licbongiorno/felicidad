@@ -51,7 +51,7 @@ export const EXTRA_CARDS: PhilosophyCard[] = [
     text: 'La alegría es el paso del hombre de una menor a una mayor perfección.',
     textType: 'cita',
     source: 'Ética, III, Definiciones de los afectos, II',
-    reflection: '¿Qué te hace sentir más capaz, más vivo/a, más tú?',
+    reflection: '¿Qué te hace sentir más capaz, con más vida, más tú?',
     microPractice: 'Haz hoy una cosa pequeña que aumente tu potencia de actuar.',
   },
   // ------------------------------------------------------------ foucault

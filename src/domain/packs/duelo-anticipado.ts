@@ -219,7 +219,7 @@ export const DUELO_ANTICIPADO_PACK: ContentPack = {
       skills: ['resilience', 'compassion'],
       summary: 'Revisar cómo estás cuando cuidas a alguien que se está muriendo, elegir un cuidado mínimo para hoy y pedir un relevo concreto.',
       mechanism: 'En las últimas semanas el cuidado suele volverse más intenso. Un cuidado mínimo y un relevo a tiempo evitan llegar al límite y te dejan estar con más presencia.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [PINQUART_2003, COELHO_2018],
       howItWorks: [
         'Quienes cuidan a un familiar tienen más estrés y depresión que quienes no cuidan, y su salud física también se resiente (Pinquart y Sörensen, 2003).',

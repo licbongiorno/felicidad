@@ -62,7 +62,7 @@ export const PLUS_PRACTICES: Practice[] = [
       { title: 'Achicarlo', instruction: 'Reduce ese hábito a una versión de dos minutos o menos. ¿Cuál sería la versión más pequeña posible?', durationSec: 60, kind: 'reflection' },
       { title: 'El ancla', instruction: 'Elige algo que ya haces todos los días. Ese será el momento de tu hábito.', durationSec: 45, kind: 'reflection' },
       { title: 'El plan', instruction: 'Arma la frase: «Cuando termine de…, voy a…». Dila en voz baja dos veces.', durationSec: 45, kind: 'reflection' },
-      { title: 'El obstáculo', instruction: '¿Qué podría impedírtelo? Piensa qué harás si aparece. Por ejemplo: «Si estoy muy cansado/a, haré solo un minuto».', durationSec: 60, kind: 'reflection' },
+      { title: 'El obstáculo', instruction: '¿Qué podría impedírtelo? Piensa qué harás si aparece. Por ejemplo: «Si tengo mucho cansancio, haré solo un minuto».', durationSec: 60, kind: 'reflection' },
       { title: 'Ensayarlo', instruction: 'Imagina con detalle el momento del ancla y cómo haces el hábito mínimo. Nota la satisfacción de haberlo hecho.', durationSec: 45, kind: 'reflection' },
     ],
   },
@@ -97,7 +97,7 @@ export const PLUS_PRACTICES: Practice[] = [
     skills: ['resilience'],
     summary: 'Para la postergación: comprometerte solo a empezar durante cinco minutos.',
     mechanism: 'Empezar es lo más difícil. Bajar la exigencia a cinco minutos reduce el malestar anticipado, y una vez en marcha suele ser más fácil seguir.',
-    evidenceLevel: 'moderada',
+    evidenceLevel: 'preliminar',
     evidence: [STEEL_2007],
     micro: true,
     howItWorks: [
@@ -147,7 +147,7 @@ export const PLUS_PRACTICES: Practice[] = [
     family: 'constructive',
     skills: ['resilience'],
     summary: 'Elegir un paso concreto hacia lo que te importa, aunque aparezcan dudas o miedo.',
-    mechanism: 'Actuar según los valores, con las emociones difíciles presentes, amplía la vida en lugar de esperar a sentirse listo/a.',
+    mechanism: 'Actuar según los valores, con las emociones difíciles presentes, amplía la vida en lugar de esperar a sentir que ya es el momento.',
     evidenceLevel: 'moderada',
     evidence: [HAYES_2012],
     howItWorks: [
@@ -158,10 +158,10 @@ export const PLUS_PRACTICES: Practice[] = [
     obstacles: [{ q: 'No sé cuáles son mis valores.', a: 'Prueba primero la práctica «Brújula de valores». También puedes preguntarte qué te gustaría que dijeran de ti las personas que te quieren.' }],
     steps: [
       { title: 'Llegar', instruction: 'Respira despacio y siente el apoyo del cuerpo.', durationSec: 40, kind: 'breath' },
-      { title: 'Un valor', instruction: 'Elige un valor importante para ti ahora, como cuidar mi salud, ser buen amigo/a o aprender.', durationSec: 60, kind: 'reflection' },
+      { title: 'Un valor', instruction: 'Elige un valor importante para ti ahora, como cuidar mi salud, cuidar las amistades o aprender.', durationSec: 60, kind: 'reflection' },
       { title: 'Un paso', instruction: '¿Qué paso pequeño podrías dar hoy o mañana en esa dirección?', durationSec: 60, kind: 'reflection' },
       { title: 'Lo que aparece', instruction: 'Imagina que das ese paso. ¿Qué pensamientos o emociones aparecen? Déjalos estar, como pasajeros en un colectivo.', durationSec: 75, kind: 'reflection' },
-      { title: 'Comprometerte', instruction: 'Di para ti: «Estoy dispuesto/a a sentir esto para acercarme a lo que me importa».', durationSec: 40, kind: 'reflection' },
+      { title: 'Comprometerte', instruction: 'Di para ti: «Acepto sentir esto para acercarme a lo que me importa».', durationSec: 40, kind: 'reflection' },
       { title: 'Cuándo', instruction: 'Elige el momento exacto en que darás el paso.', durationSec: 30, kind: 'reflection' },
     ],
   },
@@ -204,7 +204,7 @@ export const PLUS_PRACTICES: Practice[] = [
       'La respiración de ritmo calmante combina una respiración lenta con una expresión facial y un tono de voz interno amables. Es la base sobre la que se construyen las demás prácticas de compasión.',
     ],
     tips: ['Una leve sonrisa y la mandíbula suelta ayudan.', 'No busques relajarte del todo: basta con un poco más de calma.', 'Úsala antes de una conversación difícil o al notar la autocrítica.'],
-    obstacles: [{ q: 'La calidez hacia mí me resulta rara.', a: 'Es muy frecuente, sobre todo si estás acostumbrado/a a exigirte. Empieza solo con la respiración y agrega la calidez de a poco.' }],
+    obstacles: [{ q: 'La calidez hacia mí me resulta rara.', a: 'Es muy frecuente, sobre todo si tienes la costumbre de exigirte. Empieza solo con la respiración y agrega la calidez de a poco.' }],
     steps: [
       { title: 'Postura', instruction: 'Siéntate con la espalda erguida pero suelta. Relaja la cara y deja una leve sonrisa.', durationSec: 40, kind: 'instruction' },
       { title: 'Ritmo lento', instruction: 'Respira un poco más lento de lo habitual, contando unos cuatro tiempos al inhalar y cuatro al exhalar.', durationSec: 90, kind: 'breath' },
@@ -220,8 +220,11 @@ export const PLUS_PRACTICES: Practice[] = [
     skills: ['compassion'],
     summary: 'Imaginarte con las cualidades de la compasión: sabiduría, fortaleza y calidez.',
     mechanism: 'Ensayar en la imaginación una versión compasiva de ti fortalece la capacidad de tratarte con amabilidad en los momentos difíciles.',
-    evidenceLevel: 'preliminar',
-    evidence: [GILBERT_2009],
+    evidenceLevel: 'moderada',
+    evidence: [
+      { citation: 'Kirby, J. N., Tellegen, C. L., & Steindl, S. R. (2017). A meta-analysis of compassion-based interventions: Current state of knowledge and future directions. Behavior Therapy, 48(6), 778–792.', doi: '10.1016/j.beth.2017.06.003' },
+      GILBERT_2009,
+    ],
     howItWorks: [
       'En la terapia centrada en la compasión, el «yo compasivo» es una forma de ser que se entrena, como un actor que ensaya un papel. No hace falta sentirlo de verdad al principio: se practica imaginándolo.',
       'Sus cualidades son la sabiduría (entender que el sufrimiento es parte de la vida), la fortaleza (poder estar con lo difícil) y la calidez (el deseo de ayudar).',
@@ -254,7 +257,7 @@ export const PLUS_PRACTICES: Practice[] = [
       'Este ejercicio te invita a mirar tu vida en capítulos. No busca revivir lo doloroso, sino ver el conjunto y reconocer tus recursos.',
     ],
     tips: ['Dibuja una línea en un papel y marca los capítulos.', 'No hace falta que sea completa ni ordenada.', 'Si aparece algo muy doloroso, sigue de largo: no es el momento de detenerte ahí.'],
-    obstacles: [{ q: 'Mi historia tiene mucho dolor.', a: 'Puedes nombrar esos capítulos sin entrar en detalle. Si sientes que necesitas trabajarlos, es un buen tema para hacerlo con un/a profesional.' }],
+    obstacles: [{ q: 'Mi historia tiene mucho dolor.', a: 'Puedes nombrar esos capítulos sin entrar en detalle. Si sientes que necesitas trabajarlos, es un buen tema para hacerlo con un profesional de la salud mental.' }],
     cautions: 'Si la práctica despierta recuerdos traumáticos o te desborda, detente y vuelve al presente con la respiración. Este trabajo se hace mejor acompañado.',
     steps: [
       { title: 'Llegar', instruction: 'Respira despacio y nota el apoyo del cuerpo. Ten a mano papel y lápiz si quieres.', durationSec: 40, kind: 'breath' },

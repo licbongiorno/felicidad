@@ -1,5 +1,12 @@
 import type { Practice, Reference } from './types';
 
+/** La evidencia de las habilidades DBT es la de la terapia completa, de la que cada habilidad forma parte. */
+const STOREBO_2020: Reference = {
+  citation: 'Storebø, O. J., Stoffers-Winterling, J. M., Völlm, B. A., et al. (2020). Psychological therapies for people with borderline personality disorder. Cochrane Database of Systematic Reviews, CD012955.',
+  doi: '10.1002/14651858.CD012955.pub2',
+  note: 'La evidencia es de la terapia dialéctica conductual completa, de la que esta habilidad forma parte.',
+};
+
 /**
  * Habilidades de la terapia dialéctico-conductual (DBT) para pacientes, por módulo:
  * - Conciencia plena: mente sabia.
@@ -32,8 +39,8 @@ export const DBT_PRACTICES: Practice[] = [
     summary: 'Encontrar el punto de equilibrio entre la mente emocional y la mente racional antes de decidir.',
     mechanism:
       'Observar la emoción y los hechos a la vez, sin dejarse llevar por ninguno, amplía el margen entre el impulso y la acción.',
-    evidenceLevel: 'preliminar',
-    evidence: [LINEHAN_2015, NEACSIU_2010],
+    evidenceLevel: 'moderada',
+    evidence: [STOREBO_2020, LINEHAN_2015, NEACSIU_2010],
     howItWorks: [
       'La terapia dialéctico-conductual describe tres estados de la mente. La mente emocional decide según lo que se siente en el momento. La mente racional decide sólo con datos y lógica, sin tener en cuenta lo que se siente. La mente sabia es la unión de las dos: reconoce la emoción, mira los hechos y elige lo que te ayuda a largo plazo.',
       'No es un estado especial ni hace falta sentir calma para acceder a ella. Muchas personas la describen como una sensación de saber, tranquila y clara, que aparece cuando se deja de reaccionar. Se entrena con la respiración y con una pregunta sencilla: «¿qué es lo sabio ahora?».',
@@ -45,7 +52,7 @@ export const DBT_PRACTICES: Practice[] = [
     ],
     obstacles: [{ q: 'No noto ninguna «sabiduría».', a: 'Es normal al principio. Basta con notar la diferencia entre lo que sientes y lo que sabes. Con la práctica, la pregunta se vuelve más fácil de responder.' }],
     steps: [
-      { title: 'Llegar', instruction: 'Siéntate cómodo/a. Deja que la respiración siga su ritmo y nota el apoyo del cuerpo.', durationSec: 45, kind: 'breath' },
+      { title: 'Llegar', instruction: 'Siéntate con comodidad. Deja que la respiración siga su ritmo y nota el apoyo del cuerpo.', durationSec: 45, kind: 'breath' },
       { title: 'Mente emocional', instruction: 'Piensa en algo que te preocupa. ¿Qué sientes? ¿Qué te empuja a hacer la emoción?', durationSec: 60, kind: 'reflection' },
       { title: 'Mente racional', instruction: '¿Cuáles son los hechos, sin opiniones? ¿Qué dice la lógica?', durationSec: 60, kind: 'reflection' },
       { title: 'Hacia el centro', instruction: 'Al inhalar, di por dentro «sabia». Al exhalar, «mente». Lleva la atención al centro del cuerpo, bajo las costillas.', durationSec: 75, kind: 'breath' },
@@ -62,11 +69,11 @@ export const DBT_PRACTICES: Practice[] = [
     summary: 'Tratarte con cuidado en un mal momento a través de la vista, el oído, el olfato, el gusto y el tacto.',
     mechanism:
       'Las sensaciones agradables y suaves dan al sistema nervioso señales de seguridad y llevan la atención fuera del pensamiento que alimenta el malestar.',
-    evidenceLevel: 'preliminar',
-    evidence: [LINEHAN_2015, VALENTINE_2015],
+    evidenceLevel: 'moderada',
+    evidence: [STOREBO_2020, LINEHAN_2015, VALENTINE_2015],
     howItWorks: [
       'Calmarse con los sentidos es una habilidad de tolerancia al malestar de la terapia dialéctico-conductual. Consiste en ofrecerte algo amable por cada sentido: mirar algo bonito, escuchar una música tranquila, oler algo que te guste, tomar una bebida caliente despacio o tocar una manta suave.',
-      'No elimina el problema, pero ayuda a atravesar el momento sin empeorarlo. También enseña algo importante a quien suele ser duro/a consigo: que puede cuidarse cuando lo pasa mal.',
+      'No elimina el problema, pero ayuda a atravesar el momento sin empeorarlo. También enseña algo importante a quien suele tratarse con dureza: que puede cuidarse cuando lo pasa mal.',
     ],
     tips: [
       'Prepara una «caja de calma» con objetos para cada sentido.',
@@ -90,8 +97,8 @@ export const DBT_PRACTICES: Practice[] = [
     summary: 'Antes de actuar por un impulso fuerte, comparar con calma qué pasa si lo sigues y qué pasa si lo resistes.',
     mechanism:
       'El impulso sólo muestra el alivio inmediato. Pensar en las consecuencias a corto y largo plazo trae al presente lo que la emoción esconde.',
-    evidenceLevel: 'preliminar',
-    evidence: [LINEHAN_2015, VALENTINE_2015],
+    evidenceLevel: 'moderada',
+    evidence: [STOREBO_2020, LINEHAN_2015, VALENTINE_2015],
     howItWorks: [
       'En la terapia dialéctico-conductual, los pros y contras se usan ante impulsos que pueden hacer daño: gritar, mandar un mensaje del que te arrepientas, beber, darte un atracón o hacerte daño. La emoción fuerte estrecha la mirada y sólo deja ver el alivio de ahora.',
       'La tabla tiene cuatro casillas: lo bueno y lo malo de seguir el impulso, y lo bueno y lo malo de resistirlo. Lo más útil es prepararla en calma, con un impulso que se repite, y volver a leerla cuando aparezca.',
@@ -104,7 +111,7 @@ export const DBT_PRACTICES: Practice[] = [
     obstacles: [{ q: 'En el momento no puedo pensar.', a: 'Por eso conviene prepararla antes. En el momento, basta con leerla. Si la intensidad es muy alta, empieza por TIPP.' }],
     steps: [
       { title: 'El impulso', instruction: 'Piensa en un impulso que te cuesta frenar. ¿Qué te empuja a hacer?', durationSec: 45, kind: 'reflection' },
-      { title: 'Seguirlo: a favor', instruction: '¿Qué ganas si lo sigues? Sé sincero/a: suele ser alivio rápido.', durationSec: 50, kind: 'reflection' },
+      { title: 'Seguirlo: a favor', instruction: '¿Qué ganas si lo sigues? Responde con sinceridad: suele ser alivio rápido.', durationSec: 50, kind: 'reflection' },
       { title: 'Seguirlo: en contra', instruction: '¿Qué pierdes si lo sigues? Piensa en mañana, en tus relaciones y en cómo te sentirás contigo.', durationSec: 60, kind: 'reflection' },
       { title: 'Resistir: a favor', instruction: '¿Qué ganas si no lo sigues? ¿Qué cuidas, qué respetas de ti?', durationSec: 60, kind: 'reflection' },
       { title: 'Resistir: en contra', instruction: '¿Qué te cuesta resistir? Quizá malestar durante un rato. Nota que el malestar pasa.', durationSec: 50, kind: 'reflection' },
@@ -119,8 +126,8 @@ export const DBT_PRACTICES: Practice[] = [
     summary: 'Dejar de pelear con lo que ya pasó o no se puede cambiar, para que el dolor no se convierta en sufrimiento.',
     mechanism:
       'Rechazar la realidad («esto no debería haber pasado») añade amargura y bloquea la acción. Aceptarla con mente y cuerpo libera energía para responder.',
-    evidenceLevel: 'preliminar',
-    evidence: [LINEHAN_2015, VALENTINE_2015],
+    evidenceLevel: 'moderada',
+    evidence: [STOREBO_2020, LINEHAN_2015, VALENTINE_2015],
     howItWorks: [
       'La aceptación radical es una habilidad de tolerancia al malestar de la terapia dialéctico-conductual. «Radical» significa completa: aceptar con la mente, con el cuerpo y con el corazón que algo es como es. Marsha Linehan lo resume así: el dolor es inevitable; el sufrimiento es dolor más no aceptación.',
       'Aceptar no es aprobar, ni rendirse, ni dejar de luchar por un cambio. Es reconocer los hechos tal como son ahora, para poder decidir qué hacer con ellos. Suele hacer falta volver a aceptar muchas veces: la mente vuelve a rechazar, y se vuelve a girar hacia la aceptación.',
@@ -150,8 +157,9 @@ export const DBT_PRACTICES: Practice[] = [
     summary: 'Revisar si una emoción y su intensidad se ajustan a lo que de verdad está pasando.',
     mechanism:
       'Las emociones responden a cómo interpretamos lo que pasa. Separar los hechos de las interpretaciones cambia la emoción cuando esta nace de una suposición.',
-    evidenceLevel: 'preliminar',
+    evidenceLevel: 'moderada',
     evidence: [
+      STOREBO_2020,
       LINEHAN_2015,
       {
         citation: 'Gross, J. J. (1998). The emerging field of emotion regulation: An integrative review. Review of General Psychology, 2(3), 271–299.',
@@ -160,7 +168,7 @@ export const DBT_PRACTICES: Practice[] = [
       },
     ],
     howItWorks: [
-      'Comprobar los hechos es una habilidad de regulación emocional de la terapia dialéctico-conductual. Parte de una idea sencilla: muchas veces no reaccionamos a lo que pasa, sino a lo que creemos que pasa. Un mensaje sin respuesta se convierte en «está enfadado/a conmigo».',
+      'Comprobar los hechos es una habilidad de regulación emocional de la terapia dialéctico-conductual. Parte de una idea sencilla: muchas veces no reaccionamos a lo que pasa, sino a lo que creemos que pasa. Un mensaje sin respuesta se convierte en «se enfadó conmigo».',
       'Cada emoción tiene hechos que la justifican: el miedo, un peligro real; la ira, un daño o un obstáculo; la culpa, haber actuado contra tus valores. Si la emoción se ajusta a los hechos, conviene resolver el problema. Si no se ajusta, la acción opuesta ayuda a que baje.',
     ],
     tips: [
@@ -186,8 +194,9 @@ export const DBT_PRACTICES: Practice[] = [
     summary: 'Revisar el sueño, la comida, el movimiento, la salud y las sustancias, que hacen más o menos vulnerable a las emociones fuertes.',
     mechanism:
       'Un cuerpo cansado, con hambre o enfermo reacciona más y se recupera peor. Cuidar lo básico reduce la vulnerabilidad emocional de fondo.',
-    evidenceLevel: 'preliminar',
+    evidenceLevel: 'moderada',
     evidence: [
+      STOREBO_2020,
       LINEHAN_2015,
       {
         citation:
@@ -225,8 +234,9 @@ export const DBT_PRACTICES: Practice[] = [
     summary: 'Preparar una conversación para que sea amable con la otra persona y justa contigo.',
     mechanism:
       'Validar al otro baja su actitud defensiva; mantener tus valores protege la autoestima. Las dos cosas hacen más probable un acuerdo que no dañe la relación.',
-    evidenceLevel: 'preliminar',
+    evidenceLevel: 'moderada',
     evidence: [
+      STOREBO_2020,
       LINEHAN_2015,
       {
         citation:
@@ -236,8 +246,8 @@ export const DBT_PRACTICES: Practice[] = [
       },
     ],
     howItWorks: [
-      'DEAR MAN ayuda a conseguir lo que pides. GIVE y FAST completan la efectividad interpersonal de la terapia dialéctico-conductual. GIVE cuida la relación: ser amable, mostrar interés, validar lo que siente la otra persona y mantener un tono tranquilo. FAST cuida tu respeto propio: ser justo/a contigo y con el otro, no disculparte de más, mantener tus valores y ser sincero/a.',
-      'Validar no es dar la razón. Es mostrar que entiendes por qué la otra persona siente lo que siente: «Entiendo que estés cansado/a, ha sido una semana dura». En un estudio experimental, las respuestas validantes redujeron la activación emocional frente a las que invalidaban.',
+      'DEAR MAN ayuda a conseguir lo que pides. GIVE y FAST completan la efectividad interpersonal de la terapia dialéctico-conductual. GIVE cuida la relación: ser amable, mostrar interés, validar lo que siente la otra persona y mantener un tono tranquilo. FAST cuida tu respeto propio: actuar con justicia contigo y con el otro, no disculparte de más, mantener tus valores y hablar con sinceridad.',
+      'Validar no es dar la razón. Es mostrar que entiendes por qué la otra persona siente lo que siente: «Entiendo tu cansancio, ha sido una semana dura». En un estudio experimental, las respuestas validantes redujeron la activación emocional frente a las que invalidaban.',
     ],
     tips: [
       'Antes de hablar, decide qué importa más esta vez: la petición, la relación o tu respeto propio.',
@@ -250,8 +260,8 @@ export const DBT_PRACTICES: Practice[] = [
       { title: 'Amable', instruction: 'Imagina cómo empezar sin ataques ni amenazas. ¿Qué tono de voz y qué gesto usarías?', durationSec: 50, kind: 'reflection' },
       { title: 'Interés', instruction: '¿Qué le preguntarías para entender su punto de vista? Prepárate para escuchar sin interrumpir.', durationSec: 50, kind: 'reflection' },
       { title: 'Validar', instruction: 'Escribe una frase que muestre que entiendes lo que siente: «Entiendo que…».', durationSec: 60, kind: 'reflection' },
-      { title: 'Tus valores', instruction: '¿Qué no estás dispuesto/a a dejar de lado? Recuerda: no hace falta pedir perdón por pedir.', durationSec: 60, kind: 'reflection' },
-      { title: 'Ensayo', instruction: 'Imagina la conversación con postura tranquila y voz amable. Nota cómo te sientes al ser justo/a con los dos.', durationSec: 60 },
+      { title: 'Tus valores', instruction: '¿Qué no quieres dejar de lado? Recuerda: no hace falta pedir perdón por pedir.', durationSec: 60, kind: 'reflection' },
+      { title: 'Ensayo', instruction: 'Imagina la conversación con postura tranquila y voz amable. Nota cómo te sientes al tratar a los dos con justicia.', durationSec: 60 },
     ],
   },
 ];

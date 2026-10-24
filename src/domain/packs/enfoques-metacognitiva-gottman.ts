@@ -99,7 +99,7 @@ export const ENFOQUES_META_GOTTMAN_PACK: ContentPack = {
       skills: ['attention', 'resilience'],
       summary: 'Revisar las ideas a favor de preocuparse, como «preocuparme me prepara», y comprobar si de verdad te ayudan.',
       mechanism: 'Si crees que preocuparte te protege, vas a seguir haciéndolo. Ver qué te da y qué te quita esa creencia afloja el bucle.',
-      evidenceLevel: 'preliminar',
+      evidenceLevel: 'moderada',
       evidence: [WELLS_1995, CARTWRIGHT_HATTON_1997, WELLS_2009, NORMANN_2018],
       cautions: PREOCUPACION_CAUTION,
       howItWorks: [
@@ -134,7 +134,7 @@ export const ENFOQUES_META_GOTTMAN_PACK: ContentPack = {
       skills: ['resilience', 'attention'],
       summary: 'Probar con experimentos seguros la idea de que la preocupación es incontrolable o peligrosa, por ejemplo intentar preocuparte más a propósito.',
       mechanism: 'Temer a la propia preocupación hace que la vigiles y la pelees, y eso la agranda. Un experimento muestra que no te desborda ni te daña.',
-      evidenceLevel: 'preliminar',
+      evidenceLevel: 'moderada',
       evidence: [WELLS_1995, WELLS_2009, WELLS_CARTWRIGHT_2004, NORMANN_2018],
       cautions: EXPERIMENTO_CAUTION,
       howItWorks: [

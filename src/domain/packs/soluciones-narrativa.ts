@@ -284,13 +284,20 @@ export const SOLUCIONES_NARRATIVA_PACK: ContentPack = {
       summary: 'Mirar con honestidad las dos caras de la ambivalencia: lo bueno de seguir igual y lo bueno de cambiar.',
       mechanism: 'Reconocer lo que el hábito te da baja la defensa. Escuchar tus propias razones para cambiar, con tus palabras, fortalece la decisión.',
       evidenceLevel: 'preliminar',
-      evidence: [MILLER_2013, JANIS_1977, AMRHEIN_2003, LUNDAHL_2010],
+      evidence: [
+        { citation: 'Miller, W. R., & Rose, G. S. (2015). Motivational interviewing and decisional balance: Contrasting responses to client ambivalence. Behavioural and Cognitive Psychotherapy, 43(2), 129–141.', note: 'En personas muy ambivalentes, el balance de pros y contras puede bajar el compromiso con el cambio.' },
+        MILLER_2013,
+        JANIS_1977,
+        AMRHEIN_2003,
+        LUNDAHL_2010,
+      ],
       howItWorks: [
         'La entrevista motivacional, de William Miller y Stephen Rollnick, parte de una idea: querer y no querer cambiar al mismo tiempo es normal. A eso se lo llama ambivalencia. No es falta de voluntad, es una etapa del cambio.',
         'Cuando alguien nos empuja a cambiar, solemos defender el lado contrario. Por eso aquí empiezas por lo bueno de seguir igual. Después miras lo que no te gusta de seguir así y lo que ganarías al cambiar. Las razones que salen de tu boca pesan más que las que te dan otros (Amrhein et al., 2003).',
         'La entrevista motivacional tiene buen respaldo cuando la guía un profesional (Lundahl et al., 2010). Usarla a solas es una adaptación sin estudios propios.',
       ],
       tips: [
+        'Si al anotar pros y contras sientes que te convences más de seguir igual, no fuerces la lista. Vuelve a lo que te importa y a lo que te gustaría distinto: eso suele ayudar más que sumar argumentos.',
         'Mira con honestidad lo bueno de no cambiar. Si no lo nombras, sigue actuando en silencio.',
         'Escribe las razones con tus palabras, como se las dirías a un amigo.',
         'No tienes que decidir hoy. Basta con ver mejor las dos caras.',

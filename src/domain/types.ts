@@ -15,9 +15,10 @@ export type SkillKey = 'attention' | 'compassion' | 'resilience';
 
 /**
  * Grado de respaldo empírico, declarado de forma explícita en cada contenido.
- * - robusta: metaanálisis o múltiples ECA convergentes.
- * - moderada: ECA aislados o metaanálisis con heterogeneidad/sesgo relevante.
- * - preliminar: estudios pequeños, transversales o de laboratorio.
+ * Mismo criterio que muestra la app (evidence.ts y el artículo «Cómo evaluamos la evidencia»):
+ * - robusta: metaanálisis de ECA sobre la técnica en un formato comparable al de la app (breve, autoguiado).
+ * - moderada: ECA, o metaanálisis de la terapia completa de la que el ejercicio es un componente.
+ * - preliminar: estudios pequeños, de laboratorio, sin grupo control o un único ensayo sin replicar.
  * - contemplativa: fundamento en la tradición contemplativa con evidencia sólo indirecta.
  */
 export type EvidenceLevel = 'robusta' | 'moderada' | 'preliminar' | 'contemplativa';

@@ -44,7 +44,7 @@ export const EXTRA_PRACTICES: Practice[] = [
     ],
     obstacles: [{ q: 'Hay un ruido que me irrita.', a: 'Explora su textura, volumen y ritmo como si fuera música experimental. La irritación suele aflojar cuando se vuelve curiosidad.' }],
     steps: [
-      { title: 'Llegar', instruction: 'Siéntate cómodo/a. Deja que los ojos se cierren o descansen en un punto.', durationSec: 45 },
+      { title: 'Llegar', instruction: 'Siéntate con comodidad. Deja que los ojos se cierren o descansen en un punto.', durationSec: 45 },
       { title: 'Recibir', instruction: 'Abre la atención a los sonidos: cercanos, lejanos, continuos, breves. No los busques: deja que lleguen.', durationSec: 150 },
       { title: 'Sonido sin nombre', instruction: 'Cuando la mente diga «coche» o «pájaro», vuelve al sonido tal como es: tono, volumen, duración.', durationSec: 120 },
       { title: 'Silencios', instruction: 'Nota también los espacios entre sonidos. El silencio es parte del paisaje.', durationSec: 60, kind: 'silence' },
@@ -76,13 +76,13 @@ export const EXTRA_PRACTICES: Practice[] = [
       'Más lento de lo habitual, pero sin rigidez.',
       'Puedes etiquetar suavemente: «levantar, mover, apoyar».',
     ],
-    obstacles: [{ q: 'Me siento raro/a caminando tan despacio.', a: 'Hazlo a velocidad normal durante un trayecto cotidiano. La lentitud ayuda, pero lo esencial es la atención.' }],
+    obstacles: [{ q: 'Se me hace raro caminar tan despacio.', a: 'Hazlo a velocidad normal durante un trayecto cotidiano. La lentitud ayuda, pero lo esencial es la atención.' }],
     steps: [
-      { title: 'De pie', instruction: 'Quieto/a, siente el peso del cuerpo sobre los pies y el contacto con el suelo.', durationSec: 45 },
+      { title: 'De pie', instruction: 'Sin moverte, siente el peso del cuerpo sobre los pies y el contacto con el suelo.', durationSec: 45 },
       { title: 'Paso a paso', instruction: 'Camina despacio. Nota cómo se levanta el talón, cómo avanza el pie, cómo se apoya.', durationSec: 180 },
       { title: 'Girar', instruction: 'Al llegar al final, detente, siente la intención de girar y gira con atención.', durationSec: 90 },
       { title: 'Ritmo natural', instruction: 'Aumenta un poco la velocidad manteniendo la atención en los pies.', durationSec: 120 },
-      { title: 'Detenerse', instruction: 'Quieto/a otra vez. Nota el cuerpo después de caminar.', durationSec: 45, kind: 'silence' },
+      { title: 'Detenerse', instruction: 'Detente otra vez. Nota el cuerpo después de caminar.', durationSec: 45, kind: 'silence' },
     ],
   },
   {
@@ -112,7 +112,7 @@ export const EXTRA_PRACTICES: Practice[] = [
     obstacles: [{ q: 'Al relajarme me inquieto más.', a: 'Le ocurre a algunas personas («ansiedad inducida por relajación»). Mantén los ojos abiertos, acorta la práctica y alterna con caminar con atención.' }],
     cautions: 'Evita tensar zonas lesionadas o con dolor. Con hipertensión no controlada, tensa suavemente.',
     steps: [
-      { title: 'Preparar', instruction: 'Sentado/a o acostado/a. Unas respiraciones tranquilas.', durationSec: 40 },
+      { title: 'Preparar', instruction: 'Siéntate o acuéstate. Unas respiraciones tranquilas.', durationSec: 40 },
       { title: 'Manos y brazos', instruction: 'Cierra los puños y tensa los brazos 5 segundos… suelta de golpe. Nota la diferencia durante el resto del paso.', durationSec: 75 },
       { title: 'Rostro', instruction: 'Arruga la frente, aprieta ojos y mandíbula 5 segundos… suelta. Deja la mandíbula entreabierta.', durationSec: 75 },
       { title: 'Hombros y cuello', instruction: 'Sube los hombros hacia las orejas 5 segundos… suéltalos. Siente cómo caen.', durationSec: 75 },
@@ -207,7 +207,7 @@ export const EXTRA_PRACTICES: Practice[] = [
       },
     ],
     howItWorks: [
-      'La ecuanimidad no es indiferencia. Es la capacidad de sentir plenamente sin ser arrastrado/a: ni aferrarse a lo agradable ni huir de lo desagradable. En la tradición, protege al amor y a la compasión del apego y del agotamiento.',
+      'La ecuanimidad no es indiferencia. Es la capacidad de sentir plenamente sin que la emoción te arrastre: ni aferrarse a lo agradable ni huir de lo desagradable. En la tradición, protege al amor y a la compasión del apego y del agotamiento.',
       'Desbordes y colaboradores propusieron la ecuanimidad como uno de los resultados centrales del entrenamiento contemplativo, y la definieron como una reducción de la reactividad automática. Su medición es aún reciente, por eso la evidencia es preliminar.',
     ],
     tips: [
@@ -215,7 +215,7 @@ export const EXTRA_PRACTICES: Practice[] = [
       'Combínala con el amor altruista: calidez y estabilidad juntas.',
       'Útil cuando cuidas de alguien que sufre y no puedes resolver su situación.',
     ],
-    obstacles: [{ q: '¿No es resignación?', a: 'No: la ecuanimidad permite actuar con más claridad, porque no estás atrapado/a en la reacción. Se puede ser ecuánime y comprometido/a.' }],
+    obstacles: [{ q: '¿No es resignación?', a: 'No: la ecuanimidad permite actuar con más claridad, porque la reacción no te atrapa. Se puede tener ecuanimidad y compromiso.' }],
     steps: [
       { title: 'Estabilizar', instruction: 'Respiración natural. Siente el apoyo firme del asiento.', durationSec: 45, kind: 'breath' },
       { title: 'Agradable', instruction: 'Recuerda algo agradable. Nota el impulso de retenerlo. Déjalo estar sin aferrarte: «esto también cambiará».', durationSec: 90 },
@@ -253,8 +253,8 @@ export const EXTRA_PRACTICES: Practice[] = [
     steps: [
       { title: 'Recordar', instruction: 'Recuerda la ofensa como un narrador neutral, en tercera persona. Sin dramatizar ni minimizar.', durationSec: 90, kind: 'reflection' },
       { title: 'Empatizar', instruction: '¿Qué presión, miedo o ignorancia pudo llevar a esa persona a actuar así? Comprender no es justificar.', durationSec: 120, kind: 'reflection' },
-      { title: 'Regalo altruista', instruction: 'Recuerda una vez en que tú fuiste perdonado/a. ¿Cómo se sintió? ¿Puedes ofrecer algo parecido?', durationSec: 90, kind: 'reflection' },
-      { title: 'Comprometerse', instruction: 'Si estás listo/a, formula internamente: «suelto el deseo de que pagues por esto». Puedes escribirlo en el Diario.', durationSec: 60 },
+      { title: 'Regalo altruista', instruction: 'Recuerda una vez en que alguien te perdonó. ¿Cómo se sintió? ¿Puedes ofrecer algo parecido?', durationSec: 90, kind: 'reflection' },
+      { title: 'Comprometerse', instruction: 'Cuando sientas que es el momento, formula internamente: «suelto el deseo de que pagues por esto». Puedes escribirlo en el Diario.', durationSec: 60 },
       { title: 'Sostener', instruction: 'Cuando vuelva el resentimiento, recuerda este momento: el recuerdo del dolor no es lo mismo que no haber perdonado.', durationSec: 60, kind: 'silence' },
     ],
   },
@@ -308,7 +308,7 @@ export const EXTRA_PRACTICES: Practice[] = [
     evidenceLevel: 'preliminar',
     evidence: [HAYES_2006, DAHL_2015],
     howItWorks: [
-      'En la Terapia de Aceptación y Compromiso se distinguen tres sentidos del yo: el yo como contenido («soy ansioso/a, soy un fracaso»), el yo como proceso (notar lo que ocurre ahora) y el yo como contexto: la perspectiva estable desde la que todo eso se observa.',
+      'En la Terapia de Aceptación y Compromiso se distinguen tres sentidos del yo: el yo como contenido («soy una persona ansiosa, soy un fracaso»), el yo como proceso (notar lo que ocurre ahora) y el yo como contexto: la perspectiva estable desde la que todo eso se observa.',
       'Cuando una persona se identifica rígidamente con un relato sobre sí misma, cualquier cosa que lo amenace se vive como una amenaza a su existencia. Contactar con el observador crea un lugar seguro desde el que mirar incluso los contenidos más dolorosos.',
     ],
     tips: [

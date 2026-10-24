@@ -51,7 +51,7 @@ export const DESEMPLEO_PACK: ContentPack = {
       skills: ['resilience', 'attention'],
       summary: 'Ver qué te daba el trabajo además del sueldo, como horarios, gente, metas y un lugar, y buscar otras fuentes para eso mientras tanto.',
       mechanism: 'El empleo cubre necesidades que no se ven hasta que faltan. Nombrarlas y buscarles reemplazo parcial protege el ánimo durante la búsqueda.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [JAHODA_1982, PAUL_MOSER_2009],
       howItWorks: [
         'Marie Jahoda propuso que el trabajo no sólo da plata. También da otras cosas que llamó funciones latentes: una estructura del tiempo, contacto con gente fuera de la familia, metas compartidas, un lugar en la sociedad y actividad regular (Jahoda, 1982).',
@@ -172,7 +172,7 @@ export const DESEMPLEO_PACK: ContentPack = {
       skills: ['compassion', 'resilience'],
       summary: 'Atravesar un rechazo en una búsqueda o una entrevista sin tomarlo como un juicio sobre quién eres, y con amabilidad hacia ti.',
       mechanism: 'Leer un rechazo como prueba de que no vales aumenta la vergüenza y frena la búsqueda. Buscar otras explicaciones y hablarte con amabilidad ayuda a seguir.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [MCKEE_RYAN_2005, WANBERG_2012],
       howItWorks: [
         'En una búsqueda, los «no» son muchos más que los «sí». Es parte del proceso. Pero cada rechazo puede sentirse como un juicio sobre ti.',

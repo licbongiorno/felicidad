@@ -71,7 +71,7 @@ export const DUELO_RUPTURA_PACK: ContentPack = {
       skills: ['attention', 'resilience'],
       summary: 'Una pausa de tres minutos para cuando tienes ganas de escribirle a tu ex o de mirar sus redes: nombrar, medir, esperar y después decidir.',
       mechanism: 'Las ganas suben, llegan a un punto y bajan si no se las alimenta. Esperar unos minutos y mirarlas con atención te deja decidir en lugar de actuar en automático.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [BOWEN_2009, LINEHAN_2015],
       howItWorks: [
         'Después de una ruptura es muy común sentir ganas fuertes de escribirle a la otra persona, de llamarla o de revisar sus redes. No es debilidad: durante mucho tiempo esa persona fue tu lugar para calmarte.',
@@ -177,7 +177,7 @@ export const DUELO_RUPTURA_PACK: ContentPack = {
       skills: ['resilience', 'attention'],
       summary: 'Recordar lo que dejaste de hacer y a quién dejaste de ver durante la relación, y elegir una cosa y una persona para retomar esta semana.',
       mechanism: 'En la pareja, parte de quien eres se mezcla con el otro. Retomar gustos, actividades y vínculos propios ayuda a recuperar la claridad sobre quién eres, que suele bajar después de una ruptura.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [SLOTTER_2010, LEWANDOWSKI_2007],
       howItWorks: [
         'En una relación compartes amistades, gustos, horarios y planes. Por eso, cuando termina, puede sentirse que se fue también una parte de ti. En unos estudios, después de una ruptura las personas tenían menos claro quiénes eran, y eso se asociaba a más tristeza (Slotter y colaboradores, 2010).',
@@ -210,7 +210,7 @@ export const DUELO_RUPTURA_PACK: ContentPack = {
       skills: ['resilience'],
       summary: 'Ordenar los momentos que más pesan: las noches, los fines de semana y las fechas difíciles. Incluye el sueño y una mirada honesta al alcohol.',
       mechanism: 'Durante el duelo, los días pierden forma. Unos pocos anclas fijas, un cierre del día y planes para las fechas difíciles dan sostén mientras el dolor va y viene.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [STROEBE_1999, SBARRA_EMERY_2005],
       howItWorks: [
         'Margaret Stroebe y Henk Schut describieron el duelo como un ir y venir. A ratos miras la pérdida y la sientes. A ratos te ocupas de la vida diaria. Las dos cosas son necesarias. Su modelo nació para el duelo por una muerte, pero sirve para pensar otras pérdidas.',

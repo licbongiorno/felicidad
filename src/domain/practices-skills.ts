@@ -1,5 +1,12 @@
 import type { Practice, Reference } from './types';
 
+/** La evidencia de las habilidades DBT es la de la terapia completa, de la que cada habilidad forma parte. */
+const STOREBO_2020: Reference = {
+  citation: 'Storebø, O. J., Stoffers-Winterling, J. M., Völlm, B. A., et al. (2020). Psychological therapies for people with borderline personality disorder. Cochrane Database of Systematic Reviews, CD012955.',
+  doi: '10.1002/14651858.CD012955.pub2',
+  note: 'La evidencia es de la terapia dialéctica conductual completa, de la que esta habilidad forma parte.',
+};
+
 /**
  * Habilidades de la terapia dialéctico-conductual (DBT) y entrenamiento asertivo:
  * kit de crisis (TIPP), acción opuesta y DEAR MAN.
@@ -52,8 +59,9 @@ export const SKILL_PRACTICES: Practice[] = [
     summary: 'Cuando una emoción no se ajusta a los hechos, hacer justo lo contrario de lo que te impulsa a hacer, con todo el cuerpo.',
     mechanism:
       'Cada emoción trae un impulso de acción (huir, atacar, esconderse). Actuar en sentido opuesto, cuando la emoción no está justificada, interrumpe el ciclo que la mantiene.',
-    evidenceLevel: 'preliminar',
+    evidenceLevel: 'moderada',
     evidence: [
+      STOREBO_2020,
       LINEHAN_2015,
       {
         citation:
@@ -97,21 +105,21 @@ export const SKILL_PRACTICES: Practice[] = [
     ],
     howItWorks: [
       'Muchas personas oscilan entre callar (para evitar el conflicto) y explotar (cuando ya no aguantan). La asertividad es una tercera vía: expresar lo que necesitas con claridad y respeto, también hacia ti.',
-      'DEAR MAN es la guía de la terapia dialéctico-conductual para pedir algo o decir que no: Describe los hechos, Expresa lo que sientes, pide de forma Asertiva, Refuerza (explica qué gana la otra persona), mantente atento/a al objetivo (Mindful), Aparenta seguridad y Negocia si hace falta. Speed y colaboradores revisaron décadas de evidencia del entrenamiento asertivo y lo consideran un tratamiento eficaz e infrautilizado.',
+      'DEAR MAN es la guía de la terapia dialéctico-conductual para pedir algo o decir que no: Describe los hechos, Expresa lo que sientes, pide de forma Asertiva, Refuerza (explica qué gana la otra persona), mantén la atención en el objetivo (Mindful), Aparenta seguridad y Negocia si hace falta. Speed y colaboradores revisaron décadas de evidencia del entrenamiento asertivo y lo consideran un tratamiento eficaz e infrautilizado.',
     ],
     tips: [
       'Escríbelo antes en el Diario (plantilla «Preparar una conversación»).',
       'Si la otra persona desvía el tema, repite tu petición con calma («disco rayado»).',
-      'Decide de antemano qué estás dispuesto/a a negociar y qué no.',
+      'Decide de antemano qué puedes negociar y qué no.',
     ],
     obstacles: [{ q: 'Me da miedo que se enfaden.', a: 'Es posible. Pedir con respeto no garantiza la respuesta, pero te protege de callar lo que importa. Empieza por peticiones pequeñas.' }],
     steps: [
       { title: 'Describe', instruction: 'Piensa la situación en hechos, sin juicios: «Esta semana me pediste tres veces quedarme hasta tarde».', durationSec: 60, kind: 'reflection' },
-      { title: 'Expresa', instruction: 'Cómo te afecta, en primera persona: «Me siento agotado/a y no llego a casa».', durationSec: 50, kind: 'reflection' },
+      { title: 'Expresa', instruction: 'Cómo te afecta, en primera persona: «Me agota y llego tarde a casa».', durationSec: 50, kind: 'reflection' },
       { title: 'Pide', instruction: 'Lo que quieres, claro y breve: «Necesito salir a mi hora al menos tres días».', durationSec: 50, kind: 'reflection' },
       { title: 'Refuerza', instruction: '¿Qué gana la otra persona? «Así rendiré mejor en las horas que estoy».', durationSec: 50, kind: 'reflection' },
       { title: 'Ensaya', instruction: 'Dilo en voz alta o mentalmente, con postura erguida y voz tranquila. Si te desvían, vuelve a tu petición.', durationSec: 75 },
-      { title: 'Negociar', instruction: '¿Qué estarías dispuesto/a a ceder, y qué no?', durationSec: 45, kind: 'reflection' },
+      { title: 'Negociar', instruction: '¿Qué podrías ceder, y qué no?', durationSec: 45, kind: 'reflection' },
     ],
   },
 ];

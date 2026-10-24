@@ -88,17 +88,17 @@ export const SIMULATIONS: Simulation[] = [
   {
     id: 'pedir-ayuda-casa',
     title: 'Pedir ayuda en casa',
-    context: 'Haces casi todas las tareas de la casa y estás agotado/a. Quieres repartirlas de otra manera con la persona con la que convives.',
+    context: 'Haces casi todas las tareas de la casa y ya no te queda energía. Quieres repartirlas de otra manera con la persona con la que convives.',
     goal: 'Acordar un reparto más justo sin que termine en pelea.',
     other: 'Tu pareja',
     skills: ['dear-man', 'give-fast'],
     steps: [
       {
-        line: '«¿Qué pasa? Te noto raro/a hoy.»',
+        line: '«¿Qué pasa? Hoy no pareces tú.»',
         options: [
-          { text: '«Nada, estoy cansado/a.»', style: 'pasivo', feedback: 'Callar evita la conversación, pero el problema sigue. La otra persona no puede ayudarte si no sabe qué pasa.' },
+          { text: '«Nada, es el cansancio.»', style: 'pasivo', feedback: 'Callar evita la conversación, pero el problema sigue. La otra persona no puede ayudarte si no sabe qué pasa.' },
           {
-            text: '«Quiero hablar de las tareas. Esta semana cociné y limpié todos los días, y estoy agotado/a.»',
+            text: '«Quiero hablar de las tareas. Esta semana cociné y limpié todos los días, y ya no me queda energía.»',
             style: 'asertivo',
             feedback: 'Describes hechos concretos (D) y expresas cómo te afecta en primera persona (E).',
           },
@@ -174,7 +174,7 @@ export const SIMULATIONS: Simulation[] = [
   {
     id: 'amigo-cancela',
     title: 'Hablar con un amigo que cancela',
-    context: 'Tu amigo canceló a último momento las últimas tres veces que quedaron. Te sentiste dejado/a de lado.',
+    context: 'Tu amigo canceló a último momento las últimas tres veces que quedaron. Sentiste que te dejaba de lado.',
     goal: 'Decirle cómo te afecta y saber qué le pasa, sin cortar la amistad.',
     other: 'Tu amigo',
     skills: ['give-fast', 'comprobar-hechos'],
@@ -206,7 +206,7 @@ export const SIMULATIONS: Simulation[] = [
       {
         line: '«Un café sí puedo. ¿El sábado a la mañana?»',
         options: [
-          { text: '«Perfecto. Y si un día no puedes, avísame con tiempo así me organizo.»', style: 'asertivo', feedback: 'Aceptas el plan y pides algo concreto para el futuro (FAST: ser sincero/a sobre lo que necesitas).' },
+          { text: '«Perfecto. Y si un día no puedes, avísame con tiempo así me organizo.»', style: 'asertivo', feedback: 'Aceptas el plan y pides algo concreto para el futuro (FAST: hablar con sinceridad sobre lo que necesitas).' },
           { text: '«Si quieres… como prefieras.»', style: 'pasivo', feedback: 'Deja claro que también quieres verlo. Mostrar interés cuida la amistad.' },
           { text: '«A ver si esta vez vienes.»', style: 'agresivo', feedback: 'El sarcasmo desarma lo que acabas de lograr. Puedes pedir lo que necesitas sin ironía.' },
         ],
@@ -228,7 +228,7 @@ export const SIMULATIONS: Simulation[] = [
           { text: '«Nada. Como siempre, tengo que hacer todo yo.»', style: 'agresivo', feedback: 'El «siempre» y el reproche ponen al otro a la defensiva. Es probable que discutan sobre quién hace más, sin llegar a un acuerdo.' },
           { text: '«Ya preparo algo.»', style: 'pasivo', feedback: 'Evitas el conflicto hoy, pero el cansancio y el enojo se acumulan. Tu necesidad también cuenta.' },
           {
-            text: '«Antes de cocinar, ¿podemos hablar cinco minutos? Hay algo de la casa que me tiene cansado/a.»',
+            text: '«Antes de cocinar, ¿podemos hablar cinco minutos? Hay algo de la casa que me está cansando.»',
             style: 'asertivo',
             feedback: 'Eliges el momento y anticipas el tema con calma. Así la otra persona puede escucharte mejor.',
           },
@@ -238,7 +238,7 @@ export const SIMULATIONS: Simulation[] = [
         line: '«Bueno, dale. ¿Qué pasa?»',
         options: [
           {
-            text: '«Esta semana lavé los platos todos los días y también hice las compras. Me siento sobrepasado/a. Me gustaría que repartamos las tareas.»',
+            text: '«Esta semana lavé los platos todos los días y también hice las compras. Siento que me sobrepasa. Me gustaría que repartamos las tareas.»',
             style: 'asertivo',
             feedback: 'Describes hechos concretos (D), expresas cómo te sientes (E) y pides con claridad (A). Sin etiquetas ni acusaciones.',
           },
@@ -255,7 +255,7 @@ export const SIMULATIONS: Simulation[] = [
             feedback: 'Validas su cansancio (GIVE) y propones una solución concreta (N: negociar). Pasan de quién tiene razón a cómo resolverlo.',
           },
           { text: '«Siempre tienes una excusa.»', style: 'agresivo', feedback: 'Desestimar lo que siente lo aleja. Puedes reconocer su cansancio y sostener tu pedido a la vez.' },
-          { text: '«Ah, bueno, entonces sigo yo.»', style: 'pasivo', feedback: 'Su cansancio no anula el tuyo. Puedes ser comprensivo/a y seguir buscando un reparto justo.' },
+          { text: '«Ah, bueno, entonces sigo yo.»', style: 'pasivo', feedback: 'Su cansancio no anula el tuyo. Puedes mostrar comprensión y seguir buscando un reparto justo.' },
         ],
       },
     ],
@@ -715,7 +715,7 @@ export const FACT_ITEMS: FactItem[] = [
   { text: 'No respondió mi mensaje en tres horas.', kind: 'hecho', why: 'Describe lo que pasó, con un dato preciso.' },
   { text: 'No le importo.', kind: 'interpretacion', why: 'Hay muchas razones posibles para no responder.', trap: 'leer-la-mente' },
   { text: 'Me temblaban las manos durante la presentación.', kind: 'hecho', why: 'Es una sensación del cuerpo que puedes observar.' },
-  { text: 'Todos notaron que estaba nervioso/a.', kind: 'interpretacion', why: 'No sabes qué notó cada persona. Solemos sobrestimar cuánto se nota.', trap: 'leer-la-mente' },
+  { text: 'Todos notaron mis nervios.', kind: 'interpretacion', why: 'No sabes qué notó cada persona. Solemos sobrestimar cuánto se nota.', trap: 'leer-la-mente' },
   { text: 'Mi amiga canceló la cena.', kind: 'hecho', why: 'Es lo que ocurrió, sin agregar explicaciones.' },
   { text: 'Mi amiga ya no quiere verme.', kind: 'interpretacion', why: 'Es una conclusión a partir de un solo hecho.', trap: 'sobregeneralizar' },
   { text: 'Anoche dormí cinco horas.', kind: 'hecho', why: 'Es un dato que se puede medir.' },
@@ -728,8 +728,8 @@ export const FACT_ITEMS: FactItem[] = [
   { text: 'Si me quisiera, habría llegado a tiempo.', kind: 'interpretacion', why: 'Une el amor con la puntualidad sin pruebas. Puede haber otras explicaciones.', trap: 'leer-la-mente' },
   { text: 'En la reunión, dos personas miraron el celular mientras hablaba.', kind: 'hecho', why: 'Describe una conducta observable.' },
   { text: 'Mi presentación fue aburridísima.', kind: 'interpretacion', why: 'Es un juicio global a partir de un detalle; quizás tenían otra cosa que atender.', trap: 'filtro-mental' },
-  { text: 'Me siento muy ansioso/a antes de viajar.', kind: 'hecho', why: 'Es una emoción que estás sintiendo: describirla es un hecho.' },
-  { text: 'Me siento ansioso/a, así que algo malo va a pasar en el viaje.', kind: 'interpretacion', why: 'Toma la emoción como prueba de peligro. Sentir miedo no significa que haya un riesgo real.', trap: 'razonamiento-emocional' },
+  { text: 'Siento mucha ansiedad antes de viajar.', kind: 'hecho', why: 'Es una emoción que estás sintiendo: describirla es un hecho.' },
+  { text: 'Siento ansiedad, así que algo malo va a pasar en el viaje.', kind: 'interpretacion', why: 'Toma la emoción como prueba de peligro. Sentir miedo no significa que haya un riesgo real.', trap: 'razonamiento-emocional' },
   { text: 'Me felicitaron por el trabajo que entregué.', kind: 'hecho', why: 'Es algo que te dijeron, concreto y verificable.' },
   { text: 'Lo dijeron por compromiso, no era tan bueno.', kind: 'interpretacion', why: 'Resta valor a lo positivo sin datos que lo apoyen.', trap: 'descalificar-lo-positivo' },
 ];

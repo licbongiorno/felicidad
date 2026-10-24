@@ -138,7 +138,7 @@ export const JOURNAL_TEMPLATES: JournalTemplate[] = [
     headline: 'accion',
     fields: [
       { id: 'dominio', label: 'Área de vida', kind: 'text', placeholder: 'Vínculos, trabajo, salud, comunidad…' },
-      { id: 'valor', label: 'La cualidad que quieres encarnar', kind: 'text', placeholder: 'Ej.: presente, valiente, generoso/a' },
+      { id: 'valor', label: 'La cualidad que quieres encarnar', kind: 'text', placeholder: 'Ej.: presencia, valentía, generosidad' },
       { id: 'accion', label: 'Acción concreta (próximas 24–72 h)', kind: 'text' },
       { id: 'obstaculo', label: 'Obstáculo interno probable', kind: 'text', placeholder: 'Pensamiento o emoción que podría frenarte' },
       { id: 'plan', label: 'Si aparece, entonces…', kind: 'text', optional: true },
@@ -432,7 +432,7 @@ export const JOURNAL_TEMPLATES: JournalTemplate[] = [
     fields: [
       { id: 'acostarse', label: 'Hora a la que te acostaste', kind: 'text', placeholder: 'Ej.: 23:30' },
       { id: 'latencia', label: 'Minutos hasta dormirte (aproximado)', kind: 'text', placeholder: 'Ej.: 40' },
-      { id: 'despertares', label: 'Despertares y tiempo despierto/a', kind: 'text', placeholder: 'Ej.: 2 veces, unos 30 min' },
+      { id: 'despertares', label: 'Despertares y tiempo en vela', kind: 'text', placeholder: 'Ej.: 2 veces, unos 30 min' },
       { id: 'levantarse', label: 'Hora a la que te levantaste', kind: 'text', placeholder: 'Ej.: 7:15' },
       { id: 'calidad', label: 'Calidad del sueño', kind: 'scale', anchors: ['0 · pésima', '10 · excelente'] },
       { id: 'calidadTexto', label: 'En una frase, ¿cómo dormiste?', kind: 'text' },
@@ -476,7 +476,7 @@ export const JOURNAL_TEMPLATES: JournalTemplate[] = [
       },
     ],
     caution:
-      'Empieza por escalones que te generen un malestar moderado (3–4 de 10), nunca extremo. Si la ansiedad es muy intensa, hay ataques de pánico frecuentes o historia de trauma, hazlo con un/a terapeuta.',
+      'Empieza por escalones que te generen un malestar moderado (3–4 de 10), nunca extremo. Si la ansiedad es muy intensa, hay ataques de pánico frecuentes o historia de trauma, hazlo con acompañamiento terapéutico.',
     headline: 'miedo',
     fields: [
       { id: 'miedo', label: 'Lo que temo y evito', kind: 'text' },
@@ -532,7 +532,7 @@ export const JOURNAL_TEMPLATES: JournalTemplate[] = [
     fields: [
       { id: 'con', label: 'Con quién', kind: 'text' },
       { id: 'hechos', label: 'Los hechos, sin juicios', kind: 'text', placeholder: 'Ej.: Esta semana me pediste tres veces quedarme hasta tarde' },
-      { id: 'siento', label: 'Cómo me afecta (en primera persona)', kind: 'text', placeholder: 'Ej.: Me siento agotado/a' },
+      { id: 'siento', label: 'Cómo me afecta (en primera persona)', kind: 'text', placeholder: 'Ej.: Siento agotamiento' },
       { id: 'peticion', label: 'Lo que pido, claro y breve', kind: 'text' },
       { id: 'gana', label: 'Qué gana la otra persona', kind: 'text', optional: true },
       { id: 'negociable', label: 'Qué puedo ceder y qué no', kind: 'text', optional: true },
@@ -638,7 +638,7 @@ export const JOURNAL_TEMPLATES: JournalTemplate[] = [
     evidence: [{ citation: 'Young, J. E., Klosko, J. S., & Weishaar, M. E. (2003). Schema therapy: A practitioner’s guide. Guilford Press.' }],
     headline: 'masNecesito',
     fields: [
-      { id: 'vinculo', label: 'Sentirme seguro/a y querido/a', kind: 'scale', anchors: ['0 · nada cubierta', '10 · muy cubierta'] },
+      { id: 'vinculo', label: 'Sentir seguridad y cariño', kind: 'scale', anchors: ['0 · nada cubierta', '10 · muy cubierta'] },
       { id: 'autonomia', label: 'Sentirme capaz y con autonomía', kind: 'scale', anchors: ['0 · nada cubierta', '10 · muy cubierta'] },
       { id: 'expresion', label: 'Poder expresar lo que siento y necesito', kind: 'scale', anchors: ['0 · nada cubierta', '10 · muy cubierta'] },
       { id: 'juego', label: 'Tener espacio para disfrutar y jugar', kind: 'scale', anchors: ['0 · nada cubierta', '10 · muy cubierta'] },

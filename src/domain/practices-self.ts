@@ -38,7 +38,7 @@ export const SELF_PRACTICES: Practice[] = [
     cautions:
       'Si la práctica trae recuerdos traumáticos o emociones muy intensas, detente. Esta exploración se hace mejor acompañada por tu terapeuta.',
     steps: [
-      { title: 'Llegar', instruction: 'Siéntate cómodo/a y respira despacio. Nota el apoyo del cuerpo.', durationSec: 45, kind: 'breath' },
+      { title: 'Llegar', instruction: 'Siéntate con comodidad y respira despacio. Nota el apoyo del cuerpo.', durationSec: 45, kind: 'breath' },
       { title: 'El patrón', instruction: 'Piensa en una reacción tuya que se repite y te hace daño. Elige una de intensidad media.', durationSec: 60, kind: 'reflection' },
       { title: 'La parte que reacciona', instruction: '¿Qué parte de ti aparece? Quizá una parte asustada, enojada o muy exigente. Ponle un nombre amable.', durationSec: 75, kind: 'reflection' },
       { title: 'Lo que necesita', instruction: '¿Qué necesita esa parte? Quizá seguridad, que la escuchen, un límite o descanso.', durationSec: 75, kind: 'reflection' },

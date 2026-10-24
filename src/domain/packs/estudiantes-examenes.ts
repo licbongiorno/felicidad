@@ -86,7 +86,7 @@ export const ESTUDIANTES_EXAMENES_PACK: ContentPack = {
       skills: ['resilience', 'attention'],
       summary: 'Antes o durante un examen, leer el corazón rápido y la tensión como el cuerpo preparándose para rendir, no como una señal de que vas a fallar.',
       mechanism: 'Interpretar la activación como energía útil, en lugar de intentar suprimirla, mejora la respuesta del cuerpo al estrés y el rendimiento en pruebas.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [JAMIESON_2010, JAMIESON_2012, BROOKS_2014],
       micro: true,
       howItWorks: [
@@ -184,7 +184,7 @@ export const ESTUDIANTES_EXAMENES_PACK: ContentPack = {
       skills: ['compassion', 'resilience'],
       summary: 'Tratarte con amabilidad tras un mal resultado y, cuando baje la angustia, mirar qué pasó para preparar mejor el próximo.',
       mechanism: 'La autocompasión después de un fracaso aumenta las ganas de mejorar. Perdonarte por haber postergado se asocia a postergar menos la vez siguiente.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [BREINES_2012, WOHL_2010],
       howItWorks: [
         'Juliana Breines y Serena Chen pidieron a estudiantes que pensaran en un error o un fracaso. Quienes se trataron con autocompasión tuvieron más ganas de mejorar. En uno de sus estudios, después de un examen difícil, estudiaron más tiempo para el siguiente (Breines y Chen, 2012).',
@@ -218,7 +218,7 @@ export const ESTUDIANTES_EXAMENES_PACK: ContentPack = {
       skills: ['resilience', 'attention'],
       summary: 'Armar la semana de exámenes con un horario de corte para el estudio y una hora fija de levantarte, para que el sueño también trabaje a tu favor.',
       mechanism: 'Durante el sueño la memoria se consolida. Restar horas de sueño para estudiar más suele empeorar el rendimiento del día siguiente.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [GILLEN_ONEEL_2013, RASCH_2013],
       howItWorks: [
         'Un estudio siguió a estudiantes secundarios durante varias semanas. Los días en que dormían menos para estudiar más tenían, al día siguiente, más problemas para entender en clase y les iba peor en las pruebas (Gillen-O’Neel y colaboradores, 2013).',

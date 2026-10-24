@@ -144,7 +144,7 @@ export const FOBIAS_SALUD_PACK: ContentPack = {
       summary: 'Tensar los músculos grandes del cuerpo unos segundos para subir la presión y evitar el desmayo ante la sangre, las heridas o las inyecciones.',
       mechanism:
         'En la fobia a la sangre y las inyecciones, la presión puede bajar de golpe y causar un desmayo. Tensar los músculos la sube y lo previene.',
-      evidenceLevel: 'robusta',
+      evidenceLevel: 'moderada',
       evidence: [OST_1991],
       howItWorks: [
         'La fobia a la sangre, las heridas y las inyecciones es distinta de las demás. Primero sube el pulso y luego la presión baja de golpe. Por eso algunas personas se marean o se desmayan.',

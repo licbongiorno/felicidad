@@ -37,7 +37,7 @@ export const EXTRA_ARTICLES: Article[] = [
     ],
     caveat: {
       title: 'Miedo a la compasión',
-      body: 'Algunas personas, sobre todo con historia de crítica o abuso, sienten amenaza cuando intentan ser amables consigo mismas: les parece peligroso, inmerecido o débil. Es un fenómeno estudiado (Gilbert et al., 2011) y no un fracaso. Conviene ir despacio y, si es intenso, trabajarlo con un/a terapeuta.',
+      body: 'Algunas personas, sobre todo con historia de crítica o abuso, sienten amenaza cuando intentan ser amables consigo mismas: les parece peligroso, inmerecido o débil. Es un fenómeno estudiado (Gilbert et al., 2011) y no un fracaso. Conviene ir despacio y, si es intenso, trabajarlo en terapia.',
     },
     related: { practices: ['pausa-autocompasion', 'amor-altruista'], articles: ['antidotos-y-regulacion'] },
     references: [
@@ -243,7 +243,7 @@ export const EXTRA_ARTICLES: Article[] = [
     readingMin: 6,
     keyPoints: [
       'La calidad de las relaciones sociales predice la salud y la supervivencia tanto como factores clásicos de riesgo.',
-      'La soledad no es estar solo/a: es la distancia entre la conexión que tienes y la que necesitas.',
+      'La soledad no es estar sin compañía: es la distancia entre la conexión que tienes y la que necesitas.',
       'Lo que más ayuda es trabajar la forma de interpretar lo social, no sólo aumentar el contacto.',
     ],
     sections: [

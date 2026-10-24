@@ -76,7 +76,7 @@ test('mapa de habilidades: de la necesidad a la práctica, con su ficha', async 
   await page.locator('main a[href^="/gimnasio/"]').first().click();
   await page.waitForURL('**/gimnasio/dear-man');
   await page.getByRole('tab', { name: 'Ficha' }).click();
-  await expect(page.getByText('Revisado clínicamente', { exact: false })).toBeVisible();
+  await expect(page.getByText(/Revisado clínicamente|Revisión clínica pendiente/)).toBeVisible();
   await expect(page.getByRole('link', { name: 'Poner límites' })).toBeVisible();
 });
 

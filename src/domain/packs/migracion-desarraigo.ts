@@ -125,7 +125,7 @@ export const MIGRACION_PACK: ContentPack = {
       skills: ['resilience', 'compassion'],
       summary: 'Mirar con quién te cruzas en tu nueva ciudad y dar un paso chico por semana: saludar por el nombre, preguntar algo, sumarte a un grupo.',
       mechanism: 'Los vínculos nuevos empiezan por lazos débiles. Los contactos breves del día a día se asocian con más bienestar y más sensación de pertenencia.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [SANDSTROM_2014, BHUGRA_2004],
       howItWorks: [
         'Al llegar a un país, o al irse de la Argentina, la red de siempre queda lejos. Armar amistades lleva tiempo, y los primeros años suelen ser los más solitarios. Por eso conviene empezar por algo más chico.',
@@ -158,7 +158,7 @@ export const MIGRACION_PACK: ContentPack = {
       skills: ['compassion', 'resilience'],
       summary: 'Elegir qué partes de tu cultura quieres mantener vivas, como la lengua, las fiestas o las comidas, y darles un lugar fijo en la semana.',
       mechanism: 'Mantener la cultura de origen mientras te abres a la nueva es el camino de aculturación que más se asocia con bienestar. Darle un lugar concreto lo vuelve posible.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [BERRY_1997, SCHWARTZ_2010, NGUYEN_2013],
       howItWorks: [
         'John Berry describe la integración como mantener la propia cultura y abrirse a la nueva. Suele traer más bienestar que dejar la propia o cerrarse a la nueva (Berry, 1997). La práctica «Mapa de dos orillas» trabaja esta idea en general.',

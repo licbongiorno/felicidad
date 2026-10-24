@@ -265,7 +265,7 @@ export const NECESIDADES_CAMBIOS_PACK: ContentPack = {
       skills: ['attention', 'compassion'],
       summary: 'Mirar tu problema como si le pasara a una persona querida y darte el consejo que le darías a ella.',
       mechanism: 'Tomar distancia de uno mismo baja la emoción y deja ver más opciones. Con los problemas ajenos pensamos con más calma.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [GROSSMANN_2014, KROSS_2014],
       howItWorks: [
         'Muchas personas dan buenos consejos a otros y se traban con sus propios problemas. Igor Grossmann y Ethan Kross encontraron que razonamos con más sabiduría sobre los problemas ajenos. Al imaginar el propio como si fuera de otro, esa diferencia desaparece (Grossmann y Kross, 2014).',

@@ -134,7 +134,12 @@ export const SUSTANCIAS_CANNABIS_PACK: ContentPack = {
       summary: 'Mirar con honestidad lo que te da y lo que te cuesta el cannabis u otra sustancia, y qué te gustaría cambiar, sin sermones.',
       mechanism: 'Poner en palabras tus razones, a favor y en contra, aclara la ambivalencia. Las razones dichas por uno mismo mueven más que las impuestas.',
       evidenceLevel: 'moderada',
-      evidence: [MILLER_2013, GATES_2016, VOLKOW_2014],
+      evidence: [
+        { citation: 'Miller, W. R., & Rose, G. S. (2015). Motivational interviewing and decisional balance: Contrasting responses to client ambivalence. Behavioural and Cognitive Psychotherapy, 43(2), 129–141.', note: 'En personas muy ambivalentes, el balance de pros y contras puede bajar el compromiso con el cambio.' },
+        MILLER_2013,
+        GATES_2016,
+        VOLKOW_2014,
+      ],
       cautions: SUSTANCIAS,
       howItWorks: [
         'Querer y no querer cambiar a la vez es normal. La entrevista motivacional no discute con esa ambivalencia: la ayuda a mirar. Lo que da el cannabis es real, y lo que cuesta también (Miller y Rollnick, 2013).',
@@ -142,6 +147,7 @@ export const SUSTANCIAS_CANNABIS_PACK: ContentPack = {
         'Las terapias que combinan entrevista motivacional y terapia cognitivo-conductual ayudan a consumir menos (Gates y colaboradores, 2016). El cambio puede ser dejar, hacer una pausa o reducir. La meta es tuya.',
       ],
       tips: [
+        'Si al anotar pros y contras sientes que te convences más de seguir igual, no fuerces la lista. Vuelve a lo que te importa y a lo que te gustaría distinto: eso suele ayudar más que sumar argumentos.',
         'Mira también lo que pasa con el sueño, la memoria, las ganas de hacer cosas y la plata.',
         'Si usas cannabis para dormir o para la ansiedad, anota qué pasa cuando no lo usas.',
         'No hace falta decidir nada hoy. Este ejercicio es para ver claro.',

@@ -243,8 +243,8 @@ const BASE_PRACTICES: Practice[] = [
       'Elige como persona difícil a alguien con fricción leve; la más difícil, para más adelante.',
     ],
     obstacles: [
-      { q: 'Me siento falso/a repitiendo frases.', a: 'Es habitual al principio. Prueba a recordar un momento concreto en que esa persona estaba bien y desea que tenga más momentos así.' },
-      { q: 'Hacia mí mismo/a no me sale.', a: 'Muy frecuente. Imagínate de niño/a, o cómo te desearía el bien alguien que te quiere. Si persiste la resistencia, vuelve al benefactor.' },
+      { q: 'Repetir frases me suena falso.', a: 'Es habitual al principio. Prueba a recordar un momento concreto en que esa persona estaba bien y desea que tenga más momentos así.' },
+      { q: 'Hacia mí no me sale.', a: 'Muy frecuente. Imagínate en tu infancia, o cómo te desearía el bien alguien que te quiere. Si persiste la resistencia, vuelve al benefactor.' },
     ],
     cautions:
       'Dirigir benevolencia hacia uno mismo puede activar autocrítica en algunas personas («miedo a la compasión», Gilbert et al., 2011). Si ocurre, vuelve al benefactor.',
@@ -289,7 +289,7 @@ const BASE_PRACTICES: Practice[] = [
     steps: [
       { title: 'Traer la dificultad', instruction: 'Recuerda una situación que te preocupa ahora, de intensidad moderada. Nota dónde se siente en el cuerpo.', durationSec: 60 },
       { title: 'Atención plena', instruction: 'Dite: «Este es un momento de sufrimiento» o «esto duele». Nombrarlo sin dramatizar.', durationSec: 45 },
-      { title: 'Humanidad compartida', instruction: '«El sufrimiento es parte de la vida. Otras personas se sienten así.» No estás solo/a en esto.', durationSec: 60 },
+      { title: 'Humanidad compartida', instruction: '«El sufrimiento es parte de la vida. Otras personas se sienten así.» Esto no te pasa solo a ti.', durationSec: 60 },
       { title: 'Amabilidad', instruction: 'Mano en el pecho. «Que pueda ser amable conmigo. Que pueda darme lo que necesito.»', durationSec: 75 },
       { title: 'Integrar', instruction: 'Nota si algo cambió, aunque sea poco.', durationSec: 30, kind: 'silence' },
     ],
@@ -463,7 +463,7 @@ const BASE_PRACTICES: Practice[] = [
       'Para conocerlas con más precisión existe el cuestionario VIA (gratuito, en viacharacter.org).',
       'Combina fortalezas: curiosidad + amabilidad = preguntar de verdad a alguien cómo está.',
     ],
-    obstacles: [{ q: 'No sé cuáles son mis fortalezas.', a: 'Piensa en un momento en que te sentiste orgulloso/a de cómo actuaste. ¿Qué cualidad mostraste?' }],
+    obstacles: [{ q: 'No sé cuáles son mis fortalezas.', a: 'Piensa en un momento en que sentiste orgullo de cómo actuaste. ¿Qué cualidad mostraste?' }],
     steps: [
       { title: 'Recordar', instruction: 'Un momento en que te sentiste plenamente tú. ¿Qué cualidad estaba en juego?', durationSec: 90, kind: 'reflection' },
       { title: 'Nombrar', instruction: 'Ponle nombre: curiosidad, humor, perseverancia, justicia, amabilidad…', durationSec: 45, kind: 'reflection' },

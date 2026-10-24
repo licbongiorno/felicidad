@@ -49,7 +49,7 @@ export const DUELO_PERINATAL_PACK: ContentPack = {
       skills: ['compassion', 'attention'],
       summary: 'Darle un lugar a la pérdida de un embarazo o de un bebé, aunque haya sido temprana o los demás no la vean.',
       mechanism: 'Cuando el entorno no reconoce una pérdida, el dolor queda sin lugar. Nombrarla y validarla baja la soledad y la culpa.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [DOKA_1989, FARREN_2016],
       howItWorks: [
         'Kenneth Doka llamó duelo no reconocido al que la sociedad no ve o no valida. La pérdida de un embarazo es un ejemplo frecuente: a veces nadie sabía, no hubo despedida y otros esperan que sigas como si nada (Doka, 1989).',
@@ -169,7 +169,7 @@ export const DUELO_PERINATAL_PACK: ContentPack = {
       skills: ['resilience', 'compassion'],
       summary: 'Para quien atraviesa infertilidad o tratamientos: cuidar los días de espera, darle lugar a la desilusión y decidir qué contar y a quién.',
       mechanism: 'Los tratamientos traen un ciclo de esperanza y desilusión que agota. Planear la espera, nombrar la pérdida de cada intento y elegir con quién hablar bajan esa carga.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [GREIL_2010, BOIVIN_2011],
       howItWorks: [
         'La infertilidad suele vivirse como una crisis. Toca la identidad, la pareja, el cuerpo, el trabajo y la plata. Muchas personas sienten aislamiento, vergüenza o duelo, y estas vivencias pueden ser distintas en cada integrante de la pareja (Greil y colaboradores, 2010).',

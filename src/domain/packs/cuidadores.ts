@@ -51,7 +51,7 @@ export const CUIDADORES_PACK: ContentPack = {
       skills: ['attention', 'compassion'],
       summary: 'Revisar con honestidad cómo estás: sueño, cuerpo, ánimo, enojo y aislamiento, y elegir un cuidado para esta semana.',
       mechanism: 'Quien cuida suele notar tarde su propio desgaste. Mirarlo a tiempo permite pedir ayuda antes de llegar al agotamiento.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [PINQUART_2003],
       howItWorks: [
         'Cuidar a alguien con una enfermedad mental o una demencia es exigente. Un metaanálisis encontró que quienes cuidan tienen más estrés y síntomas de depresión que quienes no cuidan, y algo peor salud física (Pinquart y Sörensen, 2003). La diferencia fue mayor en quienes cuidan a personas con demencia.',
@@ -81,7 +81,7 @@ export const CUIDADORES_PACK: ContentPack = {
       skills: ['compassion', 'resilience'],
       summary: 'Preparar una charla con un familiar que consume, con las ideas del enfoque CRAFT: elegir el momento, hablar en positivo y reforzar lo sobrio.',
       mechanism: 'Pelear y suplicar suele aumentar la distancia. Reforzar los momentos sin consumo y pedir en positivo, en un buen momento, aumenta la chance de que acepte ayuda.',
-      evidenceLevel: 'robusta',
+      evidenceLevel: 'moderada',
       evidence: [SMITH_MEYERS_2004, ROOZEN_2010],
       howItWorks: [
         'CRAFT es un programa para familias de personas con consumos que no quieren tratarse. Fue desarrollado por Jane Ellen Smith y Robert Meyers. Enseña a la familia a cambiar cómo se relaciona, en lugar de pelear o esperar a que la persona «toque fondo» (Smith y Meyers, 2004).',
@@ -147,7 +147,7 @@ export const CUIDADORES_PACK: ContentPack = {
       skills: ['resilience', 'compassion'],
       summary: 'Decidir qué puedes dar y qué no, poner un límite claro y pedir un relevo concreto.',
       mechanism: 'Los límites protegen a quien cuida y también al vínculo. Pedir relevos concretos reparte la carga y baja el agotamiento.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [PINQUART_2003, SMITH_MEYERS_2004],
       howItWorks: [
         'Quien cuida suele sentir que tiene que poder con todo. Pero la carga sostenida se asocia a más estrés y depresión (Pinquart y Sörensen, 2003). Los límites no son abandono: son lo que permite seguir.',

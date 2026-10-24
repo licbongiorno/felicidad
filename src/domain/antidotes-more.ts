@@ -21,10 +21,10 @@ export const MORE_ANTIDOTES: Antidote[] = [
   {
     emotionId: 'verguenza',
     emotionLabel: 'Vergüenza',
-    markers: 'Calor en la cara, mirada baja, ganas de esconderte o desaparecer, sensación de «soy defectuoso/a».',
+    markers: 'Calor en la cara, mirada baja, ganas de esconderte o desaparecer, sensación de «algo está mal en mí».',
     antidoteName: 'Mostrarse con compasión',
     incompatibility:
-      'La vergüenza dice «soy malo/a» y empuja a esconderse. Esconderse la mantiene, porque impide comprobar que los demás no rechazan. La compasión hacia uno mismo y la acción opuesta (mostrarse en lugar de ocultarse) desactivan ese círculo.',
+      'La vergüenza dice «soy una mala persona» y empuja a esconderse. Esconderse la mantiene, porque impide comprobar que los demás no rechazan. La compasión hacia uno mismo y la acción opuesta (mostrarse en lugar de ocultarse) desactivan ese círculo.',
     evidenceLevel: 'preliminar',
     evidence: [
       {
@@ -47,8 +47,8 @@ export const MORE_ANTIDOTES: Antidote[] = [
       'Si la vergüenza viene de un abuso o de un trauma, trabájala con un profesional. No te expongas ante personas que te juzgan o te hacen daño.',
     steps: [
       { title: 'Nombrar', instruction: 'Reconoce: «esto es vergüenza». Nota dónde la sientes en el cuerpo.', durationSec: 45 },
-      { title: 'Hecho o juicio', instruction: '¿Qué hiciste o qué pasó, en hechos? Separa eso de la conclusión «soy defectuoso/a».', durationSec: 75, kind: 'reflection' },
-      { title: 'No estás solo/a', instruction: 'Recuerda que muchas personas sienten esto mismo. La vergüenza es humana, no una prueba de que vales menos.', durationSec: 60 },
+      { title: 'Hecho o juicio', instruction: '¿Qué hiciste o qué pasó, en hechos? Separa eso de la conclusión «algo está mal en mí».', durationSec: 75, kind: 'reflection' },
+      { title: 'No te pasa solo a ti', instruction: 'Recuerda que muchas personas sienten esto mismo. La vergüenza es humana, no una prueba de que vales menos.', durationSec: 60 },
       { title: 'Calidez', instruction: 'Pon una mano en el pecho. Háblate como a alguien que quieres y que se siente así: con calma y sin reproches.', durationSec: 90, kind: 'breath' },
       { title: 'Mostrarte', instruction: 'Levanta la cabeza y suelta los hombros. ¿Con qué persona de confianza podrías dejar de esconder esto?', durationSec: 60, kind: 'reflection' },
     ],
@@ -76,7 +76,7 @@ export const MORE_ANTIDOTES: Antidote[] = [
     trainingPracticeId: 'comprobar-hechos',
     science: [
       'La exposición, acercarse de forma gradual a lo que se teme, es el componente con más evidencia del tratamiento de los miedos y la ansiedad. Según el modelo de aprendizaje inhibitorio de Craske y colaboradores, la exposición no borra el miedo: crea un aprendizaje nuevo, «esto es seguro», que compite con el antiguo.',
-      'Para que ese aprendizaje ocurra hay que quedarse en la situación sin conductas de seguridad (no mirar, salir pronto, ir siempre acompañado/a). Por eso el antídoto propone un paso pequeño y concreto, no un gran salto.',
+      'Para que ese aprendizaje ocurra hay que quedarse en la situación sin conductas de seguridad (no mirar, salir pronto, ir siempre con alguien). Por eso el antídoto propone un paso pequeño y concreto, no un gran salto.',
     ],
     whenNot:
       'Si hay un peligro real, protégete y pide ayuda: este antídoto no es para eso. Si el miedo es muy intenso o viene de un trauma, practica la exposición con un profesional.',
@@ -109,7 +109,7 @@ export const MORE_ANTIDOTES: Antidote[] = [
       { title: 'Pausa', instruction: 'Antes de hacer nada, respira despacio. No tienes que actuar ahora.', durationSec: 60, kind: 'breath' },
       { title: 'Hechos o suposiciones', instruction: '¿Qué viste u oíste de verdad? ¿Qué estás suponiendo? Sepáralo.', durationSec: 75, kind: 'reflection' },
       { title: 'El miedo de fondo', instruction: '¿Qué temes perder? Muchas veces, debajo de los celos hay miedo a no ser suficiente.', durationSec: 60, kind: 'reflection' },
-      { title: 'Soltar el control', instruction: 'Elige no vigilar. Si necesitas hablar, piensa cómo decir lo que sientes sin acusar: «Me sentí inseguro/a cuando…».', durationSec: 60, kind: 'reflection' },
+      { title: 'Soltar el control', instruction: 'Elige no vigilar. Si necesitas hablar, piensa cómo decir lo que sientes sin acusar: «Sentí inseguridad cuando…».', durationSec: 60, kind: 'reflection' },
     ],
   },
   {
@@ -140,7 +140,7 @@ export const MORE_ANTIDOTES: Antidote[] = [
     steps: [
       { title: 'Parar', instruction: 'Detén lo que estás haciendo. Dite: «esto es frustración».', durationSec: 30 },
       { title: 'Bajar la activación', instruction: 'Suelta la mandíbula y los puños. Exhala largo, varias veces.', durationSec: 60, kind: 'breath' },
-      { title: 'El cuerpo', instruction: '¿Estás cansado/a, con hambre o con demasiadas cosas a la vez? Eso también cuenta.', durationSec: 45, kind: 'reflection' },
+      { title: 'El cuerpo', instruction: '¿Tienes cansancio, hambre o demasiadas cosas a la vez? Eso también cuenta.', durationSec: 45, kind: 'reflection' },
       { title: 'El obstáculo', instruction: '¿Qué te bloquea, en concreto? ¿Qué parte depende de ti y qué parte no?', durationSec: 75, kind: 'reflection' },
       { title: 'El siguiente paso', instruction: 'Elige un paso pequeño sobre lo que sí depende de ti. Lo demás, déjalo por ahora.', durationSec: 60, kind: 'reflection' },
     ],
@@ -198,7 +198,7 @@ export const MORE_ANTIDOTES: Antidote[] = [
     whenNot:
       'Si la inseguridad te impide hacer tu vida o viene con tristeza profunda, consulta a un profesional. Si alguien te desvaloriza a menudo, pide ayuda para protegerte.',
     steps: [
-      { title: 'Nombrar', instruction: 'Reconoce: «me siento inseguro/a». Nota qué te lo disparó.', durationSec: 45 },
+      { title: 'Nombrar', instruction: 'Reconoce: «siento inseguridad». Nota qué te lo disparó.', durationSec: 45 },
       { title: 'El juicio', instruction: '¿Qué te estás diciendo de ti? Escúchalo como un pensamiento, no como un hecho.', durationSec: 60, kind: 'reflection' },
       { title: 'Humanidad compartida', instruction: 'Todas las personas dudan de sí mismas a veces. No eres la excepción.', durationSec: 45 },
       { title: 'Datos reales', instruction: 'Recuerda tres cosas concretas que hiciste bien o cualidades que otros valoran en ti.', durationSec: 90, kind: 'reflection' },

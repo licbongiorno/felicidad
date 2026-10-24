@@ -1,5 +1,7 @@
 # Barras de género en el contenido
 
+> **Aplicado el 2026-10-24:** se reescribieron 109 apariciones. Quedan solo los ítems de evaluaciones validadas y 2 comentarios de código. La tabla de abajo es el estado previo.
+
 Hay 138 apariciones. Casi todas están en contenido ya aprobado, así que no las cambié: cambiar el texto lo devolvería a «pendiente».
 
 Las preguntas de las evaluaciones validadas (PHQ-9, GAD-7 y otras) conviene dejarlas como están, porque siguen la redacción de las versiones en castellano. Lo demás se puede reescribir sin barras, por ejemplo «un o una profesional» o «un profesional», o cambiando la frase («si te sientes con cansancio»).

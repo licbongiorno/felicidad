@@ -174,7 +174,7 @@ export const PANTALLAS_ADULTOS_PACK: ContentPack = {
       skills: ['attention', 'resilience'],
       summary: 'Armar un plan simple para que el celular pase la noche fuera de la cama: dónde carga, qué lo reemplaza y cuál es el último vistazo.',
       mechanism: 'Usar el celular en la cama se asocia a dormir peor. Sacarlo del alcance quita la tentación de mirar y devuelve a la cama su función de lugar para dormir.',
-      evidenceLevel: 'moderada',
+      evidenceLevel: 'preliminar',
       evidence: [EXELMANS_2016, CHANG_2015],
       howItWorks: [
         'En un estudio con adultos, quienes usaban el celular ya acostados dormían peor y se sentían más cansados (Exelmans y Van den Bulck, 2016). Es un estudio de asociación: no prueba que el celular sea la única causa.',

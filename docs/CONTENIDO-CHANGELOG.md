@@ -19,6 +19,14 @@ entrada en este registro.
 
 ---
 
+## 2026-10-24 · Revisión clínica aplicada: evidencia, balances y lenguaje sin barras
+
+Se aplicaron los informes `docs/revision-evidencia.md` y `docs/revision-barras.md`. Los 92 elementos aprobados que cambiaron vuelven a `pendiente` y aparecen en `/revision`.
+- **Niveles de evidencia** con el criterio de `evidence.ts`: 16 prácticas suben (sobre todo habilidades DBT, que citan la evidencia de la terapia completa con Storebø y otros, 2020, y prácticas de compasión con Kirby y otros, 2017) y 56 bajan (5 de robusta a moderada y 51 de moderada a preliminar, entre ellas las técnicas de asertividad de Smith). Las filas marcadas «verificar» o «mantener» no se tocaron.
+- **Balances de pros y contras** (alcohol, apuestas, cannabis y cambio): nuevo consejo y referencia a Miller y Rose (2015), porque en personas muy ambivalentes el balance puede bajar el compromiso con el cambio.
+- **Barras de género:** 109 de 138 reescritas sin «o/a» («un profesional de la salud mental», «siento soledad», «siéntate con comodidad»). Quedan 27 en ítems de evaluaciones validadas, que siguen la versión publicada, y 2 en comentarios de código.
+- La definición de los niveles en `types.ts` ahora coincide con la que ve el usuario.
+
 ## 2026-10-24 · Lectura fácil en todos los artículos
 
 Versión de lectura fácil para los 101 artículos que no la tenían, incluidos los de los paquetes recientes. Con esto, todos los artículos de la Biblioteca la tienen. Son resúmenes fieles, de 4 a 6 párrafos con frases de 15 palabras como máximo, sin datos ni referencias nuevas, y conservan los avisos de ayuda que trae cada artículo.

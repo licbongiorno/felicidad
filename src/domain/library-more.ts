@@ -308,7 +308,7 @@ export const MORE_ARTICLES: Article[] = [
     ],
     caveat: {
       title: 'Con acompañamiento si hace falta',
-      body: 'Si la ansiedad es muy intensa, hay ataques de pánico frecuentes o historia de trauma, la exposición debe hacerse con un/a terapeuta.',
+      body: 'Si la ansiedad es muy intensa, hay ataques de pánico frecuentes o historia de trauma, la exposición debe hacerse con acompañamiento terapéutico.',
     },
     diagram: {
       title: 'El ciclo de la evitación',
