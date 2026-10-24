@@ -1,0 +1,276 @@
+import type { EasyRead } from './easy-read';
+
+export const EASY_READ_G: EasyRead[] = [
+  {
+    articleId: 'familias-de-practica',
+    paragraphs: [
+      'Meditar no es una sola cosa. Es como decir que alguien hace deporte. Hay tres familias de práctica. Cada una entrena algo distinto.',
+      'La familia de la atención te ayuda a fijar la mente. También a notar cuando se va. Un ejemplo es seguir la respiración.',
+      'La familia que construye cultiva cosas buenas. Por ejemplo, el cariño, la gratitud o la compasión. La familia que desarma te ayuda a soltar tus pensamientos. Así no te pegas tanto a ellos.',
+      'La atención es la base. Sin ella, las otras prácticas se vuelven confusas. Una buena semana puede tener dos o tres ratos de cada familia.',
+      'El panel de la app te muestra cuánto practicas de cada una. Así ves si estás en equilibrio.',
+    ],
+  },
+  {
+    articleId: 'medir-tu-progreso',
+    paragraphs: [
+      'El panel de la app cuenta cuánto practicas. No mide cuánto has cambiado. Practicar más suele ayudar más. Pero eso cambia mucho de una persona a otra.',
+      'Los números pueden engañar. Si anotas tu ánimo en un mal día, lo que sigue suele ser mejor. Eso pasa practiques o no.',
+      'También puede pasar al revés. Quizás practicas más los días en que ya estás bien. Y saber que «deberías» estar mejor puede cambiar lo que anotas.',
+      'Responde con lo que notas, no con lo que esperas. Mira cómo vas en tres o cuatro semanas, no en un solo día.',
+      'Usa el panel para ver qué te sirve a ti. Por ejemplo, qué práctica o qué hora del día. No lo uses para juzgarte. Si vas a terapia, compártelo.',
+    ],
+  },
+  {
+    articleId: 'habilidades-dbt',
+    paragraphs: [
+      'La DBT es una terapia para emociones muy fuertes. Une dos cosas a la vez. Aceptarte como eres hoy. Y trabajar para cambiar.',
+      'Sus habilidades sirven más cuanto más se usan. Son cuatro grupos. El primero es la calma atenta, la base de todo. Se busca la «mente sabia», entre lo que sientes y lo que sabes.',
+      'El segundo grupo ayuda a pasar una crisis sin empeorarla. Por ejemplo, calmarte con los cinco sentidos. O aceptar lo que no puedes cambiar.',
+      'El tercero te ayuda con las emociones. Revisa si la emoción encaja con lo que pasa. Si no encaja, haz lo opuesto. Cuida tu sueño, tu comida y tu cuerpo.',
+      'El cuarto cuida tus vínculos. Te ayuda a pedir lo que necesitas o a decir que no. Y a cuidar la relación sin dejar de respetarte.',
+      'Practica en calma, con cosas chicas. Así sabrás qué hacer en una crisis. Si te lastimas o piensas en morir, esto no basta. Busca un equipo de DBT. Si hay riesgo ahora, llama a emergencias.',
+    ],
+  },
+  {
+    articleId: 'gestalt',
+    paragraphs: [
+      'La Gestalt es una terapia creada por Fritz y Laura Perls. Su idea central es darse cuenta. Es notar lo que te pasa ahora, más que buscar por qué.',
+      'Para la Gestalt, el cambio no viene de forzarte a ser otro. Viene de ver lo que ya haces. Puedes notar tres zonas. Lo que ves y oyes. Lo que sientes en el cuerpo. Y lo que piensas o imaginas.',
+      'A veces algo queda sin cerrar. Algo que no dijiste, un enojo que tragaste, una despedida que no fue. Eso vuelve una y otra vez.',
+      'Una forma de cerrarlo es la silla vacía. Imaginas a la otra persona delante. Y le hablas en presente. Hay estudios que la apoyan.',
+      'También hay partes que pelean dentro de ti. Una exige y dice «deberías». Otra se resiste. Dale voz a cada una por turnos, para que se escuchen.',
+      'Estas técnicas pueden mover emociones fuertes. Si hay trauma, abuso o un duelo reciente, no las hagas solo. Si te desbordas, para. Abre los ojos y siente tus pies en el piso.',
+    ],
+  },
+  {
+    articleId: 'terapia-metacognitiva',
+    paragraphs: [
+      'Todos tenemos pensamientos negativos. El problema no es tenerlos. Es quedarte dándoles vueltas mucho tiempo. Esta terapia trabaja sobre eso.',
+      'No discute si un pensamiento es cierto o falso. Mira cómo te relacionas con él. Cuánto tiempo le das y qué haces cuando llega.',
+      'El bucle se sostiene por lo que crees de tu mente. Por ejemplo, «preocuparme me prepara». O «no puedo parar de preocuparme». La terapia pone a prueba esas ideas.',
+      'Una técnica es dejar la preocupación para más tarde. Le das una hora fija y vuelves a lo tuyo. Así ves que sí puedes frenarla.',
+      'Otra es mirar el pensamiento sin responderle. Ni lo sigues ni lo peleas. Y otra es un ejercicio con sonidos. Te enseña a mover la atención cuando quieres.',
+      'Estas técnicas sueltas no son una terapia completa. Si la preocupación te ocupa gran parte del día, consulta a un profesional.',
+    ],
+  },
+  {
+    articleId: 'tcc-i-paso-a-paso',
+    paragraphs: [
+      'El insomnio crónico es dormir mal tres noches por semana, durante tres meses o más. La TCC para el insomnio es lo primero que se recomienda. Dura unas seis semanas.',
+      'Antes, mira si roncas fuerte, te ahogas de noche o tienes mucho sueño de día. Si es así, ve primero al médico. Puede ser otro problema del sueño.',
+      'La primera semana solo anotas cómo duermes. Lo haces cada mañana en un diario. Luego te levantas a la misma hora cada día. Vas a la cama solo con sueño. Si no duermes, te levantas.',
+      'Después ajustas el tiempo en la cama a lo que duermes de verdad. Nunca menos de seis horas. No lo hagas solo si tienes bipolaridad, epilepsia, apnea, embarazo o manejas.',
+      'También ayudan la luz de mañana, moverte de día y menos café de tarde. Revisa ideas como «necesito ocho horas». Y aprende a relajar el cuerpo antes de dormir.',
+      'Las primeras semanas pueden ser más cansadas. Es normal y pasa. Una mala noche no es una recaída. No te acuestes antes ni duermas siestas largas. Si sigues mal, pide ayuda.',
+    ],
+  },
+  {
+    articleId: 'duelo-profundo',
+    paragraphs: [
+      'El duelo no sigue fases fijas. Va y viene. A veces miras la pérdida y lloras. Otras veces te ocupas de la vida. Las dos cosas hacen falta.',
+      'El duelo tiene algo de tarea. Aceptar que la pérdida es real. Pasar por el dolor. Vivir en un mundo sin esa persona. Y seguir unido a ella de otra forma.',
+      'Reírte o pasarla bien un rato no es olvidar. Y es normal seguir sintiendo un lazo con quien murió. Puedes hablarle, guardar cosas o crear un ritual.',
+      'Hay duelos que otros no ven. Por ejemplo, perder un embarazo o una mascota. Duelen igual y merecen el mismo respeto.',
+      'Casi todos pasan el duelo con el apoyo de su gente. Pide ayuda si después de un año no aceptas la pérdida. O si el anhelo te ocupa todo el día. Hay tratamientos que sirven.',
+      'Si tienes ideas de morir, pide ayuda hoy mismo.',
+    ],
+  },
+  {
+    articleId: 'neurodiversidad-adultos',
+    paragraphs: [
+      'Los cerebros funcionan de formas distintas, como los cuerpos. Esa es la idea de la neurodiversidad. El TDAH y el autismo son formas distintas de ver el mundo. Tienen fuerzas y dificultades.',
+      'Eso no quita que haya dolor o que haga falta apoyo. Muchas veces el problema es un entorno que no está hecho para ti.',
+      'En el TDAH cuesta empezar, recordar o manejar el tiempo. Ayuda poner la memoria afuera. Usa listas a la vista, alarmas y pasos chicos. También ayuda trabajar con alguien al lado.',
+      'En el autismo, ruidos y luces pueden sentirse muy fuertes. Conocer qué te satura ayuda a cuidarte. Esconder tus rasgos para encajar gasta mucha energía. Descansa antes de agotarte.',
+      'Pide lo que necesitas, como un lugar tranquilo o avisos antes de un cambio. Es un derecho, no un favor.',
+      'Esta información no sirve para diagnosticar. Si te reconoces, pide una evaluación con un profesional. Las ideas de la app te sirven igual, tengas o no un diagnóstico.',
+    ],
+  },
+  {
+    articleId: 'modos-de-esquema',
+    paragraphs: [
+      'Un modo es el estado en el que estás ahora. Todos cambiamos de modo durante el día. Cada modo es como una parte tuya.',
+      'Las partes niñas sienten miedo, pena, rabia o ganas de todo ya. No son el problema. Muestran una necesidad. Necesitan que alguien las escuche y las cuide. Hoy ese alguien puedes ser tú.',
+      'Las voces críticas castigan o nunca se conforman. Con ellas no sirve consolar. Hay que ponerles un límite. Puedes tomar lo útil de una crítica sin aceptar el maltrato.',
+      'Otras partes te protegen. Unas apagan lo que sientes. Otras complacen para no pelear. Otras atacan o controlan. Agradéceles lo que hicieron. Y busca hoy otras formas de cuidarte.',
+      'El adulto sano escucha a todas las partes y decide. Se hace fuerte con práctica. También hay un niño feliz que juega y disfruta. Dale espacio.',
+      'Las partes no son personas dentro de ti. Si pierdes el tiempo o no te sientes tú, consulta a un profesional.',
+    ],
+  },
+  {
+    articleId: 'modos-no-mentalizantes',
+    paragraphs: [
+      'Mentalizar es entender lo que hace alguien por lo que siente o quiere. Con mucho estrés, a todos se nos apaga. Pasa más con la gente cercana.',
+      'Hay tres formas de dejar de mentalizar. En la primera, lo que sientes parece la verdad. Si te sientes tonto, crees que eres tonto.',
+      'En la segunda, solo cuenta lo que se ve. «Si me quisieras, vendrías ahora». En la tercera, hablas mucho de emociones. Pero sin sentirlas de verdad.',
+      'Para volver, primero nota la señal. Puede ser certeza, apuro o ganas de atacar. Luego calma el cuerpo. Respira o pide un minuto. Recién ahí sirve pensar.',
+      'Después, pregunta con curiosidad. ¿Qué me pasó a mí? ¿Qué le pasaba a la otra persona? Repasa la escena con calma.',
+      'Aprendemos más de alguien cuando sentimos que entiende nuestra mente. Por eso, interesarte por lo que piensa el otro ayuda a que te escuche.',
+    ],
+  },
+  {
+    articleId: 'medicacion-psiquiatrica',
+    paragraphs: [
+      'Esto solo informa. No cambia ni deja ningún remedio. Eso lo decides con tu médico. Hay grandes grupos. Unos son para la depresión y otros para la ansiedad. Otros son para el ánimo o la psicosis.',
+      'Algunos remedios para la ansiedad actúan rápido. Se suelen usar poco tiempo, porque pueden crear dependencia. Los de la depresión tardan unas semanas en hacer efecto.',
+      'Al principio pueden dar náuseas o cambiar el sueño. Muchas veces eso baja con los días. Si sientes que no sirve, háblalo con tu médico antes de decidir. Anotar cómo te sientes ayuda.',
+      'La medicación no cambia quién eres. Si no te reconoces, dilo y se puede ajustar. No siempre es para siempre. Y no es de débiles. Es cuidar tu salud.',
+      'No tienes que elegir entre remedio y terapia. Juntos suelen ayudar más. Cuéntale a cada uno lo que hace el otro.',
+      'Si al empezar o cambiar un remedio piensas en hacerte daño, consulta ya. Llama al 135, al 0800-999-0091 o al 911.',
+    ],
+  },
+  {
+    articleId: 'espiritualidad-y-sentido',
+    paragraphs: [
+      'La espiritualidad es buscar unión con algo más grande que tú. Puede ser Dios, la vida o la gente. También es buscar sentido. Se vive con religión o sin ella.',
+      'El asombro es una forma de vivirla. Aparece ante la naturaleza, el arte o un gesto de bondad. Te hace sentir más cerca de los demás.',
+      'No hacen falta grandes cosas. Puedes dar gracias a quien hizo posible tu día. O sentirte parte de un barrio. O estar en la naturaleza. Los ritos también ayudan, si tienen sentido para ti.',
+      'En una crisis, la fe puede sostener o puede pesar. Sentirte acompañado suele ayudar. Sentirte castigado suele hacer daño. Notar cuál es cuál ayuda.',
+      'Piensa qué quieres dejar en las personas y en el mundo. Eso se hace hoy, con gestos chicos.',
+      'La fe no cura ni reemplaza un tratamiento. Desconfía de quien te presione o pida dinero. Si piensas en morir, llama al 135, al 0800-345-1435 o al 911.',
+    ],
+  },
+  {
+    articleId: 'perdida-perinatal-e-infertilidad',
+    paragraphs: [
+      'Perder un embarazo o un bebé es un duelo real. Aunque haya sido muy temprano. A veces nadie lo ve. Y se espera que sigas como si nada.',
+      'Cada persona lo vive a su manera. También cada uno en la pareja. Uno quiere hablar y otro prefiere hacer cosas. Eso no mide el amor.',
+      'Un ritual puede ayudar. Una carta, una planta o un nombre. Elígelo tú, a tu ritmo. No hay una forma mejor. Volver a intentar o no también es tu decisión.',
+      'La infertilidad trae esperanza y luego desilusión, una y otra vez. Eso agota. Decide qué contar y a quién. Planea algo amable para los días de espera. El estrés no hace fallar el tratamiento.',
+      'Si eres familiar, evita frases como «ya vas a tener otro». Mejor di «lo siento mucho» o «estoy aquí». Ofrece ayuda concreta, como llevar comida.',
+      'Consulta si la tristeza no se va o la ansiedad no te deja vivir. Si piensas en morir, pide ayuda hoy. Llama al 135 o al 0800-999-0091. Si hay peligro, llama al 911.',
+    ],
+  },
+  {
+    articleId: 'hablar-del-suicidio-en-la-familia',
+    paragraphs: [
+      'Muchas familias callan para cuidar a los chicos. Pero los chicos suelen darse cuenta. Es mejor que lo sepan por alguien que los quiere.',
+      'Usa palabras simples, según la edad. Con los más chicos, alcanza con decir que murió y no va a volver. No hace falta contar cómo fue. Repite que no fue su culpa.',
+      'Diles que pueden preguntar lo que quieran. Y que hay adultos que los cuidan. Consulta si un chico deja de comer o dormir, o habla de morir. La Línea 102 orienta.',
+      'Con otras personas, tú eliges cuánto contar. Una frase breve basta. Puedes decir «prefiero no hablar de eso». No des detalles de la muerte, tampoco en redes.',
+      'Si acompañas a alguien, di «lo siento, estoy aquí». Escucha sin juzgar y nombra a quien murió. No preguntes cómo fue ni busques culpables. Sigue cerca después de las primeras semanas.',
+      'Si la persona que acompañas piensa en morir, no la dejes sola. Llamen juntos al 135 o al 911.',
+    ],
+  },
+  {
+    articleId: 'trastorno-limite-explicado',
+    paragraphs: [
+      'El trastorno límite trae emociones muy fuertes que suben rápido y tardan en bajar. También miedo a que te dejen, relaciones con altibajos y actos sin pensar. A veces hay vacío o no saber quién eres.',
+      'No es manipular ni llamar la atención. Es un problema de salud que causa mucho dolor. Sus señales se parecen a las de otros problemas. Por eso hace falta que te evalúe un profesional.',
+      'Hay mucho prejuicio con este diagnóstico. Frases como «no tiene arreglo» son falsas y hacen daño. Es mejor hablar de lo que pasa que poner etiquetas.',
+      'El tratamiento central es la terapia. Hay terapias que funcionan, como la DBT. Los remedios pueden ayudar con algunas cosas. La mayoría de las personas mejora mucho con el tiempo.',
+      'La familia puede validar lo que siente sin aceptar cualquier conducta. Pon límites claros y con calma. Y busca apoyo para ti también.',
+      'Si alguien se lastima o habla de morir, busca ayuda ya. Llama al 135, al 0800-999-0091 o al 911.',
+    ],
+  },
+  {
+    articleId: 'cuidados-paliativos',
+    paragraphs: [
+      'Los cuidados paliativos son una ayuda para personas con una enfermedad grave. Buscan bajar el dolor y otras molestias. Por ejemplo, la falta de aire o el cansancio. Cuidan que vivas lo mejor posible.',
+      'Los da un equipo de médicos, enfermeras, psicólogos y otros. Cuidan el cuerpo y las emociones. También tus preguntas sobre el sentido. Y cuidan a tu familia.',
+      'Pedirlos no es rendirse. Pueden empezar junto con el tratamiento, desde el principio. En un estudio, empezarlos pronto mejoró la vida y el ánimo.',
+      'Pregunta a tu equipo si en tu hospital u obra social hay este servicio. No esperes a sentirte muy mal. Un familiar también puede pedirlo.',
+      'Este equipo ayuda a hablar de lo que importa. También a tomar decisiones difíciles. Y a cuidar a quien cuida. Lo que sirve en tu caso lo decides con tus médicos.',
+    ],
+  },
+  {
+    articleId: 'sensibilidad-ansiedad-o-neurodivergencia',
+    paragraphs: [
+      'Saturarte con el ruido o sentir mucho pasa en varios casos. Puede ser alta sensibilidad, ansiedad, autismo o TDAH. Se parecen en algo, pero no son lo mismo.',
+      'La alta sensibilidad es cómo recibes lo que pasa a tu alrededor. En un lugar amable puedes estar en calma. En la ansiedad, el miedo sigue aunque estés a salvo.',
+      'En el autismo también hay diferencias en el trato social y en las rutinas. En el TDAH cuesta la atención o frenar impulsos. Esto viene desde la infancia. Puedes ser sensible y tener algo más.',
+      'Una etiqueta puede aliviar. Pero una etiqueta errada puede alejarte de la ayuda que necesitas. Los test de sensibilidad no sirven para diagnosticar.',
+      'Mientras tanto, cuida cuánto estímulo recibes. Eso te sirve sea cual sea la respuesta.',
+      'Consulta si el malestar dura semanas, tienes pánico o te cuesta tu vida diaria. Si piensas en hacerte daño, usa el botón «Ayuda». O llama al 135, al 0800-345-1435 o al 0800-999-0091.',
+    ],
+  },
+  {
+    articleId: 'entender-el-dolor-cronico',
+    paragraphs: [
+      'El dolor es una alarma que hace tu cuerpo para protegerte. Es real, aunque no haya daño. En el dolor crónico, la alarma suena antes y más fuerte. Dura más de tres meses.',
+      'No está «en tu cabeza». Pero muchas cosas pueden subirle o bajarle el volumen. Por ejemplo, el sueño, el estrés, el miedo y lo que piensas.',
+      'Pensar todo el tiempo en el dolor o temer lo peor suma otra alarma. Hace que duela más y que te muevas menos. Con terapia puedes aprender a mirar esos pensamientos.',
+      'Dormir mal sube el dolor del día siguiente. Por eso cuidar la noche es parte del tratamiento. Si roncas fuerte o tienes mucho sueño de día, díselo a tu médico.',
+      'En los días buenos, no hagas todo lo pendiente. Eso suele traer un brote y días sin moverte. Haz las cosas por tiempo y con pausas. Sube muy de a poco. Ten un plan para los brotes.',
+      'Ante un dolor nuevo o distinto, ve primero al médico. También si hay fiebre, debilidad nueva o un dolor de cabeza muy fuerte de golpe.',
+    ],
+  },
+  {
+    articleId: 'cnv-cuatro-componentes',
+    paragraphs: [
+      'La comunicación no violenta es una forma de hablar y escuchar. Busca entenderse más que tener razón. Tiene cuatro pasos.',
+      'Primero, di lo que pasó, sin juzgar. «Quedamos a las nueve y llegaste a las diez». Si el otro oye un juicio, se defiende.',
+      'Segundo, di lo que sientes. «Me siento triste». Palabras como «ignorado» no son sentimientos. Hablan de lo que crees que el otro te hizo.',
+      'Tercero, di lo que necesitas. Puede ser descanso, respeto o cercanía. Cuarto, pide algo claro y posible. Un pedido acepta un «no». Si no lo acepta, es una exigencia.',
+      'Los mismos pasos sirven para escuchar. Busca qué siente y qué necesita la otra persona. Al principio suena raro. Con práctica sale más natural.',
+      'Hay pocos estudios sobre este método. Es una guía, no un tratamiento. Si vives con alguien violento, lo primero es tu seguridad. Llama a la Línea 144 o al 911.',
+    ],
+  },
+  {
+    articleId: 'eneagrama-que-es-y-que-no',
+    paragraphs: [
+      'El eneagrama es un dibujo con nueve puntos. Cada punto es un estilo de ser. Cada estilo tiene un miedo y un deseo de fondo.',
+      'Por ejemplo, uno busca ser bueno. Otro busca ser querido. Otro busca paz y evita el conflicto. Lo que cuenta es el motivo, no lo que haces.',
+      'Los estilos se juntan de a tres. Unos giran en torno al enojo. Otros, a la imagen de sí. Y otros, al miedo. Las líneas muestran cómo cambia cada estilo con estrés o con calma.',
+      'Úsalo como una lista de preguntas sobre ti. ¿Qué me mueve? ¿Qué evito? ¿Qué me pasa bajo presión? Es normal verte en varios estilos.',
+      'No lo uses para juzgar a otros. Decir «es un ocho, por eso es así» cierra la charla.',
+      'Tiene pocos estudios serios. No sirve para diagnosticar. Tampoco para elegir pareja ni para dar trabajo a alguien.',
+    ],
+  },
+  {
+    articleId: 'duelo-por-una-ruptura',
+    paragraphs: [
+      'Cuando una relación termina, es un duelo. Pierdes a la persona, los planes y tu día a día. Duele si te dejaron y también si dejaste.',
+      'La tristeza y el enojo suben y bajan. Con las semanas se van calmando. Un mal día no quiere decir que vuelves a empezar.',
+      'Las ganas de escribirle o de mirar sus redes son una ola. Suben y luego bajan. Espera diez minutos antes de decidir. Si tienes que verle, elige tú un plan de contacto.',
+      'Dar vueltas al «por qué» suele dejarte peor. Mejor escribe un rato sobre lo que pasó y lo que sientes. Luego vuelve a algo del presente.',
+      'Vuelve a lo tuyo. Un gusto, un deporte, una amistad. Hay ratos para llorar y ratos para vivir. Los dos son parte del camino.',
+      'Si hubo golpes, amenazas o control, es violencia y no es tu culpa. Llama a la Línea 144 o al 911. Si piensas en no vivir, llama al 135 o al 0800-345-1435. O usa el botón «Ayuda». Si tomas para aguantar, llama a la Línea 141.',
+    ],
+  },
+  {
+    articleId: 'menopausia-y-climaterio',
+    paragraphs: [
+      'La menopausia es la última regla. Se confirma tras un año sin menstruar. El climaterio es la etapa más larga que la rodea. Cada persona lo vive distinto.',
+      'Además de los sofocos, pueden cambiar el ánimo, el sueño, la memoria y el deseo. Influyen las hormonas, dormir mal y otras cargas de esta edad.',
+      'Lo que piensas de los sofocos cambia cuánto te molestan. Respirar lento y bajar el estrés ayuda. También revisar ideas como «todos lo notan». Moverte y tratarte con bondad ayudan al ánimo.',
+      'Para dormir, ten el cuarto fresco y una hora fija para levantarte. Si los olvidos te preocupan, usa listas y alarmas. Haz una cosa por vez.',
+      'Si hay dolor en las relaciones, consulta en ginecología. Tiene tratamiento. En el trabajo, puedes pedir un ventilador o pausas cortas. Hay remedios para esta etapa, pero se hablan con el médico.',
+      'Consulta pronto si sangras después de un año sin regla. Si el ánimo está muy bajo o piensas en no vivir, pide ayuda hoy. Llama al 135, al 0800-345-1435, al 0800-999-0091 o al 911. También puedes usar el botón «Ayuda».',
+    ],
+  },
+  {
+    articleId: 'familias-que-acompanan-la-diversidad',
+    paragraphs: [
+      'Si tu hijo, hija o hije te cuenta que es LGBTIQ+, te muestra confianza. Lo que haga la familia pesa mucho en su salud. El rechazo trae más riesgo. La aceptación le protege.',
+      'No hace falta entender todo para acompañar. Agradece que te lo contó y dile que le quieres igual. Escucha más de lo que hablas. Usa el nombre y los pronombres que te pida.',
+      'Defiéndele si otros se burlan. Recibe en casa a sus amistades. Pregunta antes de contarlo a otros. Infórmate por tu cuenta.',
+      'Hacen daño los insultos y las burlas. También decir que es una etapa o pedirle que lo oculte. Las «terapias de conversión» hacen daño. No son una opción.',
+      'Puedes sentir miedo, culpa o tristeza. Es parte de tu proceso. Llévalo a otros adultos, a grupos de familias o a un profesional. No hay nada que corregir en tu hijo.',
+      'Consulta pronto si habla de no querer vivir, se lastima o se aísla. Llama al 135 o al 0800-345-1435, o usa el botón «Ayuda». Si hay violencia en casa, llama a la Línea 102. Ante un peligro, llama al 911.',
+    ],
+  },
+  {
+    articleId: 'pensar-en-el-propio-final',
+    paragraphs: [
+      'Cuando una enfermedad avanza, es común pensar en la muerte. Aparecen miedos, preguntas y tristeza. No quiere decir que te rindes. Hablarlo no la acerca.',
+      'Muchos miedos tienen que ver con sufrir. El dolor, la falta de aire o la angustia se pueden aliviar. Dile a tu equipo qué te preocupa. Pregunta si hay cuidados paliativos.',
+      'Puedes pensar qué te importa en este tiempo. Y qué quieres dejar a los tuyos. Un gracias, un perdón, una historia o un consejo.',
+      'A veces todos callan para cuidarse. Y cada uno queda solo con lo que siente. Puedes decir: «Necesito hablar de esto. No hace falta que tengas respuestas». También puedes elegir no hablar de algo.',
+      'Si la angustia no cede o no duermes por el miedo, dilo a tu equipo. Muchos tienen psicólogos para esto.',
+      'Si piensas en hacerte daño, llama al 135 o al 0800-345-1435. También puedes usar el botón «Ayuda». Si hay riesgo ya, llama al 911.',
+    ],
+  },
+  {
+    articleId: 'vivir-con-una-discapacidad',
+    paragraphs: [
+      'La discapacidad no es solo algo del cuerpo o la mente. También la crean las barreras. Un edificio sin rampa o una mirada de lástima son barreras. La pregunta cambia. No es qué te falta, sino qué hay que cambiar.',
+      'Si la discapacidad llega de adulto, puede traer duelo, miedo o enojo. No hay un plazo para adaptarte. Ayuda buscar sentido, cuidar tus vínculos y volver a decidir por ti.',
+      'Algunas personas viven la discapacidad como parte de quienes son. Otras no, y está bien. Tú eliges cómo nombrarte.',
+      'Todos dependemos de otros en algo. Lo que importa es quién decide. Di qué ayuda quieres y cómo. Puedes decir «así no» si alguien decide por ti.',
+      'El prejuicio puede venir de afuera o de adentro. Por ejemplo, pensar «soy una carga». Háblate con bondad. No tienes que educar a todos.',
+      'Consulta si el desánimo dura semanas o te aíslas mucho. Si piensas en no vivir, llama al 135 o al 0800-345-1435. También al 0800-999-0091. Si hay peligro, llama al 911. Si te maltratan, llama al 144.',
+    ],
+  },
+];

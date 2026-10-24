@@ -19,6 +19,10 @@ entrada en este registro.
 
 ---
 
+## 2026-10-24 · Lectura fácil en todos los artículos
+
+Versión de lectura fácil para los 101 artículos que no la tenían, incluidos los de los paquetes recientes. Con esto, todos los artículos de la Biblioteca la tienen. Son resúmenes fieles, de 4 a 6 párrafos con frases de 15 palabras como máximo, sin datos ni referencias nuevas, y conservan los avisos de ayuda que trae cada artículo.
+
 ## 2026-10-24 · Desafíos, simulaciones y programas combinados
 
 Contenido que reúne lo que ya existía. Entra en estado `pendiente`.
