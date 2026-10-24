@@ -45,10 +45,14 @@ function Ring({ ratio, size = 56, label }: { ratio: number; size?: number; label
   );
 }
 
+// La entrada escalonada dura como máximo ~0,8 s aunque la lista crezca: con 0,08 s por
+// tarjeta, 80 programas tardaban más de 6 s en terminar de aparecer.
+const LIST_STEP = Math.min(0.08, 0.8 / PROGRAMS.length);
+
 export function ProgramList() {
   const completed = useCompleted();
   return (
-    <m.ul variants={stagger(0.08, 0.1)} initial="hidden" animate="show" className="mt-12 grid gap-5 lg:grid-cols-3">
+    <m.ul variants={stagger(LIST_STEP, 0.1)} initial="hidden" animate="show" className="mt-12 grid gap-5 lg:grid-cols-3">
       {PROGRAMS.map((p) => {
         const prog = programProgress(p, completed);
         return (
