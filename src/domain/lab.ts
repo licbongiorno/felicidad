@@ -460,6 +460,241 @@ export const SIMULATIONS: Simulation[] = [
     ],
     closing: 'Preguntaste antes de defenderte, admitiste lo cierto sin hundirte y no aceptaste lo que no lo era. Así una crítica se vuelve algo concreto para resolver.',
   },
+  {
+    id: 'pedir-un-aumento',
+    title: 'Pedir un aumento',
+    context: 'Hace dos años que estás en tu puesto. Sumaste tareas nuevas y tu sueldo quedó atrás. Pediste una reunión con tu jefe para hablarlo.',
+    goal: 'Pedir el aumento con datos concretos y salir con un próximo paso claro.',
+    other: 'Tu jefe',
+    skills: ['dear-man', 'un-acuerdo-que-me-respete', 'mis-derechos-asertivos'],
+    steps: [
+      {
+        line: '«Bueno, te escucho. ¿De qué querías hablar?»',
+        options: [
+          {
+            text: '«Quiero hablar de mi sueldo. Desde el año pasado llevo también la atención a proveedores y armé el informe mensual. Me gustaría que revisemos mi salario.»',
+            style: 'asertivo',
+            feedback: 'Describes los hechos (D) y pides con claridad (A). Hablas de tu trabajo, no de cuánto lo necesitas. Así el pedido se apoya en datos.',
+          },
+          { text: '«Nada importante… bueno, quizás, si se puede, ver lo del sueldo. Pero si no, no pasa nada.»', style: 'pasivo', feedback: 'Achicas tu pedido antes de hacerlo. Así es fácil que te digan que no. Tu pedido es válido: puedes decirlo con calma.' },
+          { text: '«Me están pagando muy poco y lo sabes. Hace rato que hago el trabajo de dos.»', style: 'agresivo', feedback: 'Tu malestar tiene motivos. Pero empezar con un reproche hace que tu jefe se defienda. Los datos convencen más que el enojo.' },
+        ],
+      },
+      {
+        line: '«Entiendo, pero este año el presupuesto está muy ajustado.»',
+        options: [
+          {
+            text: '«Entiendo que el presupuesto está difícil. Igual mi trabajo cambió y quiero que eso se reconozca. ¿Qué margen hay ahora y qué podríamos ver más adelante?»',
+            style: 'asertivo',
+            feedback: 'Validas su límite y sostienes tu pedido (disco rayado). Abres la puerta a negociar (N) sin rendirte en el primer no.',
+          },
+          { text: '«Ah, claro, entiendo. Perdón por molestar.»', style: 'pasivo', feedback: 'Te retiras al primer obstáculo y pides perdón por algo que tienes derecho a pedir. Un «no por ahora» todavía se puede negociar.' },
+          { text: '«Para otras cosas siempre hay plata. Si no me lo dan, me voy a buscar otra cosa.»', style: 'agresivo', feedback: 'Una amenaza en caliente cierra la charla. Si de verdad piensas buscar otro trabajo, es una decisión para tomar con calma.' },
+        ],
+      },
+      {
+        line: '«Ahora no puedo prometerte nada. Quizás en la revisión de marzo.»',
+        options: [
+          {
+            text: '«Bien. Entonces dejemos fijada una reunión en marzo. Te voy a mandar por correo un resumen de mis tareas nuevas para que lo tengas.»',
+            style: 'asertivo',
+            feedback: 'Conviertes un «quizás» en un acuerdo con fecha (compromiso viable). Dejarlo por escrito ayuda a que no se olvide.',
+          },
+          { text: '«Sí, sí, cuando se pueda. Gracias igual.»', style: 'pasivo', feedback: 'Te vas sin nada concreto. Pedir una fecha no es exigir: es cuidar lo que acaban de hablar.' },
+          { text: '«Siempre es más adelante. Ya sé cómo termina esto.»', style: 'agresivo', feedback: 'El escepticismo se entiende, pero así cierras la puerta que quedaba abierta. Un acuerdo con fecha te da más que un portazo.' },
+        ],
+      },
+    ],
+    closing: 'Pediste con datos, sostuviste tu pedido ante el primer no y saliste con una fecha. Aunque hoy no haya aumento, dejaste el tema sobre la mesa.',
+  },
+  {
+    id: 'familiar-opina-de-mi-crianza',
+    title: 'Un familiar que opina de tu crianza',
+    context: 'Estás en un almuerzo familiar. Tu suegra vuelve a decir, delante de tu hijo, que lo dejas hacer lo que quiere y que así lo vas a malcriar.',
+    goal: 'Poner un límite a los comentarios sobre tu crianza sin pelear delante de tu hijo.',
+    other: 'Tu suegra',
+    skills: ['limites-con-la-familia-de-origen', 'el-no-amable', 'give-fast'],
+    steps: [
+      {
+        line: '«Ese chico hace lo que quiere. En mi época no se dejaba que un nene contestara así.»',
+        options: [
+          {
+            text: '«Sé que lo quieres mucho. De cómo lo criamos prefiero que hablemos tú y yo, después y a solas.»',
+            style: 'asertivo',
+            feedback: 'Reconoces su cariño (GIVE) y corres la charla a otro momento. Así cuidas a tu hijo de una discusión delante de él.',
+          },
+          { text: '«Sí… tiene razón, a veces no sé qué hacer con él.»', style: 'pasivo', feedback: 'Le das la razón para evitar el mal momento. Pero tu hijo escucha, y tú quedas mal contigo. Puedes no discutir sin estar de acuerdo.' },
+          { text: '«Mira quién habla de criar. Mejor no opines.»', style: 'agresivo', feedback: 'El enojo se entiende si el comentario se repite. Pero atacar delante de todos agranda el conflicto y tu hijo queda en el medio.' },
+        ],
+      },
+      {
+        line: '«Ay, no te pongas así. Sólo te digo lo que veo.»',
+        options: [
+          {
+            text: '«Puede ser que lo veas así. Igual las decisiones de crianza las tomamos nosotros. Te pido que no lo comentes delante de él.»',
+            style: 'asertivo',
+            feedback: 'Aceptas que tiene su opinión (banco de niebla) y repites tu límite con calma. Pides algo concreto: no comentarlo delante del chico.',
+          },
+          { text: '«No, no me pongo de ninguna forma. Perdón.»', style: 'pasivo', feedback: 'Pides perdón por poner un límite. No hiciste nada malo. Cuidar tu lugar de madre o padre también cuida a tu hijo.' },
+          { text: '«Lo que ves está mal. Siempre te metes en todo.»', style: 'agresivo', feedback: 'El «siempre» la hace defenderse. Habla de esta conducta, no de toda la persona. Así es más fácil que escuche.' },
+        ],
+      },
+      {
+        line: '«Bueno, bueno. Hagan como quieran, entonces.»',
+        options: [
+          {
+            text: '«Gracias. Me importa que estés cerca de él. Y si algo te preocupa de verdad, me lo puedes decir a solas.»',
+            style: 'asertivo',
+            feedback: 'Agradeces y dejas una puerta abierta para hablar en otro lugar. El límite queda en pie y el vínculo también.',
+          },
+          { text: '«No, no, tampoco es así. Tú puedes decir lo que quieras.»', style: 'pasivo', feedback: 'Desarmas el límite que acabas de poner porque su tono te incomoda. Su molestia puede pasar. El límite sirve si lo sostienes.' },
+          { text: '«Eso mismo. Como queramos, porque es nuestro hijo.»', style: 'agresivo', feedback: 'Tienes razón en el fondo, pero el tono suena a victoria. Es probable que la tensión siga en el próximo almuerzo.' },
+        ],
+      },
+    ],
+    closing: 'Pusiste un límite sin pelear delante de tu hijo, reconociste su cariño y propusiste otro lugar para hablar. Los límites con la familia se sostienen con calma y repetición.',
+  },
+  {
+    id: 'terminar-con-respeto',
+    title: 'Terminar una relación con respeto',
+    context: 'Llevas un año de relación. Lo pensaste mucho y decidiste terminar. Quedaron en verse para hablar en un lugar tranquilo.',
+    goal: 'Decir con claridad que terminas, sin culpar y sin dejar dudas que alarguen el dolor.',
+    other: 'Tu pareja',
+    skills: ['give-fast', 'el-no-amable', 'mi-plan-de-contacto'],
+    steps: [
+      {
+        line: '«Te noto distinto desde hace días. ¿Qué pasa?»',
+        options: [
+          {
+            text: '«Sí, quiero hablar de algo importante. Lo pensé mucho y decidí terminar la relación. Me cuesta decírtelo, pero es lo que siento.»',
+            style: 'asertivo',
+            feedback: 'Dices la decisión al principio y con claridad. Hablas de ti, no de sus defectos. Así la otra persona no tiene que adivinar.',
+          },
+          { text: '«Nada, nada. Cosas del trabajo. Ya se me va a pasar.»', style: 'pasivo', feedback: 'Postergar evita el mal momento de hoy. Pero la decisión sigue ahí y alargar la duda suele doler más a los dos.' },
+          { text: '«Pasa que ya no te aguanto. Esto no da para más.»', style: 'agresivo', feedback: 'Puede haber cansancio y enojo. Pero decirlo como ataque lastima de más y vuelve la charla una pelea.' },
+        ],
+      },
+      {
+        line: '«¿Cómo que terminar? ¿Hice algo mal? Podemos arreglarlo.»',
+        options: [
+          {
+            text: '«Entiendo que te duela y te tome por sorpresa. No se trata de una cosa que hiciste. Ya no siento lo mismo y no quiero seguir.»',
+            style: 'asertivo',
+            feedback: 'Validas su dolor (GIVE) y sostienes la decisión con suavidad. No das esperanzas que no tienes. Eso también es respeto.',
+          },
+          { text: '«Bueno… no sé. Quizás podemos intentar un tiempo más.»', style: 'pasivo', feedback: 'Es natural querer calmar su dolor. Pero si tu decisión está tomada, una falsa esperanza lo hace más largo para los dos.' },
+          { text: '«Hiciste muchas cosas mal, y ya no tiene arreglo.»', style: 'agresivo', feedback: 'Una lista de culpas no cambia la decisión y lastima. Puedes ser honesta u honesto sin herir.' },
+        ],
+      },
+      {
+        line: '«¿Y ahora qué? ¿Podemos seguir siendo amigos?»',
+        options: [
+          {
+            text: '«Ahora no lo sé. Creo que los dos necesitamos un tiempo sin vernos ni escribirnos. Más adelante podemos ver cómo nos sentimos.»',
+            style: 'asertivo',
+            feedback: 'Eres honesta u honesto con lo que puedes ofrecer. Proponer un tiempo sin contacto ayuda a los dos a hacer el duelo.',
+          },
+          { text: '«Sí, claro, lo que quieras. Escríbeme cuando quieras.»', style: 'pasivo', feedback: 'Prometes algo para aliviar el momento. Pero el contacto seguido suele hacer más difícil el duelo, para ti y para la otra persona.' },
+          { text: '«No, ni hablar. No quiero saber más nada.»', style: 'agresivo', feedback: 'Puedes necesitar distancia, y es válido. Pero decirlo con desprecio deja una herida extra. Se puede ser firme con cuidado.' },
+        ],
+      },
+    ],
+    closing: 'Dijiste tu decisión con claridad, validaste el dolor del otro y cuidaste el después. Terminar con respeto no evita la tristeza, pero hace el duelo más claro para los dos. Si hay miedo o violencia en la relación, tu seguridad va primero: puedes llamar a la Línea 144 o al 911.',
+  },
+  {
+    id: 'amigo-me-dolio',
+    title: 'Decirle a un amigo que algo te dolió',
+    context: 'En una reunión, tu amigo contó delante de todos algo personal que le habías dicho en confianza. Te dio vergüenza y no dijiste nada. Hoy se encuentran a tomar un café.',
+    goal: 'Decirle qué te dolió y pedirle algo concreto, sin atacar la amistad.',
+    other: 'Tu amigo',
+    skills: ['cnv-observar-sin-evaluar', 'cnv-nombrar-lo-que-siento', 'cnv-pedido-concreto'],
+    steps: [
+      {
+        line: '«¡Qué bueno verte! ¿Todo bien? Te noto con cara seria.»',
+        options: [
+          {
+            text: '«Quiero contarte algo que me pasó. El sábado contaste delante de todos lo de mi trabajo. Eso te lo había dicho en confianza.»',
+            style: 'asertivo',
+            feedback: 'Describes lo que pasó como lo diría una cámara (observación). No lo acusas de traidor: cuentas el hecho.',
+          },
+          { text: '«No, todo bien. Cansancio nomás.»', style: 'pasivo', feedback: 'Cuidas el momento, pero lo que te dolió queda guardado. Con el tiempo, eso suele enfriar la amistad.' },
+          { text: '«Pasa que me decepcionaste. No se puede confiar en ti.»', style: 'agresivo', feedback: 'Es una etiqueta sobre toda la persona. Es probable que se defienda y no escuche lo que pasó.' },
+        ],
+      },
+      {
+        line: '«¿Eso? Pero si era una pavada. Nadie le dio importancia.»',
+        options: [
+          {
+            text: '«Para ti puede ser una pavada. Yo sentí mucha vergüenza. Necesito que lo que te cuento en privado quede entre nosotros.»',
+            style: 'asertivo',
+            feedback: 'Nombras lo que sentiste y lo que necesitas (sentimiento y necesidad). No discutes si era grave: hablas de tu experiencia.',
+          },
+          { text: '«Sí, tienes razón, exagero.»', style: 'pasivo', feedback: 'Achicas lo que sentiste para no incomodar. Lo que sientes no necesita permiso para ser válido.' },
+          { text: '«Claro, como a ti nunca te importa nada de lo que me pasa.»', style: 'agresivo', feedback: 'El «nunca» lleva la charla a otro lado. Quedarte en este hecho concreto hace más fácil que te entienda.' },
+        ],
+      },
+      {
+        line: '«Uh, no me di cuenta de que te había caído así. Perdón.»',
+        options: [
+          {
+            text: '«Gracias por escucharme. ¿Me prometes que lo que te cuento en privado no lo vas a contar a otros sin preguntarme?»',
+            style: 'asertivo',
+            feedback: 'Recibes la disculpa y haces un pedido concreto y posible (pedido). Así la amistad sale más clara.',
+          },
+          { text: '«No, no, perdón tú. No tendría que haber dicho nada.»', style: 'pasivo', feedback: 'Te disculpas por hablar de algo que te dolió. Decirlo fue un cuidado hacia la amistad, no un error.' },
+          { text: '«Bueno, ya está. Igual no te voy a contar más nada.»', style: 'agresivo', feedback: 'Es un castigo que cierra la puerta justo cuando se abría. Un pedido claro protege más que la distancia.' },
+        ],
+      },
+    ],
+    closing: 'Contaste lo que pasó sin juzgar, nombraste lo que sentiste y pediste algo concreto. Decirle a alguien que te dolió algo es una forma de cuidar la amistad.',
+  },
+  {
+    id: 'no-prestar-plata',
+    title: 'Negarte a prestar plata',
+    context: 'Un primo te pide plata prestada otra vez. La vez anterior tardó meses en devolverla, y este mes tienes los gastos justos.',
+    goal: 'Decir que no al préstamo sin culpa y sin romper el vínculo.',
+    other: 'Tu primo',
+    skills: ['el-no-amable', 'mis-derechos-asertivos', 'give-fast'],
+    steps: [
+      {
+        line: '«Che, ¿me podrías prestar algo de plata? Te la devuelvo a fin de mes, en serio.»',
+        options: [
+          {
+            text: '«Entiendo que estés en un aprieto. Esta vez no te voy a prestar plata.»',
+            style: 'asertivo',
+            feedback: 'Reconoces su situación y dices que no en una frase corta. No necesitas justificar tu decisión con muchos detalles.',
+          },
+          { text: '«Ay… bueno, a ver cuánto necesitas.»', style: 'pasivo', feedback: 'Dices que sí antes de pensar si puedes. Si este mes no te alcanza, ese sí después te va a pesar.' },
+          { text: '«¿Otra vez? Todavía me acuerdo de lo que tardaste la última vez.»', style: 'agresivo', feedback: 'Tu enojo tiene motivos. Pero el reproche lo hace defenderse. Puedes decir que no sin sacar cuentas viejas.' },
+        ],
+      },
+      {
+        line: '«Dale, es poco. Somos familia. Si fuera al revés, yo te ayudaría.»',
+        options: [
+          {
+            text: '«Es verdad que somos familia, y te quiero. Igual mi respuesta es no.»',
+            style: 'asertivo',
+            feedback: 'Das la razón en lo que es cierto (banco de niebla) y repites tu no (disco rayado). La culpa aparece, pero no decide por ti.',
+          },
+          { text: '«Tienes razón, perdón. Bueno, te paso algo.»', style: 'pasivo', feedback: 'La culpa hizo su trabajo. Tienes derecho a decidir qué haces con tu plata sin dar explicaciones.' },
+          { text: '«Si fuera al revés, yo ya te la habría devuelto.»', style: 'agresivo', feedback: 'Es una respuesta rápida, pero hiere. Mantener el no con calma cuida más el vínculo que ganar la discusión.' },
+        ],
+      },
+      {
+        line: '«Bueno… no sé qué voy a hacer, entonces.»',
+        options: [
+          {
+            text: '«Plata no te puedo dar. Si quieres, te ayudo a pensar otras opciones o a armar un presupuesto.»',
+            style: 'asertivo',
+            feedback: 'Sostienes el límite y ofreces otra forma de ayudar, si quieres y puedes. Ofrecer algo no es obligatorio. Tu no ya era suficiente.',
+          },
+          { text: '«Uy, no quiero que te quedes así. Espera, te presto la mitad.»', style: 'pasivo', feedback: 'Te haces cargo de un problema que no es tuyo. Puedes sentir pena y igual mantener tu decisión.' },
+          { text: '«No es mi problema, arréglatelas.»', style: 'agresivo', feedback: 'Es un límite, pero dicho con desprecio. Puedes ser firme y amable a la vez.' },
+        ],
+      },
+    ],
+    closing: 'Dijiste que no sin culpa, reconociste lo cierto y ofreciste otra ayuda sólo porque quisiste. Decir que no a un préstamo no es decir que no a la persona.',
+  },
 ];
 
 // ---------------------------------------------------------------- ¿hecho o interpretación?

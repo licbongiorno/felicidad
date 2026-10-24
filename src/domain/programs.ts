@@ -830,6 +830,194 @@ const BASE_PROGRAMS: Program[] = [
       },
     ],
   },
+  {
+    id: 'primer-ano-tras-un-diagnostico',
+    title: 'Primer año después de un diagnóstico',
+    subtitle: 'Cuatro semanas para recibir la noticia, entender y volver a lo que importa',
+    description:
+      'Para los meses que siguen a un diagnóstico importante, de salud física o mental. Junta lo que la app tiene sobre diagnósticos, enfermedad grave, autocompasión y valores. No reemplaza a tu equipo de salud: te ayuda a llegar mejor a cada consulta y a cuidarte entre una y otra.',
+    basis: 'Modelo de ajuste a la enfermedad crónica (Moss-Morris, 2013), autocompasión (Neff, 2003) y terapia de aceptación y compromiso (Hayes, Strosahl & Wilson, 2012).',
+    rhythm: 'Una práctica al día, de 5 a 10 minutos, a tu ritmo. Si una semana pesa mucho, repítela.',
+    weeks: [
+      {
+        title: 'Semana 1 · La noticia',
+        focus: 'Hacer lugar a lo que sientes',
+        description:
+          'Después de una noticia dura es normal sentir mucho o no sentir nada. Esta semana es para nombrar lo que pasa y darte un trato amable, sin exigirte entender todo.',
+        practiceIds: ['la-ola-del-diagnostico', 'pausa-autocompasion', 'mano-en-el-pecho'],
+        articleIds: ['diagnostico-sin-etiquetas', 'enfermedad-grave'],
+        journalType: 'escritura-expresiva',
+      },
+      {
+        title: 'Semana 2 · Entender a tu ritmo',
+        focus: 'Preguntar y esperar',
+        description:
+          'Prepararás tus preguntas para el equipo de salud, decidirás qué quieres saber ahora y qué más adelante, y probarás una forma de atravesar las esperas.',
+        practiceIds: ['preguntas-para-mi-equipo', 'preguntar-a-mi-ritmo', 'esperar-un-resultado'],
+        articleIds: ['diagnostico-sin-etiquetas'],
+        journalType: 'preocupacion',
+      },
+      {
+        title: 'Semana 3 · Más que un diagnóstico',
+        focus: 'Lo que eres y lo que cuentas',
+        description:
+          'Separarás lo que el diagnóstico describe de todo lo demás que eres. También decidirás a quién contarle, qué y cuánto.',
+        practiceIds: ['mi-diagnostico-no-me-define', 'hablar-del-diagnostico-en-familia', 'contar-lo-justo'],
+        articleIds: ['autocompasion'],
+        journalType: 'carta-compasiva',
+      },
+      {
+        title: 'Semana 4 · Lo que importa',
+        focus: 'Vivir tus valores con la energía que tienes',
+        description:
+          'Buscarás formas nuevas de vivir lo que te importa y aprenderás a convivir con el miedo a que algo vuelva, separando las señales para consultar del resto.',
+        practiceIds: ['valores-con-la-enfermedad', 'el-miedo-a-que-vuelva', 'brujula-valores'],
+        articleIds: ['sentido-y-valores'],
+        journalType: 'valores',
+      },
+    ],
+  },
+  {
+    id: 'volver-al-trabajo-tras-una-licencia',
+    title: 'Vuelta al trabajo después de una licencia',
+    subtitle: 'Cuatro semanas para volver con menos miedo y más cuidado',
+    description:
+      'Para volver al trabajo después de una licencia por enfermedad, por maternidad o paternidad, o por salud mental. Trabaja la ansiedad de los días previos, qué contar y qué ajustes pedir, cómo dosificar la energía y cómo poner límites. Si la licencia fue por salud mental, conviene planear la vuelta con tu profesional.',
+    basis: 'Terapia cognitivo-conductual para la preocupación (Borkovec et al., 1983), habilidades de efectividad interpersonal de la DBT (Linehan, 2015) y modelo de burnout de seis áreas (Maslach & Leiter, 2016).',
+    rhythm: 'Empieza una o dos semanas antes de volver. Una práctica al día, de 5 a 10 minutos.',
+    weeks: [
+      {
+        title: 'Semana 1 · Antes de volver',
+        focus: 'La ansiedad anticipatoria',
+        description:
+          'Es común imaginar lo peor antes de volver. Separarás las preocupaciones que te llevan a hacer algo de las que sólo dan vueltas, y les darás un horario.',
+        practiceIds: ['preocupacion-que-moviliza', 'aplazar-preocupacion', 'respiracion-resonante'],
+        articleIds: ['preocupacion-y-ansiedad', 'embarazo-y-posparto'],
+        journalType: 'preocupacion',
+      },
+      {
+        title: 'Semana 2 · Qué contar y qué pedir',
+        focus: 'Ajustes por escrito',
+        description:
+          'Decidirás qué contar de tu licencia y a quién. Escribirás los ajustes que te ayudarían en las primeras semanas y prepararás cómo pedirlos.',
+        practiceIds: ['contar-lo-justo', 'mi-ficha-de-ajustes', 'dear-man'],
+        articleIds: ['asertividad-y-limites'],
+        journalType: 'conversacion',
+      },
+      {
+        title: 'Semana 3 · Dosificar la energía',
+        focus: 'Volver de a poco',
+        description:
+          'Las primeras semanas cansan más de lo esperado. Planificarás la energía de la semana, trabajarás en tramos parejos y cerrarás cada jornada para no llevarte el trabajo a casa.',
+        practiceIds: ['presupuesto-de-energia', 'ritmo-de-actividad', 'cierre-de-jornada'],
+        articleIds: ['estres-y-agotamiento'],
+        journalType: 'activacion',
+      },
+      {
+        title: 'Semana 4 · Límites para sostener',
+        focus: 'Que la vuelta dure',
+        description:
+          'Practicarás decir que no a lo que excede tus ajustes, poner horarios al celular y tratarte con amabilidad en los días que cuestan.',
+        practiceIds: ['el-no-amable', 'limites-en-el-celular', 'pausa-autocompasion'],
+        articleIds: ['burnout-seis-areas'],
+        journalType: 'intencion',
+      },
+    ],
+  },
+  {
+    id: 'despues-de-un-cambio-grande',
+    title: 'Después de una mudanza o un cambio grande',
+    subtitle: 'Cuatro semanas para despedir, ordenar los días y hacer red',
+    description:
+      'Para después de una mudanza, una migración, una jubilación o cualquier cambio que te dejó en un lugar nuevo. Junta lo que la app tiene sobre migración, cambios, soledad y rutinas. Extrañar lo de antes es parte del proceso.',
+    basis: 'Modelo de aculturación (Berry, 1997), activación conductual (Martell, Dimidjian & Herman-Dunn, 2010) e investigación sobre vínculos y salud (Holt-Lunstad, Smith & Layton, 2010).',
+    rhythm: 'Una práctica al día, de 5 a 10 minutos, y un paso chico hacia otras personas por semana.',
+    weeks: [
+      {
+        title: 'Semana 1 · Despedir lo que había',
+        focus: 'Hacer lugar al duelo del cambio',
+        description:
+          'Todo cambio grande trae pérdidas, aunque lo hayas elegido. Despedirás el lugar que tenías, mirarás qué sigue siendo tuyo y te darás un rato con algo que te trae casa.',
+        practiceIds: ['quien-soy-despues-del-cambio', 'un-pedazo-de-casa', 'pausa-autocompasion'],
+        articleIds: ['migracion-y-desarraigo', 'duelo'],
+        journalType: 'escritura-expresiva',
+      },
+      {
+        title: 'Semana 2 · Días con anclas',
+        focus: 'Una rutina simple',
+        description:
+          'En un lugar nuevo, los días pierden forma. Armarás pocas anclas fijas para el día y resolverás los pendientes de a uno.',
+        practiceIds: ['un-dia-con-sentido', 'un-tramite-por-vez', 'rutina-bajada-dormir'],
+        articleIds: ['activacion-conductual'],
+        journalType: 'activacion',
+      },
+      {
+        title: 'Semana 3 · Una red nueva',
+        focus: 'De la soledad a los primeros contactos',
+        description:
+          'Mirarás si te falta compañía, cercanía o las dos cosas, y darás un paso chico por semana hacia la gente de tu nuevo lugar.',
+        practiceIds: ['soledad-o-aislamiento', 'red-nueva-de-a-poco', 'ofertas-de-conexion'],
+        articleIds: ['vinculos-y-soledad'],
+        journalType: 'intencion',
+      },
+      {
+        title: 'Semana 4 · Echar raíces',
+        focus: 'Lo tuyo en el lugar nuevo',
+        description:
+          'Sostendrás tu lengua, tus rituales y lo que te importa, y crearás un ritual nuevo que te ate a este lugar sin perder el anterior.',
+        practiceIds: ['mi-lengua-y-mis-rituales', 'mi-ritual-con-sentido', 'brujula-valores'],
+        articleIds: ['vivir-entre-dos-paises', 'sentido-y-valores'],
+        journalType: 'valores',
+      },
+    ],
+  },
+  {
+    id: 'cuidarme-mientras-cuido',
+    title: 'Cuidarme mientras cuido a alguien muy enfermo',
+    subtitle: 'Cuatro semanas para quien acompaña una enfermedad grave',
+    description:
+      'Para quien cuida a un familiar o a alguien querido con una enfermedad grave. Junta lo que la app tiene sobre cuidadores, duelo anticipado y límites. Cuidarte no es egoísmo: es lo que te permite seguir cuidando. Si estás muy agotada o agotado, o piensas en hacerte daño, pide ayuda con el botón Ayuda de la app.',
+    basis: 'Metaanálisis sobre la salud de quienes cuidan (Pinquart & Sörensen, 2003), pérdida ambigua (Boss, 1999) y duelo anticipado en cuidadores (Coelho, de Brito & Barbosa, 2018).',
+    rhythm: 'Unos minutos al día, cuando puedas. Una práctica por semana ya cuenta.',
+    weeks: [
+      {
+        title: 'Semana 1 · Cómo estoy yo',
+        focus: 'Tomarte la temperatura',
+        description:
+          'Revisarás con honestidad cómo están tu sueño, tu cuerpo y tu ánimo, y elegirás un cuidado chico para esta semana.',
+        practiceIds: ['termometro-del-cuidador', 'pausa-autocompasion', 'respiracion-resonante'],
+        articleIds: ['cuidar-sin-agotarse', 'enfermedad-grave'],
+        journalType: 'carta-compasiva',
+      },
+      {
+        title: 'Semana 2 · Límites para seguir cuidando',
+        focus: 'Lo que puedo dar y lo que no',
+        description:
+          'Decidirás qué puedes dar y qué no, pondrás un límite claro y pedirás un relevo concreto a alguien de tu entorno.',
+        practiceIds: ['limites-al-cuidar', 'el-no-amable', 'pedir-ayuda-es-fuerza'],
+        articleIds: ['asertividad-y-limites', 'acompanar-a-un-familiar'],
+        journalType: 'necesidades',
+      },
+      {
+        title: 'Semana 3 · El duelo que empieza antes',
+        focus: 'Está, pero no está',
+        description:
+          'Cuando alguien querido está muy enfermo, el duelo puede empezar antes de tiempo. Darás lugar a lo que sientes, también a la culpa o al cansancio, y prepararás tus visitas sin tener que fingir.',
+        practiceIds: ['duelo-antes-de-tiempo', 'duelo-ambiguo-y-cuidado', 'estar-sin-fingir'],
+        articleIds: ['duelo-anticipado-final-de-vida', 'cuidados-paliativos'],
+        journalType: 'escritura-expresiva',
+      },
+      {
+        title: 'Semana 4 · Sostenerme en el tiempo',
+        focus: 'Un cuidado mínimo y lo que quiero decir',
+        description:
+          'Elegirás un cuidado mínimo para los días más duros, aceptarás ayudas concretas y, si lo deseas, prepararás las palabras que quieres decirle a esa persona.',
+        practiceIds: ['cuidarme-en-la-recta-final', 'ayuda-en-el-duelo', 'las-cuatro-frases'],
+        articleIds: ['cuidar-sin-agotarse'],
+        journalType: 'sentido',
+      },
+    ],
+  },
 ];
 
 export const PROGRAMS: Program[] = [...BASE_PROGRAMS, ...PACK_PROGRAMS];
