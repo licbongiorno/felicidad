@@ -19,6 +19,13 @@ entrada en este registro.
 
 ---
 
+## 2026-10-23 · Más juegos y rutinas para chicos de 0 a 6 años
+
+Veintidós actividades nuevas para las franjas que tenían menos contenido. Entran en estado `pendiente`.
+- De 0 a 3 años, para hacer juntos: «servir y devolver», leer sus señales, canciones con gestos, lectura dialogada, la orquesta de cocina, la comida, el baño, vestirse jugando, llegar al jardín, la plaza y el llanto que no para. Con avisos de seguridad: nunca sacudir al bebé, atragantamiento, agua y alturas.
+- De 4 a 6 años (también de 7 a 9): perder un juego, compartir, contar lo que pasó en el jardín (con la Línea 102 si cuenta que alguien le hace daño), la primera vez en algo nuevo, el árbol con raíces, teatro de emociones, adivinanzas, una escalera para el miedo a los perros, una linterna para el miedo a la oscuridad, misiones de ayudante y dibujar la rutina.
+- Cuatro caminos nuevos: dos de 0 a 3 años y dos de 4 a 6.
+
 ## 2026-10-23 · Cuatro temas nuevos: infidelidad, menopausia, salud mental perinatal y diversidad
 
 Cuatro paquetes nuevos, cada uno con su necesidad. Todo entra en estado `pendiente`.
