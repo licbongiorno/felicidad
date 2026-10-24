@@ -50,11 +50,10 @@ const DEFAULT_RECORD: ReviewRecord = { version: 1, status: 'pendiente', evidence
 export const REVIEW_OVERRIDES: Record<string, Partial<ReviewRecord>> = {
   // Sin publicar por un motivo que no es clínico: falta la licencia de uso.
   'instrumento:isi': { status: 'borrador', reviewedBy: undefined, reviewedAt: undefined, note: 'ISI: tiene derechos de autor (Morin) y su uso en una app requiere licencia de Mapi Research Trust. Verificar también la redacción con la versión española validada.' },
-  // Sin publicar hasta que estén desplegadas las reglas de Firestore que aceptan 'bigfive'. Al publicarlas, quitar esta línea.
-  'instrumento:bigfive': { status: 'borrador', reviewedBy: undefined, reviewedAt: undefined, note: 'Mini-IPIP: falta publicar las reglas de Firestore que aceptan sus respuestas.' },
-  'instrumento:pcl5': { status: 'borrador', reviewedBy: undefined, reviewedAt: undefined, note: 'PCL-5: falta publicar las reglas de Firestore que aceptan sus respuestas. Traducción propia: revisarla con una versión en castellano validada.' },
-  // La licencia del ASRS no permite modificar el texto: hay que usar la versión oficial en castellano.
-  'instrumento:asrs': { status: 'borrador', reviewedBy: undefined, reviewedAt: undefined, note: 'ASRS v1.1: reemplazar la redacción por la versión oficial en castellano (NYU y Harvard) y publicar las reglas de Firestore.' },
+  // Publicados con aviso visible («* Pendiente de revisión»): la nota se muestra en la tarjeta.
+  'instrumento:bigfive': { note: 'Traducción propia del Mini-IPIP, pendiente de revisión clínica.' },
+  'instrumento:pcl5': { note: 'Traducción propia del PCL-5, pendiente de revisión con una versión en castellano validada.' },
+  'instrumento:asrs': { note: 'Traducción no oficial del ASRS v1.1, pendiente de reemplazo por la versión oficial en castellano.' },
 };
 
 export function reviewOf(kind: ContentKind, id: string): ReviewRecord {

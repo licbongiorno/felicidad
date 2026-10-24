@@ -83,11 +83,14 @@ function InstrumentCard({ instrument, history, onStart }: { instrument: Instrume
     <m.article variants={fadeUp} className="flex flex-col rounded-3xl border border-stone-200 bg-white p-7 shadow-soft">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <p className="text-xs uppercase tracking-[0.2em] text-stone-500">{instrument.purpose}</p>
-        {review.status === 'borrador' && (
+        {review.status === 'borrador' ? (
           <span className="rounded-full bg-stone-800 px-2.5 py-0.5 text-[11px] text-stone-50">{REVIEW_LABEL.borrador}</span>
-        )}
+        ) : review.status === 'pendiente' && review.note ? (
+          <span className="rounded-full border border-stone-300 px-2.5 py-0.5 text-[11px] text-stone-700">* Pendiente de revisión</span>
+        ) : null}
       </div>
       <h2 className="mt-3 font-serif text-2xl text-stone-800">{instrument.title}</h2>
+      {review.status === 'pendiente' && review.note && <p className="mt-1 text-xs text-stone-600">* {review.note}</p>}
 
       {instrument.traits && last ? (
         <div className="mt-5">
