@@ -1,5 +1,7 @@
 # Revisión de niveles de evidencia: prácticas `preliminar` y `moderada`
 
+> **Aplicado el 2026-10-24** (salvo las filas «verificar» y «mantener añadiendo fuente»). Los elementos cambiados quedaron en `pendiente`.
+
 Revisión hecha solo leyendo el repo. No se tocó ningún archivo. Fecha: 2026-10-24.
 
 ## Criterio usado

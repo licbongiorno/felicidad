@@ -245,7 +245,7 @@ const BASE_PROGRAMS: Program[] = [
       },
       {
         title: 'Semana 3 · Humanidad compartida',
-        focus: 'No estás solo/a en esto',
+        focus: 'Esto no te pasa solo a ti',
         description: 'Ampliarás el cuidado hacia los demás con estabilidad, sin agotarte.',
         practiceIds: ['ecuanimidad', 'regocijo-empatico'],
         articleIds: ['vinculos-y-soledad'],
@@ -386,7 +386,7 @@ const BASE_PROGRAMS: Program[] = [
     title: 'Dormir mejor',
     subtitle: 'Cuatro semanas basadas en la terapia cognitivo-conductual para el insomnio',
     description:
-      'Para quien tarda en dormirse, se despierta de noche o se levanta cansado/a desde hace semanas. Aplica los principios de la TCC-I: registrar el sueño, recuperar la cama para dormir, revisar los pensamientos sobre el sueño y bajar la activación. Puedes medir tu avance con el cuestionario ISI.',
+      'Para quien tarda en dormirse, se despierta de noche o se levanta sin descansar desde hace semanas. Aplica los principios de la TCC-I: registrar el sueño, recuperar la cama para dormir, revisar los pensamientos sobre el sueño y bajar la activación. Puedes medir tu avance con el cuestionario ISI.',
     basis: 'Terapia cognitivo-conductual para el insomnio (Trauer et al., 2015; Edinger et al., 2021).',
     rhythm: 'Diario de sueño cada mañana y una práctica de relajación de 10 minutos antes de dormir.',
     weeks: [
@@ -470,7 +470,7 @@ const BASE_PROGRAMS: Program[] = [
   {
     id: 'duelo',
     title: 'Atravesar un duelo',
-    subtitle: 'Cuatro semanas para acompañar la pérdida sin quedarte solo/a',
+    subtitle: 'Cuatro semanas para acompañar la pérdida sin aislarte',
     description:
       'Para quien perdió a alguien o algo importante. No pretende acelerar el duelo ni ponerle fases: propone espacios para el dolor y para seguir viviendo, con amabilidad hacia ti. Si el duelo es muy reciente, ve a tu ritmo.',
     basis: 'Modelo de proceso dual del duelo (Stroebe y Schut, 1999); escritura expresiva y autocompasión.',
@@ -514,7 +514,7 @@ const BASE_PROGRAMS: Program[] = [
     title: 'Ansiedad social',
     subtitle: 'Cuatro semanas para dejar de esconderte del juicio de los demás',
     description:
-      'Para quien teme quedar mal, ser juzgado/a o hacer el ridículo, y por eso evita hablar, participar o conocer gente. Sigue el modelo cognitivo-conductual: atención hacia fuera, menos conductas de seguridad y experimentos en situaciones reales.',
+      'Para quien teme quedar mal, recibir críticas o hacer el ridículo, y por eso evita hablar, participar o conocer gente. Sigue el modelo cognitivo-conductual: atención hacia fuera, menos conductas de seguridad y experimentos en situaciones reales.',
     basis: 'Modelo cognitivo de la ansiedad social (Clark y Wells, 1995); terapia cognitivo-conductual (Mayo-Wilson et al., 2014).',
     rhythm: '10 minutos al día y un experimento pequeño por semana.',
     weeks: [

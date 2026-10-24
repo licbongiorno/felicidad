@@ -68,7 +68,7 @@ describe('guía de estilo', () => {
   it('sin dobles espacios ni formas de género no recomendadas (x, @, /os)', () => {
     for (const { where, text } of allTexts()) {
       expect(text, where).not.toMatch(/ {2}/);
-      // La guía usa «o/a» (p. ej. «cansado/a»); no se usan @, x ni «/os».
+      // Se evitan las barras de género (fuera de los ítems de instrumentos validados); nunca @, x ni «/os».
       expect(text, where).not.toMatch(/[a-záéíóú]@[a-z]|\btod[xe]s\b|\w+\/os\b/i);
     }
   });
@@ -149,7 +149,7 @@ describe('gobernanza clínica', () => {
   });
 
   it('el contenido aprobado registra quién y cuándo lo revisó', () => {
-    for (const [kind, id] of [['herramienta', 'plan-seguridad'], ['instrumento', 'phq9'], ['practica', 'dear-man']] as const) {
+    for (const [kind, id] of [['herramienta', 'plan-seguridad'], ['instrumento', 'phq9'], ['practica', 'activacion-conductual']] as const) {
       const r = reviewOf(kind, id);
       expect(r.status, `${kind}:${id}`).toBe('revisado');
       expect(r.reviewedBy && r.reviewedAt, `${kind}:${id}`).toBeTruthy();

@@ -150,7 +150,7 @@ export function interpretWho5(score: number): Interpretation & { band: Who5Band 
       band: 'muy-bajo',
       severity: 'alto',
       title: 'Bienestar muy bajo',
-      body: 'Esta puntuación es frecuente en personas que atraviesan una depresión. No es un diagnóstico, pero sí una buena razón para hablarlo con un/a profesional de la salud mental, si no lo estás haciendo ya.',
+      body: 'Esta puntuación es frecuente en personas que atraviesan una depresión. No es un diagnóstico, pero sí una buena razón para hablarlo con un profesional de la salud mental, si no lo estás haciendo ya.',
     };
   }
   if (score < 50) {
@@ -158,7 +158,7 @@ export function interpretWho5(score: number): Interpretation & { band: Who5Band 
       band: 'bajo',
       severity: 'atencion',
       title: 'Bienestar bajo',
-      body: 'Tu bienestar de las últimas dos semanas está por debajo del rango habitual. Puede ser algo pasajero; si se mantiene en las próximas evaluaciones, conviene comentarlo con un/a profesional.',
+      body: 'Tu bienestar de las últimas dos semanas está por debajo del rango habitual. Puede ser algo pasajero; si se mantiene en las próximas evaluaciones, conviene comentarlo con un profesional de la salud mental.',
     };
   }
   return {
@@ -208,7 +208,7 @@ export const GAD7: Instrument = {
   score: sum,
   interpret: (score) => {
     if (score >= 15)
-      return { band: 'grave', severity: 'alto', title: 'Ansiedad grave', body: 'Esta puntuación indica síntomas de ansiedad intensos. No es un diagnóstico, pero te recomendamos consultar con un/a profesional de la salud mental: la ansiedad tiene tratamientos eficaces.' };
+      return { band: 'grave', severity: 'alto', title: 'Ansiedad grave', body: 'Esta puntuación indica síntomas de ansiedad intensos. No es un diagnóstico, pero te recomendamos consultar con un profesional de la salud mental: la ansiedad tiene tratamientos eficaces.' };
     if (score >= 10)
       return { band: 'moderada', severity: 'atencion', title: 'Ansiedad moderada', body: 'A partir de 10 puntos se recomienda una evaluación profesional. Mientras tanto, las prácticas de respiración, el tiempo de preocupación y el programa «Calma ante la ansiedad» pueden ayudarte.' };
     if (score >= 5)
@@ -257,9 +257,9 @@ export const PHQ9: Instrument = {
   score: sum,
   interpret: (score) => {
     if (score >= 20)
-      return { band: 'grave', severity: 'alto', title: 'Síntomas depresivos graves', body: 'Esta puntuación indica síntomas intensos. Te recomendamos consultar pronto con un/a profesional de la salud mental: la depresión tiene tratamientos eficaces.' };
+      return { band: 'grave', severity: 'alto', title: 'Síntomas depresivos graves', body: 'Esta puntuación indica síntomas intensos. Te recomendamos consultar pronto con un profesional de la salud mental: la depresión tiene tratamientos eficaces.' };
     if (score >= 15)
-      return { band: 'moderadamente-grave', severity: 'alto', title: 'Síntomas depresivos moderadamente graves', body: 'Te recomendamos consultar con un/a profesional de la salud mental para una evaluación.' };
+      return { band: 'moderadamente-grave', severity: 'alto', title: 'Síntomas depresivos moderadamente graves', body: 'Te recomendamos consultar con un profesional de la salud mental para una evaluación.' };
     if (score >= 10)
       return { band: 'moderada', severity: 'atencion', title: 'Síntomas depresivos moderados', body: 'A partir de 10 puntos se recomienda una evaluación profesional. El programa «Salir del desánimo» puede ser un buen complemento.' };
     if (score >= 5)
@@ -323,7 +323,7 @@ export const DERS16: Instrument = {
   score: sum,
   interpret: (score) => {
     if (score >= 59)
-      return { band: 'alta', severity: 'alto', title: 'Muchas dificultades para regular las emociones', body: 'Tu puntuación está en el tercio alto de la escala. Las emociones parecen desbordarte a menudo. No es un diagnóstico, pero vale la pena hablarlo con un/a profesional: la terapia dialéctico-conductual trabaja justo esto.' };
+      return { band: 'alta', severity: 'alto', title: 'Muchas dificultades para regular las emociones', body: 'Tu puntuación está en el tercio alto de la escala. Las emociones parecen desbordarte a menudo. No es un diagnóstico, pero vale la pena hablarlo con un profesional de la salud mental: la terapia dialéctico-conductual trabaja justo esto.' };
     if (score >= 38)
       return { band: 'media', severity: 'atencion', title: 'Algunas dificultades para regular las emociones', body: 'Tu puntuación está en el tercio medio de la escala. Las habilidades DBT de la app pueden ayudarte. Observa cómo evoluciona en las próximas evaluaciones.' };
     return { band: 'baja', severity: 'ok', title: 'Pocas dificultades para regular las emociones', body: 'Tu puntuación está en el tercio bajo de la escala. Lo más útil ahora es observar la tendencia a lo largo del tiempo.' };
@@ -384,9 +384,9 @@ export const ISI: Instrument = {
   score: sum,
   interpret: (score) => {
     if (score >= 22)
-      return { band: 'grave', severity: 'alto', title: 'Insomnio grave', body: 'Esta puntuación indica un insomnio clínico grave. No es un diagnóstico, pero te recomendamos consultar con un/a profesional: la terapia cognitivo-conductual para el insomnio es el tratamiento de primera elección.' };
+      return { band: 'grave', severity: 'alto', title: 'Insomnio grave', body: 'Esta puntuación indica un insomnio clínico grave. No es un diagnóstico, pero te recomendamos consultar con un profesional de la salud: la terapia cognitivo-conductual para el insomnio es el tratamiento de primera elección.' };
     if (score >= 15)
-      return { band: 'moderado', severity: 'atencion', title: 'Insomnio moderado', body: 'Esta puntuación indica un insomnio clínico moderado. Conviene consultarlo con un/a profesional. El programa «Dormir mejor» puede ser un buen complemento.' };
+      return { band: 'moderado', severity: 'atencion', title: 'Insomnio moderado', body: 'Esta puntuación indica un insomnio clínico moderado. Conviene consultarlo con un profesional de la salud. El programa «Dormir mejor» puede ser un buen complemento.' };
     if (score >= 8)
       return { band: 'subumbral', severity: 'ok', title: 'Insomnio leve (subclínico)', body: 'Hay algunas dificultades de sueño, por debajo del umbral clínico. El diario de sueño y el programa «Dormir mejor» pueden ayudarte.' };
     return { band: 'sin-insomnio', severity: 'ok', title: 'Sin insomnio clínicamente significativo', body: 'Tu sueño de las últimas dos semanas no muestra un insomnio relevante.' };
@@ -443,7 +443,7 @@ export const PSS10: Instrument = {
   score: (items) => sum(items.map((v, i) => (PSS10_REVERSED.includes(i) ? 4 - v : v))),
   interpret: (score) => {
     if (score >= 27)
-      return { band: 'alto', severity: 'alto', title: 'Estrés percibido alto', body: 'Tu puntuación está en el tercio alto de la escala. Sientes que las exigencias superan tus recursos. Si se mantiene, conviene hablarlo con un/a profesional. El programa «Estrés y agotamiento» puede ayudarte.' };
+      return { band: 'alto', severity: 'alto', title: 'Estrés percibido alto', body: 'Tu puntuación está en el tercio alto de la escala. Sientes que las exigencias superan tus recursos. Si se mantiene, conviene hablarlo con un profesional de la salud mental. El programa «Estrés y agotamiento» puede ayudarte.' };
     if (score >= 14)
       return { band: 'moderado', severity: 'atencion', title: 'Estrés percibido moderado', body: 'Tu puntuación está en el tercio medio de la escala. Las pausas breves y la resolución de problemas pueden ayudarte a recuperar margen.' };
     return { band: 'bajo', severity: 'ok', title: 'Estrés percibido bajo', body: 'Tu puntuación está en el tercio bajo de la escala. Sientes, en general, que puedes con lo que te pide la vida.' };
@@ -501,7 +501,7 @@ export const SWLS: Instrument = {
       band: 'insatisfecho',
       severity: 'alto',
       title: 'Satisfacción baja con tu vida',
-      body: 'Sientes que tu vida está lejos de como la quieres. Si esto se mantiene o te pesa mucho, conviene hablarlo con un/a profesional.',
+      body: 'Sientes que tu vida está lejos de como la quieres. Si esto se mantiene o te pesa mucho, conviene hablarlo con un profesional de la salud mental.',
     };
   },
   references: [
@@ -558,7 +558,7 @@ export const AUDITC: Instrument = {
         band: 'alto',
         severity: 'alto',
         title: 'Consumo de alto riesgo',
-        body: 'Tu consumo puede estar dañando tu salud. Conviene consultar a un/a profesional. Si tomas todos los días, no dejes de golpe: dejar de golpe puede ser peligroso. Pide ayuda para hacerlo con cuidado. Línea 141 de SEDRONAR: gratuita, anónima y las 24 horas.',
+        body: 'Tu consumo puede estar dañando tu salud. Conviene consultar a un profesional de la salud. Si tomas todos los días, no dejes de golpe: dejar de golpe puede ser peligroso. Pide ayuda para hacerlo con cuidado. Línea 141 de SEDRONAR: gratuita, anónima y las 24 horas.',
       };
     if (score >= 3)
       return {

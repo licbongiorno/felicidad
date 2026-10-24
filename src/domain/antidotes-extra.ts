@@ -57,7 +57,7 @@ export const EXTRA_ANTIDOTES: Antidote[] = [
     trainingPracticeId: 'pausa-autocompasion',
     science: [
       'En los experimentos de Breines y Chen, las personas a las que se indujo autocompasión tras recordar un error estaban más motivadas para repararlo y para no repetirlo que las que recibieron un mensaje de autoestima o ningún mensaje.',
-      'La investigación distingue culpa («hice algo malo») de vergüenza («soy malo/a»). La culpa centrada en la conducta tiende a llevar a la reparación; la vergüenza, al ocultamiento y la evitación. El antídoto busca mantener la primera y disolver la segunda.',
+      'La investigación distingue culpa («hice algo malo») de vergüenza («soy una mala persona»). La culpa centrada en la conducta tiende a llevar a la reparación; la vergüenza, al ocultamiento y la evitación. El antídoto busca mantener la primera y disolver la segunda.',
     ],
     whenNot:
       'Si la culpa viene de un trauma, o es muy grande y no se va, conviene trabajarla con un profesional.',
@@ -66,7 +66,7 @@ export const EXTRA_ANTIDOTES: Antidote[] = [
       { title: 'Conducta, no persona', instruction: 'Reformula: no «soy una mala persona», sino «hice X, y eso tuvo tal efecto».', durationSec: 75, kind: 'reflection' },
       { title: 'Contexto', instruction: '¿Qué sabías, qué podías y qué sentías en ese momento? Comprender no es excusar.', durationSec: 75, kind: 'reflection' },
       { title: 'Reparar', instruction: '¿Hay algo que puedas hacer para reparar, aunque sea en parte? Una disculpa, un gesto, un cambio.', durationSec: 90, kind: 'reflection' },
-      { title: 'Generar el antídoto', instruction: 'Dite, como a un amigo que se equivocó: «cometiste un error, eres humano/a, y puedes hacerlo mejor».', durationSec: 60 },
+      { title: 'Generar el antídoto', instruction: 'Dite, como a un amigo que se equivocó: «cometiste un error, eres una persona, y puedes hacerlo mejor».', durationSec: 60 },
     ],
   },
   {
@@ -97,7 +97,7 @@ export const EXTRA_ANTIDOTES: Antidote[] = [
     whenNot:
       'Si además de soledad sientes que no hay salida, o piensas que no quieres vivir, pide ayuda hoy. Puedes acudir a un profesional o a los teléfonos de ayuda.',
     steps: [
-      { title: 'Nombrar', instruction: 'Reconoce: «me siento solo/a». No es un defecto: es una señal de que necesitas conexión, como el hambre indica que necesitas comer.', durationSec: 60 },
+      { title: 'Nombrar', instruction: 'Reconoce: «siento soledad». No es un defecto: es una señal de que necesitas conexión, como el hambre indica que necesitas comer.', durationSec: 60 },
       { title: 'La lectura', instruction: '¿Qué te dice la mente sobre los demás ahora? («no les importo», «molestaría»). Anótalo como hipótesis, no como hecho.', durationSec: 90, kind: 'reflection' },
       { title: 'Otra evidencia', instruction: '¿Hay alguna prueba de lo contrario? Alguien que te escribió, que se alegró de verte, que te ayudó.', durationSec: 90, kind: 'reflection' },
       { title: 'Humanidad compartida', instruction: 'Ahora mismo, millones de personas sienten esta misma soledad. Deséales, y deséate, compañía y cercanía.', durationSec: 75 },
@@ -145,7 +145,7 @@ export const EXTRA_ANTIDOTES: Antidote[] = [
     markers: 'Añoranza, oleadas de tristeza, incredulidad, pensar una y otra vez en la persona o en lo perdido.',
     antidoteName: 'Honrar el vínculo',
     incompatibility:
-      'El duelo no es un problema que resolver, sino el precio del amor. Lo que añade sufrimiento es quedar atrapado/a en uno de dos extremos: no poder dejar de pensar en la pérdida, o no poder acercarse a ella. El antídoto acompaña la oscilación natural entre recordar y seguir viviendo.',
+      'El duelo no es un problema que resolver, sino el precio del amor. Lo que añade sufrimiento es que la mente quede atrapada en uno de dos extremos: no poder dejar de pensar en la pérdida, o no poder acercarse a ella. El antídoto acompaña la oscilación natural entre recordar y seguir viviendo.',
     evidenceLevel: 'moderada',
     evidence: [
       {
@@ -194,9 +194,9 @@ export const EXTRA_ANTIDOTES: Antidote[] = [
       'Elegir la acción siguiente, en lugar de mirar el problema entero, es el núcleo de la resolución de problemas, una intervención con evidencia metaanalítica.',
     ],
     whenNot:
-      'Si el agobio dura meses y te sientes agotado/a, distante o sin fuerzas, puede ser desgaste por el trabajo (burnout). Entonces no basta con organizarte mejor: hace falta cambiar las condiciones.',
+      'Si el agobio dura meses y sientes agotamiento, distancia o falta de fuerzas, puede ser desgaste por el trabajo (burnout). Entonces no basta con organizarte mejor: hace falta cambiar las condiciones.',
     steps: [
-      { title: 'Nombrar', instruction: 'Reconoce: «estoy agobiado/a». Tres respiraciones con exhalación larga.', durationSec: 45, kind: 'breath' },
+      { title: 'Nombrar', instruction: 'Reconoce: «siento agobio». Tres respiraciones con exhalación larga.', durationSec: 45, kind: 'breath' },
       { title: 'Vaciar', instruction: 'Escribe todo lo que te pesa, en una lista, sin orden. Sácalo de la cabeza.', durationSec: 120, kind: 'reflection' },
       { title: 'Filtrar', instruction: '¿Qué puede esperar? ¿Qué puede hacer otra persona? ¿Qué se puede dejar? Tacha o aparta.', durationSec: 90, kind: 'reflection' },
       { title: 'Lo siguiente', instruction: 'Elige una sola tarea y su primer paso físico (abrir el documento, hacer la llamada). Sólo eso.', durationSec: 60, kind: 'reflection' },
@@ -228,7 +228,7 @@ export const EXTRA_ANTIDOTES: Antidote[] = [
       'En el estudio de Wohl y colaboradores, los estudiantes que se perdonaron por haber procrastinado antes de un primer examen procrastinaron menos antes del siguiente. La autocrítica, en cambio, mantiene el ciclo.',
     ],
     whenNot:
-      'Si te bloqueas con casi todo y además estás desanimado/a desde hace tiempo, consulta con un profesional. Puede haber una depresión o un problema de atención que se puede tratar.',
+      'Si te bloqueas con casi todo y además te falta ánimo desde hace tiempo, consulta con un profesional. Puede haber una depresión o un problema de atención que se puede tratar.',
     steps: [
       { title: 'Nombrar', instruction: 'Reconoce: «estoy evitando esta tarea». ¿Qué malestar te provoca? Aburrimiento, inseguridad, miedo…', durationSec: 60, kind: 'reflection' },
       { title: 'Perdonarte', instruction: 'Dite: «llevo tiempo postergándolo, como le pasa a mucha gente. Puedo empezar ahora».', durationSec: 45 },
@@ -243,7 +243,7 @@ export const EXTRA_ANTIDOTES: Antidote[] = [
     markers: 'Corazón acelerado, falta de aire, mareo, sensación de irrealidad o de que algo terrible va a pasar, de golpe.',
     antidoteName: 'Dejar pasar la falsa alarma',
     incompatibility:
-      'El pánico se alimenta de leer las sensaciones como peligrosas («me va a dar un infarto», «me voy a volver loco/a»). Entenderlas como una falsa alarma y no huir de ellas corta el círculo: sin esa lectura catastrófica, las sensaciones suben y bajan solas.',
+      'El pánico se alimenta de leer las sensaciones como peligrosas («me va a dar un infarto», «voy a perder la cabeza»). Entenderlas como una falsa alarma y no huir de ellas corta el círculo: sin esa lectura catastrófica, las sensaciones suben y bajan solas.',
     evidenceLevel: 'moderada',
     evidence: [
       {

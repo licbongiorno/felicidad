@@ -116,7 +116,7 @@ export const MORE_PRACTICES: Practice[] = [
       { title: 'Notar la emoción', instruction: 'Reconoce que una emoción fuerte está presente. Sin juzgarla.', durationSec: 25 },
       { title: 'Bajar a los pies', instruction: 'Lleva toda la atención a las plantas de los pies: el contacto con el suelo, la presión, la temperatura.', durationSec: 60 },
       { title: 'Mover los dedos', instruction: 'Mueve suavemente los dedos de los pies. Siente cada uno.', durationSec: 40 },
-      { title: 'Volver', instruction: 'Respira. Cuando estés más sereno/a, decide qué hacer.', durationSec: 25, kind: 'breath' },
+      { title: 'Volver', instruction: 'Respira. Cuando sientas más serenidad, decide qué hacer.', durationSec: 25, kind: 'breath' },
     ],
   },
 
