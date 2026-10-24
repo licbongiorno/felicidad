@@ -19,6 +19,13 @@ entrada en este registro.
 
 ---
 
+## 2026-10-24 · Desafíos, simulaciones y programas combinados
+
+Contenido que reúne lo que ya existía. Entra en estado `pendiente`.
+- **Diez desafíos nuevos** (de 12 a 22): apego seguro, después de una ruptura, CNV (21 días), asertividad, mirar mi consumo, familia con menos gritos, perfeccionismo, alta sensibilidad, después de una infidelidad y climaterio.
+- **Cinco simulaciones** en el Laboratorio, cada una con respuestas asertiva, pasiva y agresiva: pedir un aumento, un familiar que opina de tu crianza, terminar una relación con respeto (con la Línea 144 si hay miedo o violencia), decirle a un amigo que te dolió algo y negarte a prestar plata.
+- **Cuatro programas combinados** de cuatro semanas: primer año tras un diagnóstico, volver al trabajo tras una licencia, después de un cambio grande y cuidarme mientras cuido.
+
 ## 2026-10-24 · Cinco temas nuevos: sustancias, duelo anticipado, autismo, discapacidad, fertilidad y adopción
 
 Cinco paquetes nuevos, cada uno con su necesidad. Todo entra en estado `pendiente`.
