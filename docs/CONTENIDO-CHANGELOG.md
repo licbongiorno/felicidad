@@ -19,6 +19,15 @@ entrada en este registro.
 
 ---
 
+## 2026-10-24 · Cinco temas nuevos: sustancias, duelo anticipado, autismo, discapacidad, fertilidad y adopción
+
+Cinco paquetes nuevos, cada uno con su necesidad. Todo entra en estado `pendiente`.
+- **Cannabis y otras sustancias** («Revisar mi consumo de cannabis u otras sustancias»): seis prácticas con enfoque motivacional y de reducción de daños, dos artículos, programa de cuatro semanas, cuatro píldoras y glosario. Las benzodiacepinas y el alcohol de uso diario no se dejan de golpe; síntomas psicóticos o ideas de no querer vivir, 911 o 135; Línea 141. Sin dosis ni combinaciones.
+- **Duelo anticipado** («Cuando alguien querido se está muriendo»): seis prácticas para quien acompaña y una para quien piensa en su propio final (riesgo 2, con alternativa), dos artículos, programa, cuatro píldoras y glosario. Los cuidados paliativos se conversan con el equipo de salud.
+- **Autismo en adultos** («Soy autista (o creo que lo soy)»): enfoque neuroafirmativo, seis prácticas (intereses, diagnóstico de adulto, plan de crisis, camuflaje, energía y ajustes), dos artículos, programa, cuatro píldoras y glosario. Sin terapias para «normalizar»; el diagnóstico lo hace un profesional.
+- **Discapacidad en la familia** («Hay una discapacidad en mi familia, o en mí»): desde el modelo social, seis prácticas, dos artículos, programa, cuatro píldoras, glosario y una guía sobre los hermanos.
+- **Fertilidad y adopción** («Buscar un hijo: tratamientos y adopción»): seis prácticas, dos artículos, programa, cuatro píldoras, glosario y una guía para hablar de la adopción en familia. Sin indicaciones médicas ni trámites; no juzga ninguna decisión.
+
 ## 2026-10-23 · Más juegos y rutinas para chicos de 0 a 6 años
 
 Veintidós actividades nuevas para las franjas que tenían menos contenido. Entran en estado `pendiente`.
